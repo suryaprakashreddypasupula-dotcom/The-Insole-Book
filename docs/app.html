@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page 3 · How the website works</title>
+<link rel="stylesheet" href="./docs.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="../assets/hike-logo.jpg" alt="hike">
+    <nav>
+      <a href="./index.html">1 · Open</a>
+      <a href="./build.html">2 · Build</a>
+      <a class="on" href="./app.html">3 · Website</a>
+    </nav>
+  </header>
+
+  <div class="kicker">Build docs · Page 3 of 3</div>
+  <h1>How the website is put together</h1>
+  <p class="lede">Three files drive almost every click: the page shell, the lesson text, and the viewer. Change text in one place. Change 3D in another. You still never deploy.</p>
+
+  <h2>1. The three files that matter</h2>
+  <table>
+    <tr><th>File</th><th>Job</th></tr>
+    <tr><td><span class="path">index.html</span></td><td>Chrome of the site: intro overlay, syllabus, 3D stage, lesson pane, library, styles. No chapter prose here.</td></tr>
+    <tr><td><span class="path">content.js</span></td><td>The course. <code>CHAPTERS</code> is the syllabus order. <code>GLOSSARY</code> is the dotted-term popovers. Edit this to change what a student reads.</td></tr>
+    <tr><td><span class="path">app.js</span></td><td>Loads Three.js, reads <span class="path">catalog.json</span>, flies the camera, plays lift / press / flip / drape, runs Training callouts.</td></tr>
+  </table>
+  <p>Three.js itself is already inside <span class="path">vendor/</span>. The site does not download libraries from the internet.</p>
+
+  <h2>2. What happens when the page loads</h2>
+  <ol class="steps">
+    <li>A small script in <span class="path">index.html</span> runs the logo, then the video once, then hides the overlay. Deep links (<code>#lesson=1.4</code>) skip that.</li>
+    <li><span class="path">app.js</span> fetches <span class="path">catalog.json</span>, draws the syllabus from <code>CHAPTERS</code>, draws the library, and loads the first lesson’s GLB onto the stage.</li>
+    <li>Click a syllabus row or a bottom chapter chip → the reader scrolls into view and <code>renderLesson()</code> swaps models and the first step’s camera.</li>
+    <li>Next / Back or arrow keys / space move <code>state.step</code>, then <code>state.lesson</code>, then the next chapter.</li>
+  </ol>
+
+  <h2>3. The syllabus flow (what the student walks)</h2>
+  <ol class="steps">
+    <li><b>Meet the insole</b> — landmarks, plantar map, Functional vs Diabetic.</li>
+    <li><b>Bases</b> — Bi-Lam vs Tri-Lam (Hike internal company names Sweet / Double / Triple for the finished insole, then durometer, BYO), then Shell / Cork / <b>Co-Poly mimic</b>, then the real UCBL.</li>
+    <li><b>Accommodations</b> — what one is, then met bar → pad → neuroma → offload → plug → drill &amp; fill → dancer’s → toe crest → Morton → arch → cuboid / fifth → heel pad &amp; spur → intrinsic then extrinsic wedges.</li>
+    <li><b>Top covers</b> — how the sheet is glued heel-first, then T1–T14 at true thickness.</li>
+    <li><b>Combinations</b> — Charcot, leftover toolbox names, a stacked shell prescription.</li>
+  </ol>
+  <p>The library under the reader is the same devices grouped the same way. Every library card that has an add-on can Replay.</p>
+
+  <h2>4. How a lesson is written</h2>
+  <p>One lesson is a small object in <span class="path">content.js</span>:</p>
+<pre><code>{
+  id: "met-bar",
+  title: "Met Bar",
+  models: [{ po: "PAIR-MET-BAR", side: "LEFT" }],
+  camera: "pad",
+  steps: [
+    { camera: "pad", text: "…" },
+    { camera: "profile", anim: "separate", text: "…" },
+    { camera: "pad", anim: "reseat", text: "…" }
+  ]
+}</code></pre>
+  <ul class="plain">
+    <li><code>po</code> must match a <code>catalog.json</code> row.</li>
+    <li><code>compare: [{ po, side, label }, …]</code> puts two devices on stage.</li>
+    <li><code>covers: true</code> shows the T1–T14 chips. <code>step.cover: "T3"</code> pins a sheet.</li>
+    <li><code>{{P-Cell}}</code> in the text becomes a glossary tap.</li>
+    <li><code>anim</code> values: <code>separate</code> / <code>reseat</code> (lift), <code>press</code> / <code>release</code>, <code>flip</code> / <code>attach</code> / <code>settle</code>, <code>seat</code> (drape down).</li>
+  </ul>
+  <p>After you save <span class="path">content.js</span>, refresh the book. No Python.</p>
+
+  <h2>5. Cameras and motion (what “Apple-graded” is in code)</h2>
+  <p>The whole insole stays in frame. Named views only change <b>angle and lean</b> (overview, profile, heel, arch, forefoot, toes, pad, relief, heelProfile, forefootEdge). They do not crop the heel off.</p>
+  <p>Replay on a pair: the part leaves, then returns. For lift/press, the teaching color then fades. Training on covers: pills and leader dots, not a magnifier over the model.</p>
+
+  <h2>6. How to change common things</h2>
+  <table>
+    <tr><th>You want to…</th><th>Edit</th></tr>
+    <tr><td>Fix a sentence or rename Co-Poly mimic</td><td><span class="path">content.js</span> only. Refresh.</td></tr>
+    <tr><td>Reorder chapters</td><td>Move objects inside <code>CHAPTERS</code>. Renumber <code>number</code>.</td></tr>
+    <tr><td>Swap a toe crest (or any pair) STL</td><td>Replace the STL, point <span class="path">build_pairs.py</span>, rebuild that pair (Page 2).</td></tr>
+    <tr><td>Change intro video</td><td>Replace <span class="path">assets/intro.mp4</span> (keep the name, or change the <code>&lt;source&gt;</code> in <span class="path">index.html</span>).</td></tr>
+    <tr><td>Change the logo</td><td>Replace <span class="path">assets/hike-logo.jpg</span>. Keep a wide wordmark, not a stretched banner.</td></tr>
+    <tr><td>Skip intro while testing</td><td>Open <code>http://localhost:8471/index.html#lesson=0.0</code></td></tr>
+  </table>
+
+  <h2>7. Copying the book to another Mac (still no deploy)</h2>
+  <ol class="steps">
+    <li>Copy the whole <span class="path">hike-insole-book</span> folder (USB or AirDrop).</li>
+    <li>On that Mac, double-click <span class="path">Start Book.command</span> or run the two Terminal lines from Page 1.</li>
+    <li>That Mac needs Python 3 (already on macOS) and a browser. It does <em>not</em> need the Ops Agent venv unless someone will rebuild GLBs there.</li>
+  </ol>
+  <div class="card">
+    <b>Still not a public website.</b> To put this on the internet you would later pick a host. That is a separate decision. As built, it is a local HTML app.
+  </div>
+
+  <h2>8. Open these docs again</h2>
+<pre><code>open /Users/surya/Downloads/hike-insole-book/docs/index.html</code></pre>
+  <p>or, with the book running: <code>http://localhost:8471/docs/index.html</code></p>
+
+  <div class="pager">
+    <a href="./build.html">← Page 2 · Build</a>
+    <a class="next" href="../index.html">Open the book</a>
+  </div>
+  <footer>Local only · hike-insole-book/docs · not published</footer>
+</div>
+</body>
+</html>

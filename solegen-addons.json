@@ -1,0 +1,469 @@
+[
+  {
+    "desc": "A free-standing elliptical platform centred on the heel keypoint, ground to the ordered plane. The island clears the rim all round; width auto-fits the heel seat and the knobs below resize and reproportion it.",
+    "name": "Heel post — Oval",
+    "params": [
+      "Height | 0 mm | 0 = fill the bowl without lifting; above 0 the post becomes a platform that raises the heel. | Post angle | 0 ° | Frontal plane: toward medial = varus (thicker medially), toward lateral = valgus. | Heel length | 2.5 × | How far forward the post reaches, as a fraction of the heel seat. | Width scale | 1 × | Scale on the auto-fitted width (rim guard still caps it). | Length / Width | 1.4 × | 0 = auto (fill the heel seat span). Otherwise length = width × this, capped by the seat.",
+      "Edge blend | 0 mm | Run over which the post edge fades into the shell. 0 = no blend, a ground edge."
+    ],
+    "replaces": "One heel post per device — enabling Oval removes Flat / U.",
+    "slug": "heel_post_oval"
+  },
+  {
+    "desc": "A full platform that follows the heel seat’s own outline, held just inside the rim, ground to the ordered plane. The whole rearfoot stands on it.",
+    "name": "Heel post — Flat",
+    "params": [
+      "Height | 0.5 mm | 0 = fill the bowl without lifting; above 0 the post becomes a platform that raises the heel. | Post angle | 0 ° | Frontal plane: toward medial = varus (thicker medially), toward lateral = valgus. | Heel length | 1.7 × | How far forward the post reaches, as a fraction of the heel seat. | Corner rounding | 1 | Ease the two front corners where the cut edge meets the rim. 0 = as marched, 1 = fully eased.",
+      "Edge blend | 0 mm | Run over which the post edge fades into the shell. 0 = no blend, a ground edge."
+    ],
+    "replaces": "One heel post per device — enabling Flat removes Oval / U.",
+    "slug": "heel_post_flat"
+  },
+  {
+    "desc": "The flat post with its middle left at plain plate thickness: only a U-shaped band around the heel seat’s edge carries the platform. Less material, same seating plane.",
+    "name": "Heel post — U",
+    "params": [
+      "Height | 0.5 mm | 0 = fill the bowl without lifting; above 0 the post becomes a platform that raises the heel. | Post angle | 0 ° | Frontal plane: toward medial = varus (thicker medially), toward lateral = valgus. | Heel length | 1.6 × | How far forward the post reaches, as a fraction of the heel seat. | Band width | 14 mm | Width of the U’s band itself. 0 = library default; floored at 2 × blend + 4 so both edge blends fit.",
+      "Edge blend | 2 mm | Run over which the post edge fades into the shell. 0 = no blend, a ground edge."
+    ],
+    "replaces": "One heel post per device — enabling U removes Oval / Flat.",
+    "slug": "heel_post_u"
+  },
+  {
+    "desc": "A block that fills the whole heel seat to the ordered plane and reaches the device edge: no rim guard. The outer wall carries the shell edge straight down the way a full insole body would, and the anterior face is a backward-leaning facet.",
+    "name": "Heel post — Stabilizer",
+    "params": [
+      "Height | 0.5 mm | 0 = fill the bowl without lifting; above 0 the post becomes a platform that raises the heel. | Post angle | 0 ° | Frontal plane: toward medial = varus (thicker medially), toward lateral = valgus. | Heel length | 1.5 × | How far forward the post reaches, as a fraction of the heel seat. | Wall angle | 10 ° | Inward lean of the outer wall as it descends from the shell edge, degrees from vertical. 0 = straight down.",
+      "Front facet run | 0 mm | Run of the anterior facet: the base sits back from the heel-length cut by up to this. 0 = a vertical front face."
+    ],
+    "replaces": "One heel post per device — enabling Stabilizer removes Oval / Flat / U.",
+    "slug": "heel_post_stabilizer"
+  },
+  {
+    "desc": "Rays fanning from the calcaneal tubercle a full 360° — the plantar fascia’s own load path. Wraps the heel cup unless a post is ordered (then it stops where the post begins).",
+    "name": "Reinforcement — Radial fan",
+    "params": [
+      "Rib height | 1 mm | Ray count | 26",
+      "Rib width | 6 mm"
+    ],
+    "replaces": "One reinforcement pattern per device — enabling it removes the others.",
+    "slug": "reinforcement_radial"
+  },
+  {
+    "desc": "Transverse corrugation across the plate — parallel ribs at a fixed pitch, clear of the rim and the distal taper.",
+    "name": "Reinforcement — Ribbed",
+    "params": [
+      "Rib height | 1.6 mm | Pitch | 8 mm | Crest-to-crest spacing.",
+      "Rib width | 6 mm"
+    ],
+    "replaces": "One reinforcement pattern per device — enabling it removes the others.",
+    "slug": "reinforcement_ribbed"
+  },
+  {
+    "desc": "Three rib families 60° apart forming equilateral triangles — the aerospace standard for thin plates, quasi-isotropic so it carries torsion a single direction cannot.",
+    "name": "Reinforcement — Isogrid",
+    "params": [
+      "Rib height | 1 mm | Cell pitch | 10 mm | Spacing of each family; smaller = denser triangles (heavier plate, bigger STL).",
+      "Rib width | 6 mm"
+    ],
+    "replaces": "One reinforcement pattern per device — enabling it removes the others.",
+    "slug": "reinforcement_grid"
+  },
+  {
+    "desc": "Four longitudinal ribs under the arch, laid along the navicular line (medialCup → MT1) — the direction the arch actually spans. Lanes shorten toward the insole centre where the vault dies out.",
+    "name": "Reinforcement — Arch ribs",
+    "params": [
+      "Rib height | 3 mm | Rib length | 90 mm | The border lane’s length; inner lanes shorten from here.",
+      "Rib width | 6 mm | Length taper | 0.4 | 0 = all lanes equal · 0.4 = centre-most at 60% of the border lane."
+    ],
+    "replaces": "One reinforcement pattern per device — enabling it removes the others.",
+    "slug": "reinforcement_arch"
+  },
+  {
+    "desc": "A trimline variant: FULL length under ray 1 (the shell itself is the rigid extension under the hallux) while rays 2–5 are cut back to the met line. Built from the toe-fan control points, with a near-vertical split between the rays.",
+    "name": "Morton’s Extension",
+    "params": [
+      "Split position | 0.6 × | Where the cut runs, as a fraction of the met span from MT1 toward MT5. 0.4 ≈ the gap between ray 1 and ray 2. | Split vertical angle | -5.5 ° | Tilt of the vertical cut. + leans the top toward MT5. | Split horizontal angle | 10 ° | Tilt of the ¾ cut line. + raises the inner corner toward the toes. | Rim start slide | -20 mm | Slide the cut’s start point along the trimline, ± mm in Y from that side’s MT keypoint (MT5 for Morton’s, MT1 for Reverse). + toward the toes.",
+      "Edge bevel | 10.5 mm | How far back from the ¾ cut the plantar surface runs down to nothing, so the ledge across the forefoot is not a step. 0 = square edge."
+    ],
+    "replaces": "Owns the distal outline — mutually exclusive with Reverse Morton’s and the plain length settings.",
+    "slug": "mortons_extension"
+  },
+  {
+    "desc": "The complement: rays 2–5 keep the full toe length while ray 1 is cut back to the met line — the hallux plantarflexes freely. Same split control as Morton’s.",
+    "name": "Reverse Morton’s Extension",
+    "params": [
+      "Split position | 0.4 × | Where the cut runs, as a fraction of the met span from MT1 toward MT5. 0.4 ≈ the gap between ray 1 and ray 2. | Split vertical angle | 6.5 ° | Tilt of the vertical cut. + leans the top toward MT5. | Split horizontal angle | 13.5 ° | Tilt of the ¾ cut line. + raises the inner corner toward the toes. | Rim start slide | -20 mm | Slide the cut’s start point along the trimline, ± mm in Y from that side’s MT keypoint (MT5 for Morton’s, MT1 for Reverse). + toward the toes.",
+      "Edge bevel | 20 mm | How far back from the ¾ cut the plantar surface runs down to nothing, so the ledge across the forefoot is not a step. 0 = square edge."
+    ],
+    "replaces": "Owns the distal outline — mutually exclusive with Morton’s and the plain length settings.",
+    "slug": "reverse_mortons_extension"
+  },
+  {
+    "desc": "SHELLS: a ROUND bite out of the MEDIAL side of the front edge — a circle centred on the medial front corner (mt1Trim), so the cut reaches behind the MT line toward the heel. Diameter is the knob. Independent — replaces nothing.",
+    "name": "1st Ray Cutout",
+    "params": [
+      "Diameter | 55 % | Diameter of the round bite, as a percentage of the forefoot span. | X position | 7 % | Slide the bite across the foot from the corner (% of the forefoot span). | Y position | 4 % | Slide the bite along the foot from the corner (% of the forefoot span, + toward the toes)."
+    ],
+    "replaces": "",
+    "slug": "ray1_cutout"
+  },
+  {
+    "desc": "SHELLS: a STRAIGHT oblique cut of the LATERAL side of the front edge — a line set `Depth` inside the lateral front corner (mt5Trim), tilted `Angle` from the MT line, so the cut crosses the MT line toward the heel. Independent — replaces nothing.",
+    "name": "5th Ray Cutout",
+    "params": [
+      "Front edge | 40 % | Where the cut leaves the front edge, measured from the lateral corner (% of the forefoot span). | Lateral edge | 14 % | Where the cut meets the lateral edge, measured from the same corner (% of the forefoot span)."
+    ],
+    "replaces": "",
+    "slug": "ray5_cutout"
+  },
+  {
+    "desc": "An INSOLE with a shortened base: the front edge cut back to the met line and carried distally on one side to block toe-off there, so the foot rolls off over the other side. In-toeing carries the lateral side, out-toeing the medial; the type is chosen per order. All positions are fractions of the forefoot span, so one setting lands on the same anatomy at every size.",
+    "name": "Gait plate",
+    "params": [
+      "Extension | 18 % | How far past the met line the carried side runs (% of the forefoot span). | Cross-over | 50 % | Where the edge crosses back over, from the carried side (0) to the other (100). 50 puts the change of level between the 2nd and 3rd rays. | Cut-back edge | 0 % | Slide the cut-back contour along the foot: minus toward the heel, plus toward the toes. The carried side never moves with it."
+    ],
+    "replaces": "Mutually exclusive with the ray cutouts — both reshape the same front edge.",
+    "slug": "gait_plate"
+  },
+  {
+    "desc": "A posting slab printed as its OWN part under the insole, so it can carry its own print settings. The medial side is raised and the lateral edge is the hinge, which is varus. Its flat top glues to the insole’s flat underside; the angle lives on its bottom, and that tilted face is what meets the shoe. The insole itself is untouched. Length is Heel to Met Head, Heel to Sulcus, or Heel to End of Toe, chosen in the studio.",
+    "name": "Medial Wedge",
+    "params": [
+      "Angle | 4 ° | Tilt of the slab across the foot. At 0 no part is made at all."
+    ],
+    "replaces": "One wedge per foot: enabling Medial removes Lateral.",
+    "slug": "wedge_medial"
+  },
+  {
+    "desc": "The same slab as the Medial Wedge, raised on the lateral side with the medial edge as the hinge, which is valgus. Its own STL, its own print settings, flat against the insole and tilted toward the shoe.",
+    "name": "Lateral Wedge",
+    "params": [
+      "Angle | 4 ° | Tilt of the slab across the foot. At 0 no part is made at all."
+    ],
+    "replaces": "One wedge per foot: enabling Lateral removes Medial.",
+    "slug": "wedge_lateral"
+  },
+  {
+    "desc": "The Heel to Met Head wedge with the angle taken out. The insole is THICKER by a flat height all the way forward to the met heads and thins back over the forefoot past them, so the whole rear of the device sits higher in the shoe while the sole still stands on one flat plane. It is the one raise that is not a separate part: nothing here is angled, so there is nothing to grind and the thickness is simply the insole’s own. No side goes up more than the other; for that, use a wedge. NOT the heel lift, which deepens the seat inside the device and leaves the underside where it was.",
+    "name": "Thickness boost",
+    "params": [
+      "Height | 4 mm | How much thicker the device is. Held flat all the way to the front edge, then run out over the taper. At 0 nothing is added at all. | Front edge | 0 mm | Slide the edge where the full height stops, from the met heads: minus toward the heel, plus toward the toes. | Taper | 40 mm | How far past that edge the thickness runs out. A STRAIGHT ramp, so the shorter it is the steeper the face."
+    ],
+    "replaces": "One extrinsic raise per foot: this clears the rearfoot post, the forefoot post and the wedge.",
+    "slug": "thickness_boost"
+  },
+  {
+    "desc": "SHELLS: a flat facet pressed into the heel from the print-bed side, tilted off it by the ordered angle — an intrinsic rearfoot post without tipping the cup as a whole. Medial inverts the heel, lateral everts it; the side is chosen per order. Independent — replaces nothing.",
+    "name": "Kirby Skive",
+    "params": [
+      "Depth | 4 mm | How deep the facet is pressed in at its deepest point. | Angle | 5 ° | Tilt of the facet off the bed plane."
+    ],
+    "replaces": "",
+    "slug": "heel_skive"
+  },
+  {
+    "desc": "Stiffens the MEDIAL wall under the arch: the outer wall angle rises by the amount set here and the rear-wall zone is pulled in to 0.8. No geometry of its own — the studio just switches it on. Independent — replaces nothing.",
+    "name": "Arch reinforcement",
+    "params": [
+      "Medial wall angle plus | 10 ° | Added to the medial wall angle while this is on."
+    ],
+    "replaces": "",
+    "slug": "arch_reinforcement"
+  },
+  {
+    "desc": "The heel pad’s sibling under the ARCH: a soft insert on a square-to-circle footprint laid CENTRE ON the Medial High point, clipped to the OUTER trimline (the wall band is inside the soft zone). Top follows the surface; depth reaches down into the thickness. Exported as kind sgarchpad; the autoslicer trims the volume to the insole body. Independent — replaces nothing.",
+    "name": "Arch pad",
+    "params": [
+      "Height Medial High plus | 2 mm | Extra Medial High height while the pad is on — rides on the arch delta. | Scale | 1.8 × | Footprint size (base ≈ 24% of foot length across). | Length / Width | 0.9 × | Stretch along the foot (area-preserving). 1 = square. | Corner rounding | 0.9 | 0 = square … 1 = circle. | Y position | 0 mm | Slide the whole pad along the foot from the Medial High seat (+ toward the toes). | Depth | 6 mm | Total soft-zone depth, measured down from the Medial High rim level. Ignored when Max depth is on. | Max depth | ☑ soft all the way through the floor — the autoslicer trims the volume to the insole body (overrides Depth)."
+    ],
+    "replaces": "",
+    "slug": "arch_pad"
+  },
+  {
+    "desc": "Intrinsic frontal-plane wedge under the HEEL: the whole cup floor tilts about the un-raised edge, which stays put. + = varus (medial side raised), − = valgus (lateral raised). The cup’s outer contour does not move and the floor never rises above the rim, so the cup depth is what limits the angle — the studio slider stops at the limit it measures for each foot. Independent — replaces nothing.",
+    "name": "Rearfoot posting",
+    "params": [
+      "Varus / Valgus | 4 ° | + = varus (medial up) · − = valgus (lateral up)."
+    ],
+    "replaces": "",
+    "slug": "rearfoot_posting"
+  },
+  {
+    "desc": "Intrinsic post through the trimline: the Medial (varus +) / Lateral (valgus −) Forefoot point rises by tan(angle) × row width and the plantar surface follows the rim through the bed rails. Backward the rim profile dies at the High point; the control rails press the surface back to zero forward (fraction of the arc to the toe apex) and across (fraction of the width). Independent — replaces nothing.",
+    "name": "Forefoot posting",
+    "params": [
+      "Varus / Valgus | 4 ° | + = varus (medial arch→forefoot transition up) · − = valgus (lateral one up).",
+      "Rail — forward | 0.5 | Where the rim returns to zero: fraction of the arc from the raised point to the toe apex. | Rail — across | 0.8 | Where the surface reaches zero across the foot: fraction of the row width (1 = the far edge)."
+    ],
+    "replaces": "",
+    "slug": "forefoot_posting"
+  },
+  {
+    "desc": "The insole wall CONTINUED VERTICALLY UPWARD along the medial edge, from the medial forefoot point to the back heel: constant thickness, lip closes the top. The top line rises, holds a plateau, and falls back to the rim; both endpoints slide along the trimline. Independent — replaces nothing.",
+    "name": "Medial flange",
+    "params": [
+      "Height | 30 mm | Peak height over the REAL heel bottom (rides up with a heel lift). The three red points shape the top line; this drives the middle one. | Start shift | 30 mm | Slide the start (medial forefoot point) along the trimline: + = toward the heel. | End shift | -10 mm | Slide the end (back heel) along the trimline: + = past the heel onto the lateral side.",
+      "Start knee | 0.4 | Arc position of the first control point (end of the climb). | End knee | 0.7 | Arc position of the last control point (start of the descent). | Inner fillet | 7 mm | Radius of the rounding where the plantar surface runs into the flange’s inner face. 0 = sharp crease. | Reinforce bottom | 1 | ☑ stiffen the wall this flange stands on by the degrees below and pull the rear-wall zone in to 0.8. A flange on a soft wall folds outward. | Medial wall thickness | 5 mm | Wall thickness this flange asks for on the medial side. Applied as a floor — it can thicken the ordered wall, never thin it. Snapped to the printable stock ladder. | Reinforce bottom — degrees | 10 ° | Added to the medial wall angle while Reinforce bottom is on."
+    ],
+    "replaces": "",
+    "slug": "medial_flange"
+  },
+  {
+    "desc": "The insole wall CONTINUED VERTICALLY UPWARD along the lateral edge, from the lateral forefoot point to the back heel: constant thickness, lip closes the top. The top line rises, holds a plateau, and falls back to the rim; both endpoints slide along the trimline. Independent — replaces nothing.",
+    "name": "Lateral flange",
+    "params": [
+      "Height | 25 mm | Peak height over the REAL heel bottom (rides up with a heel lift). The three red points shape the top line; this drives the middle one. | Start shift | 30 mm | Slide the start (lateral forefoot point) along the trimline: + = toward the heel. | End shift | -10 mm | Slide the end (back heel) along the trimline: + = past the heel onto the medial side.",
+      "Start knee | 0.4 | Arc position of the first control point (end of the climb). | End knee | 0.7 | Arc position of the last control point (start of the descent). | Inner fillet | 7 mm | Radius of the rounding where the plantar surface runs into the flange’s inner face. 0 = sharp crease. | Reinforce bottom | 1 | ☑ stiffen the wall this flange stands on by the degrees below and pull the rear-wall zone in to 0.8. A flange on a soft wall folds outward. | Lateral wall thickness | 2.5 mm | Wall thickness this flange asks for on the lateral side. Applied as a floor — it can thicken the ordered wall, never thin it. Snapped to the printable stock ladder. | Reinforce bottom — degrees | 5 ° | Added to the lateral wall angle while Reinforce bottom is on."
+    ],
+    "replaces": "",
+    "slug": "lateral_flange"
+  },
+  {
+    "desc": "The shell wall CONTINUED VERTICALLY UPWARD along the medial edge, from the medial forefoot point to the back heel: constant thickness, lip closes the top. Same switch as the insole flange — the device class picks which numbers it starts from. A plate carries no wall of its own, so the flange brings the one it stands on: its own side, its own section, and nowhere else. Independent — replaces nothing.",
+    "name": "Medial flange — shell",
+    "params": [
+      "Height | 25 mm | Peak height over the REAL heel bottom (rides up with a heel lift). The three red points shape the top line; this drives the middle one. | Start shift | 30 mm | Slide the start (medial forefoot point) along the trimline: + = toward the heel. | End shift | -10 mm | Slide the end (back heel) along the trimline: + = past the heel onto the lateral side.",
+      "Start knee | 0.4 | Arc position of the first control point (end of the climb). | End knee | 0.7 | Arc position of the last control point (start of the descent). | Inner fillet | 7 mm | Radius of the rounding where the plantar surface runs into the flange’s inner face. 0 = sharp crease. | Flange thickness | 1.7 mm | Section of the whole medial band — the wall under the flange and the flange itself, which are one piece. A plate has no wall of its own, so this number is the only thing that sets it. Stepped in whole print lines (0.42 mm)."
+    ],
+    "replaces": "",
+    "slug": "shell_medial_flange"
+  },
+  {
+    "desc": "The shell wall CONTINUED VERTICALLY UPWARD along the lateral edge, from the lateral forefoot point to the back heel. Starts lower than the medial one: it catches the foot rather than holding an arch. Independent — replaces nothing.",
+    "name": "Lateral flange — shell",
+    "params": [
+      "Height | 20 mm | Peak height over the REAL heel bottom (rides up with a heel lift). The three red points shape the top line; this drives the middle one. | Start shift | 30 mm | Slide the start (lateral forefoot point) along the trimline: + = toward the heel. | End shift | -10 mm | Slide the end (back heel) along the trimline: + = past the heel onto the medial side.",
+      "Start knee | 0.4 | Arc position of the first control point (end of the climb). | End knee | 0.7 | Arc position of the last control point (start of the descent). | Inner fillet | 7 mm | Radius of the rounding where the plantar surface runs into the flange’s inner face. 0 = sharp crease. | Flange thickness | 1.7 mm | Section of the whole lateral band — the wall under the flange and the flange itself, which are one piece. A plate has no wall of its own, so this number is the only thing that sets it. Stepped in whole print lines (0.42 mm)."
+    ],
+    "replaces": "",
+    "slug": "shell_lateral_flange"
+  },
+  {
+    "desc": "An adjustable dome bump on the forefoot surface (met-pad family: additive, lifts the plantar surface). Teardrop footprint, free position — the operator slides it where the order needs it. Independent — replaces nothing.",
+    "name": "Neuroma pad",
+    "params": [
+      "Height | 4 mm | Size | 1 × | Length / Width | 1.3 × | Footprint elongation along the foot (area-preserving). | X position | 0 × | Across the foot in met half-span units: + = lateral, − = medial (either foot). | Y position | 1.2 × | Along the foot: 0 = heel point · 1 = met line · above 1 = forefoot.",
+      "Teardrop | 0.3 | > 0 widens the toe end into a teardrop; 0 = plain oval. | Corner rounding | 1 | 1 = smooth oval … 0 = rounded square."
+    ],
+    "replaces": "",
+    "slug": "neuroma_pad"
+  },
+  {
+    "desc": "A soft insert that RAISES the plantar surface (1-5 mm dome over its footprint) and continues down into the thickness; the whole volume ships as its own add-on STL the density slicer prints soft. Free position, oval footprint. Independent — replaces nothing.",
+    "name": "Cuboid pad",
+    "params": [
+      "Height above surface | 3 mm | How far the pad lifts the plantar surface; the soft insert covers the raised dome. | Edge blend | 1 | How smoothly the rise blends into the surrounding insole. 0 keeps a crisp edge, 1 a wide gradual skirt. | Size | 1.4 × | Length / Width | 1.2 × | Footprint elongation along the foot (area-preserving). | X position | 0.9 × | Across the foot: + = lateral, − = medial (either foot). | Y position | 0.3 × | Along the foot: 0 = heel point · 1 = met line. | Depth | 4 mm | Insert depth. Ignored when Max depth is on. | Additional heel lift | 0 mm | Extra heel lift while the pad is on — folds into Heel Lift (raises the cup floor and rim). | Max depth | ☑ sink to the deepest the shell floor allows (overrides Depth).",
+      "Corner rounding | 0.8 | 1 = smooth oval … 0 = rounded square."
+    ],
+    "replaces": "",
+    "slug": "cuboid_pad"
+  },
+  {
+    "desc": "An elongated ridge on the forefoot surface under the toes (sulcus zone) — one pill segment per selected toe, centred distal of that toe’s met head along the metatarsal parabola. Adjacent selections overlap and merge into one continuous crest; all five give the classic full crest. Independent — replaces nothing.",
+    "name": "Toe crest",
+    "params": [
+      "TOES — EACH INDEPENDENT; ADJACENT SEGMENTS MERGE INTO ONE CREST | TOE 1 · HALLUX | Height | 3 mm | Y position | 0 mm | TOE 2 | Height | 3 mm | Y position | 0 mm | TOE 3 | Height | 3 mm | Y position | 0 mm | TOE 4 | Height | 3 mm | Y position | 0 mm | TOE 5 | Height | 3 mm | Y position | 0 mm",
+      "Length / Width | 1.3 × | Segment length along the foot as a fraction of its across-foot width.",
+      "Segment width | 1.1 × | Across-foot width per segment (× toe pitch). >1 overlaps neighbours so adjacent toes merge into one ridge. Heights and Y-offsets blend smoothly across a merged joint — it stays ONE line."
+    ],
+    "replaces": "",
+    "slug": "toe_crest"
+  },
+  {
+    "desc": "Half-sunk sphere caps on the plantar surface in a fixed 16-bump layout: 5 along the toe contour, two diagonals of 3 down the midfoot, 5 clustered on the heel. Placement is anatomical (met frame + trimline), so the pattern lands the same on every foot; diameter is proportional to insole size. Independent — replaces nothing.",
+    "name": "Sensory bumps",
+    "params": [
+      "Height | 3 mm | How far the cap rises above the surface. | Diameter | 1 × | Scale on the size-proportional base (6.5% of foot length). | Spacing | 1 × | Spread of each group about its own centre — tightens or opens the clusters without moving them off their anatomy. | Front · edge inset | 15 mm | How far the front row sits in from the toe contour. Floored at bump radius + 3 so a cap can never hang over the edge. | Front · slide along edge | 0 × | Move all five along the toe arc together, like cars on a track. − and + are the two directions. | Diagonals · Y offset | 0 % | Shift the whole six-bump group along the foot, as % of foot length. | Diagonals · edge inset | 0 mm | Hold every diagonal bump at least this far inside the outline. 0 = off. | Heel · Y offset | 0 mm | Slide the heel cluster along the foot relative to the heel point. | Heel · edge inset | 0 mm | Hold every heel bump at least this far inside the outline. 0 = off."
+    ],
+    "replaces": "",
+    "slug": "sensory_bumps"
+  },
+  {
+    "desc": "Oval relief recesses at the metatarsal heads (MT2–4 interpolated on the parabola; MT1/MT5 selectable). Lowers the bed under the head to unload it. Depth is capped to leave a floor above the shell base.",
+    "name": "Met-head offload",
+    "params": [
+      "HEADS (MT1–MT5) — EACH INDEPENDENT | MT1 | Angled | Max depth | Scale | 1.8 × | Depth | 4 mm | Length / Width | 1 × | Corner rounding | 1 | Through wall | Wall offset | 0 mm | MT2 | Angled | Max depth | Scale | 1.6 × | Depth | 4 mm | Length / Width | 1 × | Corner rounding | 1 | Wall offset | 0 mm | MT3 | Angled | Max depth | Scale | 1.6 × | Depth | 4 mm | Length / Width | 1 × | Corner rounding | 1 | Wall offset | 0 mm | MT4 | Angled | Max depth | Scale | 1.6 × | Depth | 4 mm | Length / Width | 1 × | Corner rounding | 1 | Wall offset | 0 mm | MT5 | Angled | Max depth | Scale | 1.7 × | Depth | 4 mm | Length / Width | 1 × | Corner rounding | 1 | Through wall | Wall offset | 0 mm",
+      "WALL PROFILE (SHARED BY ALL HEADS) | Wall angle | 25 ° | Smoothness — top → wall | 0.5 | Smoothness — wall → floor | 0.5 | CROSS-SECTION PROFILE"
+    ],
+    "replaces": "On a given met head, mutually exclusive with Drill & Fill — enabling one removes the other.",
+    "slug": "offload"
+  },
+  {
+    "desc": "Soft zones at the met heads (same oval footprint as the offloads) — no bed recess and no bump. Exported as a separate add-on STL the density slicer prints soft.",
+    "name": "Drill & Fill (met head)",
+    "params": [
+      "HEADS (MT1–MT5) — EACH INDEPENDENT | MT1 | Max depth | Scale | 1.6 × | Depth | 4 mm | Length / Width | 1 × | Corner rounding | 0.8 | Offset from edge | 3 mm | MT2 | Max depth | Scale | 1.2 × | Depth | 4 mm | Length / Width | 1 × | Corner rounding | 1 | Offset from edge | 0 mm | MT3 | Max depth | Scale | 1.2 × | Depth | 4 mm | Length / Width | 1 × | Corner rounding | 1 | Offset from edge | 0 mm | MT4 | Max depth | Scale | 1.2 × | Depth | 4 mm | Length / Width | 1 × | Corner rounding | 1 | Offset from edge | 0 mm | MT5 | Max depth | Scale | 1.3 × | Depth | 4 mm | Length / Width | 1 × | Corner rounding | 0.8 | Offset from edge | 3 mm",
+      "WALL PROFILE (SHARED BY ALL HEADS) | Wall angle | 45 ° | Smoothness — top → wall | 0 | Smoothness — wall → floor | 0 | CROSS-SECTION PROFILE"
+    ],
+    "replaces": "On a given met head, mutually exclusive with the Offload — enabling one removes the other.",
+    "slug": "drillandfill_met"
+  },
+  {
+    "desc": "An egg-shaped relief in the heel cup (wide base rearward). Unloads the calcaneus. Depth is capped to leave a floor above the shell base. Independent — replaces nothing.",
+    "name": "Heel offload",
+    "params": [
+      "Scale | 1.1 × | Depth | 5 mm | Recess depth. Ignored when Max depth is on. | Length / Width | 1.3 × | Egg elongation along the foot (area-preserving). | Contour offset (Y) | 3 mm | Shift the whole relief along the foot. | Max depth | ☑ sink to the deepest the shell floor allows (overrides Depth).",
+      "Widest position | 0.4 | 0 = widest at the heel · 0.5 = middle · 1 = toward the toe. | Clear of the wall | 3 mm | Material left between the relief and the wall, so a deep heel relief cannot cut back through the heel. 0 = cut right up to the wall. | Floor tilt (toe↔heel) | 1 | 0 = flat floor · +1 = toe end 0 depth → heel end full · −1 = the reverse. | Corner rounding | 0.9 | 1 = smooth egg … 0 = squared corners. | Wall angle | 20 ° | Smoothness — top → wall | 1 | Smoothness — wall → floor | 0.4",
+      "CROSS-SECTION PROFILE"
+    ],
+    "replaces": "",
+    "slug": "heel_offload"
+  },
+  {
+    "desc": "A relief the operator places anywhere on the plantar surface, for a prominence the fixed met-head and heel targets do not cover. The bed itself stays closed — the recess ships as an sgoffload cutter the autoslicer subtracts (clean vector walls, clipped at the shell wall). The studio shows the contour; the transparent preview here shows the cut volume. Independent — replaces nothing.",
+    "name": "Custom offload",
+    "params": [
+      "Length / Width | 1 × | Oval elongation along the foot (area-preserving). Seeds the free contour. | Corner rounding | 1 | 1 = ellipse … 0 = rounded square. Seeds the free contour. | Contour points | 8 | Control points of the free contour — drag them in the viewer to shape the relief; more points = a more complex OUTLINE. It is the outline’s resolution only: inside a follow-the-scan zone the surface comes off the scan itself. | Follow the scan — leave under | 3 mm | How deep the scan may press in, measured FROM THE GROUND: the material that must be left beneath the zone. 3 = the bed may descend until 3 mm of base remains under it. It starts at the least the bed will honour — below that the panel would accept a number the geometry then raised on its own. | Follow the scan — join width | 12 mm | How wide the join back into the formula bed is, measured OUT from the outline. The zone follows the scan in full everywhere inside it; the transition is spent on the device around it, so a wide one is a gentle roll and a narrow one reads as a step. | Corner smoothing | 0.3 | 0 = sharp polygon corners … 1 = maximal rounding between the points. | Wall angle | 25 ° | Smoothness — top → wall | 0.5 | Smoothness — wall → floor | 0.5 | Clear of the wall | 2 mm | Material left between the relief and the OUTER surface, measured at the depth the relief cuts — the wall leans inward going down, so a deep relief is held back further than a shallow one. 0 = cut right up to the wall. Under “Follow the scan” it is the flat band left against the wall; past that band the impression always runs out at a workable slope, so 0 means no band rather than a cliff at the rim. | Wall lip width | 0 mm | How WIDE the shell wall is inside this footprint (0 = leave the default wall). Not a clearance — use “Clear of the wall” for that.",
+      "Scale | 1.3 × | Depth | 4 mm | Recess depth in mm from the LOCAL surface (the sloped arch is measured by its own height). The floor always keeps two print layers. Ignored when Max depth is on. | Max depth | ☑ dig to the floor everywhere — the recess bottom flattens two print layers above it, however thick the spot is.",
+      "CROSS-SECTION PROFILE"
+    ],
+    "replaces": "",
+    "slug": "custom_offload"
+  },
+  {
+    "desc": "Relief under the navicular tuberosity — the medial arch prominence. Seeded on the medial rim at mid-arch. Same cutter-only mechanics as a custom offload: the bed stays closed and the recess ships as an sgoffload_navicular solid the autoslicer subtracts, clipped at the shell wall and floored two print layers above whatever is locally below. Independent — replaces nothing.",
+    "name": "Navicular offload",
+    "params": [
+      "Position Y (heel → met line) | 0.5 | 0 = heel point · 1 = the met line. | Position X (lateral ↔ medial) | -0.8 | In half-met-span units, anatomical: + = lateral (MT5 side), like the neuroma pad. The wall clips whatever overhangs the rim.",
+      "Length / Width | 1 × | Oval elongation along the foot (area-preserving). | Corner rounding | 1 | 1 = ellipse … 0 = rounded square. | Wall angle | 25 ° | Smoothness — top → wall | 0.5 | Smoothness — wall → floor | 0.5 | Clear of the wall | 2 mm | Material left between the relief and the OUTER surface, measured at the depth the relief cuts — the wall leans inward going down, so a deep relief is held back further than a shallow one. 0 = cut right up to the wall. | Wall lip width | 0 mm | How WIDE the shell wall is inside this footprint (0 = leave the default wall). Not a clearance — use “Clear of the wall” for that.",
+      "Scale | 1.5 × | Depth | 4 mm | Recess depth in mm from the LOCAL surface. The floor always keeps two print layers above the local underside. Ignored when Max depth is on. | Max depth | ☑ dig to the floor everywhere — the recess bottom flattens two print layers above it.",
+      "CROSS-SECTION PROFILE"
+    ],
+    "replaces": "",
+    "slug": "navicular_offload"
+  },
+  {
+    "desc": "Relief under the medial cuneiform, one bone forward of the navicular on the medial rim. Same cutter-only mechanics as a custom offload: the bed stays closed and the recess ships as an sgoffload_med_cuneiform solid the autoslicer subtracts, clipped at the shell wall and floored two print layers above whatever is locally below. Independent — replaces nothing.",
+    "name": "Medial Cuneiform offload",
+    "params": [
+      "Position Y (heel → met line) | 0.7 | 0 = heel point · 1 = the met line. | Position X (lateral ↔ medial) | -0.9 | In half-met-span units, anatomical: + = lateral (MT5 side), like the neuroma pad. The wall clips whatever overhangs the rim.",
+      "Length / Width | 1 × | Oval elongation along the foot (area-preserving). | Corner rounding | 1 | 1 = ellipse … 0 = rounded square. | Wall angle | 25 ° | Smoothness — top → wall | 0.5 | Smoothness — wall → floor | 0.5 | Clear of the wall | 2 mm | Material left between the relief and the OUTER surface, measured at the depth the relief cuts — the wall leans inward going down, so a deep relief is held back further than a shallow one. 0 = cut right up to the wall. | Wall lip width | 0 mm | How WIDE the shell wall is inside this footprint (0 = leave the default wall). Not a clearance — use “Clear of the wall” for that.",
+      "Scale | 0.9 × | Depth | 4 mm | Recess depth in mm from the LOCAL surface. The floor always keeps two print layers above the local underside. Ignored when Max depth is on. | Max depth | ☑ dig to the floor everywhere — the recess bottom flattens two print layers above it.",
+      "CROSS-SECTION PROFILE"
+    ],
+    "replaces": "",
+    "slug": "med_cuneiform_offload"
+  },
+  {
+    "desc": "Relief under the base of the first metatarsal — medial rim, just behind the MT1 point. Same cutter-only mechanics as a custom offload: the bed stays closed and the recess ships as an sgoffload_mt1_base solid the autoslicer subtracts, clipped at the shell wall and floored two print layers above whatever is locally below. Independent — replaces nothing.",
+    "name": "Base of 1st MT offload",
+    "params": [
+      "Position Y (heel → met line) | 0.9 | 0 = heel point · 1 = the met line. | Position X (lateral ↔ medial) | -0.9 | In half-met-span units, anatomical: + = lateral (MT5 side), like the neuroma pad. The wall clips whatever overhangs the rim.",
+      "Length / Width | 1 × | Oval elongation along the foot (area-preserving). | Corner rounding | 1 | 1 = ellipse … 0 = rounded square. | Wall angle | 25 ° | Smoothness — top → wall | 0.5 | Smoothness — wall → floor | 0.5 | Clear of the wall | 2 mm | Material left between the relief and the OUTER surface, measured at the depth the relief cuts — the wall leans inward going down, so a deep relief is held back further than a shallow one. 0 = cut right up to the wall. | Wall lip width | 0 mm | How WIDE the shell wall is inside this footprint (0 = leave the default wall). Not a clearance — use “Clear of the wall” for that.",
+      "Scale | 0.9 × | Depth | 4 mm | Recess depth in mm from the LOCAL surface. The floor always keeps two print layers above the local underside. Ignored when Max depth is on. | Max depth | ☑ dig to the floor everywhere — the recess bottom flattens two print layers above it.",
+      "CROSS-SECTION PROFILE"
+    ],
+    "replaces": "",
+    "slug": "mt1_base_offload"
+  },
+  {
+    "desc": "Relief under the styloid process — the base of the fifth metatarsal, at the trimline edge at the Lateral High Y. Same cutter-only mechanics as a custom offload: the bed stays closed and the recess ships as an sgoffload_mt5_base solid the autoslicer subtracts, clipped at the shell wall and floored two print layers above whatever is locally below. Independent — replaces nothing.",
+    "name": "Base of 5th MT offload",
+    "params": [
+      "Position Y (heel → met line) | 0.5 | 0 = heel point · 1 = the met line. | Position X (lateral ↔ medial) | 0.8 | In half-met-span units, anatomical: + = lateral (MT5 side), like the neuroma pad. The wall clips whatever overhangs the rim.",
+      "Length / Width | 2.1 × | Oval elongation along the foot (area-preserving). | Corner rounding | 0.8 | 1 = ellipse … 0 = rounded square. | Wall angle | 25 ° | Smoothness — top → wall | 0.5 | Smoothness — wall → floor | 0.5 | Clear of the wall | 2 mm | Material left between the relief and the OUTER surface, measured at the depth the relief cuts — the wall leans inward going down, so a deep relief is held back further than a shallow one. 0 = cut right up to the wall. | Wall lip width | 0 mm | How WIDE the shell wall is inside this footprint (0 = leave the default wall). Not a clearance — use “Clear of the wall” for that.",
+      "Scale | 1.8 × | Depth | 4 mm | Recess depth in mm from the LOCAL surface. The floor always keeps two print layers above the local underside. Ignored when Max depth is on. | Max depth | ☑ dig to the floor everywhere — the recess bottom flattens two print layers above it.",
+      "CROSS-SECTION PROFILE"
+    ],
+    "replaces": "",
+    "slug": "mt5_base_offload"
+  },
+  {
+    "desc": "Groove for the peroneus/plantar tendon course — a nodule accommodation in the central arch. Seeded mid-arch, slightly medial. Same cutter-only mechanics as a custom offload: the bed stays closed and the recess ships as an sgoffload_pt_groove solid the autoslicer subtracts, clipped at the shell wall and floored two print layers above whatever is locally below. Independent — replaces nothing.",
+    "name": "PT Groove",
+    "params": [
+      "Position Y (heel → met line) | 0.6 | 0 = heel point · 1 = the met line. | Position X (lateral ↔ medial) | -0.1 | In half-met-span units, anatomical: + = lateral (MT5 side), like the neuroma pad. The wall clips whatever overhangs the rim.",
+      "Length / Width | 3.7 × | Oval elongation along the foot (area-preserving). | Corner rounding | 0.7 | 1 = ellipse … 0 = rounded square. | Wall angle | 25 ° | Smoothness — top → wall | 0.5 | Smoothness — wall → floor | 0.5 | Clear of the wall | 2 mm | Material left between the relief and the OUTER surface, measured at the depth the relief cuts — the wall leans inward going down, so a deep relief is held back further than a shallow one. 0 = cut right up to the wall. | Wall lip width | 0 mm | How WIDE the shell wall is inside this footprint (0 = leave the default wall). Not a clearance — use “Clear of the wall” for that.",
+      "Scale | 1.4 × | Depth | 4 mm | Recess depth in mm from the LOCAL surface. The floor always keeps two print layers above the local underside. Ignored when Max depth is on. | Max depth | ☑ dig to the floor everywhere — the recess bottom flattens two print layers above it.",
+      "CROSS-SECTION PROFILE"
+    ],
+    "replaces": "",
+    "slug": "pt_groove_offload"
+  },
+  {
+    "desc": "Extra material laid on the heel seat, thickest at the centre and feathering into the surface without a step — the heel pad’s footprint taken the other way (that one cuts a soft insert into the thickness, this one builds the seat up). Its front edge is SHARED with the heel pad (one Front edge knob drives both), it can never stand above the cup’s own rim, and it composes with the heel pad and heel offload. Independent — replaces nothing.",
+    "name": "Heel fill",
+    "params": [
+      "Thickness at the centre | 3 mm | How much the centre of the seat gains; the edges get less. | Dish | 20 % | 0 levels the seat into a plane; 100 lifts the cup whole and leaves its full curvature."
+    ],
+    "replaces": "",
+    "slug": "heel_fill"
+  },
+  {
+    "desc": "A groove cut out of the MEDIAL heel-cup wall — the tarsal tunnel runs behind the medial malleolus — shipped as a NEGATIVE PART (sgheelcut): a 20 mm band that FOLLOWS the wall around the heel, which the slicer subtracts, so the edge stays sharp. It used to be one flat slab, and where the heel curved out of that plane the cut ran out of wall and ended in a step. The insole body itself is untouched; the viewer previews the subtraction. Depth is measured from the rim at each station, length runs along the trimline, the centre can slide toward the toe, and the ends can either bite in hard or fade into the wall. Independent — replaces nothing.",
+    "name": "Tarsal Tunnel Groove",
+    "params": [
+      "Depth | 7 mm | How far below the cup edge the scoop reaches at its centre. | Length | 82 mm | Run of the scoop along the trimline. | Centre shift | 2 mm | Slide the scoop centre along the rim, + toward the toe. | Deepest point | -0.1 × | Slide the deepest point along the cut without moving its ends, as a fraction of the half-length. + toward the toe.",
+      "Smoothness — rim → wall | 0.8 | How the cut meets the RIM at its ends. 0 arrives vertically (hard grinder edge), 1 with zero slope, fading into the wall. | Smoothness — wall → floor | 0.4 | How softly the scoop`s sides lie down onto its floor. | Floor rounding | 1 | 1 = a round scoop … 0 = a flat-bottomed slot."
+    ],
+    "replaces": "",
+    "slug": "heel_cut"
+  },
+  {
+    "desc": "A drill-and-fill-style soft insert filling the heel cup inside the wall. The front edge reaches half again as far forward of the heel point as the rear reaches back, and moves ±30 mm from there. Emitted as a separate add-on STL for a material swap — it does not change the bed and excludes no other add-on (different region). Independent — replaces nothing.",
+    "name": "Heel pad",
+    "params": [
+      "Depth | 4 mm | Insert depth. Ignored when Max depth is on. | Max depth | ☑ sink to the deepest the shell floor allows (overrides Depth). | Front edge | 8.5 mm | Move the FRONT edge along the foot (+ toward the toe). The rear edge and the sides stay put. 0 already reaches half again as far forward as the pad reaches back.",
+      "Offset from edge | 0 mm | Hold the insert this far inside the cup edge (extra lip). 0 = fill to the perimeter. | Toe rounding | 0.7 | 1 = round toe cap … lower = squarer (rear/sides follow the cup either way). | Wall angle | 45 ° | Smoothness — top → wall | 0 | Smoothness — wall → floor | 0",
+      "CROSS-SECTION PROFILE"
+    ],
+    "replaces": "",
+    "slug": "heelpad"
+  },
+  {
+    "desc": "A soft forefoot region the slicer prints at its own density. Its rear boundary is FIVE draggable points in the studio viewer: a point sliding on the LATERAL trimline, an arc through a free mid point (the bow handle) up to the arc/split junction, a line to the corner point, and a line to a point sliding on the MEDIAL trimline. Ships as a through-prism over that footprint (sgkineticwedge), so the slicer owns the region top to bottom — the whole local thickness prints soft, ~4-5 mm over most of the cap. No depth knob: a modifier takes the thickness it finds. Does not change the bed. Independent — replaces nothing.",
+    "name": "Dannenburg Wedge",
+    "params": [],
+    "replaces": "",
+    "slug": "kinetic_wedge"
+  },
+  {
+    "desc": "A symmetric guitar-pick dome rising from the base between the metatarsal heads (spherical top, edges feather in gently toward MT1/MT5). Lifts the plantar surface just behind the met heads.",
+    "name": "Met pad",
+    "params": [
+      "Height | 5 mm | Size | 1 × | Y position | 0 mm | Slide the whole pad along the foot (+ toward the toes). | X position | 0 mm | Slide the whole pad across the foot, on top of the MT1/MT5 centring. | Front edge roundness | 0 | 0 = stock short cap (the middle of the front edge reads straight) · 1 = fully round nose. The tip stays put — the cap grows rearward. | MT1 edge forward | 0.1 × | Advance the medial (MT1) side of the pad forward, as a fraction of the pad’s half-width — relative, so it scales with the foot and Size. 0.12 ≈ 3 mm on an average pad.",
+      "Top plateau | 0.2 | Flat-top fraction before the edge feathers. | Wall inner power (p) | 1.6 | Wall power (q) | 0.5 | Rear fade (length) | 0.8 | Fraction of length over which the lift ramps up from the heel-side tail. | Distal feather | 0.1 | Fraction of length the front ramps down over — small = an aggressive, steep front edge.",
+      "Width inset (MT1/MT5) | 5 mm",
+      "DOME PROFILE | Transverse (across width) | Longitudinal (rear → toe)"
+    ],
+    "replaces": "Mutually exclusive with the Met bar — enabling one removes the other (one type per insole).",
+    "slug": "metpad"
+  },
+  {
+    "desc": "A fixed digitised pad silhouette (wide met-head edge with a rounded medial lobe, single S-curve medial wall, flat proximal edge) that only scales — width, height, Y position. Dome profile plateaus across the flanks.",
+    "name": "Met bar",
+    "params": [
+      "Height | 4.2 mm | Width | 1 × | Y position | 3 mm | X position | 0 mm | Slide the whole bar across the foot, on top of the MT1/MT5 centring.",
+      "Top plateau | 0.7 | Flat-top fraction — flanks hold full height, feather only at the edge. | Wall inner power (p) | 2 | Wall power (q) | 1.3 | Rear fade (length) | 0.7 | Distal feather | 0.1",
+      "Width inset (MT1/MT5) | 0 mm | Positive pulls the width in from MT1/MT5; negative pushes it out (wider than the met span).",
+      "DOME PROFILE | Transverse (across width) | Longitudinal (rear → toe)"
+    ],
+    "replaces": "Mutually exclusive with the Met pad — enabling one removes the other (one type per insole).",
+    "slug": "metbar"
+  },
+  {
+    "desc": "A rounded forefoot pad with a concave cut-out around the 1st met head (MT1): supports MT2–5 and the shafts while offloading MT1. Same dome controls as the met bar, different silhouette.",
+    "name": "Dancer's pad",
+    "params": [
+      "Height | 5 mm | Width | 1 × | Y scale | 1.1 × | Temporary — scale the pad along the foot (length). | Y position | -7 mm",
+      "Top plateau | 0.3 | Flat-top fraction — flanks hold full height, feather only at the edge. | Wall inner power (p) | 2 | Wall power (q) | 0.8 | Rear fade (length) | 0.6 | Distal feather | 0.1",
+      "Width inset (MT1/MT5) | -10 mm | Positive pulls the width in from MT1/MT5; negative pushes it out (wider than the met span).",
+      "DOME PROFILE | Transverse (across width) | Longitudinal (rear → toe)"
+    ],
+    "replaces": "Mutually exclusive with the Met pad and Met bar — enabling one removes the others (one type per insole).",
+    "slug": "dancerspad"
+  },
+  {
+    "desc": "The mirror-side companion to the dancer’s pad: a rounded forefoot pad with a concave cut-out around the 5th met head (MT5) instead of MT1 — supports MT1–4 and the shafts while offloading MT5. Traced from its own contour (not a pure mirror of the dancer).",
+    "name": "Reverse dancer's pad",
+    "params": [
+      "Height | 5 mm | Width | 1 × | Y scale | 1.1 × | Temporary — scale the pad along the foot (length). | Y position | 6 mm",
+      "Top plateau | 0.3 | Flat-top fraction — flanks hold full height, feather only at the edge. | Wall inner power (p) | 2 | Wall power (q) | 0.8 | Rear fade (length) | 0.6 | Distal feather | 0.1",
+      "Width inset (MT1/MT5) | -10 mm | Positive pulls the width in from MT1/MT5; negative pushes it out (wider than the met span).",
+      "DOME PROFILE | Transverse (across width) | Longitudinal (rear → toe)"
+    ],
+    "replaces": "Mutually exclusive with the Met pad and Met bar — enabling one removes the others (one type per insole).",
+    "slug": "reversedancerspad"
+  }
+]

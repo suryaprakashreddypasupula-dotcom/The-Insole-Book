@@ -1,0 +1,3088 @@
+[
+ {
+  "po": "CPO-291487",
+  "categories": [
+   "35 Durometer EVA"
+  ],
+  "orthotic_type": "Diabetic",
+  "base": "35 Durometer EVA",
+  "top_cover": "Full",
+  "additions": "",
+  "models": {
+   "LEFT": {
+    "file": "models/CPO-291487_LEFT.glb",
+    "faces": 28000,
+    "extents": [
+     91.5,
+     265.6,
+     21.0
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/CPO-291487_RIGHT.glb",
+    "faces": 28000,
+    "extents": [
+     91.6,
+     265.6,
+     21.0
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  },
+  "hidden": true
+ },
+ {
+  "po": "CPO-294478",
+  "categories": [
+   "55 Durometer EVA"
+  ],
+  "orthotic_type": "Diabetic",
+  "base": "55 Durometer EVA",
+  "top_cover": "Full",
+  "additions": "",
+  "models": {
+   "RIGHT": {
+    "file": "models/CPO-294478_RIGHT.glb",
+    "faces": 28000,
+    "extents": [
+     105.5,
+     289.4,
+     23.4
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  },
+  "hidden": true
+ },
+ {
+  "po": "CPO-302402",
+  "categories": [
+   "UCBL"
+  ],
+  "orthotic_type": "UCBL",
+  "base": "",
+  "top_cover": "Full",
+  "additions": "Deep heel cup + Medial & lateral flanges",
+  "models": {
+   "LEFT": {
+    "file": "models/CPO-302402_LEFT.glb",
+    "faces": 28000,
+    "extents": [
+     102.7,
+     292.6,
+     34.6
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/CPO-302402_RIGHT.glb",
+    "faces": 28000,
+    "extents": [
+     102.8,
+     292.6,
+     34.6
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  },
+  "hidden": true
+ },
+ {
+  "po": "CPO-305180",
+  "categories": [
+   "55 Durometer EVA"
+  ],
+  "orthotic_type": "Diabetic",
+  "base": "55 Durometer EVA",
+  "top_cover": "Full",
+  "additions": "",
+  "models": {
+   "LEFT": {
+    "file": "models/CPO-305180_LEFT.glb",
+    "faces": 28000,
+    "extents": [
+     114.4,
+     307.7,
+     24.6
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/CPO-305180_RIGHT.glb",
+    "faces": 28000,
+    "extents": [
+     113.5,
+     308.4,
+     26.1
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  },
+  "hidden": true
+ },
+ {
+  "po": "CPO-305442",
+  "categories": [
+   "Reverse Morton Extension"
+  ],
+  "orthotic_type": "Functional",
+  "base": "",
+  "top_cover": "Full",
+  "additions": "Reverse Morton Extension + Wedges + Met Pad",
+  "models": {
+   "LEFT": {
+    "file": "models/CPO-305442_LEFT.glb",
+    "faces": 28000,
+    "extents": [
+     102.6,
+     294.9,
+     26.0
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      4.0,
+      -1.0,
+      9.2
+     ],
+     "radius": 10.5
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.99
+   },
+   "RIGHT": {
+    "file": "models/CPO-305442_RIGHT.glb",
+    "faces": 28000,
+    "extents": [
+     102.6,
+     294.9,
+     26.0
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      3.6,
+      28.8,
+      6.7
+     ],
+     "radius": 42.0
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 2.46
+   }
+  },
+  "hidden": true
+ },
+ {
+  "po": "CPO-305740",
+  "categories": [
+   "Morton Extension"
+  ],
+  "orthotic_type": "Diabetic",
+  "base": "",
+  "top_cover": "Full",
+  "additions": "Morton Extension",
+  "models": {
+   "LEFT": {
+    "file": "models/CPO-305740_LEFT.glb",
+    "faces": 28000,
+    "extents": [
+     101.1,
+     282.6,
+     26.3
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      23.9,
+      120.1,
+      3.2
+     ],
+     "radius": 6.2
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.24
+   },
+   "RIGHT": {
+    "file": "models/CPO-305740_RIGHT.glb",
+    "faces": 28000,
+    "extents": [
+     101.1,
+     282.6,
+     26.3
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      -25.7,
+      104.7,
+      3.2
+     ],
+     "radius": 13.2
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.36
+   }
+  },
+  "hidden": true
+ },
+ {
+  "po": "CPO-306178",
+  "categories": [
+   "Charcot (in dx/eval)"
+  ],
+  "orthotic_type": "Diabetic",
+  "base": "",
+  "top_cover": "Full",
+  "additions": "",
+  "models": {
+   "LEFT": {
+    "file": "models/CPO-306178_LEFT.glb",
+    "faces": 28000,
+    "extents": [
+     108.8,
+     299.2,
+     26.1
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/CPO-306178_RIGHT.glb",
+    "faces": 28000,
+    "extents": [
+     108.7,
+     299.2,
+     26.1
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  },
+  "hidden": true
+ },
+ {
+  "po": "CPO-306397",
+  "categories": [
+   "Heel Spur"
+  ],
+  "orthotic_type": "Diabetic",
+  "base": "",
+  "top_cover": "Full",
+  "additions": "Heel Spur",
+  "models": {
+   "LEFT": {
+    "file": "models/CPO-306397_LEFT.glb",
+    "faces": 14906,
+    "extents": [
+     81.1,
+     245.0,
+     21.8
+    ],
+    "relief_focus": {
+     "center": [
+      -2.4,
+      -53.8,
+      4.6
+     ],
+     "radius": 45.6
+    },
+    "pad_focus": null,
+    "relief_area_pct": 9.18,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/CPO-306397_RIGHT.glb",
+    "faces": 14968,
+    "extents": [
+     82.0,
+     245.0,
+     22.1
+    ],
+    "relief_focus": {
+     "center": [
+      4.5,
+      -60.3,
+      4.9
+     ],
+     "radius": 35.0
+    },
+    "pad_focus": null,
+    "relief_area_pct": 7.45,
+    "pad_area_pct": 0.0
+   }
+  },
+  "hidden": true
+ },
+ {
+  "po": "CPO-306441",
+  "categories": [
+   "35 Durometer EVA"
+  ],
+  "orthotic_type": "Diabetic",
+  "base": "35 Durometer EVA",
+  "top_cover": "Full",
+  "additions": "Met Pad",
+  "models": {
+   "LEFT": {
+    "file": "models/CPO-306441_LEFT.glb",
+    "faces": 28000,
+    "extents": [
+     89.3,
+     278.6,
+     24.6
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      9.3,
+      0.9,
+      15.1
+     ],
+     "radius": 14.3
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 2.09
+   },
+   "RIGHT": {
+    "file": "models/CPO-306441_RIGHT.glb",
+    "faces": 28000,
+    "extents": [
+     90.3,
+     278.5,
+     24.4
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      -5.8,
+      1.3,
+      14.6
+     ],
+     "radius": 13.6
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 1.54
+   }
+  },
+  "hidden": true
+ },
+ {
+  "po": "CPO-306695",
+  "categories": [
+   "Heel Pad + Heel Spur"
+  ],
+  "orthotic_type": "Diabetic",
+  "base": "",
+  "top_cover": "Full",
+  "additions": "Heel Pad + Heel Spur",
+  "models": {
+   "LEFT": {
+    "file": "models/CPO-306695_LEFT.glb",
+    "faces": 28000,
+    "extents": [
+     99.0,
+     295.5,
+     18.3
+    ],
+    "relief_focus": {
+     "center": [
+      -5.0,
+      -92.0,
+      5.0
+     ],
+     "radius": 24.9
+    },
+    "pad_focus": {
+     "center": [
+      -2.1,
+      -98.9,
+      7.3
+     ],
+     "radius": 19.9
+    },
+    "relief_area_pct": 1.22,
+    "pad_area_pct": 3.81
+   },
+   "RIGHT": {
+    "file": "models/CPO-306695_RIGHT.glb",
+    "faces": 28000,
+    "extents": [
+     99.3,
+     295.5,
+     19.3
+    ],
+    "relief_focus": {
+     "center": [
+      3.1,
+      -106.2,
+      5.3
+     ],
+     "radius": 16.8
+    },
+    "pad_focus": {
+     "center": [
+      2.7,
+      -104.1,
+      8.4
+     ],
+     "radius": 23.0
+    },
+    "relief_area_pct": 0.91,
+    "pad_area_pct": 1.72
+   }
+  },
+  "hidden": true
+ },
+ {
+  "po": "CPO-306803",
+  "categories": [
+   "Heel Pad"
+  ],
+  "orthotic_type": "Diabetic",
+  "base": "",
+  "top_cover": "Full",
+  "additions": "Heel Pad",
+  "models": {
+   "LEFT": {
+    "file": "models/CPO-306803_LEFT.glb",
+    "faces": 22650,
+    "extents": [
+     111.5,
+     287.0,
+     22.3
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      15.4,
+      -88.4,
+      8.1
+     ],
+     "radius": 16.0
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.51
+   },
+   "RIGHT": {
+    "file": "models/CPO-306803_RIGHT.glb",
+    "faces": 22648,
+    "extents": [
+     111.5,
+     287.0,
+     22.7
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      -19.6,
+      -89.0,
+      8.2
+     ],
+     "radius": 11.9
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.62
+   }
+  },
+  "hidden": true
+ },
+ {
+  "po": "CPO-306901",
+  "categories": [
+   "Base of Fifth Relief"
+  ],
+  "orthotic_type": "Diabetic",
+  "base": "",
+  "top_cover": "Full",
+  "additions": "Base of Fifth Relief",
+  "models": {
+   "LEFT": {
+    "file": "models/CPO-306901_LEFT.glb",
+    "faces": 22640,
+    "extents": [
+     104.3,
+     296.0,
+     23.4
+    ],
+    "relief_focus": {
+     "center": [
+      -20.7,
+      -55.9,
+      6.6
+     ],
+     "radius": 7.7
+    },
+    "pad_focus": null,
+    "relief_area_pct": 1.39,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/CPO-306901_RIGHT.glb",
+    "faces": 22932,
+    "extents": [
+     106.3,
+     296.0,
+     22.2
+    ],
+    "relief_focus": {
+     "center": [
+      23.2,
+      -51.4,
+      6.6
+     ],
+     "radius": 6.6
+    },
+    "pad_focus": null,
+    "relief_area_pct": 0.99,
+    "pad_area_pct": 0.0
+   }
+  },
+  "hidden": true
+ },
+ {
+  "po": "CPO-307064",
+  "categories": [
+   "Offload Met Head"
+  ],
+  "orthotic_type": "Functional",
+  "base": "",
+  "top_cover": "Full",
+  "additions": "Offload Met Head + Met Pad",
+  "models": {
+   "LEFT": {
+    "file": "models/CPO-307064_LEFT.glb",
+    "faces": 25650,
+    "extents": [
+     111.5,
+     317.0,
+     34.1
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      26.6,
+      3.2,
+      14.0
+     ],
+     "radius": 16.8
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 3.31
+   },
+   "RIGHT": {
+    "file": "models/CPO-307064_RIGHT.glb",
+    "faces": 25832,
+    "extents": [
+     111.6,
+     317.0,
+     33.6
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      -26.5,
+      4.7,
+      14.4
+     ],
+     "radius": 16.2
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 3.57
+   }
+  },
+  "hidden": true
+ },
+ {
+  "po": "CPO-307089",
+  "categories": [
+   "Diabetic (plain)"
+  ],
+  "orthotic_type": "Diabetic",
+  "base": "",
+  "top_cover": "Full",
+  "additions": "",
+  "models": {
+   "LEFT": {
+    "file": "models/CPO-307089_LEFT.glb",
+    "faces": 23552,
+    "extents": [
+     106.2,
+     283.0,
+     28.9
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/CPO-307089_RIGHT.glb",
+    "faces": 23658,
+    "extents": [
+     105.9,
+     283.0,
+     28.9
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  },
+  "hidden": true
+ },
+ {
+  "po": "CPO-307216",
+  "categories": [
+   "Shell",
+   "Offload Met Head",
+   "Met Bar"
+  ],
+  "orthotic_type": "Functional",
+  "base": "Shell",
+  "top_cover": "Full",
+  "additions": "Met Bar + Offload Met Head + Arch Reinforcement",
+  "models": {
+   "LEFT": {
+    "file": "models/CPO-307216_LEFT.glb",
+    "faces": 28000,
+    "extents": [
+     102.3,
+     203.9,
+     28.6
+    ],
+    "relief_focus": {
+     "center": [
+      -16.1,
+      15.8,
+      10.2
+     ],
+     "radius": 3.7
+    },
+    "pad_focus": {
+     "center": [
+      10.1,
+      24.6,
+      16.9
+     ],
+     "radius": 30.4
+    },
+    "relief_area_pct": 0.15,
+    "pad_area_pct": 3.45
+   },
+   "RIGHT": {
+    "file": "models/CPO-307216_RIGHT.glb",
+    "faces": 28000,
+    "extents": [
+     102.3,
+     203.9,
+     28.6
+    ],
+    "relief_focus": {
+     "center": [
+      15.6,
+      13.7,
+      10.3
+     ],
+     "radius": 2.6
+    },
+    "pad_focus": {
+     "center": [
+      -8.7,
+      25.3,
+      16.6
+     ],
+     "radius": 31.3
+    },
+    "relief_area_pct": 0.06,
+    "pad_area_pct": 3.69
+   }
+  },
+  "hidden": true
+ },
+ {
+  "po": "CPO-307228",
+  "categories": [
+   "Functional (plain)"
+  ],
+  "orthotic_type": "Functional",
+  "base": "",
+  "top_cover": "Full",
+  "additions": "",
+  "models": {
+   "LEFT": {
+    "file": "models/CPO-307228_LEFT.glb",
+    "faces": 20592,
+    "extents": [
+     102.4,
+     283.0,
+     23.3
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/CPO-307228_RIGHT.glb",
+    "faces": 20592,
+    "extents": [
+     102.4,
+     283.0,
+     23.3
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  },
+  "hidden": true
+ },
+ {
+  "po": "CPO-307229",
+  "categories": [
+   "Met Pad"
+  ],
+  "orthotic_type": "Functional",
+  "base": "",
+  "top_cover": "Full",
+  "additions": "Met Pad",
+  "models": {
+   "LEFT": {
+    "file": "models/CPO-307229_LEFT.glb",
+    "faces": 21584,
+    "extents": [
+     96.5,
+     287.0,
+     35.6
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      3.7,
+      17.3,
+      7.4
+     ],
+     "radius": 9.8
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 1.92
+   },
+   "RIGHT": {
+    "file": "models/CPO-307229_RIGHT.glb",
+    "faces": 21584,
+    "extents": [
+     96.5,
+     287.0,
+     35.6
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      -3.9,
+      17.1,
+      7.5
+     ],
+     "radius": 9.6
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 1.83
+   }
+  },
+  "hidden": true
+ },
+ {
+  "po": "CPO-307326",
+  "categories": [
+   "Wedges"
+  ],
+  "orthotic_type": "Functional",
+  "base": "",
+  "top_cover": "Full",
+  "additions": "Wedges",
+  "models": {
+   "LEFT": {
+    "file": "models/CPO-307326_LEFT.glb",
+    "faces": 20792,
+    "extents": [
+     97.2,
+     283.0,
+     26.7
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/CPO-307326_RIGHT.glb",
+    "faces": 20716,
+    "extents": [
+     97.3,
+     283.0,
+     26.6
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  },
+  "hidden": true
+ },
+ {
+  "po": "CPO-307697",
+  "categories": [
+   "45 Durometer EVA"
+  ],
+  "orthotic_type": "Diabetic",
+  "base": "45 Durometer EVA",
+  "top_cover": "Full",
+  "additions": "",
+  "models": {
+   "LEFT": {
+    "file": "models/CPO-307697_LEFT.glb",
+    "faces": 20028,
+    "extents": [
+     97.8,
+     283.0,
+     20.6
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/CPO-307697_RIGHT.glb",
+    "faces": 20030,
+    "extents": [
+     97.8,
+     283.0,
+     20.0
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  },
+  "hidden": true
+ },
+ {
+  "po": "OFFLOAD-MET-HEAD",
+  "categories": [
+   "Offload Met Head"
+  ],
+  "orthotic_type": "Diabetic",
+  "base": "",
+  "top_cover": "",
+  "additions": "Met head offload wells \u2014 LEFT: 3rd met head; RIGHT: 1st + 5th met heads",
+  "label": "Offload Met Head \u2014 plain shell",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/OFFLOAD-MET-HEAD_LEFT.glb",
+    "faces": 27999,
+    "extents": [
+     109.7,
+     279.1,
+     28.3
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/OFFLOAD-MET-HEAD_RIGHT.glb",
+    "faces": 28000,
+    "extents": [
+     109.7,
+     279.1,
+     28.3
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "PAIR-ARCH-PAD",
+  "categories": [
+   "Arch Pad"
+  ],
+  "orthotic_type": "Insole + separate part",
+  "base": "",
+  "top_cover": "",
+  "additions": "Arch pad (separate printed part)",
+  "label": "Arch pad",
+  "hidden": false,
+  "motion": "lift",
+  "models": {
+   "LEFT": {
+    "file": "models/PAIR-ARCH-PAD_LEFT.glb",
+    "addon": "models/PAIR-ARCH-PAD_LEFT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     110.6,
+     325.0,
+     31.2
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/PAIR-ARCH-PAD_RIGHT.glb",
+    "addon": "models/PAIR-ARCH-PAD_RIGHT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     111.4,
+     324.9,
+     31.6
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "PAIR-CUBOID-PAD",
+  "categories": [
+   "Cuboid Raise"
+  ],
+  "orthotic_type": "Insole + separate part",
+  "base": "",
+  "top_cover": "",
+  "additions": "Cuboid pad (separate printed part)",
+  "label": "Cuboid pad",
+  "hidden": false,
+  "motion": "lift",
+  "models": {
+   "LEFT": {
+    "file": "models/PAIR-CUBOID-PAD_LEFT.glb",
+    "addon": "models/PAIR-CUBOID-PAD_LEFT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     95.9,
+     264.6,
+     17.8
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/PAIR-CUBOID-PAD_RIGHT.glb",
+    "addon": "models/PAIR-CUBOID-PAD_RIGHT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     95.7,
+     264.6,
+     17.9
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "PAIR-DANCERS-PAD",
+  "categories": [
+   "Dancer Pad"
+  ],
+  "orthotic_type": "Insole + separate part",
+  "base": "",
+  "top_cover": "",
+  "additions": "Dancer's pad (separate printed part)",
+  "label": "Dancer's pad",
+  "hidden": false,
+  "motion": "lift",
+  "models": {
+   "LEFT": {
+    "file": "models/PAIR-DANCERS-PAD_LEFT.glb",
+    "addon": "models/PAIR-DANCERS-PAD_LEFT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     121.0,
+     330.6,
+     28.2
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/PAIR-DANCERS-PAD_RIGHT.glb",
+    "addon": "models/PAIR-DANCERS-PAD_RIGHT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     120.8,
+     329.6,
+     28.4
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "PAIR-DRILL-FILL-1ST",
+  "categories": [
+   "Drill & Fill Offload"
+  ],
+  "orthotic_type": "Insole + separate part",
+  "base": "",
+  "top_cover": "",
+  "additions": "Drill & fill plug, 1st met head (soft fill)",
+  "label": "Drill & fill \u2014 1st met head",
+  "hidden": false,
+  "motion": "press",
+  "models": {
+   "LEFT": {
+    "file": "models/PAIR-DRILL-FILL-1ST_LEFT.glb",
+    "addon": "models/PAIR-DRILL-FILL-1ST_LEFT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     108.9,
+     316.6,
+     24.1
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/PAIR-DRILL-FILL-1ST_RIGHT.glb",
+    "addon": "models/PAIR-DRILL-FILL-1ST_RIGHT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     108.9,
+     317.0,
+     24.2
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "PAIR-HEEL-PAD",
+  "categories": [
+   "Heel Pad"
+  ],
+  "orthotic_type": "Insole + separate part",
+  "base": "",
+  "top_cover": "",
+  "additions": "Heel pad (separate printed part)",
+  "label": "Heel pad",
+  "hidden": false,
+  "motion": "lift",
+  "models": {
+   "LEFT": {
+    "file": "models/PAIR-HEEL-PAD_LEFT.glb",
+    "addon": "models/PAIR-HEEL-PAD_LEFT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     91.1,
+     269.8,
+     23.1
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/PAIR-HEEL-PAD_RIGHT.glb",
+    "addon": "models/PAIR-HEEL-PAD_RIGHT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     91.2,
+     269.8,
+     23.1
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "PAIR-MET-BAR",
+  "categories": [],
+  "orthotic_type": "Insole + separate part",
+  "base": "",
+  "top_cover": "",
+  "additions": "Met Bar (separate printed part)",
+  "label": "Met Bar",
+  "hidden": true,
+  "motion": "lift",
+  "models": {
+   "LEFT": {
+    "file": "models/PAIR-MET-BAR_LEFT.glb",
+    "addon": "models/PAIR-MET-BAR_LEFT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     95.8,
+     282.5,
+     24.0
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/PAIR-MET-BAR_RIGHT.glb",
+    "addon": "models/PAIR-MET-BAR_RIGHT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     95.8,
+     281.9,
+     24.0
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "PAIR-MET-PAD",
+  "categories": [],
+  "orthotic_type": "Insole + separate part",
+  "base": "",
+  "top_cover": "",
+  "additions": "Met Pad 1/8\" (separate printed part)",
+  "label": "Met Pad \u2014 low 1/8\"",
+  "hidden": true,
+  "motion": "lift",
+  "models": {
+   "LEFT": {
+    "file": "models/PAIR-MET-PAD_LEFT.glb",
+    "addon": "models/PAIR-MET-PAD_LEFT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     109.4,
+     296.7,
+     29.9
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/PAIR-MET-PAD_RIGHT.glb",
+    "addon": "models/PAIR-MET-PAD_RIGHT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     108.9,
+     296.6,
+     30.2
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "PAIR-NEUROMA-PAD",
+  "categories": [
+   "Neuroma Pad"
+  ],
+  "orthotic_type": "Insole + separate part",
+  "base": "",
+  "top_cover": "",
+  "additions": "Neuroma pad (separate printed part)",
+  "label": "Neuroma pad",
+  "hidden": false,
+  "motion": "lift",
+  "models": {
+   "LEFT": {
+    "file": "models/PAIR-NEUROMA-PAD_LEFT.glb",
+    "addon": "models/PAIR-NEUROMA-PAD_LEFT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     91.7,
+     282.8,
+     28.2
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/PAIR-NEUROMA-PAD_RIGHT.glb",
+    "addon": "models/PAIR-NEUROMA-PAD_RIGHT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     91.7,
+     282.8,
+     28.2
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "PAIR-OFFLOAD-1ST",
+  "categories": [
+   "Offload Met Head"
+  ],
+  "orthotic_type": "Insole + separate part",
+  "base": "",
+  "top_cover": "",
+  "additions": "Offload plug, 1st met head (soft fill)",
+  "label": "Offload plug \u2014 1st met head",
+  "hidden": false,
+  "motion": "press",
+  "models": {
+   "LEFT": {
+    "file": "models/PAIR-OFFLOAD-1ST_LEFT.glb",
+    "addon": "models/PAIR-OFFLOAD-1ST_LEFT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     112.7,
+     308.0,
+     24.2
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/PAIR-OFFLOAD-1ST_RIGHT.glb",
+    "addon": "models/PAIR-OFFLOAD-1ST_RIGHT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     112.8,
+     308.0,
+     24.2
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "PAIR-OFFLOAD-2ND",
+  "categories": [
+   "Offload Met Head"
+  ],
+  "orthotic_type": "Insole + separate part",
+  "base": "",
+  "top_cover": "",
+  "additions": "Offload plug, 2nd met head (soft fill)",
+  "label": "Offload plug \u2014 2nd met head",
+  "hidden": false,
+  "motion": "press",
+  "models": {
+   "LEFT": {
+    "file": "models/PAIR-OFFLOAD-2ND_LEFT.glb",
+    "addon": "models/PAIR-OFFLOAD-2ND_LEFT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     118.8,
+     343.2,
+     25.5
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "PAIR-OFFLOAD-2ND-3RD",
+  "categories": [
+   "Offload Met Head"
+  ],
+  "orthotic_type": "Insole + separate part",
+  "base": "",
+  "top_cover": "",
+  "additions": "Offload plug, 2nd + 3rd met heads (soft fill)",
+  "label": "Offload plug \u2014 2nd + 3rd met heads",
+  "hidden": false,
+  "motion": "press",
+  "models": {
+   "LEFT": {
+    "file": "models/PAIR-OFFLOAD-2ND-3RD_LEFT.glb",
+    "addon": "models/PAIR-OFFLOAD-2ND-3RD_LEFT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     104.1,
+     317.1,
+     25.0
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/PAIR-OFFLOAD-2ND-3RD_RIGHT.glb",
+    "addon": "models/PAIR-OFFLOAD-2ND-3RD_RIGHT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     104.2,
+     317.1,
+     25.4
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "PAIR-OFFLOAD-3RD",
+  "categories": [
+   "Offload Met Head"
+  ],
+  "orthotic_type": "Insole + separate part",
+  "base": "",
+  "top_cover": "",
+  "additions": "Offload plug, 3rd met head (soft fill)",
+  "label": "Offload plug \u2014 3rd met head",
+  "hidden": false,
+  "motion": "press",
+  "models": {
+   "LEFT": {
+    "file": "models/PAIR-OFFLOAD-3RD_LEFT.glb",
+    "addon": "models/PAIR-OFFLOAD-3RD_LEFT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     96.9,
+     286.5,
+     23.8
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "PAIR-OFFLOAD-4TH",
+  "categories": [
+   "Offload Met Head"
+  ],
+  "orthotic_type": "Insole + separate part",
+  "base": "",
+  "top_cover": "",
+  "additions": "Offload plug, 4th met head (soft fill)",
+  "label": "Offload plug \u2014 4th met head",
+  "hidden": false,
+  "motion": "press",
+  "models": {
+   "RIGHT": {
+    "file": "models/PAIR-OFFLOAD-4TH_RIGHT.glb",
+    "addon": "models/PAIR-OFFLOAD-4TH_RIGHT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     86.1,
+     258.1,
+     24.3
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "PAIR-OFFLOAD-4TH-5TH",
+  "categories": [
+   "Offload Met Head"
+  ],
+  "orthotic_type": "Insole + separate part",
+  "base": "",
+  "top_cover": "",
+  "additions": "Offload plug, 4th + 5th met heads (soft fill)",
+  "label": "Offload plug \u2014 4th + 5th met heads",
+  "hidden": false,
+  "motion": "press",
+  "models": {
+   "LEFT": {
+    "file": "models/PAIR-OFFLOAD-4TH-5TH_LEFT.glb",
+    "addon": "models/PAIR-OFFLOAD-4TH-5TH_LEFT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     109.0,
+     317.5,
+     27.4
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/PAIR-OFFLOAD-4TH-5TH_RIGHT.glb",
+    "addon": "models/PAIR-OFFLOAD-4TH-5TH_RIGHT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     109.0,
+     317.5,
+     27.5
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "PAIR-OFFLOAD-5TH",
+  "categories": [
+   "Offload Met Head"
+  ],
+  "orthotic_type": "Insole + separate part",
+  "base": "",
+  "top_cover": "",
+  "additions": "Offload plug, 5th met head (soft fill)",
+  "label": "Offload plug \u2014 5th met head",
+  "hidden": false,
+  "motion": "press",
+  "models": {
+   "LEFT": {
+    "file": "models/PAIR-OFFLOAD-5TH_LEFT.glb",
+    "addon": "models/PAIR-OFFLOAD-5TH_LEFT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     101.9,
+     300.2,
+     25.3
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/PAIR-OFFLOAD-5TH_RIGHT.glb",
+    "addon": "models/PAIR-OFFLOAD-5TH_RIGHT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     101.7,
+     299.3,
+     25.0
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "PAIR-REVERSE-DANCERS-PAD",
+  "categories": [
+   "Dancer Pad"
+  ],
+  "orthotic_type": "Insole + separate part",
+  "base": "",
+  "top_cover": "",
+  "additions": "Reverse dancer's pad (separate printed part)",
+  "label": "Reverse dancer's pad",
+  "hidden": true,
+  "motion": "lift",
+  "models": {
+   "LEFT": {
+    "file": "models/PAIR-REVERSE-DANCERS-PAD_LEFT.glb",
+    "addon": "models/PAIR-REVERSE-DANCERS-PAD_LEFT_addon.glb",
+    "faces": 21884,
+    "extents": [
+     99.6,
+     304.3,
+     22.8
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "PAIR-TOE-CREST",
+  "categories": [
+   "Toe Crest"
+  ],
+  "orthotic_type": "Insole + separate part",
+  "base": "",
+  "top_cover": "",
+  "additions": "Toe crest across the forefoot (mets 2\u20135, separate printed part)",
+  "label": "Toe crest",
+  "hidden": false,
+  "motion": "lift",
+  "models": {
+   "RIGHT": {
+    "file": "models/PAIR-TOE-CREST_RIGHT.glb",
+    "addon": "models/PAIR-TOE-CREST_RIGHT_addon.glb",
+    "faces": 28000,
+    "extents": [
+     87.3,
+     261.9,
+     26.2
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "PAIR-TOP-COVER",
+  "categories": [
+   "Top Cover"
+  ],
+  "orthotic_type": "Insole + top cover",
+  "base": "",
+  "top_cover": "Full",
+  "additions": "13 production covers (T1\u2013T14) at true sheet thickness \u2014 select one to try it on",
+  "label": "Top covers \u2014 T1 to T14",
+  "hidden": false,
+  "motion": "drape",
+  "models": {
+   "LEFT": {
+    "file": "models/PAIR-TOP-COVER_LEFT.glb",
+    "addon": "models/PAIR-TOP-COVER_T1_addon.glb",
+    "faces": 20592,
+    "extents": [
+     102.4,
+     283.0,
+     23.3
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  },
+  "variants": [
+   {
+    "code": "T1",
+    "name": "1/8\" P-Cell",
+    "recipe": "1/8\" P-Cell",
+    "mm": 3.2,
+    "layers": 1,
+    "perf": false,
+    "swatch": "#faceac",
+    "swatches": [
+     "#faceac"
+    ],
+    "layerInfo": [
+     {
+      "label": "1/8\" P-Cell",
+      "mm": 3.17,
+      "hex": "#faceac"
+     }
+    ],
+    "addon": "models/PAIR-TOP-COVER_T1_addon.glb",
+    "photo": "assets/topcovers/t1-face.jpg",
+    "edge": "assets/topcovers/t1-edge.jpg"
+   },
+   {
+    "code": "T2",
+    "name": "1/16\" P-Cell over Poron",
+    "recipe": "1/16\" P-Cell over 1/16\" Poron",
+    "mm": 3.2,
+    "layers": 2,
+    "perf": false,
+    "swatch": "#f4c89e",
+    "swatches": [
+     "#74baf6",
+     "#f4c89e"
+    ],
+    "layerInfo": [
+     {
+      "label": "1/16\" P-Cell",
+      "mm": 1.59,
+      "hex": "#f4c89e"
+     },
+     {
+      "label": "1/16\" Poron",
+      "mm": 1.59,
+      "hex": "#74baf6"
+     }
+    ],
+    "addon": "models/PAIR-TOP-COVER_T2_addon.glb",
+    "photo": "assets/topcovers/t2-face.jpg",
+    "edge": "assets/topcovers/t2-edge.jpg"
+   },
+   {
+    "code": "T3",
+    "name": "1/8\" P-Cell over Poron",
+    "recipe": "1/8\" P-Cell over 1/16\" Poron",
+    "mm": 4.8,
+    "layers": 2,
+    "perf": false,
+    "swatch": "#edaf85",
+    "swatches": [
+     "#74baf6",
+     "#edaf85"
+    ],
+    "layerInfo": [
+     {
+      "label": "1/8\" P-Cell",
+      "mm": 3.17,
+      "hex": "#edaf85"
+     },
+     {
+      "label": "1/16\" Poron",
+      "mm": 1.59,
+      "hex": "#74baf6"
+     }
+    ],
+    "addon": "models/PAIR-TOP-COVER_T3_addon.glb",
+    "photo": "assets/topcovers/t3-face.jpg",
+    "edge": "assets/topcovers/t3-edge.jpg"
+   },
+   {
+    "code": "T4",
+    "name": "Everyday",
+    "recipe": "1/16\" Preferred Puff over 1/16\" Poron",
+    "mm": 3.2,
+    "layers": 2,
+    "perf": true,
+    "swatch": "#3c75e8",
+    "swatches": [
+     "#74baf6",
+     "#3c75e8"
+    ],
+    "layerInfo": [
+     {
+      "label": "1/16\" Preferred Puff",
+      "mm": 1.59,
+      "hex": "#3c75e8"
+     },
+     {
+      "label": "1/16\" Poron",
+      "mm": 1.59,
+      "hex": "#74baf6"
+     }
+    ],
+    "addon": "models/PAIR-TOP-COVER_T4_addon.glb",
+    "photo": "assets/topcovers/t4-face.jpg",
+    "edge": "assets/topcovers/t4-edge.jpg"
+   },
+   {
+    "code": "T5",
+    "name": "Vinyl",
+    "recipe": "Vinyl",
+    "mm": 1.0,
+    "layers": 1,
+    "perf": false,
+    "swatch": "#2a2a2e",
+    "swatches": [
+     "#2a2a2e"
+    ],
+    "layerInfo": [
+     {
+      "label": "Vinyl",
+      "mm": 1.0,
+      "hex": "#2a2a2e"
+     }
+    ],
+    "addon": "models/PAIR-TOP-COVER_T5_addon.glb",
+    "photo": "assets/topcovers/t5-face.jpg",
+    "edge": "assets/topcovers/t5-edge.jpg"
+   },
+   {
+    "code": "T6",
+    "name": "Spenco",
+    "recipe": "1/8\" Spenco",
+    "mm": 3.2,
+    "layers": 1,
+    "perf": false,
+    "swatch": "#3a3a40",
+    "swatches": [
+     "#3a3a40"
+    ],
+    "layerInfo": [
+     {
+      "label": "1/8\" Spenco",
+      "mm": 3.17,
+      "hex": "#3a3a40"
+     }
+    ],
+    "addon": "models/PAIR-TOP-COVER_T6_addon.glb",
+    "photo": "assets/topcovers/t6-face.jpg",
+    "edge": "assets/topcovers/t6-edge.jpg"
+   },
+   {
+    "code": "T7",
+    "name": "1/8\" Puff",
+    "recipe": "1/8\" Puff",
+    "mm": 3.2,
+    "layers": 1,
+    "perf": false,
+    "swatch": "#5caaf6",
+    "swatches": [
+     "#5caaf6"
+    ],
+    "layerInfo": [
+     {
+      "label": "1/8\" Puff",
+      "mm": 3.17,
+      "hex": "#5caaf6"
+     }
+    ],
+    "addon": "models/PAIR-TOP-COVER_T7_addon.glb",
+    "photo": "assets/topcovers/t7-face.jpg",
+    "edge": "assets/topcovers/t7-edge.jpg"
+   },
+   {
+    "code": "T8",
+    "name": "1/16\" Puff",
+    "recipe": "1/16\" Puff",
+    "mm": 1.6,
+    "layers": 1,
+    "perf": false,
+    "swatch": "#4f9cf8",
+    "swatches": [
+     "#4f9cf8"
+    ],
+    "layerInfo": [
+     {
+      "label": "1/16\" Puff",
+      "mm": 1.59,
+      "hex": "#4f9cf8"
+     }
+    ],
+    "addon": "models/PAIR-TOP-COVER_T8_addon.glb",
+    "photo": "assets/topcovers/t8-face.jpg",
+    "edge": "assets/topcovers/t8-edge.jpg"
+   },
+   {
+    "code": "T9",
+    "name": "1/16\" Neo Sponge",
+    "recipe": "1/16\" Neo Sponge",
+    "mm": 1.6,
+    "layers": 1,
+    "perf": false,
+    "swatch": "#26262b",
+    "swatches": [
+     "#26262b"
+    ],
+    "layerInfo": [
+     {
+      "label": "1/16\" Neo Sponge",
+      "mm": 1.59,
+      "hex": "#26262b"
+     }
+    ],
+    "addon": "models/PAIR-TOP-COVER_T9_addon.glb",
+    "photo": "assets/topcovers/t9-face.jpg",
+    "edge": "assets/topcovers/t9-edge.jpg"
+   },
+   {
+    "code": "T11",
+    "name": "1/16\" P-Cell",
+    "recipe": "1/16\" P-Cell",
+    "mm": 1.6,
+    "layers": 1,
+    "perf": false,
+    "swatch": "#f8c6a3",
+    "swatches": [
+     "#f8c6a3"
+    ],
+    "layerInfo": [
+     {
+      "label": "1/16\" P-Cell",
+      "mm": 1.59,
+      "hex": "#f8c6a3"
+     }
+    ],
+    "addon": "models/PAIR-TOP-COVER_T11_addon.glb",
+    "photo": "assets/topcovers/t11-face.jpg",
+    "edge": "assets/topcovers/t11-edge.jpg"
+   },
+   {
+    "code": "T12",
+    "name": "1/16\" Preferred Puff",
+    "recipe": "1/16\" Preferred Puff",
+    "mm": 1.6,
+    "layers": 1,
+    "perf": true,
+    "swatch": "#4b94f0",
+    "swatches": [
+     "#4b94f0"
+    ],
+    "layerInfo": [
+     {
+      "label": "1/16\" Preferred Puff",
+      "mm": 1.59,
+      "hex": "#4b94f0"
+     }
+    ],
+    "addon": "models/PAIR-TOP-COVER_T12_addon.glb",
+    "photo": "assets/topcovers/t12-face.jpg",
+    "edge": "assets/topcovers/t12-edge.jpg"
+   },
+   {
+    "code": "T13",
+    "name": "1/16\" Poron",
+    "recipe": "1/16\" Poron",
+    "mm": 1.6,
+    "layers": 1,
+    "perf": false,
+    "swatch": "#74baf6",
+    "swatches": [
+     "#74baf6"
+    ],
+    "layerInfo": [
+     {
+      "label": "1/16\" Poron",
+      "mm": 1.59,
+      "hex": "#74baf6"
+     }
+    ],
+    "addon": "models/PAIR-TOP-COVER_T13_addon.glb",
+    "photo": "assets/topcovers/t13-face.jpg",
+    "edge": "assets/topcovers/t13-edge.jpg"
+   },
+   {
+    "code": "T14",
+    "name": "1/8\" Poron",
+    "recipe": "1/8\" Poron",
+    "mm": 3.2,
+    "layers": 1,
+    "perf": false,
+    "swatch": "#79cdfb",
+    "swatches": [
+     "#79cdfb"
+    ],
+    "layerInfo": [
+     {
+      "label": "1/8\" Poron",
+      "mm": 3.17,
+      "hex": "#79cdfb"
+     }
+    ],
+    "addon": "models/PAIR-TOP-COVER_T14_addon.glb",
+    "photo": "assets/topcovers/t14-face.jpg",
+    "edge": "assets/topcovers/t14-edge.jpg"
+   }
+  ]
+ },
+ {
+  "po": "PAIR-WEDGE-LATERAL",
+  "categories": [
+   "Cork Wedge (manual add-on)"
+  ],
+  "orthotic_type": "Insole + glued cork wedge",
+  "base": "",
+  "top_cover": "",
+  "additions": "True cork blank (1/4\"), high edge straight along the LATERAL border, heel to arch, trimmed flush to the insole outline",
+  "label": "Extrinsic wedge \u2014 lateral",
+  "hidden": false,
+  "motion": "flip",
+  "models": {
+   "LEFT": {
+    "file": "models/PAIR-WEDGE-LATERAL_LEFT.glb",
+    "addon": "models/PAIR-WEDGE-LATERAL_LEFT_addon.glb",
+    "faces": 20592,
+    "extents": [
+     101.9,
+     283.0,
+     24.4
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "PAIR-WEDGE-MEDIAL",
+  "categories": [
+   "Cork Wedge (manual add-on)"
+  ],
+  "orthotic_type": "Insole + glued cork wedge",
+  "base": "",
+  "top_cover": "",
+  "additions": "True cork blank (1/4\"), high edge straight along the MEDIAL border, heel to arch, trimmed flush to the insole outline",
+  "label": "Extrinsic wedge \u2014 medial",
+  "hidden": false,
+  "motion": "flip",
+  "models": {
+   "LEFT": {
+    "file": "models/PAIR-WEDGE-MEDIAL_LEFT.glb",
+    "addon": "models/PAIR-WEDGE-MEDIAL_LEFT_addon.glb",
+    "faces": 20592,
+    "extents": [
+     101.9,
+     283.0,
+     32.5
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-ARCH-PAD",
+  "categories": [
+   "Arch Pad"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Arch pad",
+  "label": "Arch pad",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-ARCH-PAD_LEFT.glb",
+    "faces": 21886,
+    "extents": [
+     99.6,
+     304.3,
+     24.8
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      19.8,
+      -29.9,
+      16.0
+     ],
+     "radius": 25.7
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 9.37
+   }
+  }
+ },
+ {
+  "po": "SG-ARCH-REINFORCEMENT",
+  "categories": [
+   "Arch Reinforcement"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Arch reinforcement",
+  "label": "Arch reinforcement",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-ARCH-REINFORCEMENT_LEFT.glb",
+    "faces": 21884,
+    "extents": [
+     99.6,
+     304.3,
+     22.8
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-CUBOID-PAD",
+  "categories": [
+   "Cuboid Raise"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Cuboid pad",
+  "label": "Cuboid pad",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-CUBOID-PAD_LEFT.glb",
+    "faces": 21924,
+    "extents": [
+     99.6,
+     304.3,
+     22.8
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      -26.4,
+      -62.7,
+      11.5
+     ],
+     "radius": 11.3
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.81
+   }
+  }
+ },
+ {
+  "po": "SG-DANCERSPAD",
+  "categories": [
+   "Dancer Pad"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Dancer's pad",
+  "label": "Dancer's pad",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-DANCERSPAD_LEFT.glb",
+    "faces": 21918,
+    "extents": [
+     99.6,
+     304.3,
+     22.8
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      2.0,
+      34.5,
+      11.3
+     ],
+     "radius": 32.9
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 9.15
+   }
+  }
+ },
+ {
+  "po": "SG-FOREFOOT-POSTING",
+  "categories": [
+   "Wedges"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Forefoot posting",
+  "label": "Forefoot posting",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-FOREFOOT-POSTING_LEFT.glb",
+    "faces": 21884,
+    "extents": [
+     99.6,
+     304.3,
+     22.8
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-GAIT-PLATE",
+  "categories": [
+   "SoleGen add-on"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Gait plate",
+  "label": "Gait plate",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-GAIT-PLATE_LEFT.glb",
+    "faces": 14322,
+    "extents": [
+     99.0,
+     218.0,
+     22.8
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-HEEL-FILL",
+  "categories": [
+   "Heel Pad"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Heel fill",
+  "label": "Heel fill",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-HEEL-FILL_LEFT.glb",
+    "faces": 21884,
+    "extents": [
+     99.6,
+     304.3,
+     22.8
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      21.0,
+      -82.6,
+      11.7
+     ],
+     "radius": 4.1
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.24
+   }
+  }
+ },
+ {
+  "po": "SG-HEEL-OFFLOAD",
+  "categories": [
+   "Heel Spur"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Heel offload",
+  "label": "Heel offload",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-HEEL-OFFLOAD_LEFT.glb",
+    "faces": 21884,
+    "extents": [
+     99.6,
+     304.3,
+     22.8
+    ],
+    "relief_focus": {
+     "center": [
+      -6.2,
+      -93.9,
+      5.9
+     ],
+     "radius": 27.7
+    },
+    "pad_focus": null,
+    "relief_area_pct": 3.76,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-HEEL-POST-FLAT",
+  "categories": [
+   "SoleGen add-on"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Heel post \u00b7 Flat",
+  "label": "Heel post \u00b7 Flat",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-HEEL-POST-FLAT_LEFT.glb",
+    "faces": 28000,
+    "extents": [
+     97.5,
+     199.3,
+     21.1
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-HEEL-POST-OVAL",
+  "categories": [
+   "SoleGen add-on"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Heel post \u00b7 Oval",
+  "label": "Heel post \u00b7 Oval",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-HEEL-POST-OVAL_LEFT.glb",
+    "faces": 28000,
+    "extents": [
+     97.5,
+     199.3,
+     21.1
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-HEEL-POST-STABILIZER",
+  "categories": [
+   "SoleGen add-on"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Heel post \u00b7 Stabilizer",
+  "label": "Heel post \u00b7 Stabilizer",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-HEEL-POST-STABILIZER_LEFT.glb",
+    "faces": 28000,
+    "extents": [
+     97.5,
+     199.3,
+     21.1
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-HEEL-POST-U",
+  "categories": [
+   "SoleGen add-on"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Heel post \u00b7 U",
+  "label": "Heel post \u00b7 U",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-HEEL-POST-U_LEFT.glb",
+    "faces": 28000,
+    "extents": [
+     97.5,
+     199.3,
+     21.1
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-HEEL-SKIVE",
+  "categories": [
+   "SoleGen add-on"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Kirby Skive",
+  "label": "Kirby Skive",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-HEEL-SKIVE_LEFT.glb",
+    "faces": 28000,
+    "extents": [
+     97.5,
+     199.3,
+     21.1
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-KINETIC-WEDGE",
+  "categories": [
+   "Dancer Pad"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Dannenburg / kinetic wedge",
+  "label": "Dannenburg / kinetic wedge",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-KINETIC-WEDGE_LEFT.glb",
+    "faces": 16466,
+    "extents": [
+     99.4,
+     304.1,
+     22.8
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      25.5,
+      0.0,
+      13.7
+     ],
+     "radius": 12.0
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 3.67
+   }
+  }
+ },
+ {
+  "po": "SG-LATERAL-FLANGE",
+  "categories": [
+   "SoleGen add-on"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Lateral flange",
+  "label": "Lateral flange",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-LATERAL-FLANGE_LEFT.glb",
+    "faces": 23062,
+    "extents": [
+     99.6,
+     304.3,
+     31.8
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-MEDIAL-FLANGE",
+  "categories": [
+   "SoleGen add-on"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Medial flange",
+  "label": "Medial flange",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-MEDIAL-FLANGE_LEFT.glb",
+    "faces": 23386,
+    "extents": [
+     99.6,
+     304.3,
+     36.8
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-METBAR",
+  "categories": [
+   "Met Bar"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Met bar",
+  "label": "Met bar",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-METBAR_LEFT.glb",
+    "faces": 22044,
+    "extents": [
+     99.6,
+     304.3,
+     22.8
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      11.9,
+      14.4,
+      12.0
+     ],
+     "radius": 22.5
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 6.46
+   }
+  }
+ },
+ {
+  "po": "SG-METPAD",
+  "categories": [
+   "Met Pad"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Met pad",
+  "label": "Met pad",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-METPAD_LEFT.glb",
+    "faces": 22028,
+    "extents": [
+     99.6,
+     304.3,
+     22.8
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      10.1,
+      11.8,
+      12.6
+     ],
+     "radius": 21.5
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 6.05
+   }
+  }
+ },
+ {
+  "po": "SG-MORTONS-EXTENSION",
+  "categories": [
+   "Morton Extension"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Morton extension",
+  "label": "Morton extension",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-MORTONS-EXTENSION_LEFT.glb",
+    "faces": 17566,
+    "extents": [
+     99.5,
+     304.3,
+     22.8
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      16.6,
+      134.3,
+      4.8
+     ],
+     "radius": 5.5
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.79
+   }
+  }
+ },
+ {
+  "po": "SG-NEUROMA-PAD",
+  "categories": [
+   "Met Pad"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Neuroma pad",
+  "label": "Neuroma pad",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-NEUROMA-PAD_LEFT.glb",
+    "faces": 21884,
+    "extents": [
+     99.6,
+     304.3,
+     22.8
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      20.8,
+      12.4,
+      12.6
+     ],
+     "radius": 30.7
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 3.37
+   }
+  }
+ },
+ {
+  "po": "SG-OFFLOAD",
+  "categories": [
+   "Offload Met Head"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Offload met head",
+  "label": "Offload met head",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-OFFLOAD_LEFT.glb",
+    "faces": 22164,
+    "extents": [
+     99.6,
+     304.3,
+     22.8
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-RAY1-CUTOUT",
+  "categories": [
+   "SoleGen add-on"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "1st ray cutout",
+  "label": "1st ray cutout",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-RAY1-CUTOUT_LEFT.glb",
+    "faces": 27136,
+    "extents": [
+     96.2,
+     194.2,
+     21.1
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-RAY5-CUTOUT",
+  "categories": [
+   "SoleGen add-on"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "5th ray cutout",
+  "label": "5th ray cutout",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-RAY5-CUTOUT_LEFT.glb",
+    "faces": 27680,
+    "extents": [
+     96.3,
+     199.3,
+     21.1
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-REARFOOT-POSTING",
+  "categories": [
+   "Wedges"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Rearfoot posting",
+  "label": "Rearfoot posting",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-REARFOOT-POSTING_LEFT.glb",
+    "faces": 21884,
+    "extents": [
+     99.6,
+     304.3,
+     22.8
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-REINFORCEMENT-ARCH",
+  "categories": [
+   "Arch Reinforcement"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Reinforcement \u00b7 Arch",
+  "label": "Reinforcement \u00b7 Arch",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-REINFORCEMENT-ARCH_LEFT.glb",
+    "faces": 28000,
+    "extents": [
+     97.5,
+     199.3,
+     21.1
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-REINFORCEMENT-GRID",
+  "categories": [
+   "Arch Reinforcement"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Reinforcement \u00b7 Isogrid",
+  "label": "Reinforcement \u00b7 Isogrid",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-REINFORCEMENT-GRID_LEFT.glb",
+    "faces": 28000,
+    "extents": [
+     97.5,
+     199.3,
+     21.8
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-REINFORCEMENT-RADIAL",
+  "categories": [
+   "Arch Reinforcement"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Reinforcement \u00b7 Radial",
+  "label": "Reinforcement \u00b7 Radial",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-REINFORCEMENT-RADIAL_LEFT.glb",
+    "faces": 28000,
+    "extents": [
+     97.5,
+     199.3,
+     21.1
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-REINFORCEMENT-RIBBED",
+  "categories": [
+   "Arch Reinforcement"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Reinforcement \u00b7 Ribbed",
+  "label": "Reinforcement \u00b7 Ribbed",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-REINFORCEMENT-RIBBED_LEFT.glb",
+    "faces": 28000,
+    "extents": [
+     97.5,
+     199.3,
+     22.4
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-REVERSE-MORTONS-EXTENSION",
+  "categories": [
+   "Reverse Morton Extension"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Reverse Morton",
+  "label": "Reverse Morton",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-REVERSE-MORTONS-EXTENSION_LEFT.glb",
+    "faces": 18706,
+    "extents": [
+     98.8,
+     304.3,
+     22.8
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      31.9,
+      5.1,
+      13.8
+     ],
+     "radius": 5.5
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.59
+   }
+  }
+ },
+ {
+  "po": "SG-REVERSEDANCERSPAD",
+  "categories": [
+   "Dancer Pad"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Reverse dancer's pad",
+  "label": "Reverse dancer's pad",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-REVERSEDANCERSPAD_LEFT.glb",
+    "faces": 22002,
+    "extents": [
+     99.6,
+     304.3,
+     22.8
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      16.4,
+      10.5,
+      14.1
+     ],
+     "radius": 25.1
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 3.96
+   }
+  }
+ },
+ {
+  "po": "SG-SENSORY-BUMPS",
+  "categories": [
+   "Met Pad",
+   "Heel Pad"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Sensory bumps",
+  "label": "Sensory bumps",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-SENSORY-BUMPS_LEFT.glb",
+    "faces": 21884,
+    "extents": [
+     99.6,
+     304.3,
+     22.8
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      9.9,
+      -60.4,
+      10.4
+     ],
+     "radius": 65.3
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 9.0
+   }
+  }
+ },
+ {
+  "po": "SG-SHELL-LATERAL-FLANGE",
+  "categories": [
+   "SoleGen add-on"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Shell lateral flange",
+  "label": "Shell lateral flange",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-SHELL-LATERAL-FLANGE_LEFT.glb",
+    "faces": 28000,
+    "extents": [
+     97.8,
+     199.5,
+     25.0
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-SHELL-MEDIAL-FLANGE",
+  "categories": [
+   "SoleGen add-on"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Shell medial flange",
+  "label": "Shell medial flange",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-SHELL-MEDIAL-FLANGE_LEFT.glb",
+    "faces": 28000,
+    "extents": [
+     97.8,
+     199.5,
+     30.0
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-THICKNESS-BOOST",
+  "categories": [
+   "SoleGen add-on"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Thickness boost",
+  "label": "Thickness boost",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-THICKNESS-BOOST_LEFT.glb",
+    "faces": 22272,
+    "extents": [
+     99.6,
+     304.3,
+     26.8
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-TOE-CREST",
+  "categories": [
+   "Toe Crest"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Toe crest",
+  "label": "Toe crest",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-TOE-CREST_LEFT.glb",
+    "faces": 21884,
+    "extents": [
+     99.6,
+     304.3,
+     22.8
+    ],
+    "relief_focus": null,
+    "pad_focus": {
+     "center": [
+      1.2,
+      74.5,
+      7.3
+     ],
+     "radius": 24.4
+    },
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 3.26
+   }
+  }
+ },
+ {
+  "po": "SG-WEDGE-LATERAL",
+  "categories": [
+   "Wedges"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Printed lateral wedge",
+  "label": "Printed lateral wedge",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-WEDGE-LATERAL_LEFT.glb",
+    "faces": 26478,
+    "extents": [
+     99.6,
+     304.3,
+     23.6
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
+  "po": "SG-WEDGE-MEDIAL",
+  "categories": [
+   "Wedges"
+  ],
+  "orthotic_type": "SoleGen demo",
+  "base": "",
+  "top_cover": "",
+  "additions": "Printed medial wedge",
+  "label": "Printed medial wedge",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/SG-WEDGE-MEDIAL_LEFT.glb",
+    "faces": 26578,
+    "extents": [
+     99.6,
+     304.3,
+     29.3
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ }
+]

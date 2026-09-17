@@ -1,0 +1,22 @@
+category,po,company,orthotic_type,base,top_cover,additions,factory,status,render_files
+Functional (plain),CPO-307228,CPO,Functional,,Full,,SOLEFORGE,PRINTING,2
+Diabetic (plain),CPO-307089,CPO,Diabetic,,Full,,,NEEDS_MANUFACTURING,2
+35 Durometer EVA,CPO-291487,CPO,Diabetic,35 Durometer EVA,Full,,SOLEMATE,COMPLETED,2
+35 Durometer EVA,CPO-306441,CPO,Diabetic,35 Durometer EVA,Full,Met Pad,SOLEMATE,NEEDS_GLUING,2
+45 Durometer EVA,CPO-307697,CPO,Diabetic,45 Durometer EVA,Full,,SOLEFORGE,COMPLETED,2
+55 Durometer EVA,CPO-305180,CPO,Diabetic,55 Durometer EVA,Full,,SOLEMATE,NEEDS_GRINDING,2
+55 Durometer EVA,CPO-294478,CPO,Diabetic,55 Durometer EVA,Full,,SOLEMATE,COMPLETED,1
+Shell,CPO-307216,CPO,Functional,Shell,Full,Met Bar + Offload Met Head + Arch Reinforcement,SOLEFORGE,PRINTING,2
+Morton Extension,CPO-305740,CPO,Diabetic,,Full,Morton Extension,SOLEMATE,COMPLETED,2
+Reverse Morton Extension,CPO-305442,CPO,Functional,,Full,Reverse Morton Extension + Wedges + Met Pad,SOLEFORGE,COMPLETED,2
+Charcot (in dx/eval),CPO-306178,CPO,Diabetic,,Full,,SOLEMATE,COMPLETED,2
+Offload Met Head,CPO-307216,CPO,Functional,Shell,Full,Met Bar + Offload Met Head + Arch Reinforcement,SOLEFORGE,PRINTING,2
+Offload Met Head,CPO-307064,CPO,Functional,,Full,Offload Met Head + Met Pad,,NEEDS_MANUFACTURING,2
+Met Pad,CPO-307229,CPO,Functional,,Full,Met Pad,SOLEFORGE,NEEDS_GRINDING,2
+Met Bar,CPO-307216,CPO,Functional,Shell,Full,Met Bar + Offload Met Head + Arch Reinforcement,SOLEFORGE,PRINTING,2
+Heel Spur,CPO-306397,CPO,Diabetic,,Full,Heel Spur,SOLEMATE,NEEDS_GRINDING,2
+Heel Pad + Heel Spur,CPO-306695,CPO,Diabetic,,Full,Heel Pad + Heel Spur,SOLEMATE,COMPLETED,2
+Heel Pad,CPO-306803,CPO,Diabetic,,Full,Heel Pad,SOLEMATE,COMPLETED,2
+Base of Fifth Relief,CPO-306901,CPO,Diabetic,,Full,Base of Fifth Relief,SOLEMATE,PRINTING,2
+Wedges,CPO-307326,CPO,Functional,,Full,Wedges,SOLEFORGE,PRINTING,2
+UCBL,CPO-302402,CPO,UCBL,,Full,Deep heel cup + Medial & lateral flanges,,COMPLETED,2

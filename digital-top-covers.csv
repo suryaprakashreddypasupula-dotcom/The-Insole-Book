@@ -1,0 +1,14 @@
+Code,Name,Recipe,Thickness mm,Layers,Perforated,GLB,Square image
+T1,1/8" P-Cell,1/8" P-Cell,3.2,1,No,models/PAIR-TOP-COVER_T1_addon.glb,T1_1-8-P-Cell.jpg
+T2,1/16" P-Cell over Poron,1/16" P-Cell over 1/16" Poron,3.2,2,No,models/PAIR-TOP-COVER_T2_addon.glb,T2_1-16-P-Cell-over-Poron.jpg
+T3,1/8" P-Cell over Poron,1/8" P-Cell over 1/16" Poron,4.8,2,No,models/PAIR-TOP-COVER_T3_addon.glb,T3_1-8-P-Cell-over-Poron.jpg
+T4,Everyday,1/16" Preferred Puff over 1/16" Poron,3.2,2,Yes,models/PAIR-TOP-COVER_T4_addon.glb,T4_Everyday.jpg
+T5,Vinyl,Vinyl,1.0,1,No,models/PAIR-TOP-COVER_T5_addon.glb,T5_Vinyl.jpg
+T6,Spenco,1/8" Spenco,3.2,1,No,models/PAIR-TOP-COVER_T6_addon.glb,T6_Spenco.jpg
+T7,1/8" Puff,1/8" Puff,3.2,1,No,models/PAIR-TOP-COVER_T7_addon.glb,T7_1-8-Puff.jpg
+T8,1/16" Puff,1/16" Puff,1.6,1,No,models/PAIR-TOP-COVER_T8_addon.glb,T8_1-16-Puff.jpg
+T9,1/16" Neo Sponge,1/16" Neo Sponge,1.6,1,No,models/PAIR-TOP-COVER_T9_addon.glb,T9_1-16-Neo-Sponge.jpg
+T11,1/16" P-Cell,1/16" P-Cell,1.6,1,No,models/PAIR-TOP-COVER_T11_addon.glb,T11_1-16-P-Cell.jpg
+T12,1/16" Preferred Puff,1/16" Preferred Puff,1.6,1,Yes,models/PAIR-TOP-COVER_T12_addon.glb,T12_1-16-Preferred-Puff.jpg
+T13,1/16" Poron,1/16" Poron,1.6,1,No,models/PAIR-TOP-COVER_T13_addon.glb,T13_1-16-Poron.jpg
+T14,1/8" Poron,1/8" Poron,3.2,1,No,models/PAIR-TOP-COVER_T14_addon.glb,T14_1-8-Poron.jpg

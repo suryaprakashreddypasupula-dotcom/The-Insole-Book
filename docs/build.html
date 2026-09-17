@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page 2 · How the 3D is built</title>
+<link rel="stylesheet" href="./docs.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="../assets/hike-logo.jpg" alt="hike">
+    <nav>
+      <a href="./index.html">1 · Open</a>
+      <a class="on" href="./build.html">2 · Build</a>
+      <a href="./app.html">3 · Website</a>
+    </nav>
+  </header>
+
+  <div class="kicker">Build docs · Page 2 of 3</div>
+  <h1>How the 3D book is built</h1>
+  <p class="lede">The pages you click are HTML. The insoles you rotate are real production meshes, converted once on this Mac into small web files. You do not rebuild to open the book — only when a new STL must replace an old one.</p>
+
+  <h2>1. Two kinds of 3D, on purpose</h2>
+  <table>
+    <tr><th>Kind</th><th>What you see</th><th>How it is made</th></tr>
+    <tr>
+      <td><b>Single insole</b></td>
+      <td>One black shell. Amber = raise, cyan = well — teaching paint on the mesh.</td>
+      <td><span class="path">tools/build_models.py</span> reads a taika STL and writes <span class="path">models/CPO-…_LEFT.glb</span>.</td>
+    </tr>
+    <tr>
+      <td><b>Pair (insole + part)</b></td>
+      <td>Black production insole plus a separate colored part that lifts, presses, flips, or drapes.</td>
+      <td><span class="path">tools/build_pairs.py</span> writes two GLBs: the insole and <span class="path">…_addon.glb</span>.</td>
+    </tr>
+  </table>
+  <p>Color on a pair is a teaching highlight. After a lift or press settles, the colored part fades so the insole looks the way it ships — one black device. Top covers and cork wedges stay, because they <em>are</em> the finished surface.</p>
+
+  <h2>2. Where the raw STLs live</h2>
+  <p>The build scripts do not invent geometry. They read folders next to the book:</p>
+  <table>
+    <tr><th>Folder</th><th>Contents</th></tr>
+    <tr><td><span class="path">/Users/surya/Downloads/po-insole-stls/</span></td><td>Whole-insole taika STLs used by <span class="path">build_models.py</span>.</td></tr>
+    <tr><td><span class="path">/Users/surya/Downloads/pair-insole-stls/</span></td><td>Matching insoles for animated pairs.</td></tr>
+    <tr><td><span class="path">/Users/surya/Downloads/insole-addon-stls/</span></td><td>Production “extra” STLs — met pad, offload plug, toe crest, and so on.</td></tr>
+  </table>
+  <p>Those extras are often print pucks: the real shape sits on a tall support. The pair script subtracts the insole height from the puck crown and rebuilds a thin part that sits on the insole. If a file also has a floating print plate (the 1900049 toe crest did), the script keeps only the low band.</p>
+
+  <h2>3. Step-by-step: a single insole (highlights)</h2>
+  <ol class="steps">
+    <li>Put the STL in <span class="path">po-insole-stls</span> and list it in <span class="path">tools/insole-types.csv</span> (type, additions — no PO on the student’s screen).</li>
+    <li>Run, from the book folder, using the project Python that already has trimesh:</li>
+  </ol>
+<pre><code>cd /Users/surya/Downloads/hike-insole-book
+"/Users/surya/Downloads/Ops Agent/.venv/bin/python" tools/build_models.py</code></pre>
+  <ol class="steps" start="3">
+    <li>The script simplifies the mesh (about 28k faces), centers it, and paints vertices:
+      black shell, amber where a raise is prescribed and the surface actually rises, cyan where a well is prescribed and the surface actually drops.</li>
+    <li>It writes <span class="path">models/{PO}_{SIDE}.glb</span> and merges a row into <span class="path">catalog.json</span>.</li>
+  </ol>
+  <div class="card">
+    <b>Do not run this “to refresh the book.”</b> It only replaces GLBs for POs in that CSV. The pair entries and cover lineup are merged in, not wiped, as long as the script’s merge path is the one you are using.
+  </div>
+
+  <h2>4. Step-by-step: an animated pair (pad, bar, offload, cover, wedge)</h2>
+  <ol class="steps">
+    <li>In <span class="path">tools/build_pairs.py</span>, a <code>PAIRS</code> row names the insole file, the extra STL, the color (amber lift vs cyan press), and a thickness cap.</li>
+    <li>The script samples both meshes onto a 1 mm grid, computes thickness, builds a solid for the part, and exports two GLBs that share one coordinate frame — that is why the part can lift off and sit back down.</li>
+    <li>Motion is stored on the catalog row:
+      <b>lift</b> (pads, bars, crests), <b>press</b> (soft fills), <b>flip</b> (cork wedge), <b>drape</b> (top cover, heel-first).</li>
+  </ol>
+<pre><code>cd /Users/surya/Downloads/hike-insole-book
+"/Users/surya/Downloads/Ops Agent/.venv/bin/python" tools/build_pairs.py</code></pre>
+  <p>A full run also rebuilds every T-code cover. For one pair only, the same functions can be called for a single <code>id</code> (that is how the 1900049 toe crest was swapped).</p>
+
+  <h3>Top covers (T1–T14)</h3>
+  <p>Covers are not photos on the insole. Each T-code is a layered GLB at true millimeters, colors sampled from the lab sheets into <span class="path">assets/topcovers/palette.json</span>. The student picks a chip; the old sheet lifts and the new one drapes. Training mode draws leader lines to each layer with the real mm number.</p>
+
+  <h3>Cork wedges</h3>
+  <p>The wedge is the real blank STL, shortened heel-to-arch, high edge on the prescribed border, then trimmed to the insole’s bottom outline. Flip animation: device rolls over, part seats, device rolls back. Color is shell black — it is not a teaching tint.</p>
+
+  <h2>5. The catalog is the index</h2>
+  <p><span class="path">catalog.json</span> is a list of devices. Each row has a <code>po</code> (often a lesson id like <code>PAIR-MET-PAD</code>, never shown as a customer PO), a <code>motion</code>, and <code>models.LEFT</code> / <code>RIGHT</code> with <code>file</code> and optional <code>addon</code>.</p>
+  <p>Lessons in <span class="path">content.js</span> point at that <code>po</code>. If the catalog row is missing, the stage is empty. If the GLB path is wrong, the browser console shows a load error.</p>
+
+  <h2>6. When you actually rebuild</h2>
+  <ul class="plain">
+    <li><b>New or better STL</b> (example: order 1900049 toe crest) — replace the file in the STL folder, point <span class="path">build_pairs.py</span> at it, rebuild that pair, refresh the browser.</li>
+    <li><b>New lesson text only</b> — edit <span class="path">content.js</span>. No Python. Refresh.</li>
+    <li><b>Just open the book</b> — do not run any build. Use Page 1.</li>
+  </ul>
+  <p class="note">Python packages (trimesh, numpy, scipy, shapely) live in <span class="path">Ops Agent/.venv</span>. The book server itself only needs the Mac’s <code>python3</code>.</p>
+
+  <div class="pager">
+    <a href="./index.html">← Page 1 · Open</a>
+    <a class="next" href="./app.html">Page 3 · How the website works →</a>
+  </div>
+  <footer>Local only · hike-insole-book/docs · not published</footer>
+</div>
+</body>
+</html>

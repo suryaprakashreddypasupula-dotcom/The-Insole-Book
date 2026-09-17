@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page 1 · How to open the book</title>
+<link rel="stylesheet" href="./docs.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="../assets/hike-logo.jpg" alt="hike">
+    <nav>
+      <a class="on" href="./index.html">1 · Open</a>
+      <a href="./build.html">2 · Build</a>
+      <a href="./app.html">3 · Website</a>
+    </nav>
+  </header>
+
+  <div class="kicker">Build docs · Page 1 of 3</div>
+  <h1>How to open The Hike Insole Book — no deployment</h1>
+  <p class="lede">Yes. This is already a website that lives on this Mac. You do not upload it, you do not need a domain, and you do not need the internet after the files are on disk.</p>
+
+  <h2>1. What you have</h2>
+  <p>The book is a folder of static files: one HTML page, JavaScript, 3D models, and a short intro video. A browser draws the site. A tiny Python script only exists so the browser is allowed to load those local 3D files.</p>
+  <div class="card">
+    <b>Nothing is “in the cloud.”</b> Opening the book does not publish it. Nobody else can see it unless they are on this computer (or you copy the folder to theirs).
+  </div>
+
+  <h2>2. Why there is a local address</h2>
+  <p>If you double-click <code>index.html</code> as a file, Chrome blocks the 3D models (module imports). So we start a <b>local server</b> that only listens on this machine:</p>
+  <p><code>http://localhost:8471/index.html</code></p>
+  <p><code>localhost</code> means “this Mac.” It is not a public website. Close the terminal (or quit the server) and the address dies. The files stay.</p>
+
+  <h2>3. Start it — pick one way</h2>
+  <h3>Way A — double-click (easiest)</h3>
+  <ol class="steps">
+    <li>Open Finder → <span class="path">Downloads → hike-insole-book</span></li>
+    <li>Double-click <span class="path">Start Book.command</span></li>
+    <li>If macOS asks, allow it. The book opens in your browser.</li>
+  </ol>
+  <p class="note">That command starts Python on port 8471 only if nothing is already using it, then opens the page.</p>
+
+  <h3>Way B — Terminal (the commands, nothing overwritten)</h3>
+<pre><code>cd /Users/surya/Downloads/hike-insole-book
+python3 tools/serve.py</code></pre>
+  <p>Leave that window open. In a second tab, or after it prints the URL:</p>
+<pre><code>open http://localhost:8471/index.html</code></pre>
+  <p>To stop the server: click that Terminal window and press <kbd>Ctrl</kbd> + <kbd>C</kbd>.</p>
+  <p>If you see <code>Address already in use</code>, the book is already running. Just open the URL. Do not start a second copy.</p>
+
+  <h3>Way C — these docs only (no server required)</h3>
+  <p>These three documentation pages are plain HTML. You can open them from Finder:</p>
+  <ol class="steps">
+    <li>Go to <span class="path">hike-insole-book/docs/</span></li>
+    <li>Double-click <span class="path">index.html</span>, <span class="path">build.html</span>, or <span class="path">app.html</span></li>
+  </ol>
+  <p>Or, with the book server already running:</p>
+  <p><code>http://localhost:8471/docs/index.html</code></p>
+
+  <h2>4. What you see when it starts</h2>
+  <ol class="steps">
+    <li><b>Logo hold</b> — the hike wordmark, about two seconds.</li>
+    <li><b>Intro video once</b> — does not loop. Skip is on the bottom right. If the browser blocks sound, tap Play.</li>
+    <li><b>The course screen</b> — one screen, no page scroll. Chapters and lessons are in the left sidebar (click a chapter to open its lessons); the 3D stage and lesson text fill the rest. <b>Library</b> at the bottom of the sidebar swaps the stage for the device grid.</li>
+  </ol>
+  <p>The intro plays once per browser tab session. To see it again, open a new tab or in the browser console run:</p>
+<pre><code>sessionStorage.removeItem('hikeIntro')</code></pre>
+  <p>then refresh.</p>
+
+  <h2>5. Folder map (this Mac)</h2>
+  <table>
+    <tr><th>Path</th><th>What it is</th></tr>
+    <tr><td><span class="path">hike-insole-book/</span></td><td>The whole website.</td></tr>
+    <tr><td><span class="path">index.html</span></td><td>The book page — layout and look.</td></tr>
+    <tr><td><span class="path">app.js</span></td><td>3D viewer, navigation, training mode.</td></tr>
+    <tr><td><span class="path">content.js</span></td><td>Chapter text and lesson order.</td></tr>
+    <tr><td><span class="path">catalog.json</span></td><td>Which 3D file belongs to which lesson.</td></tr>
+    <tr><td><span class="path">models/</span></td><td>The GLB 3D files the browser draws.</td></tr>
+    <tr><td><span class="path">assets/</span></td><td>Logo, intro video, top-cover colors.</td></tr>
+    <tr><td><span class="path">tools/serve.py</span></td><td>The local server. Does not change files.</td></tr>
+    <tr><td><span class="path">docs/</span></td><td>These three pages.</td></tr>
+  </table>
+
+  <h2>6. What you do <em>not</em> need</h2>
+  <ul class="plain">
+    <li>No GitHub, no Pull Request, no deploy, no Surge, no Netlify.</li>
+    <li>No login. No API key to <em>view</em> the book.</li>
+    <li>No rebuild just to open it. Models are already in <span class="path">models/</span>.</li>
+  </ul>
+  <p>Page 2 is only if you change 3D files. Page 3 is how the site itself is wired.</p>
+
+  <div class="pager">
+    <span></span>
+    <a class="next" href="./build.html">Page 2 · How the 3D is built →</a>
+  </div>
+  <footer>Local only · hike-insole-book/docs · not published</footer>
+</div>
+</body>
+</html>
