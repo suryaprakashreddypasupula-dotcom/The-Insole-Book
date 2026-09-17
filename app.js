@@ -6,10 +6,10 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CHAPTERS, GLOSSARY } from './content.js?v=clin16';
-import { initQuiz, openQuiz, quizBlocksKeys } from './quiz.js?v=clin16';
+import { CHAPTERS, GLOSSARY } from './content.js?v=clin17';
+import { initQuiz, openQuiz, quizBlocksKeys } from './quiz.js?v=clin17';
 
-const ASSET_V = 'clin16';
+const ASSET_V = 'clin17';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -1773,7 +1773,7 @@ function renderMaterialsStack() {
     <i class="mat-join plus"></i>
     <div class="mat-layer base">
       <b>Base</b>
-      <span>The 3D-printed shell. Structural foundation, shaped to that foot.</span>
+      <span>The 3D-printed base of the insole. Structural foundation, shaped to that foot. A shell is a specific kind of base.</span>
     </div>
     <i class="mat-join eq"></i>
     <div class="mat-layer done">
