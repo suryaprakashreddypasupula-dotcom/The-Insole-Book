@@ -364,6 +364,17 @@
   #stepText .callout{margin:18px 0;padding:14px 16px;border-radius:0 14px 14px 0;border-left:4px solid #c0392b;
                      background:#fff6f4}
   #stepText .callout b{display:block;margin-bottom:6px}
+  #stepText .lab-note{margin:16px 0 6px;border:1px solid var(--line);border-radius:14px;background:#fff;
+                      overflow:hidden}
+  #stepText .lab-note>summary{list-style:none;cursor:pointer;padding:12px 16px;font-weight:650;font-size:15.5px;
+                              display:flex;align-items:center;gap:8px}
+  #stepText .lab-note>summary::-webkit-details-marker{display:none}
+  #stepText .lab-note>summary:before{content:'';width:8px;height:8px;border-radius:99px;background:var(--accent);
+                                     flex:0 0 auto}
+  #stepText .lab-note[open]>summary{border-bottom:1px solid var(--line)}
+  #stepText .lab-note>div{padding:12px 16px 16px}
+  #stepText .lab-note p{margin:0 0 10px;font-size:16px}
+  #stepText .lab-note .facts{margin:8px 0 0;font-size:15px}
   #stepText .faq{margin:0 0 18px;padding:0 0 16px;border-bottom:1px solid var(--line)}
   #stepText .faq:last-child{border-bottom:0}
   #stepText .faq b{display:block;margin-bottom:6px}
@@ -714,7 +725,7 @@
   "three/addons/controls/OrbitControls.js":"./vendor/OrbitControls.js"
 }}
 </script>
-<script type="module" src="./app.js?v=clin4"></script>
+<script type="module" src="./app.js?v=clin6"></script>
 <script>
 /* Opening sequence lives here so the logo does not wait on Three.js. */
 (function () {

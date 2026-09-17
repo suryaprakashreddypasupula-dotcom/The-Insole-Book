@@ -6,8 +6,8 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CHAPTERS, GLOSSARY } from './content.js?v=clin4';
-import { initQuiz, openQuiz, quizBlocksKeys } from './quiz.js?v=clin4';
+import { CHAPTERS, GLOSSARY } from './content.js?v=clin6';
+import { initQuiz, openQuiz, quizBlocksKeys } from './quiz.js?v=clin6';
 
 const catalog = await (await fetch('./catalog.json')).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
