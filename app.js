@@ -6,10 +6,10 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CHAPTERS, GLOSSARY } from './content.js?v=clin24';
-import { initQuiz, openQuiz, quizBlocksKeys } from './quiz.js?v=clin24';
+import { CHAPTERS, GLOSSARY } from './content.js?v=clin25';
+import { initQuiz, openQuiz, quizBlocksKeys } from './quiz.js?v=clin25';
 
-const ASSET_V = 'clin24';
+const ASSET_V = 'clin25';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -1629,7 +1629,7 @@ function renderPlugExplore(step, ls) {
   box.hidden = false;
   const cur = (step.pair && step.pair[0]?.po) || '';
   const hint = hideAddon
-    ? 'Click a met head. The highlighted well is that head\u2019s offload on a real device.'
+    ? 'Click a met head. The oval is that head\u2019s well on a real device.'
     : 'Click a met head. The cyan plug lifts out of that head\u2019s well, then seats back flush.';
   box.innerHTML = `<div class="lm-chips">${PLUGS.map(p =>
     `<button class="lm-chip${p.po === cur ? ' on' : ''}" data-plug="${p.id}">${p.id}</button>`
@@ -1642,16 +1642,19 @@ function renderPlugExplore(step, ls) {
       box.querySelectorAll('.lm-chip').forEach(x => x.classList.toggle('on', x === el));
       const remember = box.querySelector('.lm-remember');
       if (remember) remember.innerHTML = hideAddon
-        ? `<b>${p.id} met head well.</b> Contact is gone under that head. A soft plug printed to that well fills it flush.`
+        ? `<b>${p.id} met head well.</b> Contact is gone under that head; a soft plug printed to this well fills it flush.`
         : `<b>${p.id} met head.</b> Its own well, its own plug — lifting out, then seating flush.`;
       await ensureStepPair({ models: [{ po: p.po, side: p.side, label: p.id }] }, {});
       applyAddonVisibility();
       stage.flyTo('relief', 900);
       // same cycle as every other add-on page: lift off, then reseat
+      // (skipped when the page shows the well alone)
       clearTimeout(animTimer); clearTimeout(animTimer2);
       stage.setSeparation('seated', true);
-      animTimer = setTimeout(() => stage.setSeparation('separated'), 500);
-      animTimer2 = setTimeout(() => stage.setSeparation('seated'), 2900);
+      if (!hideAddon) {
+        animTimer = setTimeout(() => stage.setSeparation('separated'), 500);
+        animTimer2 = setTimeout(() => stage.setSeparation('seated'), 2900);
+      }
     });
   });
 }
@@ -2012,8 +2015,8 @@ function renderStep(fly = true) {
   const gen = ++replayGen;
   staged.then(() => {
     if (gen !== replayGen) return;
-    els.replay.hidden = !stage.addon;
-    if (stage.addon && ls.steps.length === 1 && !step.anim && fly) {
+    els.replay.hidden = !stage.addon || hideAddon;
+    if (stage.addon && !hideAddon && ls.steps.length === 1 && !step.anim && fly) {
       animTimer2 = setTimeout(() => els.replay.click(), 900);
     }
   });
