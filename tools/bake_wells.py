@@ -45,7 +45,9 @@ OVERRIDES = {
     "SG-HEEL-FILL": [],
     "SG-OFFLOAD": [],
     "DRILL-FILL": [],
-    "PAIR-DRILL-FILL-1ST": [],
+    # the pair ships the soft fill as its own part, so its seated outline is
+    # the exact aperture — bake it like a met-head plug
+    "PAIR-DRILL-FILL-1ST": ["Drill & Fill Offload"],
     "SG-HEEL-OFFLOAD": ["Heel Spur"],
     "OFFLOAD-MET-HEAD": ["Offload Met Head"],
 }

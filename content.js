@@ -248,13 +248,7 @@ export const CHAPTERS = [
             camera: "overview",
             pair: [{ po: "HIKE-SHELL", side: "LEFT" }],
             legend: "Hike Shell · 3/4 length · thin co-poly look",
-            text: "<p>This is the {{shell}}. <b>Hike Shell</b> is the only device in the lineup we call a shell, and the shape tells you why: it is <b>3/4 length</b>. The plate ends at the metatarsal line. Nothing sits under the met heads or the toes \u2014 the top cover carries on alone from here.</p><p>The Hike Shell replicates a thin co-poly profile \u2014 the slimmer, lower-volume version of the co-poly functional base that sits in dress shoes, slim athletic footwear, and any shoe where a standard-profile insole would not fit. Where the Everyday and Sport both carry a full-profile geometry, the Shell is built for space-constrained environments. A patient who wears dress shoes to work every day and needs orthotic support without a visible profile change is a Shell patient. A clinician ordering for low-volume footwear, tight toe boxes, or fashion-forward shoes will reach for the Shell.</p><p>Functionally it still delivers co-poly support and correction \u2014 the difference is purely in the profile geometry and forefoot thickness. It is thinner through the forefoot, lower in overall height, and designed to disappear inside the shoe rather than fill it. The Shell is also the right choice when a clinician specifically wants the traditional thin co-poly aesthetic that their patients are used to from conventional lab-made devices.</p>"
-          },
-          {
-            camera: "forefoot",
-            pair: [{ po: "HIKE-SHELL", side: "LEFT" }],
-            legend: "Hike Shell · the met line is the front edge",
-            text: "<p><b>Offloads on a Hike Shell \u2014 the rule.</b> There are exactly two: <b>Base of 5th</b> and <b>Heel Spur</b>. Both sit behind the metatarsal line, on the part of the foot the shell actually covers. Nothing else.</p><div class=\"callout\"><b>Never on a Hike Shell</b>Met head offloads (1st through 5th and the combos), the plug, Drill &amp; Fill, Met Pad, Met Bar, Dancer's and Reverse Dancer's pads, neuroma pad, toe crest. The shell ends before the met heads \u2014 there is no plate there to cut a well into or raise a pad from. If an order shows a met-zone accommodation on a Hike Shell, stop. It is an ordering error, not a build.</div><p>Everything forefoot lives on the full-length bases \u2014 Everyday, Sport, Corkbase, Flexible Shell, and the Sweets. That is the QC read: see a 3/4 plate, expect a clean forefoot edge and at most a lateral base-of-5th well and a medial heel-spur well.</p><details class=\"lab-note\"><summary>Coming from a traditional lab</summary><div><p>A clinician who asks for the thin co-poly look is asking for Hike Shell \u2014 not Everyday, not Sport, not Flexible Shell.</p></div></details>"
+            text: "<p>This is the {{shell}}. <b>Hike Shell</b> is the only device in the lineup we call a shell, and the shape tells you why: it is <b>3/4 length</b>. The plate ends at the metatarsal line. Nothing sits under the met heads or the toes \u2014 the top cover carries on alone from here.</p><p>The Hike Shell replicates a thin co-poly profile \u2014 the slimmer, lower-volume version of the co-poly functional base that sits in dress shoes, slim athletic footwear, and any shoe where a standard-profile insole would not fit. Where the Everyday and Sport both carry a full-profile geometry, the Shell is built for space-constrained environments. A patient who wears dress shoes to work every day and needs orthotic support without a visible profile change is a Shell patient. A clinician ordering for low-volume footwear, tight toe boxes, or fashion-forward shoes will reach for the Shell.</p><p>Functionally it still delivers co-poly support and correction \u2014 the difference is purely in the profile geometry and forefoot thickness. It is thinner through the forefoot, lower in overall height, and designed to disappear inside the shoe rather than fill it. The Shell is also the right choice when a clinician specifically wants the traditional thin co-poly aesthetic that their patients are used to from conventional lab-made devices.</p><p><b>Offloads on a Hike Shell:</b> Base of 5th and Heel Spur only — both sit behind the met line. Everything forefoot lives on the full-length bases.</p>"
           },
         ],
       },
@@ -275,7 +269,7 @@ export const CHAPTERS = [
       },
       {
         id: "flexible-shell",
-        title: "Flexible Shell \u2014 Base of the Insole",
+        title: "Flexible Shell \u2014 insole base",
         models: [{ po: "PAIR-TOP-COVER", side: "LEFT" }],
         camera: "heelProfile",
         hideHighlight: true,
@@ -1127,7 +1121,7 @@ export const CHAPTERS = [
       },
       {
         "id": "offload-met-head",
-        "title": "Met Head Offload & Plug",
+        "title": "Met Head Offload — 1st through 5th",
         "models": [
           {
             "po": "PAIR-OFFLOAD-5TH",
@@ -1148,7 +1142,7 @@ export const CHAPTERS = [
                 "label": "5th"
               }
             ],
-            "text": "<p>An {{offload}} does not cushion — it removes contact entirely. The <b>Met Head Offload</b> cuts a precise oval well into the insole bed directly beneath a targeted metatarsal head so that when the patient bears weight, that head never touches the insole surface. The tissue floats above the well. No contact, no pressure, no damage. This is why offloads are most common on diabetic devices — a patient with {{neuropathy}} cannot feel a pressure point building until it has already become a wound. The offload removes that risk before it starts.</p><p>This device is the <b>5th</b> met head — little-toe side, lateral. Click another head: 1st through 5th, plus the 2nd+3rd and 4th+5th combos. MT2 through MT4 positions are calculated automatically from the patient's foot geometry. MT1 and MT5 are selectable independently. Default depth is 4 mm, capped to always leave a structural floor above the base.</p><p>Met head offloads live on full-length bases — Everyday, Sport, Corkbase, Flexible Shell, and the Sweets. <b>Never on a Hike Shell.</b> The 3/4 shell ends at the met line; the only offloads it takes are Base of 5th and Heel Spur.</p><p>The well does not stay empty — a soft plug printed to the exact shape of the well fills it flush with the surrounding surface. The cyan part on stage is that plug. On any given head, Met Head Offload is mutually exclusive with Drill and Fill — one approach per head, never both. In QC, verify the well is at the correct head before anything else. 1st is medial (big toe). 5th is lateral (little toe). Do not swap them.</p><p>The cyan piece is the real production plug, cut to the well's exact shape and sitting flush. Every head's plug is a stock part. The well removes contact; the plug is what the head actually lands on.</p><p>Press Replay to load it the way a step does. The plug compresses into the well while the firm base around it barely moves — that difference in give <b>is</b> the prescription. The painful head sinks into softness instead of striking firm base.</p><p>Unload, and it springs back flush. No step, no edge — only a softer landing under the one head that needed protecting. QC again: flush, not proud, not recessed.</p>"
+            "text": "<p>The <b>Met Head Offload</b> is available for any metatarsal head — first through fifth — and any combination the clinician prescribes. MT2, MT3, and MT4 positions are calculated automatically from the patient's foot geometry using the metatarsal parabola. MT1 and MT5 are selectable independently. A clinician can offload a single head, two adjacent heads, three across the middle of the forefoot, all five simultaneously, or any asymmetric combination across the left and right foot independently. Every permutation is valid — the prescription drives the selection entirely, and there is no limit to how many heads can be offloaded on a single device.</p><p>Each selected head gets its own oval well cut into the insole bed at 4 mm default depth, capped to always leave a structural floor above the base. Each well gets its own soft plug printed to that well's exact shape, sitting flush with the surrounding surface. Multiple offloads on the same insole sit independently — each well and plug is its own discrete relief zone. The foot bears weight on the surrounding surface normally while every offloaded head floats above its plug. On any given head, Met Head Offload is mutually exclusive with Drill and Fill — one approach per head, never both on the same head at the same time.</p><p>On stage: the cyan plug lifts out so you can see the well it fills, then seats back flush — press Replay to watch it again. Click a head below to load that head's real device; this one is the <b>5th</b>, little-toe side. Met head offloads live on the full-length bases — Everyday, Sport, Corkbase, Flexible Shell, and the Sweets. <b>Never on a Hike Shell.</b></p><p>In QC, each offloaded head must be verified independently. Check every well is at the correct anatomical position, that depth is consistent across the full oval, and that every plug sits flush — not proud, not recessed. For asymmetric prescriptions — where the left foot offloads different heads than the right — verify each foot against its own Rx marking separately. Do not assume symmetry. Real orders show MT3 offloaded on the left and MT1 plus MT5 on the right on the same patient. Each foot is its own prescription. Each head is its own check.</p>"
           }
         ]
       },
@@ -1157,7 +1151,7 @@ export const CHAPTERS = [
         "title": "Drill & Fill",
         "models": [
           {
-            "po": "DRILL-FILL",
+            "po": "PAIR-DRILL-FILL-1ST",
             "side": "LEFT"
           }
         ],
@@ -1165,14 +1159,14 @@ export const CHAPTERS = [
         "steps": [
           {
             "camera": "relief",
-            "legend": "Left foot · Drill & Fill",
+            "legend": "Drill & Fill · 1st met head · aperture + soft fill",
             "pair": [
               {
-                "po": "DRILL-FILL",
+                "po": "PAIR-DRILL-FILL-1ST",
                 "side": "LEFT"
               }
             ],
-            "text": "<p><b>Drill & Fill</b> is a full-depth aperture through the top cover, backfilled with softer foam. Same oval footprint and same heads as a Met Head Offload — but the walking surface stays continuous. The surface looks flush. Pressure is pushed outward. It redistributes load. It does <b>not</b> remove contact the way a well-and-plug offload does. Like every met-zone accommodation it is for full-length bases — never a Hike Shell.</p><p>On the printer the zone is its own add-on; the density slicer prints it soft, typically {{P-Cell}} or {{Poron}}, while the base around it prints standard.</p><p>Press it (Replay) and the soft fill compresses while the firm base holds. For a patient who needs relief at a met head but does not have an open wound or ulcer, this is the graduated answer. Active wounds and high-risk tissue still want the full well-and-plug offload. Mutually exclusive with the Met Head Offload on any given head. Under a hard-striking met head, that extra give is what saves the tissue.</p><p>Unloaded it springs back flush. Nothing to feel, nothing to catch a sock on. QC: press it. It must compress more than the adjacent base. If it feels the same hardness, the material swap did not process.</p>"
+            "text": "<p><b>Drill & Fill</b> is a full-depth aperture through the top cover, backfilled with softer foam. Same oval footprint and same heads as a Met Head Offload — but the walking surface stays continuous. The surface looks flush. Pressure is pushed outward. It redistributes load. It does <b>not</b> remove contact the way a well-and-plug offload does. Like every met-zone accommodation it is for full-length bases — never a Hike Shell.</p><p>This is a real device: the aperture sits under the <b>1st met head</b>, and the cyan part is the soft fill that lands in it. On stage the fill lifts out so you can see the aperture, then seats back flush — press Replay to watch it again. On the printer the zone is its own add-on; the density slicer prints it soft, typically {{P-Cell}} or {{Poron}}, while the base around it prints standard.</p><p>For a patient who needs relief at a met head but does not have an open wound or ulcer, this is the graduated answer. Active wounds and high-risk tissue still want the full well-and-plug offload. Mutually exclusive with the Met Head Offload on any given head. Under a hard-striking met head, that extra give is what saves the tissue.</p><p>QC: the fill must sit flush — nothing to feel, nothing to catch a sock on — and it must compress more than the adjacent base when you press it. If it feels the same hardness, the material swap did not process.</p>"
           }
         ]
       },
@@ -1199,23 +1193,22 @@ export const CHAPTERS = [
         "title": "Custom Offload",
         "models": [
           {
-            "po": "CPO-307228",
+            "po": "CPO-306901",
             "side": "LEFT"
           }
         ],
-        "camera": "overview",
-        "hideHighlight": true,
+        "camera": "relief",
         "steps": [
           {
-            "camera": "overview",
-            "legend": "Custom Offload · no baked mesh yet — reference base shown",
+            "camera": "relief",
+            "legend": "Custom Offload · example: operator-placed relief, here at the base of 5th",
             "pair": [
               {
-                "po": "CPO-307228",
+                "po": "CPO-306901",
                 "side": "LEFT"
               }
             ],
-            "text": "<p>A <b>Custom Offload</b> is a relief the operator places anywhere on the plantar surface for a bony prominence or painful structure that none of the fixed-target offloads cover. The bed stays closed — the recess is a cutter the autoslicer subtracts at that exact location. No stock footprint. Shape, size, position, and depth all come from the Rx marking.</p><p>Used for landmarks outside the standard targets — unusual prominences, post-surgical hardware, scarring, irregular pressure the clinician mapped on the foot. QC has no default: go to the Rx marks. Location, size, and depth on the finished insole must match what was specified.</p>"
+            "text": "<p>A <b>Custom Offload</b> is a relief the operator places anywhere on the plantar surface for a bony prominence or painful structure that none of the fixed-target offloads cover. The bed stays closed — the recess is a cutter the autoslicer subtracts at that exact location. No stock footprint. Shape, size, position, and depth all come from the Rx marking.</p><p>Used for landmarks outside the standard targets — unusual prominences, post-surgical hardware, scarring, irregular pressure the clinician mapped on the foot. QC has no default: go to the Rx marks. Location, size, and depth on the finished insole must match what was specified.</p><p>The device on stage shows what any placed relief looks like once it is cut: a clean oval well, consistent depth, sharp lip. Here the operator put it at the base of the 5th — a custom offload can land anywhere the Rx marks.</p>"
           }
         ]
       },

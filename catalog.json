@@ -1054,7 +1054,7 @@
   "base": "",
   "top_cover": "",
   "additions": "Drill & Fill",
-  "label": "Drill & Fill — plain shell",
+  "label": "Drill & Fill \u2014 plain shell",
   "hidden": true,
   "models": {
    "LEFT": {
@@ -1093,8 +1093,8 @@
   "orthotic_type": "Diabetic",
   "base": "",
   "top_cover": "",
-  "additions": "Met head offload wells — LEFT: 3rd met head; RIGHT: 1st + 5th met heads",
-  "label": "Offload Met Head — plain shell",
+  "additions": "Met head offload wells \u2014 LEFT: 3rd met head; RIGHT: 1st + 5th met heads",
+  "label": "Offload Met Head \u2014 plain shell",
   "hidden": true,
   "models": {
    "LEFT": {
@@ -1309,9 +1309,9 @@
   "base": "",
   "top_cover": "",
   "additions": "Drill & fill plug, 1st met head (soft fill)",
-  "label": "Drill & fill — 1st met head",
+  "label": "Drill & fill \u2014 1st met head",
   "hidden": false,
-  "motion": "press",
+  "motion": "lift",
   "models": {
    "LEFT": {
     "file": "models/PAIR-DRILL-FILL-1ST_LEFT.glb",
@@ -1324,8 +1324,21 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 1.09,
-    "pad_area_pct": 0.0
+    "relief_area_pct": 1.53,
+    "pad_area_pct": 0.0,
+    "wells": [
+     {
+      "center": [
+       27.0,
+       112.2,
+       4.0
+      ],
+      "radius": 35.0,
+      "depth_mm": 0.7,
+      "label": "1st met head \u00b7 Drill & Fill aperture"
+     }
+    ],
+    "highlight": "v2"
    },
    "RIGHT": {
     "file": "models/PAIR-DRILL-FILL-1ST_RIGHT.glb",
@@ -1338,8 +1351,21 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 1.64,
-    "pad_area_pct": 0.0
+    "relief_area_pct": 0.87,
+    "pad_area_pct": 0.0,
+    "wells": [
+     {
+      "center": [
+       -29.2,
+       114.4,
+       3.9
+      ],
+      "radius": 35.4,
+      "depth_mm": 0.7,
+      "label": "1st met head \u00b7 Drill & Fill aperture"
+     }
+    ],
+    "highlight": "v2"
    }
   }
  },
@@ -1434,7 +1460,7 @@
   "base": "",
   "top_cover": "",
   "additions": "Met Pad 1/8\" (separate printed part)",
-  "label": "Met Pad — low 1/8\"",
+  "label": "Met Pad \u2014 low 1/8\"",
   "hidden": true,
   "motion": "lift",
   "models": {
@@ -1520,9 +1546,9 @@
   "base": "",
   "top_cover": "",
   "additions": "Offload plug, 1st met head (soft fill)",
-  "label": "Offload plug — 1st met head",
+  "label": "Offload plug \u2014 1st met head",
   "hidden": false,
-  "motion": "press",
+  "motion": "lift",
   "models": {
    "LEFT": {
     "file": "models/PAIR-OFFLOAD-1ST_LEFT.glb",
@@ -1589,9 +1615,9 @@
   "base": "",
   "top_cover": "",
   "additions": "Offload plug, 2nd met head (soft fill)",
-  "label": "Offload plug — 2nd met head",
+  "label": "Offload plug \u2014 2nd met head",
   "hidden": false,
-  "motion": "press",
+  "motion": "lift",
   "models": {
    "LEFT": {
     "file": "models/PAIR-OFFLOAD-2ND_LEFT.glb",
@@ -1631,9 +1657,9 @@
   "base": "",
   "top_cover": "",
   "additions": "Offload plug, 2nd + 3rd met heads (soft fill)",
-  "label": "Offload plug — 2nd + 3rd met heads",
+  "label": "Offload plug \u2014 2nd + 3rd met heads",
   "hidden": false,
-  "motion": "press",
+  "motion": "lift",
   "models": {
    "LEFT": {
     "file": "models/PAIR-OFFLOAD-2ND-3RD_LEFT.glb",
@@ -1700,9 +1726,9 @@
   "base": "",
   "top_cover": "",
   "additions": "Offload plug, 3rd met head (soft fill)",
-  "label": "Offload plug — 3rd met head",
+  "label": "Offload plug \u2014 3rd met head",
   "hidden": false,
-  "motion": "press",
+  "motion": "lift",
   "models": {
    "LEFT": {
     "file": "models/PAIR-OFFLOAD-3RD_LEFT.glb",
@@ -1742,9 +1768,9 @@
   "base": "",
   "top_cover": "",
   "additions": "Offload plug, 4th met head (soft fill)",
-  "label": "Offload plug — 4th met head",
+  "label": "Offload plug \u2014 4th met head",
   "hidden": false,
-  "motion": "press",
+  "motion": "lift",
   "models": {
    "RIGHT": {
     "file": "models/PAIR-OFFLOAD-4TH_RIGHT.glb",
@@ -1784,9 +1810,9 @@
   "base": "",
   "top_cover": "",
   "additions": "Offload plug, 4th + 5th met heads (soft fill)",
-  "label": "Offload plug — 4th + 5th met heads",
+  "label": "Offload plug \u2014 4th + 5th met heads",
   "hidden": false,
-  "motion": "press",
+  "motion": "lift",
   "models": {
    "LEFT": {
     "file": "models/PAIR-OFFLOAD-4TH-5TH_LEFT.glb",
@@ -1853,9 +1879,9 @@
   "base": "",
   "top_cover": "",
   "additions": "Offload plug, 5th met head (soft fill)",
-  "label": "Offload plug — 5th met head",
+  "label": "Offload plug \u2014 5th met head",
   "hidden": false,
-  "motion": "press",
+  "motion": "lift",
   "models": {
    "LEFT": {
     "file": "models/PAIR-OFFLOAD-5TH_LEFT.glb",
@@ -1950,7 +1976,7 @@
   "orthotic_type": "Insole + separate part",
   "base": "",
   "top_cover": "",
-  "additions": "Toe crest across the forefoot (mets 2–5, separate printed part)",
+  "additions": "Toe crest across the forefoot (mets 2\u20135, separate printed part)",
   "label": "Toe crest",
   "hidden": false,
   "motion": "lift",
@@ -1979,8 +2005,8 @@
   "orthotic_type": "Insole + top cover",
   "base": "",
   "top_cover": "Full",
-  "additions": "13 production covers (T1–T14) at true sheet thickness — select one to try it on",
-  "label": "Top covers — T1 to T14",
+  "additions": "13 production covers (T1\u2013T14) at true sheet thickness \u2014 select one to try it on",
+  "label": "Top covers \u2014 T1 to T14",
   "hidden": false,
   "motion": "drape",
   "models": {
@@ -2315,7 +2341,7 @@
   "base": "",
   "top_cover": "",
   "additions": "True cork blank (1/4\"), high edge straight along the LATERAL border, heel to arch, trimmed flush to the insole outline",
-  "label": "Extrinsic wedge — lateral",
+  "label": "Extrinsic wedge \u2014 lateral",
   "hidden": false,
   "motion": "flip",
   "models": {
@@ -2344,7 +2370,7 @@
   "base": "",
   "top_cover": "",
   "additions": "True cork blank (1/4\"), high edge straight along the MEDIAL border, heel to arch, trimmed flush to the insole outline",
-  "label": "Extrinsic wedge — medial",
+  "label": "Extrinsic wedge \u2014 medial",
   "hidden": false,
   "motion": "flip",
   "models": {
@@ -2636,8 +2662,8 @@
   "orthotic_type": "SoleGen demo",
   "base": "",
   "top_cover": "",
-  "additions": "Heel post · Flat",
-  "label": "Heel post · Flat",
+  "additions": "Heel post \u00b7 Flat",
+  "label": "Heel post \u00b7 Flat",
   "hidden": true,
   "models": {
    "LEFT": {
@@ -2663,8 +2689,8 @@
   "orthotic_type": "SoleGen demo",
   "base": "",
   "top_cover": "",
-  "additions": "Heel post · Oval",
-  "label": "Heel post · Oval",
+  "additions": "Heel post \u00b7 Oval",
+  "label": "Heel post \u00b7 Oval",
   "hidden": true,
   "models": {
    "LEFT": {
@@ -2690,8 +2716,8 @@
   "orthotic_type": "SoleGen demo",
   "base": "",
   "top_cover": "",
-  "additions": "Heel post · Stabilizer",
-  "label": "Heel post · Stabilizer",
+  "additions": "Heel post \u00b7 Stabilizer",
+  "label": "Heel post \u00b7 Stabilizer",
   "hidden": true,
   "models": {
    "LEFT": {
@@ -2717,8 +2743,8 @@
   "orthotic_type": "SoleGen demo",
   "base": "",
   "top_cover": "",
-  "additions": "Heel post · U",
-  "label": "Heel post · U",
+  "additions": "Heel post \u00b7 U",
+  "label": "Heel post \u00b7 U",
   "hidden": true,
   "models": {
    "LEFT": {
@@ -3103,8 +3129,8 @@
   "orthotic_type": "SoleGen demo",
   "base": "",
   "top_cover": "",
-  "additions": "Reinforcement · Arch",
-  "label": "Reinforcement · Arch",
+  "additions": "Reinforcement \u00b7 Arch",
+  "label": "Reinforcement \u00b7 Arch",
   "hidden": true,
   "models": {
    "LEFT": {
@@ -3130,8 +3156,8 @@
   "orthotic_type": "SoleGen demo",
   "base": "",
   "top_cover": "",
-  "additions": "Reinforcement · Isogrid",
-  "label": "Reinforcement · Isogrid",
+  "additions": "Reinforcement \u00b7 Isogrid",
+  "label": "Reinforcement \u00b7 Isogrid",
   "hidden": true,
   "models": {
    "LEFT": {
@@ -3157,8 +3183,8 @@
   "orthotic_type": "SoleGen demo",
   "base": "",
   "top_cover": "",
-  "additions": "Reinforcement · Radial",
-  "label": "Reinforcement · Radial",
+  "additions": "Reinforcement \u00b7 Radial",
+  "label": "Reinforcement \u00b7 Radial",
   "hidden": true,
   "models": {
    "LEFT": {
@@ -3184,8 +3210,8 @@
   "orthotic_type": "SoleGen demo",
   "base": "",
   "top_cover": "",
-  "additions": "Reinforcement · Ribbed",
-  "label": "Reinforcement · Ribbed",
+  "additions": "Reinforcement \u00b7 Ribbed",
+  "label": "Reinforcement \u00b7 Ribbed",
   "hidden": true,
   "models": {
    "LEFT": {

@@ -6,10 +6,10 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CHAPTERS, GLOSSARY } from './content.js?v=clin23';
-import { initQuiz, openQuiz, quizBlocksKeys } from './quiz.js?v=clin23';
+import { CHAPTERS, GLOSSARY } from './content.js?v=clin24';
+import { initQuiz, openQuiz, quizBlocksKeys } from './quiz.js?v=clin24';
 
-const ASSET_V = 'clin23';
+const ASSET_V = 'clin24';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -1078,6 +1078,14 @@ function updateLegend(specs) {
   const hasPad = specs.some(s => (byPO[s.po]?.models?.[s.side]?.pad_area_pct ?? 0) > 0.1);
   const addonPair = specs.some(s => byPO[s.po]?.models?.[s.side]?.addon);
   if (addonPair && !hideAddon) {
+    // well + plug pairs: the oval well speaks for itself — no colour legend,
+    // just the page's own caption (if any) and the Highlight switch
+    if (specs.some(s => /OFFLOAD|DRILL/.test(s.po))) {
+      const cap = CHAPTERS[state.chapter]?.lessons[state.lesson]?.steps?.[state.step]?.legend;
+      els.legend.innerHTML = cap ? `<span class="muted">${cap}</span>` : '';
+      appendHighlightToggle(specs);
+      return;
+    }
     const press = specs.some(s => byPO[s.po]?.motion === 'press');
     const flip = specs.some(s => byPO[s.po]?.motion === 'flip');
     const drape = specs.some(s => byPO[s.po]?.motion === 'drape');
@@ -1622,7 +1630,7 @@ function renderPlugExplore(step, ls) {
   const cur = (step.pair && step.pair[0]?.po) || '';
   const hint = hideAddon
     ? 'Click a met head. The highlighted well is that head\u2019s offload on a real device.'
-    : 'Click a met head. The cyan plug on stage is that well\u2019s production fill.';
+    : 'Click a met head. The cyan plug lifts out of that head\u2019s well, then seats back flush.';
   box.innerHTML = `<div class="lm-chips">${PLUGS.map(p =>
     `<button class="lm-chip${p.po === cur ? ' on' : ''}" data-plug="${p.id}">${p.id}</button>`
   ).join('')}</div>
@@ -1635,10 +1643,15 @@ function renderPlugExplore(step, ls) {
       const remember = box.querySelector('.lm-remember');
       if (remember) remember.innerHTML = hideAddon
         ? `<b>${p.id} met head well.</b> Contact is gone under that head. A soft plug printed to that well fills it flush.`
-        : `<b>${p.id} met head.</b> Soft fill for that well, flush until a step compresses it.`;
+        : `<b>${p.id} met head.</b> Its own well, its own plug — lifting out, then seating flush.`;
       await ensureStepPair({ models: [{ po: p.po, side: p.side, label: p.id }] }, {});
       applyAddonVisibility();
       stage.flyTo('relief', 900);
+      // same cycle as every other add-on page: lift off, then reseat
+      clearTimeout(animTimer); clearTimeout(animTimer2);
+      stage.setSeparation('seated', true);
+      animTimer = setTimeout(() => stage.setSeparation('separated'), 500);
+      animTimer2 = setTimeout(() => stage.setSeparation('seated'), 2900);
     });
   });
 }
@@ -1929,7 +1942,7 @@ async function applyExplorerStage(ls, step) {
       T1: 'Sweet · Diabetic 35 · T1',
       T2: 'Double Sweet · Diabetic 45 · T2',
       T3: 'Triple Sweet · Diabetic 55 · T3',
-      T6: 'Flexible Shell · base · T6 Spenco',
+      T6: 'Flexible Shell · insole base · T6 Spenco',
       T7: 'UCBL · T7 Puff',
     };
     const label = step.legend || names[step.cover];
