@@ -351,6 +351,23 @@
   .qref{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:4px}
   .qref th,.qref td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)}
   .qref th{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+  #welcome .facts,#stepText .facts{width:100%;border-collapse:collapse;margin:18px 0 22px;font-size:16.5px}
+  #welcome .facts th,#welcome .facts td,#stepText .facts th,#stepText .facts td{
+    text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
+  #welcome .facts th,#stepText .facts th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:650}
+  #stepText .spec{display:grid;gap:8px;margin:14px 0 20px;padding:14px 16px;border:1px solid var(--line);
+                  border-radius:14px;background:#fff}
+  #stepText .spec i{display:grid;grid-template-columns:minmax(9em,34%) 1fr;gap:8px 12px;font-style:normal}
+  #stepText .spec b{color:var(--ink-3);font-size:12.5px;font-weight:650;letter-spacing:.04em;text-transform:uppercase}
+  #stepText .ol-plain{margin:10px 0 18px;padding-left:1.2em}
+  #stepText .ol-plain li{margin:0 0 10px}
+  #stepText .callout{margin:18px 0;padding:14px 16px;border-radius:0 14px 14px 0;border-left:4px solid #c0392b;
+                     background:#fff6f4}
+  #stepText .callout b{display:block;margin-bottom:6px}
+  #stepText .faq{margin:0 0 18px;padding:0 0 16px;border-bottom:1px solid var(--line)}
+  #stepText .faq:last-child{border-bottom:0}
+  #stepText .faq b{display:block;margin-bottom:6px}
+  @media (max-width:720px){ #stepText .spec i{grid-template-columns:1fr} }
   .reg-row{display:flex;flex-direction:column;gap:8px}
   .reg-card{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff;cursor:pointer}
   .reg-card:hover,.reg-card.on{border-color:var(--accent)}
@@ -568,6 +585,14 @@
     <h1>Welcome to Hike Medical — Custom Orthotic Training</h1>
     <div class="intro">
       <p>Welcome to one of the most exciting places in modern healthcare manufacturing! Hike Medical is on a bold mission — making custom foot orthotics faster, smarter, and more accessible than ever before. With over 600 printers running 24/7 at the largest orthotic 3D print farm in the United States, we're turning a process that once took weeks into something that ships out of our facility in just five business days. That's not just innovation — that's real impact on real lives.</p>
+      <p>The platform is built so a clinic can evaluate, scan, and order in 15 minutes or less. No extra hardware — any phone with a camera is enough. Evaluation, scanning, documentation, and ordering live in one workflow. SOAP notes write themselves in NextGen from the evaluation form. And 3D-printed production holds geometry tight enough that first-time fit sits at 97%.</p>
+      <table class="facts">
+        <tr><th>First-time fit</th><td>97% — printed production keeps geometry consistent and repeatable</td></tr>
+        <tr><th>Chair time</th><td>Evaluate, scan, and order in 15 minutes or less</td></tr>
+        <tr><th>Hardware</th><td>None. Any device. A phone with a camera is enough</td></tr>
+        <tr><th>Workflow</th><td>Evaluation, scanning, documentation, and ordering in one platform</td></tr>
+        <tr><th>Compliance</th><td>Automated SOAP notes in NextGen, driven by the evaluation form</td></tr>
+      </table>
       <p>This guide exists because at Hike, product knowledge isn't just for one team — it belongs to everyone. Understanding what we make, how we make it, and why it matters is what connects every person here to the bigger mission. From insole types and materials, to accommodations, production flow, and quality standards — this is the foundation we all share. Because when everyone knows the product inside and out, the whole company moves better. One step at a time. 🦶</p>
     </div>
     <button id="welcomeBegin">Begin training →</button>
@@ -689,7 +714,7 @@
   "three/addons/controls/OrbitControls.js":"./vendor/OrbitControls.js"
 }}
 </script>
-<script type="module" src="./app.js?v=design2"></script>
+<script type="module" src="./app.js?v=clin4"></script>
 <script>
 /* Opening sequence lives here so the logo does not wait on Three.js. */
 (function () {

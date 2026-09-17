@@ -6,8 +6,8 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CHAPTERS, GLOSSARY } from './content.js?v=design2';
-import { initQuiz, openQuiz, quizBlocksKeys } from './quiz.js?v=design2';
+import { CHAPTERS, GLOSSARY } from './content.js?v=clin4';
+import { initQuiz, openQuiz, quizBlocksKeys } from './quiz.js?v=clin4';
 
 const catalog = await (await fetch('./catalog.json')).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
@@ -1210,7 +1210,7 @@ const INSERT_BUILDS = {
       { name: '1/8″ P-Cell', role: 'Top · cushioning, shear / friction protection', hex: '#faceac' },
       { name: '35 durometer', role: 'Base · soft support, pressure distribution', hex: '#e4d2bc' },
     ],
-    remember: 'Diabetic 35. Highest-risk feet. T1 is one layer of 1/8″ P-Cell — the surface the foot touches.',
+    remember: 'Diabetic 35 EVA. Up to 200 lbs. 10 mm heel cup. Forefoot preset 4.725 mm. T1 is 1/8″ P-Cell.',
   },
   double: {
     id: 'double', name: 'Double Sweet', kind: 'Tri-Lam · 3 layers', cover: 'T2',
@@ -1219,16 +1219,16 @@ const INSERT_BUILDS = {
       { name: '1/16″ Poron', role: 'Mid · shock absorption, energy return', hex: '#74baf6' },
       { name: '45 durometer', role: 'Base · medium support, balanced comfort', hex: '#c4b196' },
     ],
-    remember: 'Diabetic 45. Protection plus structure — the usual middle ground. T2 is P-Cell over Poron, still 3.2 mm.',
+    remember: 'Diabetic 45 EVA. 200–295 lbs. 10 mm heel cup. Forefoot preset 4.725 mm. T2 is 1/16″ Poron + 1/16″ P-Cell.',
   },
   triple: {
     id: 'triple', name: 'Triple Sweet', kind: 'Tri-Lam · 3 layers', cover: 'T3',
     layers: [
       { name: '1/8″ P-Cell', role: 'Top · thicker cushion at the skin', hex: '#edaf85' },
       { name: '1/16″ Poron', role: 'Mid · shock absorption', hex: '#74baf6' },
-      { name: '55 durometer', role: 'Base · firm load distribution, high activity', hex: '#8f7f6c' },
+      { name: '55 durometer cork', role: 'Base · firm load distribution, 295 lbs and above', hex: '#8f7f6c' },
     ],
-    remember: 'Diabetic 55. Firmest Sweet shell. T3 is nearly 5 mm — 1/8″ P-Cell over 1/16″ Poron. Two colors at the edge.',
+    remember: 'Diabetic 55 cork. 295 lbs and above. 10 mm heel cup. Forefoot preset 3.175 mm. T3 is 1/16″ Poron + 1/8″ P-Cell.',
   },
 };
 const DUROMETERS = [
