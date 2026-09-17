@@ -314,8 +314,21 @@
      "radius": 45.6
     },
     "pad_focus": null,
-    "relief_area_pct": 9.18,
-    "pad_area_pct": 0.0
+    "relief_area_pct": 1.9,
+    "pad_area_pct": 0.0,
+    "wells": [
+     {
+      "center": [
+       -1.0,
+       -92.6,
+       3.1
+      ],
+      "radius": 10.8,
+      "depth_mm": 4.5,
+      "label": "Heel spur well"
+     }
+    ],
+    "highlight": "v2"
    },
    "RIGHT": {
     "file": "models/CPO-306397_RIGHT.glb",
@@ -334,8 +347,21 @@
      "radius": 35.0
     },
     "pad_focus": null,
-    "relief_area_pct": 7.45,
-    "pad_area_pct": 0.0
+    "relief_area_pct": 1.71,
+    "pad_area_pct": 0.0,
+    "wells": [
+     {
+      "center": [
+       -0.6,
+       -87.8,
+       3.1
+      ],
+      "radius": 10.4,
+      "depth_mm": 4.5,
+      "label": "Heel spur well"
+     }
+    ],
+    "highlight": "v2"
    }
   },
   "hidden": true
@@ -427,8 +453,21 @@
      ],
      "radius": 19.9
     },
-    "relief_area_pct": 1.22,
-    "pad_area_pct": 3.81
+    "relief_area_pct": 0.44,
+    "pad_area_pct": 4.08,
+    "wells": [
+     {
+      "center": [
+       -2.7,
+       -105.1,
+       4.7
+      ],
+      "radius": 9.1,
+      "depth_mm": 2.7,
+      "label": "Heel spur well"
+     }
+    ],
+    "highlight": "v2"
    },
    "RIGHT": {
     "file": "models/CPO-306695_RIGHT.glb",
@@ -454,8 +493,21 @@
      ],
      "radius": 23.0
     },
-    "relief_area_pct": 0.91,
-    "pad_area_pct": 1.72
+    "relief_area_pct": 0.69,
+    "pad_area_pct": 1.97,
+    "wells": [
+     {
+      "center": [
+       1.5,
+       -109.7,
+       5.0
+      ],
+      "radius": 11.4,
+      "depth_mm": 3.2,
+      "label": "Heel spur well"
+     }
+    ],
+    "highlight": "v2"
    }
   },
   "hidden": true
@@ -540,8 +592,21 @@
      "radius": 7.7
     },
     "pad_focus": null,
-    "relief_area_pct": 1.39,
-    "pad_area_pct": 0.0
+    "relief_area_pct": 3.92,
+    "pad_area_pct": 0.0,
+    "wells": [
+     {
+      "center": [
+       -22.0,
+       -50.3,
+       6.7
+      ],
+      "radius": 26.9,
+      "depth_mm": 1.9,
+      "label": "Base of 5th well"
+     }
+    ],
+    "highlight": "v2"
    },
    "RIGHT": {
     "file": "models/CPO-306901_RIGHT.glb",
@@ -560,8 +625,21 @@
      "radius": 6.6
     },
     "pad_focus": null,
-    "relief_area_pct": 0.99,
-    "pad_area_pct": 0.0
+    "relief_area_pct": 4.42,
+    "pad_area_pct": 0.0,
+    "wells": [
+     {
+      "center": [
+       22.7,
+       -46.7,
+       6.7
+      ],
+      "radius": 29.6,
+      "depth_mm": 1.6,
+      "label": "Base of 5th well"
+     }
+    ],
+    "highlight": "v2"
    }
   },
   "hidden": true
@@ -594,7 +672,9 @@
      "radius": 16.8
     },
     "relief_area_pct": 0.0,
-    "pad_area_pct": 3.31
+    "pad_area_pct": 3.91,
+    "wells": [],
+    "highlight": "v2"
    },
    "RIGHT": {
     "file": "models/CPO-307064_RIGHT.glb",
@@ -614,7 +694,9 @@
      "radius": 16.2
     },
     "relief_area_pct": 0.0,
-    "pad_area_pct": 3.57
+    "pad_area_pct": 4.2,
+    "wells": [],
+    "highlight": "v2"
    }
   },
   "hidden": true
@@ -694,8 +776,21 @@
      ],
      "radius": 30.4
     },
-    "relief_area_pct": 0.15,
-    "pad_area_pct": 3.45
+    "relief_area_pct": 0.52,
+    "pad_area_pct": 3.55,
+    "wells": [
+     {
+      "center": [
+       -18.7,
+       28.2,
+       10.1
+      ],
+      "radius": 10.3,
+      "depth_mm": 1.1,
+      "label": "MT2 offload well"
+     }
+    ],
+    "highlight": "v2"
    },
    "RIGHT": {
     "file": "models/CPO-307216_RIGHT.glb",
@@ -721,8 +816,21 @@
      ],
      "radius": 31.3
     },
-    "relief_area_pct": 0.06,
-    "pad_area_pct": 3.69
+    "relief_area_pct": 0.44,
+    "pad_area_pct": 3.89,
+    "wells": [
+     {
+      "center": [
+       17.6,
+       28.7,
+       10.2
+      ],
+      "radius": 9.0,
+      "depth_mm": 1.0,
+      "label": "MT2 offload well"
+     }
+    ],
+    "highlight": "v2"
    }
   },
   "hidden": true
@@ -919,7 +1027,7 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.0,
+    "relief_area_pct": 8.96,
     "pad_area_pct": 0.0
    },
    "RIGHT": {
@@ -932,7 +1040,7 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.0,
+    "relief_area_pct": 6.46,
     "pad_area_pct": 0.0
    }
   }
@@ -959,8 +1067,31 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.0,
-    "pad_area_pct": 0.0
+    "relief_area_pct": 0.91,
+    "pad_area_pct": 0.0,
+    "wells": [
+     {
+      "center": [
+       -33.7,
+       54.3,
+       3.9
+      ],
+      "radius": 11.7,
+      "depth_mm": 1.0,
+      "label": "MT1 offload well"
+     },
+     {
+      "center": [
+       -3.9,
+       72.7,
+       3.9
+      ],
+      "radius": 11.9,
+      "depth_mm": 1.0,
+      "label": "MT3 offload well"
+     }
+    ],
+    "highlight": "v2"
    },
    "RIGHT": {
     "file": "models/OFFLOAD-MET-HEAD_RIGHT.glb",
@@ -972,8 +1103,31 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.0,
-    "pad_area_pct": 0.0
+    "relief_area_pct": 0.7,
+    "pad_area_pct": 0.0,
+    "wells": [
+     {
+      "center": [
+       -32.4,
+       53.8,
+       3.8
+      ],
+      "radius": 11.9,
+      "depth_mm": 0.8,
+      "label": "MT5 offload well"
+     },
+     {
+      "center": [
+       -5.0,
+       72.5,
+       3.9
+      ],
+      "radius": 13.6,
+      "depth_mm": 0.8,
+      "label": "MT3 offload well"
+     }
+    ],
+    "highlight": "v2"
    }
   }
  },
@@ -1130,7 +1284,7 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.0,
+    "relief_area_pct": 1.09,
     "pad_area_pct": 0.0
    },
    "RIGHT": {
@@ -1144,7 +1298,7 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.0,
+    "relief_area_pct": 1.64,
     "pad_area_pct": 0.0
    }
   }
@@ -1355,7 +1509,7 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.0,
+    "relief_area_pct": 0.17,
     "pad_area_pct": 0.0
    }
   }
@@ -1413,7 +1567,7 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.0,
+    "relief_area_pct": 0.34,
     "pad_area_pct": 0.0
    },
    "RIGHT": {
@@ -1427,7 +1581,7 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.0,
+    "relief_area_pct": 0.36,
     "pad_area_pct": 0.0
    }
   }
@@ -1456,7 +1610,7 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.0,
+    "relief_area_pct": 0.21,
     "pad_area_pct": 0.0
    }
   }
@@ -1485,7 +1639,7 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.0,
+    "relief_area_pct": 0.29,
     "pad_area_pct": 0.0
    }
   }
@@ -1514,7 +1668,7 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.0,
+    "relief_area_pct": 0.44,
     "pad_area_pct": 0.0
    },
    "RIGHT": {
@@ -1528,7 +1682,7 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.0,
+    "relief_area_pct": 0.29,
     "pad_area_pct": 0.0
    }
   }
@@ -1557,7 +1711,7 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.0,
+    "relief_area_pct": 0.06,
     "pad_area_pct": 0.0
    },
    "RIGHT": {
@@ -2239,8 +2393,8 @@
      ],
      "radius": 4.1
     },
-    "relief_area_pct": 0.0,
-    "pad_area_pct": 0.24
+    "relief_area_pct": 2.02,
+    "pad_area_pct": 0.0
    }
   }
  },
@@ -2273,8 +2427,21 @@
      "radius": 27.7
     },
     "pad_focus": null,
-    "relief_area_pct": 3.76,
-    "pad_area_pct": 0.0
+    "relief_area_pct": 1.75,
+    "pad_area_pct": 0.0,
+    "wells": [
+     {
+      "center": [
+       -1.1,
+       -113.8,
+       4.4
+      ],
+      "radius": 13.9,
+      "depth_mm": 4.0,
+      "label": "Heel spur well"
+     }
+    ],
+    "highlight": "v2"
    }
   }
  },

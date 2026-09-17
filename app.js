@@ -6,8 +6,8 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CHAPTERS, GLOSSARY } from './content.js?v=clin6';
-import { initQuiz, openQuiz, quizBlocksKeys } from './quiz.js?v=clin6';
+import { CHAPTERS, GLOSSARY } from './content.js?v=clin15';
+import { initQuiz, openQuiz, quizBlocksKeys } from './quiz.js?v=clin15';
 
 const catalog = await (await fetch('./catalog.json')).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
@@ -39,15 +39,86 @@ function orientFlat(group) {
   group.updateMatrixWorld(true);
 }
 
-function prepMeshes(scene, isAddon = false) {
+/* ---------- offload highlight ----------
+   tools/bake_wells.py stores, per shell vertex, COLOR_0 = (well weight,
+   well depth 0..1, pad weight). The loader moves that to a `well` attribute
+   and this shader draws the well as a lit cavity: a cool floor that deepens
+   toward the center, a thin bright rim on the lip, and a breathing glow
+   that settles a few seconds after the model lands. uWell = 0 is the
+   production view — the plain shell. */
+const WELL_UNIFORMS = {
+  uWell:   { value: 1 },   // highlight on/off
+  uReveal: { value: 1 },   // 0 -> 1 as the model lands
+  uPulse:  { value: 0 },   // breathing glow, decays to a resting level
+};
+function installWellShader(mat) {
+  mat.onBeforeCompile = shader => {
+    Object.assign(shader.uniforms, WELL_UNIFORMS);
+    shader.vertexShader = shader.vertexShader
+      .replace('#include <common>', '#include <common>\nattribute vec3 well;\nvarying vec3 vWell;')
+      .replace('#include <begin_vertex>', '#include <begin_vertex>\nvWell = well;');
+    shader.fragmentShader = shader.fragmentShader
+      .replace('#include <common>', '#include <common>\nvarying vec3 vWell;\nuniform float uWell;\nuniform float uReveal;\nuniform float uPulse;')
+      .replace('#include <opaque_fragment>', `#include <opaque_fragment>
+        {
+          float lum = dot(gl_FragColor.rgb, vec3(0.30, 0.59, 0.11));
+          float on = uWell * uReveal;
+          // R/B are signed distance to the region contour: 0.5 on the lip,
+          // +-4 mm across the channel. Interpolated across triangles this
+          // gives a smooth edge at any zoom, not a vertex-resolution stair.
+          float sd = (vWell.r - 0.5) * 8.0;      // mm, positive inside the well
+          if (vWell.r > 0.001 && sd > -1.5 && on > 0.002) {
+            float depth = vWell.g;
+            // linear-space palette: lip -> floor
+            vec3 lipC   = vec3(0.06, 0.62, 1.00);
+            vec3 floorC = vec3(0.00, 0.26, 0.72);
+            vec3 rimC   = vec3(0.55, 0.92, 1.00);
+            vec3 cavity = mix(lipC, floorC, smoothstep(0.0, 1.0, depth));
+            // keep the real shading so the cavity still reads as geometry
+            vec3 shaded = cavity * (0.45 + 2.2 * lum);
+            float fill = smoothstep(-0.35, 0.35, sd) * on;       // ~0.7 mm soft edge
+            vec3 col = mix(gl_FragColor.rgb, shaded, fill * 0.94);
+            // bright inner lip just inside the rim, fading toward the floor
+            col += lipC * 0.35 * fill * (1.0 - smoothstep(0.0, 0.45, depth));
+            // rim contour: a 0.9 mm line sitting just inside the lip
+            float band = (1.0 - smoothstep(0.0, 0.9, abs(sd - 0.55))) * on;
+            col += rimC * band * (0.55 + 0.45 * uPulse);
+            // soft glow that breathes from the floor
+            col += lipC * 0.7 * depth * fill * uPulse;
+            gl_FragColor.rgb = col;
+          }
+          float sp = (vWell.b - 0.5) * 8.0;
+          if (vWell.b > 0.001 && sp > -1.5 && on > 0.002) {
+            vec3 padC = vec3(1.00, 0.48, 0.06) * (0.35 + 2.2 * lum);
+            float fill = smoothstep(-0.35, 0.35, sp) * on;
+            gl_FragColor.rgb = mix(gl_FragColor.rgb, padC, fill * 0.85);
+            float band = (1.0 - smoothstep(0.0, 0.9, abs(sp - 0.55))) * on;
+            gl_FragColor.rgb += vec3(1.0, 0.75, 0.35) * band * (0.3 + 0.3 * uPulse);
+          }
+        }`);
+  };
+  mat.customProgramCacheKey = () => 'well-v2';
+}
+
+function prepMeshes(scene, isAddon = false, highlight = false) {
   scene.traverse(o => {
     if (o.isMesh) {
       if (!o.geometry.attributes.normal) o.geometry.computeVertexNormals();
-      o.material = new THREE.MeshStandardMaterial(
+      o.material = new THREE.MeshPhysicalMaterial(
         isAddon
-          ? { vertexColors: true, roughness: 0.48, metalness: 0.04, color: 0xffffff }
-          : { vertexColors: false, roughness: 0.48, metalness: 0.08, color: 0x4a4a50 }
+          ? { vertexColors: true, roughness: 0.45, metalness: 0.0, color: 0xffffff,
+              clearcoat: 0.15, clearcoatRoughness: 0.45, envMapIntensity: 0.35 }
+          : { vertexColors: false, roughness: 0.52, metalness: 0.0, color: 0x35363d,
+              clearcoat: 0.30, clearcoatRoughness: 0.30, envMapIntensity: 0.22 }
       );
+      if (!isAddon) {
+        const c = o.geometry.getAttribute('color');
+        if (c) o.geometry.deleteAttribute('color');
+        if (highlight && c) {
+          o.geometry.setAttribute('well', c);
+          installWellShader(o.material);
+        }
+      }
       o.castShadow = true;
       // thin add-on parts self-shadow into speckle ("shadow acne") — they
       // cast onto the insole but don't receive
@@ -62,7 +133,8 @@ async function loadModel(po, side) {
   const entry = byPO[po];
   const model = entry?.models?.[side] || entry?.models?.[Object.keys(entry.models)[0]];
   const g = await loader.loadAsync('./' + model.file);
-  prepMeshes(g.scene);
+  prepMeshes(g.scene, false, model.highlight === 'v2');
+  g.scene.userData.isShell = true;
   const group = new THREE.Group();
   group.add(g.scene);
   // animation pairs ship a second GLB: the physical add-on part, seated in
@@ -81,6 +153,38 @@ async function loadModel(po, side) {
   return group.clone(true);
 }
 
+/* ---------- studio environment ----------
+   A small grey room with softboxes, baked to a PMREM map. It is what gives
+   every surface a reflection to read by: the lip of a well catches the
+   overhead panel, the floor of it falls into shadow, a pad's crown picks up
+   the side light. Without it a matte shell is a silhouette. */
+function studioEnvironment() {
+  const s = new THREE.Scene();
+  const room = new THREE.Mesh(
+    new THREE.BoxGeometry(60, 40, 60),
+    new THREE.MeshStandardMaterial({ color: 0x8e929b, side: THREE.BackSide, roughness: 1, metalness: 0 })
+  );
+  s.add(room);
+  const fill = new THREE.PointLight(0xffffff, 40, 0, 2);
+  fill.position.set(0, 12, 0);
+  s.add(fill);
+  const panel = (x, y, z, w, h, k, color = 0xffffff) => {
+    const m = new THREE.Mesh(
+      new THREE.PlaneGeometry(w, h),
+      new THREE.MeshBasicMaterial({ color, side: THREE.DoubleSide })
+    );
+    m.material.color.multiplyScalar(k);
+    m.position.set(x, y, z);
+    m.lookAt(0, 0, 0);
+    s.add(m);
+  };
+  panel(0, 19, 2, 24, 18, 3.6);            // overhead softbox — the main reflection
+  panel(-24, 9, 10, 10, 20, 2.2, 0xe4ecff); // cool key from the left
+  panel(23, 6, -12, 12, 14, 1.5, 0xfff2e2); // warm fill from the right rear
+  panel(0, 3, 28, 30, 5, 1.0);             // thin front strip for rim catch-lights
+  return s;
+}
+
 /* ---------- viewer ---------- */
 class Stage {
   constructor(canvas) {
@@ -89,12 +193,18 @@ class Stage {
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    this.renderer.toneMappingExposure = 1.0;
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(32, 1, 1, 5000);
     this.camera.position.set(0, 340, 260);
 
-    this.scene.add(new THREE.HemisphereLight(0xffffff, 0x9298a5, 1.35));
-    const key = new THREE.DirectionalLight(0xffffff, 2.1);
+    const pmrem = new THREE.PMREMGenerator(this.renderer);
+    this.scene.environment = pmrem.fromScene(studioEnvironment(), 0.04).texture;
+    pmrem.dispose();
+
+    this.scene.add(new THREE.HemisphereLight(0xffffff, 0x9298a5, 0.55));
+    const key = new THREE.DirectionalLight(0xffffff, 1.7);
     key.position.set(160, 420, 240);
     key.castShadow = true;
     key.shadow.mapSize.set(4096, 4096);
@@ -102,7 +212,7 @@ class Stage {
     key.shadow.bias = -0.0004;
     key.shadow.radius = 6;               // soft penumbra hides map aliasing
     this.scene.add(key);
-    const fill = new THREE.DirectionalLight(0xdfe6ff, 0.55);
+    const fill = new THREE.DirectionalLight(0xdfe6ff, 0.35);
     fill.position.set(-260, 180, -160);
     this.scene.add(fill);
 
@@ -289,7 +399,29 @@ class Stage {
         const b = new THREE.Box3().setFromObject(g);
         this.labels.push({ el, anchor: new THREE.Vector3(g.position.x, b.min.y - 4, b.max.z + 18) });
       }
+      // measured callout pinned on every baked well — follows the mesh as
+      // it rotates, hides when the device is flipped or in production view
+      const model = byPO[specs[i].po]?.models?.[specs[i].side];
+      if (model?.wells?.length) {
+        let shell = null;
+        g.traverse(o => { if (!shell && o.isMesh && o.geometry.getAttribute('well')) shell = o; });
+        if (shell) {
+          model.wells.forEach((w, k) => {
+            const el = document.createElement('div');
+            el.className = 'well-tag';
+            const depth = w.depth_mm >= 1.5 ? ` · ${w.depth_mm.toFixed(1)} mm` : '';
+            el.innerHTML = `<span class="pill">${w.label || 'Relief well'}${depth}</span><i></i><b></b>`;
+            // stagger leader lengths so neighbouring pills never stack
+            el.querySelector('i').style.height = `${54 + (k % 3) * 28}px`;
+            this.canvas.parentElement.appendChild(el);
+            this.labels.push({ el, obj: shell, local: new THREE.Vector3(...w.center), well: true });
+          });
+        }
+      }
     });
+    // the highlight lights up as the model lands, breathes, then settles
+    WELL_UNIFORMS.uReveal.value = 0;
+    this.wellAnim = { start: performance.now() };
     this._prepAddons();
     // flip pairs roll the whole device over around its length axis; each
     // group pivots about its own bounding-box center so it stays in place
@@ -764,6 +896,25 @@ class Stage {
       underside: { t: lean(0.86), d: leanD(0.86),   el: 0.88, az: 0.22 },
     };
     const r = R[region] || R.overview;
+    // relief view on a device with baked wells: frame the wells themselves —
+    // look-at on their centroid, closer, from a steep angle so the cavity
+    // floor and rim both read
+    const wells = this.labels.filter(l => l.well);
+    const featureView = ['relief', 'heel', 'arch', 'pad', 'forefoot'].includes(region);
+    if (featureView && wells.length && (this.specs?.length ?? 1) === 1) {
+      const c2 = new THREE.Vector3();
+      for (const l of wells) c2.add(l.obj.localToWorld(l.local.clone()));
+      c2.divideScalar(wells.length);
+      // keep the whole device in frame but lean toward the wells and come
+      // in closer than the plain region view
+      // (the steep relief view stacks the whole length down the screen, so
+      // it gets almost no lean and no zoom; side views have room to spare)
+      r.t = c.clone().lerp(c2, region === 'relief' ? 0.22 : 0.38);
+      r.d = fitD * (region === 'relief' ? 1.08 : 0.86);
+      if (region === 'relief') { r.el = 0.95; r.az = -0.18; }
+      // look from the side the well is on, never from behind the arch wall
+      if (Math.abs(c2.x - c.x) > 8) r.az = Math.sign(c2.x - c.x) * Math.abs(r.az || 0.3);
+    }
     // compare mode: two devices sit side by side along X, so a true side view
     // would hide one behind the other — pull the angle back to a diagonal
     if ((this.specs?.length ?? 1) > 1) {
@@ -814,6 +965,7 @@ class Stage {
   _tick(now) {
     this._processTimeline(now);
     this._tickFilm(now);
+    this._tickWell(now);
     if (this.motion === 'flip') this._applyFlip();
     this._applySeparation(now);
     this._tickAddonFade(now);
@@ -842,10 +994,36 @@ class Stage {
     requestAnimationFrame(this._tick);
   }
 
+  _tickWell(now) {
+    const a = this.wellAnim;
+    if (!a) return;
+    const t = (now - a.start) / 1000;
+    const u = Math.min(1, t / 0.9);
+    WELL_UNIFORMS.uReveal.value = u * u * (3 - 2 * u);
+    // three slow breaths that fade into a faint resting glow
+    const breath = 0.5 + 0.5 * Math.sin(t * 4.2 - 1.6);
+    WELL_UNIFORMS.uPulse.value = 0.22 + Math.exp(-t * 0.42) * breath * 0.8;
+    if (t > 9) { WELL_UNIFORMS.uPulse.value = 0.22; this.wellAnim = null; }
+  }
+
+  setWellHighlight(on) {
+    WELL_UNIFORMS.uWell.value = on ? 1 : 0;
+    if (on) this.wellAnim = { start: performance.now() };
+  }
+
   _projectLabels() {
+    const r = this.canvas.getBoundingClientRect();
     for (const l of this.labels) {
-      const p = l.anchor.clone().project(this.camera);
-      const r = this.canvas.getBoundingClientRect();
+      const world = l.obj ? l.obj.localToWorld(l.local.clone()) : l.anchor.clone();
+      const p = world.project(this.camera);
+      if (l.well) {
+        // hide when flipped, in production view, or still fading in
+        const show = !this.underside && WELL_UNIFORMS.uWell.value > 0.5 && WELL_UNIFORMS.uReveal.value > 0.6 && p.z < 1;
+        l.el.style.left = `${(p.x * 0.5 + 0.5) * r.width}px`;
+        l.el.style.top = `${(-p.y * 0.5 + 0.5) * r.height}px`;
+        l.el.classList.toggle('show', show);
+        continue;
+      }
       const x = Math.min(Math.max((p.x * 0.5 + 0.5) * r.width, 90), r.width - 90);
       const y = Math.min(Math.max((-p.y * 0.5 + 0.5) * r.height, 24), r.height - 110);
       l.el.style.left = `${x}px`;
@@ -859,6 +1037,7 @@ class Stage {
 const state = { chapter: 0, lesson: 0, step: 0, quiz: false, welcome: true };
 const stage = new Stage(document.getElementById('gl'));
 window.__stage = stage;   // console/debug access
+window.__well = WELL_UNIFORMS;
 
 const els = {
   sideNav: document.getElementById('sideNav'),
@@ -914,6 +1093,31 @@ function updateLegend(specs) {
     (hasPad ? '<span class="key pad"></span>Raised pad / bar ' : '') +
     (hasRelief ? '<span class="key well"></span>Relief well' : '') ||
     '<span class="muted">Plain surface — no offloads on this device</span>';
+  appendHighlightToggle(specs);
+}
+
+/* Highlight / Production switch — only for devices with baked well data.
+   Lives inside the legend pill; step legends re-append it after they
+   replace the legend text. */
+let currentSpecs = null;
+function appendHighlightToggle(specs = currentSpecs) {
+  if (!specs || !els.legend || document.getElementById('hlToggle')) return;
+  const baked = specs.some(s => {
+    const m = byPO[s.po]?.models?.[s.side];
+    return m?.highlight === 'v2' && ((m.relief_area_pct ?? 0) > 0.1 || (m.pad_area_pct ?? 0) > 0.1);
+  });
+  if (!baked) return;
+  const on = WELL_UNIFORMS.uWell.value > 0.5;
+  els.legend.insertAdjacentHTML('beforeend',
+    `<button type="button" class="hl-toggle${on ? ' on' : ''}" id="hlToggle" aria-pressed="${on}"><i></i><span>${on ? 'Highlight' : 'Production'}</span></button>`);
+  document.getElementById('hlToggle').addEventListener('click', e => {
+    const next = WELL_UNIFORMS.uWell.value < 0.5;
+    stage.setWellHighlight(next);
+    const b = e.currentTarget;
+    b.classList.toggle('on', next);
+    b.setAttribute('aria-pressed', String(next));
+    b.querySelector('span').textContent = next ? 'Highlight' : 'Production';
+  });
 }
 
 /* ---------- top cover selector (T1–T14, the real production lineup) ----------
@@ -1077,6 +1281,7 @@ async function renderLesson(animate = true) {
       await stage.show(specs);
     }
     explorePair = specs ? JSON.stringify(specs) : null;
+    currentSpecs = specs || null;
   } finally {
     navLock = false;
   }
@@ -1679,6 +1884,7 @@ async function ensureStepPair(ls, step) {
   const key = JSON.stringify(want);
   if (explorePair === key) return;
   explorePair = key;
+  currentSpecs = want;
   await stage.show(want);
   updateLegend(want);
 }
@@ -1704,6 +1910,7 @@ async function applyExplorerStage(ls, step) {
     coverBar.hidden = true;
     if (step.legend && els.legend) {
       els.legend.innerHTML = `<span class="muted">${step.legend}</span>`;
+      appendHighlightToggle();
     }
   }
 }
