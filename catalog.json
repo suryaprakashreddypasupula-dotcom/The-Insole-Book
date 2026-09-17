@@ -1078,7 +1078,7 @@
       ],
       "radius": 11.7,
       "depth_mm": 1.0,
-      "label": "MT1 offload well"
+      "label": "5th met head well"
      },
      {
       "center": [
@@ -1088,7 +1088,7 @@
       ],
       "radius": 11.9,
       "depth_mm": 1.0,
-      "label": "MT3 offload well"
+      "label": "3rd met head well"
      }
     ],
     "highlight": "v2"
@@ -1114,7 +1114,7 @@
       ],
       "radius": 11.9,
       "depth_mm": 0.8,
-      "label": "MT5 offload well"
+      "label": "1st met head well"
      },
      {
       "center": [
@@ -1124,7 +1124,7 @@
       ],
       "radius": 13.6,
       "depth_mm": 0.8,
-      "label": "MT3 offload well"
+      "label": "3rd met head well"
      }
     ],
     "highlight": "v2"
@@ -1495,8 +1495,21 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.0,
-    "pad_area_pct": 0.0
+    "relief_area_pct": 1.86,
+    "pad_area_pct": 0.0,
+    "wells": [
+     {
+      "center": [
+       30.0,
+       62.9,
+       4.0
+      ],
+      "radius": 56.6,
+      "depth_mm": 0.2,
+      "label": "1st met head well"
+     }
+    ],
+    "highlight": "v2"
    },
    "RIGHT": {
     "file": "models/PAIR-OFFLOAD-1ST_RIGHT.glb",
@@ -1509,8 +1522,21 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.17,
-    "pad_area_pct": 0.0
+    "relief_area_pct": 0.59,
+    "pad_area_pct": 0.0,
+    "wells": [
+     {
+      "center": [
+       -32.3,
+       91.7,
+       2.5
+      ],
+      "radius": 44.0,
+      "depth_mm": 0.5,
+      "label": "1st met head well"
+     }
+    ],
+    "highlight": "v2"
    }
   }
  },
@@ -1538,8 +1564,21 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.0,
-    "pad_area_pct": 0.0
+    "relief_area_pct": 0.81,
+    "pad_area_pct": 0.0,
+    "wells": [
+     {
+      "center": [
+       5.9,
+       84.0,
+       0.7
+      ],
+      "radius": 20.2,
+      "depth_mm": 0.2,
+      "label": "2nd met head well"
+     }
+    ],
+    "highlight": "v2"
    }
   }
  },
@@ -1567,8 +1606,21 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.34,
-    "pad_area_pct": 0.0
+    "relief_area_pct": 0.74,
+    "pad_area_pct": 0.0,
+    "wells": [
+     {
+      "center": [
+       -3.2,
+       75.7,
+       3.9
+      ],
+      "radius": 16.2,
+      "depth_mm": 0.8,
+      "label": "2nd met head + 3rd met head well"
+     }
+    ],
+    "highlight": "v2"
    },
    "RIGHT": {
     "file": "models/PAIR-OFFLOAD-2ND-3RD_RIGHT.glb",
@@ -1581,8 +1633,21 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.36,
-    "pad_area_pct": 0.0
+    "relief_area_pct": 0.7,
+    "pad_area_pct": 0.0,
+    "wells": [
+     {
+      "center": [
+       -1.0,
+       84.1,
+       3.9
+      ],
+      "radius": 17.4,
+      "depth_mm": 0.8,
+      "label": "2nd met head + 3rd met head well"
+     }
+    ],
+    "highlight": "v2"
    }
   }
  },
@@ -1610,8 +1675,21 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.21,
-    "pad_area_pct": 0.0
+    "relief_area_pct": 0.81,
+    "pad_area_pct": 0.0,
+    "wells": [
+     {
+      "center": [
+       -9.5,
+       75.8,
+       0.7
+      ],
+      "radius": 14.7,
+      "depth_mm": 0.6,
+      "label": "3rd met head well"
+     }
+    ],
+    "highlight": "v2"
    }
   }
  },
@@ -1639,8 +1717,21 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.29,
-    "pad_area_pct": 0.0
+    "relief_area_pct": 0.49,
+    "pad_area_pct": 0.0,
+    "wells": [
+     {
+      "center": [
+       17.1,
+       56.2,
+       0.8
+      ],
+      "radius": 12.6,
+      "depth_mm": 1.0,
+      "label": "4th met head well"
+     }
+    ],
+    "highlight": "v2"
    }
   }
  },
@@ -1668,8 +1759,21 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.44,
-    "pad_area_pct": 0.0
+    "relief_area_pct": 0.74,
+    "pad_area_pct": 0.0,
+    "wells": [
+     {
+      "center": [
+       -33.1,
+       68.8,
+       0.7
+      ],
+      "radius": 17.0,
+      "depth_mm": 1.0,
+      "label": "4th met head + 5th met head well"
+     }
+    ],
+    "highlight": "v2"
    },
    "RIGHT": {
     "file": "models/PAIR-OFFLOAD-4TH-5TH_RIGHT.glb",
@@ -1682,8 +1786,21 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.29,
-    "pad_area_pct": 0.0
+    "relief_area_pct": 0.55,
+    "pad_area_pct": 0.0,
+    "wells": [
+     {
+      "center": [
+       32.4,
+       64.0,
+       0.8
+      ],
+      "radius": 16.6,
+      "depth_mm": 1.0,
+      "label": "4th met head + 5th met head well"
+     }
+    ],
+    "highlight": "v2"
    }
   }
  },
@@ -1711,8 +1828,21 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.06,
-    "pad_area_pct": 0.0
+    "relief_area_pct": 0.31,
+    "pad_area_pct": 0.0,
+    "wells": [
+     {
+      "center": [
+       -36.8,
+       48.6,
+       3.9
+      ],
+      "radius": 10.9,
+      "depth_mm": 0.9,
+      "label": "5th met head well"
+     }
+    ],
+    "highlight": "v2"
    },
    "RIGHT": {
     "file": "models/PAIR-OFFLOAD-5TH_RIGHT.glb",
@@ -1725,8 +1855,21 @@
     ],
     "relief_focus": null,
     "pad_focus": null,
-    "relief_area_pct": 0.0,
-    "pad_area_pct": 0.0
+    "relief_area_pct": 0.31,
+    "pad_area_pct": 0.0,
+    "wells": [
+     {
+      "center": [
+       35.9,
+       34.9,
+       4.0
+      ],
+      "radius": 11.8,
+      "depth_mm": 0.9,
+      "label": "5th met head well"
+     }
+    ],
+    "highlight": "v2"
    }
   }
  },

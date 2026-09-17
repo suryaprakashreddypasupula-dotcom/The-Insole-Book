@@ -6,10 +6,11 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CHAPTERS, GLOSSARY } from './content.js?v=clin15';
-import { initQuiz, openQuiz, quizBlocksKeys } from './quiz.js?v=clin15';
+import { CHAPTERS, GLOSSARY } from './content.js?v=clin16';
+import { initQuiz, openQuiz, quizBlocksKeys } from './quiz.js?v=clin16';
 
-const catalog = await (await fetch('./catalog.json')).json();
+const ASSET_V = 'clin16';
+const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
 const modelCache = new Map();
@@ -132,7 +133,7 @@ async function loadModel(po, side) {
   if (modelCache.has(key)) return modelCache.get(key).clone(true);
   const entry = byPO[po];
   const model = entry?.models?.[side] || entry?.models?.[Object.keys(entry.models)[0]];
-  const g = await loader.loadAsync('./' + model.file);
+  const g = await loader.loadAsync('./' + model.file + '?v=' + ASSET_V);
   prepMeshes(g.scene, false, model.highlight === 'v2');
   g.scene.userData.isShell = true;
   const group = new THREE.Group();
@@ -140,7 +141,7 @@ async function loadModel(po, side) {
   // animation pairs ship a second GLB: the physical add-on part, seated in
   // the same coordinate frame as its insole. Same group = same orientation.
   if (model.addon) {
-    const a = await loader.loadAsync('./' + model.addon);
+    const a = await loader.loadAsync('./' + model.addon + '?v=' + ASSET_V);
     prepMeshes(a.scene, true);
     a.scene.userData.isAddon = true;
     // "lift": raises lift off & reseat. "press": soft fills compress under
@@ -1076,7 +1077,7 @@ function updateLegend(specs) {
   const hasRelief = specs.some(s => (byPO[s.po]?.models?.[s.side]?.relief_area_pct ?? 0) > 0.1);
   const hasPad = specs.some(s => (byPO[s.po]?.models?.[s.side]?.pad_area_pct ?? 0) > 0.1);
   const addonPair = specs.some(s => byPO[s.po]?.models?.[s.side]?.addon);
-  if (addonPair) {
+  if (addonPair && !hideAddon) {
     const press = specs.some(s => byPO[s.po]?.motion === 'press');
     const flip = specs.some(s => byPO[s.po]?.motion === 'flip');
     const drape = specs.some(s => byPO[s.po]?.motion === 'drape');
@@ -1087,6 +1088,7 @@ function updateLegend(specs) {
         : press
           ? '<span class="key well"></span>Cyan = the soft fill / well. Production is the black insole.'
           : '<span class="key pad"></span>Amber = the raised part. Production is the black insole.';
+    appendHighlightToggle(specs);
     return;
   }
   els.legend.innerHTML =
@@ -1104,7 +1106,7 @@ function appendHighlightToggle(specs = currentSpecs) {
   if (!specs || !els.legend || document.getElementById('hlToggle')) return;
   const baked = specs.some(s => {
     const m = byPO[s.po]?.models?.[s.side];
-    return m?.highlight === 'v2' && ((m.relief_area_pct ?? 0) > 0.1 || (m.pad_area_pct ?? 0) > 0.1);
+    return m?.highlight === 'v2' && ((m.wells?.length ?? 0) > 0 || (m.relief_area_pct ?? 0) > 0.1 || (m.pad_area_pct ?? 0) > 0.1);
   });
   if (!baked) return;
   const on = WELL_UNIFORMS.uWell.value > 0.5;
@@ -1258,6 +1260,7 @@ async function renderLesson(animate = true) {
   }
   navLock = true;
   showView('reader');
+  hideAddon = !!ls.hideAddon;
   const specs = ls.compare ?? ls.models;
   els.chapterTag.textContent = `Chapter ${ch.number} · ${ch.title}`;
   els.lessonTitle.textContent = ls.title;
@@ -1279,6 +1282,7 @@ async function renderLesson(animate = true) {
       stage._resize();
     } else {
       await stage.show(specs);
+      applyAddonVisibility();
     }
     explorePair = specs ? JSON.stringify(specs) : null;
     currentSpecs = specs || null;
@@ -1587,28 +1591,41 @@ const PLUGS = [
   { id: '2nd', po: 'PAIR-OFFLOAD-2ND', side: 'LEFT' },
   { id: '3rd', po: 'PAIR-OFFLOAD-3RD', side: 'LEFT' },
   { id: '2nd+3rd', po: 'PAIR-OFFLOAD-2ND-3RD', side: 'LEFT' },
-  { id: '4th', po: 'PAIR-OFFLOAD-4TH', side: 'LEFT' },
+  { id: '4th', po: 'PAIR-OFFLOAD-4TH', side: 'RIGHT' },
   { id: '5th', po: 'PAIR-OFFLOAD-5TH', side: 'LEFT' },
   { id: '4th+5th', po: 'PAIR-OFFLOAD-4TH-5TH', side: 'LEFT' },
 ];
-function renderPlugExplore(step) {
+let hideAddon = false;
+function applyAddonVisibility() {
+  if (!stage.addon) return;
+  if (hideAddon) stage.concealAddons(true);
+  else stage.revealAddons(true);
+}
+function renderPlugExplore(step, ls) {
   const box = els.explore;
   if (!box) return;
   if (step.panel !== 'plugs') { box.hidden = true; box.innerHTML = ''; return; }
+  hideAddon = !!ls?.hideAddon;
   box.hidden = false;
   const cur = (step.pair && step.pair[0]?.po) || '';
+  const hint = hideAddon
+    ? 'Click a met head. The highlighted well is that head\u2019s offload on a real device.'
+    : 'Click a met head. The cyan plug on stage is that well\u2019s production fill.';
   box.innerHTML = `<div class="lm-chips">${PLUGS.map(p =>
     `<button class="lm-chip${p.po === cur ? ' on' : ''}" data-plug="${p.id}">${p.id}</button>`
   ).join('')}</div>
-  <div class="lm-remember">Click a met head. The cyan plug on stage is that well\u2019s production fill.</div>`;
+  <div class="lm-remember">${hint}</div>`;
   box.querySelectorAll('[data-plug]').forEach(el => {
     el.addEventListener('click', async () => {
       const p = PLUGS.find(x => x.id === el.dataset.plug);
       if (!p) return;
       box.querySelectorAll('.lm-chip').forEach(x => x.classList.toggle('on', x === el));
       const remember = box.querySelector('.lm-remember');
-      if (remember) remember.innerHTML = `<b>${p.id} met head.</b> Soft fill for that well, flush until a step compresses it.`;
+      if (remember) remember.innerHTML = hideAddon
+        ? `<b>${p.id} met head well.</b> Contact is gone under that head. The plug that fills it is the next lesson.`
+        : `<b>${p.id} met head.</b> Soft fill for that well, flush until a step compresses it.`;
       await ensureStepPair({ models: [{ po: p.po, side: p.side, label: p.id }] }, {});
+      applyAddonVisibility();
       stage.flyTo('relief', 900);
     });
   });
@@ -1824,7 +1841,7 @@ function renderExplore(step, ls) {
   if (ls?.reel || ls?.layout === 'info' || ls?.chart) { box.hidden = true; box.innerHTML = ''; return; }
   if (!ls?.explorer || !step.panel) { box.hidden = true; box.innerHTML = ''; return; }
   if (ls.explorer === 'inserts') return renderInsertExplore(step);
-  if (ls.explorer === 'plugs') return renderPlugExplore(step);
+  if (ls.explorer === 'plugs') return renderPlugExplore(step, ls);
   const panel = step.panel;
   if (panel === 'why') { box.hidden = true; box.innerHTML = ''; return; }
   box.hidden = false;
@@ -1886,6 +1903,7 @@ async function ensureStepPair(ls, step) {
   explorePair = key;
   currentSpecs = want;
   await stage.show(want);
+  applyAddonVisibility();
   updateLegend(want);
 }
 async function applyExplorerStage(ls, step) {

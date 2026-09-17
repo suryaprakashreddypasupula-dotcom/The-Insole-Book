@@ -87,9 +87,6 @@ def offloads_for(entry: dict) -> list[str]:
     po = entry["po"]
     if po in OVERRIDES:
         return OVERRIDES[po]
-    # plug pairs: the cyan plug is the visual; their bases carry no consistent well
-    if po.startswith("PAIR-OFFLOAD"):
-        return []
     names = set(entry.get("categories") or [])
     for part in (entry.get("additions") or "").split("+"):
         part = part.strip()
@@ -250,6 +247,16 @@ def weights(mesh, v, n, order, offloads):
 
 
 MET_HEAD_FRACS = [0.13, 0.32, 0.50, 0.68, 0.86]   # MT1..MT5 across the forefoot, medial -> lateral
+_ORD = {1: "1st", 2: "2nd", 3: "3rd", 4: "4th", 5: "5th"}
+PO_WELL_LABELS = {
+    "PAIR-OFFLOAD-1ST": ["1st met head well"],
+    "PAIR-OFFLOAD-2ND": ["2nd met head well"],
+    "PAIR-OFFLOAD-3RD": ["3rd met head well"],
+    "PAIR-OFFLOAD-4TH": ["4th met head well"],
+    "PAIR-OFFLOAD-5TH": ["5th met head well"],
+    "PAIR-OFFLOAD-2ND-3RD": ["2nd met head well", "3rd met head well"],
+    "PAIR-OFFLOAD-4TH-5TH": ["4th met head well", "5th met head well"],
+}
 
 
 def well_name(offloads, cx, cy, nx, ny, footprint, medial_pos):
@@ -264,10 +271,12 @@ def well_name(offloads, cx, cy, nx, ny, footprint, medial_pos):
         if len(xs) > 2:
             lo, hi = xs.min(), xs.max()
             f = (cx - lo) / max(hi - lo, 1)
-            if not medial_pos:
+            # f is 0 at min-x, 1 at max-x. MT1 lives on the medial side, so
+            # when the arch (medial) is on +x we have to read the row backwards.
+            if medial_pos:
                 f = 1 - f
             mt = int(np.argmin([abs(f - m) for m in MET_HEAD_FRACS])) + 1
-            return f"MT{mt} offload well"
+            return f"{_ORD[mt]} met head well"
         return "Met head offload well"
     if name == "Heel Spur":
         return "Heel spur well"
@@ -276,7 +285,74 @@ def well_name(offloads, cx, cy, nx, ny, footprint, medial_pos):
     return "Relief well"
 
 
-def bake(path: Path, offloads: list[str]):
+def addon_mask(addon_path: Path, order: list[int], zmin: float, grid_origin, shape):
+    """Binary footprint of the production plug on the shell's heightfield grid.
+    Plug and shell share a coordinate frame, so the same axis order + z-shift
+    lands the plug on the well it was cut to fill."""
+    addon = trimesh.load(addon_path, force="mesh")
+    pts, _ = trimesh.sample.sample_surface(addon, 80_000, seed=3)
+    pts = np.asarray(pts)[:, order]
+    pts[:, 2] -= zmin
+    xmin, ymin = grid_origin
+    nx, ny = shape
+    xi = np.clip(np.round((pts[:, 0] - xmin) / bm.CELL).astype(int), 0, nx - 1)
+    yi = np.clip(np.round((pts[:, 1] - ymin) / bm.CELL).astype(int), 0, ny - 1)
+    mask = np.zeros(shape, dtype=bool)
+    mask[xi, yi] = True
+    mask = ndimage.binary_closing(mask, iterations=2)
+    mask = ndimage.binary_fill_holes(mask)
+    return mask
+
+
+def apply_po_labels(po: str, wells: list[dict], medial_pos: bool):
+    names = PO_WELL_LABELS.get(po)
+    if not names or not wells:
+        return
+    if len(wells) == 1:
+        wells[0]["label"] = names[0] if len(names) == 1 else (
+            " + ".join(n.replace(" well", "") for n in names) + " well"
+        )
+        return
+    wells.sort(key=lambda w: w["_zx"], reverse=bool(medial_pos))
+    for w, name in zip(wells, names):
+        w["label"] = name
+
+
+def fields_from_mask(mask, well_grid, v, n, h, xi, yi, fc, grid_origin, offloads, medial_pos):
+    """Signed-distance + ellipse blobs for a binary well mask on the grid."""
+    on_surface = (n[:, 2] > 0.1) & (v[:, 2] >= (h[xi, yi] - 6.0))
+    lbl, nblob = ndimage.label(mask)
+    blobs, sd_all, depth = [], np.full(len(v), -SD_RANGE_MM), np.zeros(len(v))
+    d_grid = sample(well_grid, fc)
+    nx, ny = mask.shape
+    footprint = np.ones_like(mask)
+    for i in range(1, nblob + 1):
+        cells = lbl == i
+        if cells.sum() * bm.CELL ** 2 < 40:
+            continue
+        cx, cy = np.argwhere(cells).mean(axis=0)
+        peak = max(float(np.percentile(well_grid[cells], 90)) if well_grid[cells].size else 0.0, 0.2)
+        e = fit_ellipse(cells, well_grid, peak)
+        sd, bowl = ellipse_field(v, grid_origin[0], grid_origin[1], e)
+        sel = (sd > 0) & on_surface
+        if not sel.any():
+            continue
+        d = np.clip(d_grid / peak, 0, 1)
+        depth = np.where(sd > -1.5, np.maximum(depth, 0.45 * d + 0.55 * bowl), depth)
+        sd_all = np.maximum(sd_all, sd)
+        blobs.append({
+            "sel": sel,
+            "depth": float(peak),
+            "name": well_name(offloads, cx, cy, nx, ny, footprint, medial_pos),
+            "_zx": float(v[sel, 0].mean()),
+        })
+    well_w = encode_sd(sd_all)
+    well_w[~on_surface] = 0.0
+    depth[~on_surface] = 0.0
+    return well_w, depth, blobs
+
+
+def bake(path: Path, offloads: list[str], addon_path: Path | None = None, po: str = ""):
     mesh = trimesh.load(path, force="mesh")
     v0 = np.asarray(mesh.vertices, dtype=np.float64)
     order = z_up_order(v0)
@@ -287,6 +363,18 @@ def bake(path: Path, offloads: list[str]):
     if n[v[:, 2] > np.percentile(v[:, 2], 60), 2].mean() < 0:
         n = -n
     well_w, pad_w, depth, blobs = weights(mesh, v, n, order, offloads)
+    medial_pos = bm.medial_is_positive_x(v)
+    # a seated plug is a better well outline than the heightfield — use it
+    # whenever the pair ships one, and fall back to detection if the frames
+    # don't line up
+    if addon_path and addon_path.exists():
+        well_g, _raise, _narrow, _dist, h, xi, yi, fc, grid_origin = detect_dense(mesh, v, order)
+        zmin = np.asarray(mesh.vertices)[:, order][:, 2].min()
+        mask = addon_mask(addon_path, order, zmin, grid_origin, well_g.shape)
+        if mask.sum() * bm.CELL ** 2 >= 40:
+            well_w, depth, blobs = fields_from_mask(
+                mask, well_g, v, n, h, xi, yi, fc, grid_origin, offloads, medial_pos
+            )
 
     # R = well signed distance (0.5 at the lip), G = bowl depth 0..1 relative
     # to the well's own deepest point, B = pad signed distance
@@ -308,7 +396,11 @@ def bake(path: Path, offloads: list[str]):
             "radius": round(float(np.sqrt(((pts - c) ** 2).sum(axis=1)).max()), 1),
             "depth_mm": round(b["depth"], 1),
             "label": b["name"],
+            "_zx": b.get("_zx", float(v[b["sel"], 0].mean())),
         })
+    apply_po_labels(po, wells, medial_pos)
+    for w in wells:
+        w.pop("_zx", None)
     return {
         "relief_area_pct": round(float((well_w > 0.5).mean() * 100), 2),
         "pad_area_pct": round(float((pad_w > 0.5).mean() * 100), 2),
@@ -337,11 +429,15 @@ def main(only: list[str]):
             if not path.exists():
                 print(f"missing {path}")
                 continue
-            info = bake(path, offloads)
+            addon = ROOT / m["addon"] if m.get("addon") else None
+            info = bake(path, offloads, addon_path=addon, po=po)
             m.pop("well_focus", None)
             m.update(info)
-            desc = ", ".join(f"{w['depth_mm']}mm@({w['center'][0]},{w['center'][1]})" for w in info["wells"]) or "-"
-            print(f"{po:24s} {side:5s} wells {info['relief_area_pct']:5.2f}%  pads {info['pad_area_pct']:5.2f}%  {desc}")
+            desc = ", ".join(
+                f"{w['label']} {w['depth_mm']}mm@({w['center'][0]},{w['center'][1]})"
+                for w in info["wells"]
+            ) or "-"
+            print(f"{po:24s} {side:5s} wells {info['relief_area_pct']:5.2f}%  {desc}")
             done += 1
     CATALOG.write_text(json.dumps(cat, indent=1))
     print(f"baked {done} models -> {CATALOG}")
