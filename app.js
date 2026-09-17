@@ -6,8 +6,8 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CHAPTERS, GLOSSARY } from './content.js?v=offload3';
-import { initQuiz, openQuiz, quizBlocksKeys } from './quiz.js?v=offload3';
+import { CHAPTERS, GLOSSARY } from './content.js?v=design2';
+import { initQuiz, openQuiz, quizBlocksKeys } from './quiz.js?v=design2';
 
 const catalog = await (await fetch('./catalog.json')).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
@@ -1581,8 +1581,8 @@ function renderMaterialsStack() {
 function renderProdPhotos() {
   const steps = [
     { n: '01', name: 'Design', shots: [
-      ['design-side', 'Side view'],
-      ['design-model', 'Insole model'],
+      ['design-side', 'Left and right'],
+      ['design-model', 'Trimline'],
     ]},
     { n: '02', name: 'Printing', shots: [
       ['print-printer', 'On the printer'],

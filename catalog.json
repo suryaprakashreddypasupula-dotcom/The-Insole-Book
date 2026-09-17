@@ -898,6 +898,46 @@
   "hidden": true
  },
  {
+  "po": "DRILL-FILL",
+  "categories": [
+   "Drill & Fill Offload"
+  ],
+  "orthotic_type": "Insole",
+  "base": "",
+  "top_cover": "",
+  "additions": "Drill & Fill",
+  "label": "Drill & Fill \u2014 plain shell",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/DRILL-FILL_LEFT.glb",
+    "faces": 18796,
+    "extents": [
+     90.3,
+     262.0,
+     29.8
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/DRILL-FILL_RIGHT.glb",
+    "faces": 17840,
+    "extents": [
+     90.3,
+     262.0,
+     23.7
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
   "po": "OFFLOAD-MET-HEAD",
   "categories": [
    "Offload Met Head"
