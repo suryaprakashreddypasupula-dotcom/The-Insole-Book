@@ -6,10 +6,10 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CHAPTERS, GLOSSARY } from './content.js?v=clin17';
-import { initQuiz, openQuiz, quizBlocksKeys } from './quiz.js?v=clin17';
+import { CHAPTERS, GLOSSARY } from './content.js?v=clin23';
+import { initQuiz, openQuiz, quizBlocksKeys } from './quiz.js?v=clin23';
 
-const ASSET_V = 'clin17';
+const ASSET_V = 'clin23';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -403,7 +403,7 @@ class Stage {
       // measured callout pinned on every baked well — follows the mesh as
       // it rotates, hides when the device is flipped or in production view
       const model = byPO[specs[i].po]?.models?.[specs[i].side];
-      if (model?.wells?.length) {
+      if (model?.wells?.length && !hideHighlight) {
         let shell = null;
         g.traverse(o => { if (!shell && o.isMesh && o.geometry.getAttribute('well')) shell = o; });
         if (shell) {
@@ -1082,13 +1082,21 @@ function updateLegend(specs) {
     const flip = specs.some(s => byPO[s.po]?.motion === 'flip');
     const drape = specs.some(s => byPO[s.po]?.motion === 'drape');
     els.legend.innerHTML = flip
-      ? '<span class="key" style="background:#17181c"></span>True cork blank, finished black like the shell — HIGH edge straight along the prescribed border, heel to arch, trimmed flush'
+      ? '<span class="key" style="background:#17181c"></span>True cork blank, finished black like the base — HIGH edge straight along the prescribed border, heel to arch, trimmed flush'
       : drape
         ? `<span class="key" style="background:${currentCover ? swatchBg(currentCover) : '#b0804f'}"></span>Top cover — the real production sheet at true thickness, glued on last; the only layer the foot touches`
         : press
           ? '<span class="key well"></span>Cyan = the soft fill / well. Production is the black insole.'
           : '<span class="key pad"></span>Amber = the raised part. Production is the black insole.';
     appendHighlightToggle(specs);
+    return;
+  }
+  if (hideHighlight) {
+    const id = CHAPTERS[state.chapter]?.lessons[state.lesson]?.id;
+    const plain = id === 'hike-shell'
+      ? 'Plain shell — no offloads on this device'
+      : 'Plain base — no offloads on this device';
+    els.legend.innerHTML = `<span class="muted">${plain}</span>`;
     return;
   }
   els.legend.innerHTML =
@@ -1103,6 +1111,7 @@ function updateLegend(specs) {
    replace the legend text. */
 let currentSpecs = null;
 function appendHighlightToggle(specs = currentSpecs) {
+  if (hideHighlight) return;
   if (!specs || !els.legend || document.getElementById('hlToggle')) return;
   const baked = specs.some(s => {
     const m = byPO[s.po]?.models?.[s.side];
@@ -1261,6 +1270,7 @@ async function renderLesson(animate = true) {
   navLock = true;
   showView('reader');
   hideAddon = !!ls.hideAddon;
+  hideHighlight = !!ls.hideHighlight;
   const specs = ls.compare ?? ls.models;
   els.chapterTag.textContent = `Chapter ${ch.number} · ${ch.title}`;
   els.lessonTitle.textContent = ls.title;
@@ -1283,6 +1293,7 @@ async function renderLesson(animate = true) {
     } else {
       await stage.show(specs);
       applyAddonVisibility();
+      stage.setWellHighlight(!hideHighlight);
     }
     explorePair = specs ? JSON.stringify(specs) : null;
     currentSpecs = specs || null;
@@ -1556,12 +1567,12 @@ function renderInsertExplore(step) {
   }
   if (panel === 'ucbl') {
     box.innerHTML = `<div class="side-grid">
-      <div class="side-card"><div class="tag">Shell</div><h4>Polypropylene mimic</h4>
+      <div class="side-card"><div class="tag">Base</div><h4>Polypropylene mimic</h4>
         <p>High structural rigidity. Deep heel cup and flanges control the heel and midfoot.</p></div>
       <div class="side-card"><div class="tag">Cover</div><h4>1/8″ Puff</h4>
         <p>Standard comfort layer on a rigid device. BYO covers optional.</p></div>
     </div>
-    <div class="lm-remember"><b>Indicated for</b> pronation, flatfoot, high-risk plantar pressures, and Charcot foot stabilisation. Reduces shear and pressure points. A stiffer upgraded shell is the upcoming rigid option.</div>`;
+    <div class="lm-remember"><b>Indicated for</b> pronation, flatfoot, high-risk plantar pressures, and Charcot foot stabilisation. Reduces shear and pressure points. A stiffer upgraded base is the upcoming rigid option.</div>`;
     return;
   }
   if (panel === 'choose') {
@@ -1572,7 +1583,7 @@ function renderInsertExplore(step) {
       <tr><td>Triple Sweet <span style="color:var(--ink-3)">(Hike name · Tri-Lam)</span></td><td>55 + T3</td><td>Moderate-to-severe deformity, high shock need</td></tr>
       <tr><td>BYO</td><td>2–3 custom</td><td>Unique deformity or activity · VA / private</td></tr>
       <tr><td>UCBL</td><td>Rigid + cover</td><td>Pronation, flatfoot, Charcot, post-surgical</td></tr>
-      <tr><td>Rigid (upgraded)</td><td>Rigid shell</td><td>Maximum rigidity — upcoming release</td></tr>
+      <tr><td>Rigid (upgraded)</td><td>Rigid base</td><td>Maximum rigidity — upcoming release</td></tr>
     </table>
     <table class="qref" style="margin-top:14px">
       <tr><th>Material</th><th>Job</th></tr>
@@ -1596,6 +1607,7 @@ const PLUGS = [
   { id: '4th+5th', po: 'PAIR-OFFLOAD-4TH-5TH', side: 'LEFT' },
 ];
 let hideAddon = false;
+let hideHighlight = false;
 function applyAddonVisibility() {
   if (!stage.addon) return;
   if (hideAddon) stage.concealAddons(true);
@@ -1622,7 +1634,7 @@ function renderPlugExplore(step, ls) {
       box.querySelectorAll('.lm-chip').forEach(x => x.classList.toggle('on', x === el));
       const remember = box.querySelector('.lm-remember');
       if (remember) remember.innerHTML = hideAddon
-        ? `<b>${p.id} met head well.</b> Contact is gone under that head. The plug that fills it is the next lesson.`
+        ? `<b>${p.id} met head well.</b> Contact is gone under that head. A soft plug printed to that well fills it flush.`
         : `<b>${p.id} met head.</b> Soft fill for that well, flush until a step compresses it.`;
       await ensureStepPair({ models: [{ po: p.po, side: p.side, label: p.id }] }, {});
       applyAddonVisibility();
@@ -1773,7 +1785,7 @@ function renderMaterialsStack() {
     <i class="mat-join plus"></i>
     <div class="mat-layer base">
       <b>Base</b>
-      <span>The 3D-printed base of the insole. Structural foundation, shaped to that foot. A shell is a specific kind of base.</span>
+      <span>The 3D-printed base of the insole. Structural foundation, shaped to that foot. A shell is only Hike Shell — 3/4 length.</span>
     </div>
     <i class="mat-join eq"></i>
     <div class="mat-layer done">
@@ -1785,8 +1797,8 @@ function renderMaterialsStack() {
         <div class="mat-kicker">Bases next</div>
         <ul>
           <li>Sweet family</li>
-          <li>Functional family</li>
-          <li>UCBL</li>
+          <li>Everyday · Sport · Corkbase · Flexible Shell</li>
+          <li>Hike Shell (¾) · UCBL</li>
         </ul>
       </div>
       <div>
@@ -1904,6 +1916,7 @@ async function ensureStepPair(ls, step) {
   currentSpecs = want;
   await stage.show(want);
   applyAddonVisibility();
+  stage.setWellHighlight(!hideHighlight);
   updateLegend(want);
 }
 async function applyExplorerStage(ls, step) {
@@ -1916,7 +1929,7 @@ async function applyExplorerStage(ls, step) {
       T1: 'Sweet · Diabetic 35 · T1',
       T2: 'Double Sweet · Diabetic 45 · T2',
       T3: 'Triple Sweet · Diabetic 55 · T3',
-      T6: 'Flexible Shell · T6 Spenco',
+      T6: 'Flexible Shell · base · T6 Spenco',
       T7: 'UCBL · T7 Puff',
     };
     const label = step.legend || names[step.cover];
@@ -1934,6 +1947,7 @@ async function applyExplorerStage(ls, step) {
 }
 
 let animTimer = null;
+let replayGen = 0;
 function renderStep(fly = true) {
   const ls = CHAPTERS[state.chapter].lessons[state.lesson];
   const step = ls.steps[state.step];
@@ -1945,7 +1959,8 @@ function renderStep(fly = true) {
     bindGloss();
     renderExplore(step, ls);
   }, fly ? 180 : 0);
-  if (ls.explorer || step.pair || step.cover) applyExplorerStage(ls, step);
+  let staged = Promise.resolve();
+  if (ls.explorer || step.pair || step.cover) staged = applyExplorerStage(ls, step);
   else if (els.explore) { els.explore.hidden = true; els.explore.innerHTML = ''; }
   if (fly && !ls.reel && !ls.chart && !isTextOnly(ls)) stage.flyTo(step.camera || ls.camera || 'overview');
   // add-on animation: snap to this step's starting state, then play its move.
@@ -1978,7 +1993,17 @@ function renderStep(fly = true) {
       animTimer = setTimeout(() => selectCover(ci), 500);
     }
   }
-  els.replay.hidden = !stage.addon || ls.steps.every(s => !s.anim);
+  // one accommodation = one page: the add-on's lift/press cycle plays once
+  // on arrival and Replay is always available on an add-on page
+  // (a step.pair reloads the stage async, so decide once that load settles)
+  const gen = ++replayGen;
+  staged.then(() => {
+    if (gen !== replayGen) return;
+    els.replay.hidden = !stage.addon;
+    if (stage.addon && ls.steps.length === 1 && !step.anim && fly) {
+      animTimer2 = setTimeout(() => els.replay.click(), 900);
+    }
+  });
   els.stepDots.innerHTML = ls.steps
     .map((_, i) => `<i class="${i === state.step ? 'on' : ''}" data-i="${i}"></i>`).join('');
   els.stepDots.querySelectorAll('i').forEach(dot =>

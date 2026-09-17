@@ -27,7 +27,8 @@ export const GLOSSARY = {
   "base of the fifth": "The bony bump at the base of the fifth metatarsal, on the outer midfoot \u2014 a common pressure point in narrow shoes. Standard relief here is 3\u20133.5 mm deep.",
   "P-Cell": "A soft foam used as the skin-contact layer on diabetic inserts. Its job is cushioning and friction reduction \u2014 protecting fragile, high-risk skin.",
   "Poron": "A denser foam used for shock absorption and durability. Often the very top layer on three-layer builds, over a P-Cell middle.",
-  "UCBL": "A deep, rigid orthotic shell (named for the UC Biomechanics Laboratory) that grips the heel and midfoot to control motion. Finished with a soft Puff foam top cover.",
+  "shell": "Only Hike Shell. A shell is 3/4 length. Everyday, Sport, Corkbase, Flexible Shell, UCBL, and the Sweets are bases of the insole, not shells. Cover length can also be specified as shell (3/4).",
+  "UCBL": "A deep, rigid high-wall base (named for the UC Biomechanics Laboratory) that grips the heel and midfoot to control motion. Finished with a soft Puff foam top cover. It is a base, not a Hike Shell.",
   "navicular": "The prominent bone on the inner midfoot. Offloaded with an oval relief for accessory navicular, stress fracture, or posterior-tibial tendon pain.",
   "neuroma": "A pinched, thickened nerve between the met heads \u2014 usually the 3rd\u20134th interspace (Morton's neuroma). Feels like walking on a pebble or a burning fold in the sock. Treated with a neuroma pad that spreads the met heads apart.",
   "fibroma": "A benign fibrous nodule on the plantar fascia, usually mid-arch. Offloaded with a well placed precisely over the nodule \u2014 position accuracy is everything.",
@@ -71,7 +72,7 @@ export const GLOSSARY = {
   "Tri-Lam": "Three-layer diabetic construction. \u201cTri\u201d = three. A firmer base, a mid-layer, and a top cover. Inside Hike, the finished Tri-Lams are called Double Sweet or Triple Sweet.",
   "Sweet": "Hike\u2019s internal company name for a finished Bi-Lam insole \u2014 a 35-durometer EVA base, 10 mm heel cup, up to 200 lbs, 4.725 mm preset forefoot, with a 1/8\u2033 P-Cell top cover (T1).",
   "Double Sweet": "Hike\u2019s internal company name for a finished mid-range Tri-Lam \u2014 a 45-durometer EVA base, 10 mm heel cup, 200\u2013295 lbs, 4.725 mm preset forefoot, with 1/16\u2033 Poron and 1/16\u2033 P-Cell (T2).",
-  "Triple Sweet": "Hike\u2019s internal company name for a finished firm Tri-Lam \u2014 a 55-durometer cork base, 10 mm heel cup, 295 lbs and above, 3.175 mm preset forefoot, with 1/16\u2033 Poron and 1/8\u2033 P-Cell (T3).",
+  "Triple Sweet": "Hike\u2019s internal company name for a finished firm Tri-Lam \u2014 a 55-durometer EVA base, 10 mm heel cup, 295 lbs and above, 3.175 mm preset forefoot, with 1/16\u2033 Poron and 1/8\u2033 P-Cell (T3).",
   "BYO": "Build Your Own diabetic insert. Used on non-Medicare orders that need a thinner forefoot than stock PDAC-approved Sweets. Platform path: Insert Type \u2192 Diabetic \u2192 Diabetic Insert Type \u2192 Build Your Own \u2192 Base (35 or 45 durometer EVA). Options include thinner forefoot, gradual taper, \u00be-length, or a sulcus base with a full-length top cover. A \u00be-length base is 0.8 mm with a full-length cover.",
   "EVA": "A durable mid-soft foam used as a diabetic base (35 / 45 / 55 durometer) or as a BYO base / mid-layer.",
   "Puff": "A soft cushioning top cover. The standard comfort layer on a UCBL (1/8\u2033 Puff).",
@@ -101,7 +102,7 @@ export const CHAPTERS = [
         film: [
           { po: "CPO-307228", side: "LEFT", title: "Functional Orthotic", sub: "Biomechanical correction and support", camera: "overview" },
           { po: "CPO-307089", side: "LEFT", title: "Diabetic Orthotic", sub: "Pressure offloading and protective design", camera: "overview" },
-          { po: "CPO-307216", side: "LEFT", title: "Hike Shell", sub: "Our flagship 3D-printed TPU shell", camera: "overview" },
+          { po: "HIKE-SHELL", side: "LEFT", title: "Hike Shell", sub: "Our 3/4-length 3D-printed TPU shell", camera: "overview" },
           { po: "CPO-302402", side: "LEFT", title: "UCBL", sub: "Deep heel cup and high walls for control", camera: "heel" },
           { po: "PAIR-TOP-COVER", side: "LEFT", title: "Finished insole", sub: "", camera: "overview", cover: "T3" },
         ],
@@ -151,7 +152,7 @@ export const CHAPTERS = [
         materials: true,
         steps: [
           {
-            text: "<p>Now that you understand how an order flows from scan to shipment, it's time to get hands-on with the actual product. Every insole we make at Hike is built from two physical components \u2014 the base and the top cover \u2014 and knowing these two things inside and out is what separates someone who works with insoles from someone who truly understands them. The base of the insole is the 3D-printed structural foundation, shaped precisely to the patient's foot geometry. Some bases are shells \u2014 Hike Shell, Flexible Shell, UCBL. Diabetic Sweets and Corkbase are bases, not shells. The top cover is the fabric layer glued on top \u2014 the surface the patient's foot actually rests on every single day. Together, these two components determine how an insole feels, how it performs, and whether it does its job for that patient.</p><p>At Hike, we don't use a one-size-fits-all approach to either. We have a thoughtfully designed lineup of base types \u2014 each built for a different clinical need, foot type, or material preference \u2014 and a carefully coded system of top covers called T-codes, where every code represents a specific material recipe, layer count, and finished thickness. From the softest diabetic P-Cell cover to a firm athletic Spenco layer, every choice has a reason behind it. The pages that follow will walk you through every base we print and every top cover we glue \u2014 so that when you see an insole on the floor, in QC, or coming off the finishing wheel, you know exactly what you're looking at and why it was built that way. \ud83e\uddb6</p>",
+            text: "<p>Now that you understand how an order flows from scan to shipment, it's time to get hands-on with the actual product. Every insole we make at Hike is built from two physical components \u2014 the base and the top cover \u2014 and knowing these two things inside and out is what separates someone who works with insoles from someone who truly understands them. The base of the insole is the 3D-printed structural foundation, shaped precisely to the patient's foot geometry. A {{shell}} is 3/4 length \u2014 only Hike Shell. Everyday, Sport, Corkbase, Flexible Shell, UCBL, and the Sweets are bases of the insole, not shells. The top cover is the fabric layer glued on top \u2014 the surface the patient's foot actually rests on every single day. Together, these two components determine how an insole feels, how it performs, and whether it does its job for that patient.</p><p>At Hike, we don't use a one-size-fits-all approach to either. We have a thoughtfully designed lineup of base types \u2014 each built for a different clinical need, foot type, or material preference \u2014 and a carefully coded system of top covers called T-codes, where every code represents a specific material recipe, layer count, and finished thickness. From the softest diabetic P-Cell cover to a firm athletic Spenco layer, every choice has a reason behind it. The pages that follow will walk you through every base we print and every top cover we glue \u2014 so that when you see an insole on the floor, in QC, or coming off the finishing wheel, you know exactly what you're looking at and why it was built that way. \ud83e\uddb6</p>",
           },
         ],
       },
@@ -165,19 +166,19 @@ export const CHAPTERS = [
             camera: "heelProfile",
             cover: "T1",
             pair: [{ po: "PAIR-TOP-COVER", side: "LEFT" }],
-            text: "<p>When it comes to diabetic insoles, everything starts with one critical question: how much protection does this patient's foot need? Diabetic patients \u2014 especially those with {{neuropathy}}, poor circulation, or a history of ulcers \u2014 cannot feel pressure building up under their feet the way a healthy patient can. That means a shoe that feels fine to them could be causing serious damage without any warning. This is why the Sweet family exists. Every diabetic base we print is engineered first and foremost around pressure relief and skin protection, and the {{durometer}} \u2014 the firmness of the base \u2014 is the primary clinical dial a clinician turns to match the insole to the patient's risk level.</p><p>There are three stock PDAC-approved diabetic inserts in this family: {{Sweet}}, {{Double Sweet}}, and {{Triple Sweet}}. Non-Medicare orders that need a thinner forefoot than these presets use {{BYO}} \u2014 that is the next lesson.</p><p>The softest of the three is the {{Sweet}} (Diabetic 35). At 35 durometer EVA, this is the gentlest base we produce \u2014 almost cloud-like underfoot. It is designed for the highest-risk diabetic feet: patients with active {{neuropathy}}, fragile skin, open wounds, or extreme pressure sensitivity. The lower the durometer, the more the base gives and distributes load across a wider surface area rather than concentrating it at high-pressure points. Paired with a T1 top cover \u2014 a single layer of 1/8\u2033 {{P-Cell}} foam \u2014 the foot rests on a soft, friction-reducing surface that is kind to even the most vulnerable skin.</p><div class=\"spec\"><i><b>Base</b><span>35 durometer EVA</span></i><i><b>Heel cup</b><span>Standard 10 mm</span></i><i><b>Weight</b><span>Up to 200 lbs</span></i><i><b>Forefoot</b><span>Preset 4.725 mm</span></i><i><b>Top cover</b><span>1/8\u2033 P-Cell (T1)</span></i></div><div class=\"callout\"><b>Clinic limit</b>Diabetic EVA can be adjusted in the clinic by up to about 2 mm. Never use a heat gun on any Hike device. Never place a Hike device in an oven. If something is not right, a free remake is the correct path \u2014 not in-clinic modification.</div>",
+            text: "<p>When it comes to diabetic insoles, everything starts with one critical question: how much protection does this patient's foot need? Diabetic patients \u2014 especially those with {{neuropathy}}, poor circulation, or a history of ulcers \u2014 cannot feel pressure building up under their feet the way a healthy patient can. That means a shoe that feels fine to them could be causing serious damage without any warning. This is why the Sweet family exists. Every diabetic base we print is engineered first and foremost around pressure relief and skin protection, and the {{durometer}} \u2014 the firmness of the base \u2014 is the primary clinical dial a clinician turns to match the insole to the patient's risk level.</p><table class=\"facts\"><tr><th>Base Model</th><th>Behaves Like</th><th>Choose When</th></tr><tr><td>{{Sweet}} / {{Double Sweet}} / {{Triple Sweet}}</td><td>Diabetic (EVA, 35 / 45 / 55)</td><td>Diabetic accommodation; firmness rises 35\u219255</td></tr></table><p>The Sweet family is built entirely around one clinical reality: diabetic patients cannot afford pressure. The three bases in this family \u2014 {{Sweet}} at 35 durometer, {{Double Sweet}} at 45, and {{Triple Sweet}} at 55 \u2014 all use {{EVA}} as their base material and are all designed for diabetic accommodation. The durometer is the only dial that changes between them, and that dial maps directly to the patient's body weight and risk level. All three are stock PDAC-approved inserts. Non-Medicare orders that need a thinner forefoot than these presets use {{BYO}} \u2014 that is the next lesson.</p><p><b>Sweet at 35 durometer</b> is the softest base Hike makes. It is prescribed for the highest-risk diabetic feet \u2014 patients up to 200 lbs, with {{neuropathy}}, fragile skin, active wounds, or extreme pressure sensitivity. At 35 durometer the base gives significantly under load, distributing pressure across the widest possible surface area rather than concentrating it at any single point. The standard heel cup depth is 10 mm and the preset forefoot thickness is 4.725 mm. Paired with a T1 top cover \u2014 a single 1/8\u2033 layer of {{P-Cell}} foam \u2014 the foot rests on the gentlest, most friction-reducing surface in the library.</p><div class=\"spec\"><i><b>Base</b><span>35 durometer EVA</span></i><i><b>Heel cup</b><span>Standard 10 mm</span></i><i><b>Weight</b><span>Up to 200 lbs</span></i><i><b>Forefoot</b><span>Preset 4.725 mm</span></i><i><b>Top cover</b><span>1/8\u2033 P-Cell (T1)</span></i></div><div class=\"callout\"><b>Clinic limit</b>Diabetic EVA can be adjusted in the clinic by up to about 2 mm. Never use a heat gun on any Hike device. Never place a Hike device in an oven. If something is not right, a free remake is the correct path \u2014 not in-clinic modification.</div>",
           },
           {
             camera: "heelProfile",
             cover: "T2",
             pair: [{ po: "PAIR-TOP-COVER", side: "LEFT" }],
-            text: "<p>Step up to the {{Double Sweet}} (Diabetic 45) and you get a base that balances protection with structure. At 45 durometer EVA it is firmer than the Sweet, offering more biomechanical support while still providing the cushioning a diabetic foot needs. This is the most commonly prescribed middle-ground diabetic base \u2014 suited for patients who need protection but also benefit from some correction or stability. Its paired top cover is T2: 1/16\u2033 {{Poron}} and 1/16\u2033 {{P-Cell}}. P-Cell is what the foot touches. Poron sits underneath as the shock absorber. Same finished thickness as T1 at 3.2 mm, but doing two jobs at once \u2014 skin protection and impact absorption.</p><div class=\"spec\"><i><b>Base</b><span>45 durometer EVA</span></i><i><b>Heel cup</b><span>Standard 10 mm</span></i><i><b>Weight</b><span>200 to 295 lbs</span></i><i><b>Forefoot</b><span>Preset 4.725 mm</span></i><i><b>Top cover</b><span>1/16\u2033 Poron + 1/16\u2033 P-Cell (T2)</span></i></div>",
+            text: "<p><b>Double Sweet at 45 durometer</b> is the middle diabetic base, prescribed for patients between 200 and 295 lbs. It is firmer than the Sweet, providing more structural response and biomechanical support while still delivering full diabetic protection. The same 10 mm heel cup and 4.725 mm forefoot thickness. Paired with T2 \u2014 1/16\u2033 {{P-Cell}} on top with 1/16\u2033 {{Poron}} shock absorption underneath \u2014 it gives the foot both skin protection and impact control in a single two-layer cover. Same finished thickness as T1 at 3.2 mm, doing two jobs at once. This is the most commonly prescribed middle-ground diabetic base for patients who need protection but also benefit from some correction and stability.</p><div class=\"spec\"><i><b>Base</b><span>45 durometer EVA</span></i><i><b>Heel cup</b><span>Standard 10 mm</span></i><i><b>Weight</b><span>200 to 295 lbs</span></i><i><b>Forefoot</b><span>Preset 4.725 mm</span></i><i><b>Top cover</b><span>1/16\u2033 Poron + 1/16\u2033 P-Cell (T2)</span></i></div>",
           },
           {
             camera: "heelProfile",
             cover: "T3",
             pair: [{ po: "PAIR-TOP-COVER", side: "LEFT" }],
-            text: "<p>At the top of the Sweet family sits the {{Triple Sweet}} (Diabetic 55). The base is 55 durometer cork \u2014 the firmest stock diabetic base we make \u2014 used for heavier patients, or cases where a clinician needs more rigid correction alongside the diabetic protection. Its T3 top cover is the thickest in the Sweet family at nearly 5 mm \u2014 a full 1/8\u2033 of {{P-Cell}} on top of a 1/16\u2033 {{Poron}} shock layer underneath. When you finish a Triple Sweet on the wheel, you can actually see the two distinct layers at the edge \u2014 two visible colors where the stacked materials meet. That visual is your quick confirmation on the floor that you are looking at a T3 build.</p><div class=\"spec\"><i><b>Base</b><span>55 durometer cork</span></i><i><b>Heel cup</b><span>Standard 10 mm</span></i><i><b>Weight</b><span>295 lbs and above</span></i><i><b>Forefoot</b><span>Preset 3.175 mm</span></i><i><b>Top cover</b><span>1/16\u2033 Poron + 1/8\u2033 P-Cell (T3)</span></i></div>",
+            text: "<p><b>Triple Sweet at 55 durometer</b> is the firmest diabetic base, prescribed for patients 295 lbs and above. At 55 durometer it provides the most structural correction of the three \u2014 suited for heavier patients or cases where the clinician needs more rigid diabetic control alongside full pressure protection. Forefoot thickness drops to 3.175 mm at this durometer, and the base is paired with T3 \u2014 a full 1/8\u2033 {{P-Cell}} layer over 1/16\u2033 {{Poron}} \u2014 the thickest diabetic cover in the library at approximately 4.8 mm. The two stacked layers are visible as two distinct colors at the edge of every finished Triple Sweet \u2014 that two-color edge is your visual confirmation on the floor that you are looking at a T3 build on a 55 durometer base.</p><div class=\"callout\"><b>One rule across all three</b>Durometer follows body weight, not diagnosis alone. Firmness rises from 35 to 55 as patient weight increases. A lighter diabetic patient on a 55 durometer base is not getting the pressure relief their foot needs. A heavier patient on a 35 durometer base risks bottoming out the material with every step. Match the durometer to the weight range, every time.</div><div class=\"spec\"><i><b>Base</b><span>55 durometer EVA</span></i><i><b>Heel cup</b><span>Standard 10 mm</span></i><i><b>Weight</b><span>295 lbs and above</span></i><i><b>Forefoot</b><span>Preset 3.175 mm</span></i><i><b>Top cover</b><span>1/16\u2033 Poron + 1/8\u2033 P-Cell (T3)</span></i></div>",
           },
         ],
       },
@@ -194,39 +195,118 @@ export const CHAPTERS = [
       {
         id: "functional-bases",
         title: "Functional Family Bases",
-        models: [{ po: "CPO-307216", side: "LEFT" }],
+        models: [{ po: "CPO-307228", side: "LEFT" }],
         camera: "overview",
+        hideHighlight: true,
         steps: [
           {
             camera: "overview",
-            pair: [{ po: "CPO-307216", side: "LEFT" }],
-            legend: "Sport / Everyday · 3/4-length TPU shell",
-            text: "<p>The functional family: Hike Sport, Hike Everyday, Flexible Shell, Corkbase, {{UCBL}}, and Flexible UCBL.</p><p>Hike Sport and Hike Everyday are <b>not</b> the same device. Both are co-poly function, but Sport carries more support. Sport is the higher-support version \u2014 suited for active patients who need more control. Everyday is the flexible version \u2014 suited for everyday wear, comfort with support, and first-time users. If you are on the floor and you see a functional insole without any specialty designation, it is almost certainly one of these two. Read the order: Sport means more support; Everyday means more give.</p><details class=\"lab-note\"><summary>Coming from a traditional lab</summary><div><p>A clinician who asks for a co-poly functional shell is asking for Hike Sport or Everyday \u2014 or Hike Shell if they want the thin co-poly look. Same flex and support. More consistent build.</p><table class=\"facts\"><tr><th>Material</th><th>Feel and best for</th></tr><tr><td>Co-poly functional shell</td><td>Flexible with cushion and rebound; good arch support for everyday wear</td></tr><tr><td>Poly-Pro \u2014 rigid</td><td>Very rigid, true arch support, no give. Firm-control cases such as plantar fasciitis that need a hard device</td></tr></table><p>Hike uses a thinner base for a more flexible feel and builds the base thicker for firmer control. The trade-off is a thicker device, especially through the forefoot.</p></div></details>"
+            pair: [{ po: "CPO-307228", side: "LEFT" }],
+            legend: "Functional family · choose the base",
+            text: "<p>The functional family is four everyday bases, then Flexible Shell (a <b>base of the insole</b>, not a shell), {{UCBL}}, and Flexible UCBL. Everyday, Sport, Shell, and Corkbase are <b>not</b> the same device. Pick from the table. The next pages take each one on its own.</p><table class=\"facts\"><tr><th>Base Model</th><th>Behaves Like</th><th>Choose When</th></tr><tr><td>Hike Everyday</td><td>Co-poly (flexible)</td><td>Everyday wear; comfort with support; first-time users</td></tr><tr><td>Hike Sport</td><td>Co-poly, more support</td><td>Active patients needing more support</td></tr><tr><td>Hike Shell</td><td>Thin co-poly look \u2014 3/4 {{shell}}</td><td>Traditional thin co-poly profile; low-volume shoes</td></tr><tr><td>Hike Corkbase</td><td>Thermal cork</td><td>Accommodative support with a cork feel</td></tr></table><p>The base is the foundation of everything. Before a single accommodation is added, before a top cover is chosen, before the device is printed \u2014 the base model sets the mechanical character of the insole. It determines how the device feels underfoot, how much correction it delivers, and how it behaves across thousands of steps. At Hike, every base is designed to replicate the function of a material clinicians already know from traditional lab work \u2014 but built more precisely, more consistently, and without the degradation that comes with hand-fabricated devices. The table above gives you the quick reference. The next four pages give you the full picture behind each choice.</p><p>Flexible Shell is a base of the insole. It is <b>not</b> a shell. A shell is 3/4 length \u2014 that is Hike Shell, and it is the only one. {{UCBL}} and Flexible UCBL sit after it. A clinician who asks for a co-poly functional base is asking for Everyday or Sport \u2014 or Hike Shell if they want the thin 3/4 co-poly look.</p>"
           },
+        ],
+      },
+      {
+        id: "hike-everyday",
+        title: "Hike Everyday",
+        models: [{ po: "CPO-307228", side: "LEFT" }],
+        camera: "overview",
+        hideHighlight: true,
+        steps: [
+          {
+            camera: "overview",
+            pair: [{ po: "CPO-307228", side: "LEFT" }],
+            legend: "Hike Everyday · co-poly (flexible)",
+            text: "<p>The <b>Hike Everyday</b> behaves like a co-poly flexible base \u2014 the most commonly prescribed functional material in traditional orthotics. Co-poly is known for its balance of flexibility and support: it gives slightly under load, returns energy, and provides consistent arch support without feeling rigid or uncomfortable. The Hike Everyday replicates that character exactly, making it the natural first choice for patients who are new to orthotics, patients who need comfort-forward support for all-day wear, and any case where the clinician wants a proven, familiar feel without aggressive correction.</p><p>This is the base you reach for when the goal is everyday support \u2014 a patient on their feet all day at work, a first-time orthotic wearer who needs to adapt gradually, or anyone whose prescription does not call for a specific performance or rigidity profile. The Everyday is forgiving, comfortable, and broadly appropriate across the widest range of foot types and shoe styles. It is the baseline from which everything else in the functional lineup steps away in a specific direction.</p><p>It is not Hike Sport and it is not Hike Shell. Everyday is the softer of the two co-poly functional bases. Sport carries more support. Hike Shell is the thin 3/4 traditional profile for low-volume shoes. If you are on the floor and you see a functional insole without any specialty designation, it is often Everyday or Sport. Read the order: Everyday means more give.</p><details class=\"lab-note\"><summary>Coming from a traditional lab</summary><div><p>A clinician who asks for a flexible co-poly is asking for Hike Everyday. Same flex and support. More consistent build.</p></div></details>"
+          },
+        ],
+      },
+      {
+        id: "hike-sport",
+        title: "Hike Sport",
+        models: [{ po: "CPO-307228", side: "LEFT" }],
+        camera: "overview",
+        hideHighlight: true,
+        steps: [
+          {
+            camera: "overview",
+            pair: [{ po: "CPO-307228", side: "LEFT" }],
+            legend: "Hike Sport · co-poly, more support",
+            text: "<p>The <b>Hike Sport</b> also behaves like co-poly \u2014 but with more support than the Everyday. Where the Everyday prioritizes comfort and adaptability, the Sport is built for patients who need a higher level of biomechanical correction and structural response. Active patients, patients with higher physical demand on their feet, or anyone whose condition requires the insole to work harder against pronation or rearfoot instability will benefit from the Sport over the Everyday.</p><p>The distinction matters in practice. A clinician prescribing for a runner, a construction worker, or an athlete is not looking for the same device as one prescribing for a sedentary patient or a first-time user. The Sport delivers the same co-poly profile the clinician knows \u2014 flexible, cushioned, with good arch support \u2014 but tuned for higher demand. Think of it as the Everyday with the correction dial turned up. Same material family, more mechanical work per step.</p><p>Both Sport and Everyday are co-poly functional bases. They are <b>not</b> the same device. Read the order: Sport means more support. Do not pick Hike Shell unless the Rx wants the thin 3/4 co-poly look for a low-volume shoe.</p><details class=\"lab-note\"><summary>Coming from a traditional lab</summary><div><p>A clinician who asks for a co-poly with more support is asking for Hike Sport.</p></div></details>"
+          },
+        ],
+      },
+      {
+        id: "hike-shell",
+        title: "Hike Shell \u2014 the 3/4 shell",
+        models: [{ po: "HIKE-SHELL", side: "LEFT" }],
+        camera: "overview",
+        hideHighlight: true,
+        steps: [
+          {
+            camera: "overview",
+            pair: [{ po: "HIKE-SHELL", side: "LEFT" }],
+            legend: "Hike Shell · 3/4 length · thin co-poly look",
+            text: "<p>This is the {{shell}}. <b>Hike Shell</b> is the only device in the lineup we call a shell, and the shape tells you why: it is <b>3/4 length</b>. The plate ends at the metatarsal line. Nothing sits under the met heads or the toes \u2014 the top cover carries on alone from here.</p><p>The Hike Shell replicates a thin co-poly profile \u2014 the slimmer, lower-volume version of the co-poly functional base that sits in dress shoes, slim athletic footwear, and any shoe where a standard-profile insole would not fit. Where the Everyday and Sport both carry a full-profile geometry, the Shell is built for space-constrained environments. A patient who wears dress shoes to work every day and needs orthotic support without a visible profile change is a Shell patient. A clinician ordering for low-volume footwear, tight toe boxes, or fashion-forward shoes will reach for the Shell.</p><p>Functionally it still delivers co-poly support and correction \u2014 the difference is purely in the profile geometry and forefoot thickness. It is thinner through the forefoot, lower in overall height, and designed to disappear inside the shoe rather than fill it. The Shell is also the right choice when a clinician specifically wants the traditional thin co-poly aesthetic that their patients are used to from conventional lab-made devices.</p>"
+          },
+          {
+            camera: "forefoot",
+            pair: [{ po: "HIKE-SHELL", side: "LEFT" }],
+            legend: "Hike Shell · the met line is the front edge",
+            text: "<p><b>Offloads on a Hike Shell \u2014 the rule.</b> There are exactly two: <b>Base of 5th</b> and <b>Heel Spur</b>. Both sit behind the metatarsal line, on the part of the foot the shell actually covers. Nothing else.</p><div class=\"callout\"><b>Never on a Hike Shell</b>Met head offloads (1st through 5th and the combos), the plug, Drill &amp; Fill, Met Pad, Met Bar, Dancer's and Reverse Dancer's pads, neuroma pad, toe crest. The shell ends before the met heads \u2014 there is no plate there to cut a well into or raise a pad from. If an order shows a met-zone accommodation on a Hike Shell, stop. It is an ordering error, not a build.</div><p>Everything forefoot lives on the full-length bases \u2014 Everyday, Sport, Corkbase, Flexible Shell, and the Sweets. That is the QC read: see a 3/4 plate, expect a clean forefoot edge and at most a lateral base-of-5th well and a medial heel-spur well.</p><details class=\"lab-note\"><summary>Coming from a traditional lab</summary><div><p>A clinician who asks for the thin co-poly look is asking for Hike Shell \u2014 not Everyday, not Sport, not Flexible Shell.</p></div></details>"
+          },
+        ],
+      },
+      {
+        id: "hike-corkbase",
+        title: "Hike Corkbase",
+        models: [{ po: "CPO-307228", side: "LEFT" }],
+        camera: "overview",
+        hideHighlight: true,
+        steps: [
+          {
+            camera: "overview",
+            pair: [{ po: "CPO-307228", side: "LEFT" }],
+            legend: "Hike Corkbase · thermal cork",
+            text: "<p>The <b>Hike Corkbase</b> replicates the function and feel of thermal cork \u2014 a traditional orthotic material used in accommodative devices for its natural warmth, lightweight character, and distinctive flex properties. {{Cork}} has a feel that is fundamentally different from TPU or EVA \u2014 it is warmer underfoot, slightly more rigid in a natural way, and has a live flex that many patients find more comfortable than synthetic materials. The Corkbase replicates all of those properties in a printed device that can be modified and accommodated just like traditional cork.</p><p>The Corkbase is prescribed for patients who specifically benefit from accommodative support with a cork feel \u2014 often patients who have worn cork-based devices before and responded well to them, or cases where the clinician wants the thermal and flex properties of cork alongside the precision and customization of a 3D-printed device. It is not a correction-focused base in the same way as the Sport or Everyday \u2014 it is an accommodative base, prioritizing comfort, natural feel, and total contact over aggressive biomechanical correction. It is a base, not a shell.</p><details class=\"lab-note\"><summary>Coming from a traditional lab</summary><div><p>A thermal cork base maps to Hike Corkbase. It can be modified like cork and keeps the function of thermal cork.</p></div></details><div class=\"callout\"><b>Clinic limit</b>Cork-mimic can be adjusted slightly deeper than 2 mm. Never use a heat gun. Never put a Hike device in an oven. If the fit is off, a free remake is the path.</div>"
+          },
+        ],
+      },
+      {
+        id: "flexible-shell",
+        title: "Flexible Shell \u2014 Base of the Insole",
+        models: [{ po: "PAIR-TOP-COVER", side: "LEFT" }],
+        camera: "heelProfile",
+        hideHighlight: true,
+        steps: [
           {
             camera: "heelProfile",
             cover: "T6",
             pair: [{ po: "PAIR-TOP-COVER", side: "LEFT" }],
-            legend: "Flexible Shell · T6 Spenco",
-            text: "<p>The Hike Flexible Shell takes a different approach. Where the standard base has a firm, structured feel, the Flexible Shell uses a softer, more pliable TPU print structure that is designed to form and adapt around the foot over time. It is not rigid correction \u2014 it is adaptive support. The base conforms as the patient wears it, making it particularly suited for patients who find standard bases too stiff or who need a gentler transition into orthotic support. Its default top cover is T6 \u2014 a 1/8\u2033 Spenco layer that adds athletic spring and energy return on top of the adaptive base underneath.</p>",
+            legend: "Flexible Shell · base of the insole · T6 Spenco",
+            text: "<p>The Hike Flexible Shell is a <b>base of the insole</b>, not a {{shell}}. A shell is 3/4 length \u2014 that is Hike Shell. Flexible Shell is a full-length adaptive base.</p><p>Where a standard plate feels firm and structured, Flexible Shell uses a softer, more pliable TPU print that forms around the foot over time. It is not rigid correction \u2014 it is adaptive support. Choose it for patients who find a 3/4 shell too stiff, or who need a gentler transition into orthotic support. Default top cover is T6 \u2014 a 1/8\u2033 Spenco layer for athletic spring on top of this adaptive base.</p>",
           },
-          {
-            camera: "overview",
-            pair: [{ po: "CPO-307216", side: "LEFT" }],
-            legend: "Corkbase · cork as the base",
-            text: "<p>The Hike Corkbase is the most distinctive base in the functional lineup because the base itself is made from {{Cork}} \u2014 not a TPU print with a cork top layer, but cork as the actual base material. Cork has its own natural flex, warmth, and cushioning characteristics that are fundamentally different from printed TPU. It is lightweight, naturally antimicrobial, and gives a warm, organic feel underfoot that some patients strongly prefer over plastic or synthetic materials. It is a specialty option, typically chosen for patients with a specific material preference or sensitivity to synthetic bases.</p><details class=\"lab-note\"><summary>Coming from a traditional lab</summary><div><p>A thermal cork base maps to Hike's cork-mimic base. It can be modified like cork and keeps the function and performance of thermal cork.</p></div></details><div class=\"callout\"><b>Clinic limit</b>Cork-mimic can be adjusted slightly deeper than 2 mm. Never use a heat gun. Never put a Hike device in an oven. If the fit is off, a free remake is the path.</div>",
-          },
+        ],
+      },
+      {
+        id: "ucbl",
+        title: "UCBL & Flexible UCBL",
+        models: [{ po: "CPO-302402", side: "LEFT" }],
+        camera: "heel",
+        hideHighlight: true,
+        steps: [
           {
             camera: "heel",
             pair: [{ po: "CPO-302402", side: "LEFT" }],
             legend: "UCBL · T7 Puff",
-            text: "<p>The Hike {{UCBL}} is in a category of its own. Named after the University of California Biomechanics Laboratory where the design originated, the UCBL is not just a deeper insole \u2014 it is a completely different geometry. Where every other functional shell sits relatively flat inside the shoe with modest side walls, the UCBL wraps up around the heel and midfoot with tall medial and lateral flanges, fully enclosing the rearfoot. This high-wall design is what gives it exceptional medial-lateral control \u2014 holding the heel firmly in a neutral position and preventing the kind of collapse and roll that standard bases cannot correct alone. It is most commonly prescribed for significant flatfoot, pediatric pronation, and cases where maximum rearfoot control is the clinical priority. Its default top cover is T7 \u2014 a 1/8\u2033 {{Puff}} layer \u2014 which lines the inside of those high walls and the base, giving the enclosed heel a comfortable padded surface to rest against.</p>",
+            text: "<p>The Hike {{UCBL}} is a high-wall <b>base</b>, not a Hike Shell. Named after the University of California Biomechanics Laboratory, it is not just a deeper insole \u2014 it is a different geometry. Where Everyday, Sport, and Hike Shell sit relatively flat with modest side walls, the UCBL wraps the heel and midfoot with tall medial and lateral flanges.</p><p>That high-wall design holds the heel in a neutral position. Prescribed for significant flatfoot, pediatric pronation, and cases that need maximum rearfoot control. Default top cover is T7 \u2014 a 1/8\u2033 {{Puff}} layer lining the walls and the seat.</p>",
           },
           {
             camera: "heel",
             pair: [{ po: "CPO-302402", side: "LEFT" }],
             legend: "Flexible UCBL \u00b7 30 mm heel cup \u00b7 T7 Puff",
-            text: "<p>The <b>Hike Flexible UCBL</b> is the adaptive sibling of the rigid UCBL. Same job \u2014 maximum rearfoot control \u2014 on a flexible base with corkbase walls instead of a rigid shell. Comparable to a Poly-Pro base with 1/8\u2033 Puff, walls made in a corkbase, and a 30 mm heel cup. Use it when the clinician wants UCBL-level hold without a rigid plate.</p><div class=\"spec\"><i><b>Base</b><span>Flexible base with corkbase walls</span></i><i><b>Heel cup</b><span>30 mm</span></i><i><b>Default cover</b><span>1/8\u2033 Puff (T7)</span></i><i><b>Use when</b><span>Maximum rearfoot control, flexible adaptive base rather than a rigid shell</span></i></div>",
+            text: "<p>The <b>Hike Flexible UCBL</b> is the adaptive sibling of the rigid UCBL. Same job \u2014 maximum rearfoot control \u2014 on a flexible base with corkbase walls instead of a rigid UCBL plate. Comparable to a Poly-Pro base with 1/8\u2033 Puff, walls made in a corkbase, and a 30 mm heel cup. Use it when the clinician wants UCBL-level hold without a rigid plate.</p><div class=\"spec\"><i><b>Base</b><span>Flexible base with corkbase walls</span></i><i><b>Heel cup</b><span>30 mm</span></i><i><b>Default cover</b><span>1/8\u2033 Puff (T7)</span></i><i><b>Use when</b><span>Maximum rearfoot control, flexible adaptive base rather than a rigid UCBL</span></i></div>",
           },
         ],
       },
@@ -245,7 +325,7 @@ export const CHAPTERS = [
           { camera: "overview", cover: "T4", legend: "T4 \u00b7 1/16\u2033 Preferred Puff over 1/16\u2033 Poron \u00b7 3.2 mm \u00b7 2 layers", text: "<p><b>T4</b> is the everyday functional workhorse \u2014 Preferred Puff on top, {{Poron}} underneath. Preferred Puff is perforated: small holes punched through the surface so air circulates as the patient walks. That breathability makes T4 comfortable for all-day wear without the heat and moisture of a solid foam surface. The Poron underneath provides shock absorption.</p><p>T4 is not a diabetic cover. Preferred Puff does not have the friction-reducing properties of {{P-Cell}} and is not designed for high-risk diabetic skin. Its job is comfort and shock control for a functional patient wearing the insole through a normal day. Face-on, the regular holes are the identifying mark of Preferred Puff. At the edge you will see the two-layer split just as on T2 and T3. 3.2 mm finished \u2014 same as T1 and T2.</p>" },
           { camera: "overview", cover: "T5", legend: "T5 \u00b7 Vinyl \u00b7 1.0 mm \u00b7 1 layer", text: "<p><b>T5</b> is the thinnest cover in the library at 1.0 mm \u2014 a single layer of vinyl with no foam, no cushioning, and no shock absorption. Vinyl is prescribed for one reason: the patient's shoe has no room for anything thicker. When even a 1.6 mm cover would keep the insole from fitting, T5 is the answer.</p><p>T5 is not a comfort cover and not a performance cover. It is an engineering solution to a space problem. The patient gets the biomechanical correction of the base with the minimum possible material above it. Vinyl is smooth, low-friction, and thin enough to be almost imperceptible. On the floor it is unmistakable \u2014 dramatically thinner than every other cover, rigid and smooth, no foam feel. Handle carefully during gluing: any wrinkle or bubble will show through.</p>" },
           { camera: "overview", cover: "T6", legend: "T6 \u00b7 1/8\u2033 Spenco \u00b7 3.2 mm \u00b7 1 layer", text: "<p><b>T6</b> is the athletic spring cover \u2014 a single full layer of 1/8\u2033 Spenco. Spenco compresses under load and then rebounds, giving the foot a spring-like response rather than the passive cushioning of {{Puff}} or the protective softness of {{P-Cell}}. This is the cover for performance and activity-focused patients.</p><p>T6 is the default for the Hike Flexible Shell. The Flexible Shell adapts to the foot; the Spenco cover adds energy return on top of that adaptive base. Built for patients who are active \u2014 sport or high-output work \u2014 and need a cover that gives back as much as it absorbs. On the floor Spenco feels firmer and more springy than Puff, with a slightly textured surface. At 3.2 mm it is the same finished thickness as T1, T2, T4, and T7.</p>" },
-          { camera: "overview", cover: "T7", legend: "T7 \u00b7 1/8\u2033 Puff \u00b7 3.2 mm \u00b7 1 layer", text: "<p><b>T7</b> is a single full layer of 1/8\u2033 {{Puff}} \u2014 the standard soft comfort cover and the default for the Hike {{UCBL}}. Puff is softer and more yielding than Preferred Puff and is not perforated. It provides a warm, cushioned surface well-suited to the UCBL's enclosed heel cup, where the cover lines the flat base and the inside walls of the high medial and lateral flanges.</p><p>On a UCBL, T7 means the foot sits inside a fully cushioned environment \u2014 heel and arch wrapped in soft foam from all directions, not just from below. On any other functional shell it is also valid when a clinician wants soft, straightforward cushioning without the two-layer complexity of T4. T7 and T8 are the same Puff, same surface feel. T7 is 3.2 mm. T8 is 1.6 mm. If you are not sure which is which, measure at the edge.</p>" },
+          { camera: "overview", cover: "T7", legend: "T7 \u00b7 1/8\u2033 Puff \u00b7 3.2 mm \u00b7 1 layer", text: "<p><b>T7</b> is a single full layer of 1/8\u2033 {{Puff}} \u2014 the standard soft comfort cover and the default for the Hike {{UCBL}}. Puff is softer and more yielding than Preferred Puff and is not perforated. It provides a warm, cushioned surface well-suited to the UCBL's enclosed heel cup, where the cover lines the flat base and the inside walls of the high medial and lateral flanges.</p><p>On a UCBL, T7 means the foot sits inside a fully cushioned environment \u2014 heel and arch wrapped in soft foam from all directions, not just from below. On any other functional base it is also valid when a clinician wants soft, straightforward cushioning without the two-layer complexity of T4. T7 and T8 are the same Puff, same surface feel. T7 is 3.2 mm. T8 is 1.6 mm. If you are not sure which is which, measure at the edge.</p>" },
           { camera: "overview", cover: "T8", legend: "T8 \u00b7 1/16\u2033 Puff \u00b7 1.6 mm \u00b7 1 layer", text: "<p><b>T8</b> is T7 at half the thickness \u2014 1/16\u2033 of {{Puff}} at 1.6 mm. Same soft comfort material, same surface feel, half the profile. Prescribed when a clinician wants the Puff feel but the shoe cannot take a full 3.2 mm cover, or when a thinner profile is more appropriate for the footwear. It is not a compromise \u2014 it is a deliberate choice when space calls for it. T8 and T7 are visually identical in material. Thickness is the only distinguishing feature.</p>" },
           { camera: "overview", cover: "T9", legend: "T9 \u00b7 1/16\u2033 Neo Sponge \u00b7 1.6 mm \u00b7 1 layer", text: "<p><b>T9</b> is T6's thinner sibling \u2014 1/16\u2033 Neo Sponge at 1.6 mm. Neo Sponge and Spenco are the same sheet material family: same athletic spring, same energy return. The difference is purely thickness: T6 is 3.2 mm, T9 is 1.6 mm. T9 gives the performance feel of an athletic cover in a thinner profile \u2014 tighter athletic footwear where a full 3.2 mm Spenco would not fit, but the clinician still wants spring rather than the passive cushioning of {{Puff}}.</p><p>On the floor T9 and T6 feel identical when you press them \u2014 same spring, same texture. Thickness separates them.</p>" },
           { camera: "overview", cover: "T11", legend: "T11 \u00b7 1/16\u2033 P-Cell \u00b7 1.6 mm \u00b7 1 layer", text: "<p><b>T11</b> is the thin diabetic skin cover \u2014 1/16\u2033 of {{P-Cell}} at 1.6 mm with no {{Poron}} underneath. P-Cell at its minimum thickness. Used when a diabetic patient needs the skin protection and friction reduction that only P-Cell can provide, but the shoe cannot take a thicker cover and a single-layer solution is clinically appropriate. There is no shock absorption in T11 \u2014 just P-Cell, just skin protection, just space efficiency. It is the diabetic answer to the same problem T8 solves for comfort covers and T9 solves for athletic covers: same material family, thinner dose.</p>" },
@@ -260,289 +340,1058 @@ export const CHAPTERS = [
     id: "accommodations",
     number: 3,
     title: "Accommodations",
-    intro: "The base is chosen. Now the precision tools from SoleGen's add-on library: an {{accommodation}} is a local modification the clinician writes on the Rx. One flow \u2014 heel posts, then reinforcement, then extensions and cutouts, then wedges and posting, then flanges, then pads, then offloads, then grooves.",
+    intro: "The base is chosen. Now the precision tools from SoleGen's add-on library: an {{accommodation}} is a local modification the clinician writes on the Rx. One rule for this chapter: <b>one accommodation, one page.</b> Every page is a single accommodation on a real device \u2014 heel posts, then reinforcement, then extensions and cutouts, then wedges and posting, then flanges, then pads, then offloads, then grooves.",
     lessons: [
       {
-        id: "what-is-accommodation",
-        title: "What is an accommodation?",
-        layout: "info",
-        steps: [
+        "id": "what-is-accommodation",
+        "title": "What is an accommodation?",
+        "layout": "info",
+        "steps": [
           {
-            text: "<p>You have learned the base of the insole. You understand when that base is a shell \u2014 Hike Shell, Flexible Shell, UCBL \u2014 and when it is a printed foam or cork base. You know the top cover sitting on top of it. And honestly? That alone is already a better insole than anything sitting on a pharmacy shelf. But here is where Hike gets truly remarkable \u2014 because the base is just the beginning.</p><p>An {{accommodation}} is a modification added to a finished base that targets one specific area of the foot \u2014 delivering exactly the relief, support, correction, or cushioning that the base alone simply cannot give. Think about what that means for a moment. Two patients can walk in with the same base, the same top cover, and the same durometer \u2014 and end up with completely different insoles, because the accommodations built into each one are responding to two completely different problems on two completely different feet. That is the power of this system. The base handles the whole foot. The accommodation speaks directly to the one spot that needs something extra.</p><p>How those modifications are built is as important as what they do. Hike does not glue foam, scoop Poron, or color a second wedge. The four families below are printed into the device.</p><table class=\"facts\"><tr><th>Modification</th><th>How it is added</th></tr><tr><td>Carve-outs (offloads, drill-and-fills)</td><td>Soft surface printed directly into the base \u2014 not Poron carved or scooped. Exact, durable depth. Not visible from the side.</td></tr><tr><td>Padding (met / arch / heel / dancer pads)</td><td>Printed into the base with multi-density printing rather than glued foam. Felt under the cover. Heel pad is intrinsic and concealed.</td></tr><tr><td>Wedges and postings</td><td>Intrinsic postings printed into the plantar surface. Extrinsic postings and wedges printed from the same material and color \u2014 no seam or second color.</td></tr><tr><td>Flanges</td><td>Vertical walls printed along the medial or lateral border to resist deviation and keep the foot on the base.</td></tr></table><details class=\"lab-note\"><summary>Coming from a traditional lab</summary><div><p>If they look for carved Poron, glued pads, or a second-color post, this is the translation.</p><table class=\"facts\"><tr><th>They expect</th><th>What Hike does</th></tr><tr><td>Poron top layer, then carve/scoop offloads and drill-and-fills</td><td>Soft surface printed into the base. Exact, durable depth. Poron degrades and loses shape.</td></tr><tr><td>Met / Arch / Heel / Dancer pads glued in</td><td>Printed with multi-density. Integrated, will not shift or peel. Felt under the cover.</td></tr><tr><td>Extrinsic wedge in a second color, glued on</td><td>Same material, same color, one piece. No seam.</td></tr></table></div></details><p>And the range of what accommodations can do is genuinely extraordinary. They can block a joint from bending. They can float a painful bone so it never touches the insole surface. They can spread a pinched nerve apart by a single millimeter \u2014 and that one millimeter is the difference between a patient in burning pain and a patient who forgot they had a problem. They can redirect pressure away from an open wound on a diabetic foot, stiffen the arch against collapse, guide a child's gait out of in-toeing without a single surgery, and fill the void under a Charcot foot so completely that the insole becomes a cast. Every single one is driven by the prescription \u2014 never by habit, never by guesswork, never by default.</p><p>There are four verbs that govern everything in this chapter: RAISE, RELIEVE, STIFFEN, SOFTEN. Every accommodation you will ever see on a Hike insole is doing one of these four things. Learn to identify the verb, and you can read any prescription on sight \u2014 no matter how many accommodations are stacked on the same device. By the end of this chapter, that is exactly what you will be able to do. \ud83e\uddb6</p>"
-          },
-        ],
+            "text": "<p>You have learned the base of the insole. You understand when that base is the 3/4 {{shell}} — only Hike Shell — and when it is a functional base or a UCBL: Everyday, Sport, Corkbase, Flexible Shell, UCBL, or a Sweet. You know the top cover sitting on top of it. And honestly? That alone is already a better insole than anything sitting on a pharmacy shelf. But here is where Hike gets truly remarkable — because the base is just the beginning.</p><p>An {{accommodation}} is a modification added to a finished base that targets one specific area of the foot — delivering exactly the relief, support, correction, or cushioning that the base alone simply cannot give. Think about what that means for a moment. Two patients can walk in with the same base, the same top cover, and the same durometer — and end up with completely different insoles, because the accommodations built into each one are responding to two completely different problems on two completely different feet. That is the power of this system. The base handles the whole foot. The accommodation speaks directly to the one spot that needs something extra.</p><p>How those modifications are built is as important as what they do. Hike does not glue foam, scoop Poron, or color a second wedge. The four families below are printed into the device.</p><table class=\"facts\"><tr><th>Modification</th><th>How it is added</th></tr><tr><td>Carve-outs (offloads, drill-and-fills)</td><td>Soft surface printed directly into the base — not Poron carved or scooped. Exact, durable depth. Not visible from the side.</td></tr><tr><td>Padding (met / arch / heel / dancer pads)</td><td>Printed into the base with multi-density printing rather than glued foam. Felt under the cover. Heel pad is intrinsic and concealed.</td></tr><tr><td>Wedges and postings</td><td>Intrinsic postings printed into the plantar surface. Extrinsic postings and wedges printed from the same material and color — no seam or second color.</td></tr><tr><td>Flanges</td><td>Vertical walls printed along the medial or lateral border to resist deviation and keep the foot on the base.</td></tr></table><details class=\"lab-note\"><summary>Coming from a traditional lab</summary><div><p>If they look for carved Poron, glued pads, or a second-color post, this is the translation.</p><table class=\"facts\"><tr><th>They expect</th><th>What Hike does</th></tr><tr><td>Poron top layer, then carve/scoop offloads and drill-and-fills</td><td>Soft surface printed into the base. Exact, durable depth. Poron degrades and loses shape.</td></tr><tr><td>Met / Arch / Heel / Dancer pads glued in</td><td>Printed with multi-density. Integrated, will not shift or peel. Felt under the cover.</td></tr><tr><td>Extrinsic wedge in a second color, glued on</td><td>Same material, same color, one piece. No seam.</td></tr></table></div></details><p>And the range of what accommodations can do is genuinely extraordinary. They can block a joint from bending. They can float a painful bone so it never touches the insole surface. They can spread a pinched nerve apart by a single millimeter — and that one millimeter is the difference between a patient in burning pain and a patient who forgot they had a problem. They can redirect pressure away from an open wound on a diabetic foot, stiffen the arch against collapse, guide a child's gait out of in-toeing without a single surgery, and fill the void under a Charcot foot so completely that the insole becomes a cast. Every single one is driven by the prescription — never by habit, never by guesswork, never by default.</p><p>There are four verbs that govern everything in this chapter: RAISE, RELIEVE, STIFFEN, SOFTEN. Every accommodation you will ever see on a Hike insole is doing one of these four things. Learn to identify the verb, and you can read any prescription on sight — no matter how many accommodations are stacked on the same device. By the end of this chapter, that is exactly what you will be able to do. 🦶</p>"
+          }
+        ]
       },
       {
-        id: "heel-posts",
-        title: "Heel posts \u2014 Oval, Flat, U, Stabilizer",
-        models: [{ po: "SG-HEEL-POST-OVAL", side: "LEFT" }],
-        camera: "underside",
-        steps: [
-          { camera: "underside", legend: "Heel post \u00b7 Oval \u00b7 heel_post_oval", pair: [{ po: "SG-HEEL-POST-OVAL", side: "LEFT" }], text: "<p><b>Oval</b> is the most commonly used {{heel post}} in the Hike library \u2014 it works well across a wide range of foot types without being overly aggressive in any direction. It is an oval-shaped addition on the underside of the base, centered under the heel. The shape follows the {{calcaneus}}, which is roughly oval from below, so the Oval post distributes corrective force evenly around the heel rather than concentrating it on one edge or one side.</p><p>When a clinician prescribes Oval, the heel typically tilts inward (pronation) or outward (supination), but not so severely that they need an aggressive or highly specific correction. Oval gently guides the heel toward neutral \u2014 straight up and down \u2014 passively. The patient does not feel a hard push. The insole simply makes neutral the path of least resistance with every step, and over time the body adapts to landing correctly.</p><p>On the floor it looks like a smooth, rounded raised platform on the bottom of the base in the heel area. It is the standard starting point for rearfoot correction, and the one you will see most often. If you understand Oval, you understand the baseline that every other heel post is a variation of.</p>" },
-          { camera: "underside", legend: "Heel post \u00b7 Flat \u00b7 heel_post_flat", pair: [{ po: "SG-HEEL-POST-FLAT", side: "LEFT" }], text: "<p><b>Flat</b> is the most straightforward of the four \u2014 no angular bias, no medial or lateral tilt, just a uniform addition of material across the heel. Where Oval follows the natural rounded shape of the heel, Flat simply raises the entire heel plane evenly. Think of it as a platform under the heel rather than a corrective wedge.</p><p>The usual reason to prescribe it is heel height \u2014 to relieve tension in the Achilles and calf by slightly elevating the heel, or to create a height difference between heel and forefoot. It is also used when the clinician wants a solid base under the heel without directional correction: more material for cushioning or load distribution, not an angle.</p><p>It also replaces a separate heel lift the patient has been carrying. Building the height into the base makes one unified device instead of a layered workaround. On the floor it is easy to recognize \u2014 an even, uniform raise across the whole heel, with no taper or angle to either side.</p>" },
-          { camera: "underside", legend: "Heel post \u00b7 U \u00b7 heel_post_u", pair: [{ po: "SG-HEEL-POST-U", side: "LEFT" }], text: "<p>The <b>U</b> {{heel post}} is a horseshoe that wraps the outside edges of the heel and leaves the center completely open. That open center is the point. When there is pain right at the bottom center of the heel \u2014 a {{heel spur}}, a bruised fat pad, acute plantar fasciitis, or a bony prominence \u2014 material under that spot makes things worse. The U post builds up around the painful spot so surrounding tissue takes the load, and the problem area floats in the middle.</p><p>This is RELIEVE: you are not adding material to the painful spot, you are adding it everywhere around it so that spot never touches anything. The patient walks on the edges of the U; the center of the heel is suspended with every step. For heel spurs that can be the difference between walking comfortably and not putting weight on the foot at all.</p><p>On the floor it is one of the most visually distinct accommodations on a base \u2014 the cutout in the center, the raised walls on either side. When you see a U post, this patient has a localized problem at the center of the heel that the clinician has chosen not to load. Handle these carefully in finishing and QC: the relief zone and the symmetry of the U both matter to how the device works.</p>" },
-          { camera: "underside", legend: "Heel post \u00b7 Stabilizer \u00b7 heel_post_stabilizer", pair: [{ po: "SG-HEEL-POST-STABILIZER", side: "LEFT" }], text: "<p>The <b>Stabilizer</b> {{heel post}} is the most controlling of the four. Oval gently guides the heel toward neutral; Flat simply raises the heel plane. Stabilizer is for when the rearfoot needs to be held with minimal movement. It is broader, more built-out, and covers more of the heel than the other posts \u2014 a wider, more solid base against the forces that try to tip the heel into pronation or supination.</p><p>Think of a narrow chair leg versus a wide chair base. A narrow leg tips easily under load. A wide base resists tipping in every direction. Spreading the platform further out from the center of the heel makes it mechanically much harder for the heel to roll either way. For significant instability, hypermobility, or a history of ankle sprains where the heel collapses inward, Stabilizer gives the firm control a standard Oval cannot match.</p><p>You will see it on orders that need serious rearfoot control \u2014 often with medial {{flange}}s or rearfoot {{posting}}. On the floor it is noticeable by size and bulk at the heel. When you pick up a base with a Stabilizer post, you feel the extra weight and rigidity. That extra structure is deliberate \u2014 it is exactly what the patient needs.</p>" },
+        "id": "heel-post-oval",
+        "title": "Heel Post — Oval",
+        "models": [
+          {
+            "po": "SG-HEEL-POST-OVAL",
+            "side": "LEFT"
+          }
         ],
+        "camera": "underside",
+        "steps": [
+          {
+            "camera": "underside",
+            "legend": "Heel post · Oval · heel_post_oval",
+            "pair": [
+              {
+                "po": "SG-HEEL-POST-OVAL",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p><b>Oval</b> is the most commonly used {{heel post}} in the Hike library — it works well across a wide range of foot types without being overly aggressive in any direction. It is an oval-shaped addition on the underside of the base, centered under the heel. The shape follows the {{calcaneus}}, which is roughly oval from below, so the Oval post distributes corrective force evenly around the heel rather than concentrating it on one edge or one side.</p><p>When a clinician prescribes Oval, the heel typically tilts inward (pronation) or outward (supination), but not so severely that they need an aggressive or highly specific correction. Oval gently guides the heel toward neutral — straight up and down — passively. The patient does not feel a hard push. The insole simply makes neutral the path of least resistance with every step, and over time the body adapts to landing correctly.</p><p>On the floor it looks like a smooth, rounded raised platform on the bottom of the base in the heel area. It is the standard starting point for rearfoot correction, and the one you will see most often. If you understand Oval, you understand the baseline that every other heel post is a variation of.</p>"
+          }
+        ]
       },
       {
-        id: "reinforcement",
-        title: "Reinforcement \u2014 fan, ribs, isogrid, arch",
-        models: [{ po: "SG-REINFORCEMENT-RADIAL", side: "LEFT" }],
-        camera: "underside",
-        steps: [
-          { camera: "underside", legend: "Reinforcement \u00b7 Radial fan \u00b7 reinforcement_radial", pair: [{ po: "SG-REINFORCEMENT-RADIAL", side: "LEFT" }], text: "<p>One rule governs every reinforcement: <b>one pattern per device, no mixing</b>. Reinforcements are structural additions to the underside of the printed base \u2014 extra ribbing built into the plate to make it stiffer, stronger, and more resistant to deformation under load. They do not change the shape of the insole, they do not change what the patient feels through the top cover, and they are not visible when the finished insole is in a shoe. What they change is how the base behaves over thousands of steps \u2014 how well it holds its geometry, how it distributes force, and how long it lasts. Four patterns exist because each one is the right answer for a different mechanical problem.</p><p><b>Radial Fan.</b> The rays spread outward from the calcaneal tubercle \u2014 the bony point at the bottom of the heel bone where the {{plantar fascia}} originates \u2014 in a full 360\u00b0 pattern, following the same load paths the fascia uses to distribute tension across the heel and midfoot. Aligning the ribs with the body\u2019s own load system reinforces the base in the directions that take the most stress in walking and standing.</p><p>By default it prints with 26 rays, each 1 mm high and 6 mm wide \u2014 enough material to matter without adding bulk. The pattern wraps the full heel cup unless a {{heel post}} is also ordered. When a post is present, the fan stops exactly where the post begins: the post takes that zone, the fan takes the rest. No overlap.</p><p>When you see a Radial Fan, the heel and rearfoot are the primary load concern. It is the most anatomically intelligent reinforcement in the library \u2014 it works with the foot\u2019s own mechanics rather than imposing an arbitrary grid on top of them.</p>" },
-          { camera: "underside", legend: "Reinforcement \u00b7 Ribbed \u00b7 reinforcement_ribbed", pair: [{ po: "SG-REINFORCEMENT-RIBBED", side: "LEFT" }], text: "<p><b>Ribbed</b> is transverse corrugation \u2014 parallel ribs running across the plate at a fixed pitch, perpendicular to the direction of travel. Where Radial Fan works radially from a central point, Ribbed works linearly, adding resistance to bending in one primary direction. The ribs stay clear of the rim and the distal taper, so the edges stay clean and the toe area is unaffected. Default pitch is 8 mm, each rib 1.6 mm high \u2014 enough stiffness without making the underside hard to print or uncomfortable against the shoe.</p><p>Enabling Ribbed removes the other three patterns. It is mutually exclusive with Radial Fan, Isogrid, and Arch Ribs. Transverse corrugation has its own structural logic across the whole plate; mixing it with a radial or triangular pattern would interfere and weaken both. When Ribbed is chosen, the parallel ribs take full responsibility for the base\u2019s structural performance.</p><p>It is the most straightforward of the four \u2014 a general stiffening solution when the base needs more resistance to flexion along the length of the foot. Especially useful on longer bases, or for patients whose activity puts repeated bending stress through the midfoot.</p>" },
-          { camera: "underside", legend: "Reinforcement \u00b7 Isogrid \u00b7 reinforcement_grid", pair: [{ po: "SG-REINFORCEMENT-GRID", side: "LEFT" }], text: "<p>The <b>Isogrid</b> comes from aerospace engineering \u2014 rocket bodies and aircraft panels that need maximum strength at minimum added weight. Three families of ribs sit 60\u00b0 apart, forming equilateral triangles across the plate. A triangle cannot deform without one side changing length, so a triangular grid resists bending, compression, and torsion at the same time. Engineers call that quasi-isotropic: it carries load equally well in every direction, not just along one axis.</p><p>Torsion is the twisting force through an insole when a foot pronates or supinates in gait. Ribbed cannot handle that efficiently. Radial Fan handles it better, but only in the heel. Isogrid handles it across the entire plate, in every direction at once \u2014 the choice when the need is comprehensive structural integrity, not a targeted zone.</p><p>The tradeoff is density. A smaller cell pitch means smaller triangles packed tighter \u2014 more rib material, a heavier plate, a longer print. That is a deliberate decision. An Isogrid base is built for patients who demand the most from their insoles \u2014 high load, high activity, or complex torsional correction \u2014 and the extra weight is the price of that performance.</p>" },
-          { camera: "underside", legend: "Reinforcement \u00b7 Arch ribs \u00b7 reinforcement_arch", pair: [{ po: "SG-REINFORCEMENT-ARCH", side: "LEFT" }], text: "<p><b>Arch Ribs</b> are the most anatomically specific reinforcement. The other three patterns work across broader zones or the full plate. Arch Ribs sit exclusively under the arch: four longitudinal ribs along the navicular line, from the medial heel cup out to the first metatarsal head. That is the exact direction the medial longitudinal arch spans \u2014 the line along which arch height is held, and along which collapse happens when the foot overpronates or the base fatigues. The ribs work in direct opposition to the force that causes that collapse.</p><p>The four ribs are not the same length. Lanes shorten toward the center of the insole, following the arch vault as it tapers and dies out toward the midline. The border lane \u2014 the outermost rib along the medial edge \u2014 is the longest, 90 mm by default, and each successive rib inward is shorter. Default height is 3 mm \u2014 taller than Radial Fan rays \u2014 because the arch takes sustained, repeated loading through the whole gait cycle and needs real structural depth.</p><p>QC: the four ribs need to be clean, consistent, and correctly tapered from the border lane inward. A rib that has fused to its neighbor, printed at inconsistent height, or failed to follow the taper will change how the arch responds to load \u2014 and can allow the collapse this part was designed to prevent. Left and right should be a mirror, not identical: the navicular line runs slightly differently on each foot. If one side looks off, flag it before the pair moves to gluing.</p>" },
+        "id": "heel-post-flat",
+        "title": "Heel Post — Flat",
+        "models": [
+          {
+            "po": "SG-HEEL-POST-FLAT",
+            "side": "LEFT"
+          }
         ],
+        "camera": "underside",
+        "steps": [
+          {
+            "camera": "underside",
+            "legend": "Heel post · Flat · heel_post_flat",
+            "pair": [
+              {
+                "po": "SG-HEEL-POST-FLAT",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p><b>Flat</b> is the most straightforward of the four — no angular bias, no medial or lateral tilt, just a uniform addition of material across the heel. Where Oval follows the natural rounded shape of the heel, Flat simply raises the entire heel plane evenly. Think of it as a platform under the heel rather than a corrective wedge.</p><p>The usual reason to prescribe it is heel height — to relieve tension in the Achilles and calf by slightly elevating the heel, or to create a height difference between heel and forefoot. It is also used when the clinician wants a solid base under the heel without directional correction: more material for cushioning or load distribution, not an angle.</p><p>It also replaces a separate heel lift the patient has been carrying. Building the height into the base makes one unified device instead of a layered workaround. On the floor it is easy to recognize — an even, uniform raise across the whole heel, with no taper or angle to either side.</p>"
+          }
+        ]
       },
       {
-        id: "extensions",
-        title: "Extensions, Cutouts & Plates",
-        models: [{ po: "SG-MORTONS-EXTENSION", side: "LEFT" }],
-        camera: "forefoot",
-        steps: [
-          { camera: "forefoot", legend: "Morton's Extension \u00b7 mortons_extension", pair: [{ po: "SG-MORTONS-EXTENSION", side: "LEFT" }], text: "<p>This group is the front edge of the base \u2014 the distal trimline \u2014 and how reshaping it changes toe-off. Every one of these either extends the base under specific rays to block or control motion, or cuts it back to free those rays and send force elsewhere. <b>Where the base ends determines what the foot does next.</b> Base under a joint: that joint cannot bend freely. Base cut away: that joint can move. Two of these are mutually exclusive. Some can coexist. One reshapes the whole front edge for a different purpose. Know which is which before you touch a base in QC.</p><p><b>Morton's Extension</b> is a trimline variant \u2014 it changes where the base ends, not what is added on top. Under ray 1 (the {{hallux}}), the base stays full length to the tip. Under rays 2\u20135 it is cut back to the metatarsal line. The result is a base that reaches forward only under the big toe, then steps down across the rest of the forefoot.</p><p>The 1st {{MPJ}} normally dorsiflexes at push-off. In hallux limitus, hallux rigidus, arthritis, or turf toe, that bend is painful or damaging. Morton's puts a rigid lever under the joint that it cannot bend against. Load rolls off the side of the extension instead of through the joint.</p><p>Build secret: the base edge under Morton's must stay <b>full thickness all the way to the tip \u2014 no taper</b>. Thin that edge in finishing and the lever disappears; the joint can bend and the Rx is dead. The split sits near the gap between ray 1 and ray 2; a bevel on the ledge keeps it from feeling like a step through the cover. Mutually exclusive with Reverse Morton's \u2014 they reshape the same edge in opposite directions.</p>" },
-          { camera: "forefoot", legend: "Reverse Morton's \u00b7 reverse_mortons_extension", pair: [{ po: "SG-REVERSE-MORTONS-EXTENSION", side: "LEFT" }], text: "<p><b>Reverse Morton's Extension</b> is the exact complement. Rays 2\u20135 keep full toe length; ray 1 is cut back to the metatarsal line. The big toe hangs off the front with nothing under it \u2014 free to plantarflex without base resistance.</p><p>The goal is the opposite of blocking. It re-engages the hallux and offloads the {{sesamoids}} under the 1st met head. No base under ray 1 means those bones are not loaded every step, and the big toe can press into the ground at push-off \u2014 the windlass that stiffens the arch. Prescribed when you need to protect the sesamoids and still want the big toe doing its job.</p><p>QC: both look like an asymmetric front edge. Quick check \u2014 if ray 1 is the long one, it is Morton's. If rays 2\u20135 are long and ray 1 is cut back, it is Reverse. Mixing them up on a finished pair does the exact opposite of the Rx. That is a critical fail.</p>" },
-          { camera: "forefoot", legend: "1st Ray Cutout \u00b7 ray1_cutout", pair: [{ po: "SG-RAY1-CUTOUT", side: "LEFT" }], text: "<p>The <b>1st Ray Cutout</b> lives on the base itself \u2014 not a trimline change, a round bite out of the medial front edge. Centered on the medial front corner, sized so it reaches back behind the metatarsal line toward the heel, under the 1st met head. Default diameter is about 55% of the forefoot span: enough to offload the target without wrecking the base around it.</p><p>Purpose is localized relief under the first met head and the medial forefoot. Morton's changes how the joint moves; this one simply removes the base so a painful spot never takes direct load. RELIEVE. Common Rx: sesamoid pain, 1st MPJ arthritis when offloading is the goal rather than blocking, and callus that says the medial met head is overloaded.</p><p>Independent \u2014 replaces nothing. It can sit on the same base as a 5th Ray Cutout.</p>" },
-          { camera: "forefoot", legend: "5th Ray Cutout \u00b7 ray5_cutout", pair: [{ po: "SG-RAY5-CUTOUT", side: "LEFT" }], text: "<p>The <b>5th Ray Cutout</b> is the lateral counterpart, but the geometry is different: a straight oblique cut of the lateral front edge, not a round bite. The line sits inside the lateral front corner, tilted from the metatarsal line so it crosses the MT line and angles back toward the heel. That angle follows the 5th metatarsal, which does not run straight forward like the central rays.</p><p>Goal is relief under the 5th met head and the lateral forefoot \u2014 load at push-off, tailor's bunion, lateral callus, 5th met stress. Cutting the base back lets the softer cover take the load instead of the rigid plate. Independent, like the 1st: both can sit on the same base, medial and lateral relief, central mets still supported.</p><p>QC: check angle and depth. Too shallow and it does not reach the 5th met head. Too deep and you undermine the lateral wall.</p>" },
-          { camera: "forefoot", legend: "Gait plate \u00b7 gait_plate", pair: [{ po: "SG-GAIT-PLATE", side: "LEFT" }], text: "<p>The <b>{{gait plate}}</b> is different from everything else in this group. Not a ray, not a joint \u2014 a whole-foot change in the direction the foot rolls at push-off. The front edge is cut back to the metatarsal line, then carried distally on <b>one side only</b>, so the foot rolls off over the opposite side. In-toeing (pigeon toe): extension on the <b>lateral</b> side, so the foot rolls out. Out-toeing: extension on the <b>medial</b> side, so the foot rolls in.</p><p>Kids and patients with rotational gait are not choosing to walk toes-in or toes-out \u2014 the foot follows the path of least resistance. The gait plate changes where that path leads. Extend one side, and rolling off that side becomes the easy, natural step, training gait toward neutral over time. One of the most common pediatric accommodations, and one of the most effective non-surgical tools for in-toeing and out-toeing.</p><p>Mutually exclusive with both ray cutouts \u2014 all three reshape the same front edge. You cannot have a gait plate and a ray cutout on the same device. QC: the extended side must match the Rx exactly. Lateral for in-toeing, medial for out-toeing. Built on the wrong side, it actively makes the condition worse.</p>" },
+        "id": "heel-post-u",
+        "title": "Heel Post — U",
+        "models": [
+          {
+            "po": "SG-HEEL-POST-U",
+            "side": "LEFT"
+          }
         ],
+        "camera": "underside",
+        "steps": [
+          {
+            "camera": "underside",
+            "legend": "Heel post · U · heel_post_u",
+            "pair": [
+              {
+                "po": "SG-HEEL-POST-U",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>The <b>U</b> {{heel post}} is a horseshoe that wraps the outside edges of the heel and leaves the center completely open. That open center is the point. When there is pain right at the bottom center of the heel — a {{heel spur}}, a bruised fat pad, acute plantar fasciitis, or a bony prominence — material under that spot makes things worse. The U post builds up around the painful spot so surrounding tissue takes the load, and the problem area floats in the middle.</p><p>This is RELIEVE: you are not adding material to the painful spot, you are adding it everywhere around it so that spot never touches anything. The patient walks on the edges of the U; the center of the heel is suspended with every step. For heel spurs that can be the difference between walking comfortably and not putting weight on the foot at all.</p><p>On the floor it is one of the most visually distinct accommodations on a base — the cutout in the center, the raised walls on either side. When you see a U post, this patient has a localized problem at the center of the heel that the clinician has chosen not to load. Handle these carefully in finishing and QC: the relief zone and the symmetry of the U both matter to how the device works.</p>"
+          }
+        ]
       },
       {
-        id: "wedges",
-        title: "Wedges & Posting \u2014 Extrinsic vs Intrinsic",
-        models: [{ po: "SG-WEDGE-MEDIAL", side: "LEFT" }],
-        camera: "underside",
-        steps: [
-          { camera: "underside", legend: "Medial wedge \u00b7 wedge_medial", pair: [{ po: "SG-WEDGE-MEDIAL", side: "LEFT" }], text: "<p>Every wedge and post at Hike does the same job: tilt the heel into a corrected position by raising one border of the insole relative to the other. Raise the {{Medial}} border and you push the heel out of valgus \u2014 stop it rolling in. Raise the {{Lateral}} border and you push the heel out of varus \u2014 stop it rolling out. The clinical goal never changes. What changes is where and how that tilt is built. Two ways: {{intrinsic / extrinsic}}. They look different on the bench, they are built differently in production, and they are verified differently in QC.</p><p>An <b>extrinsic wedge</b> lives outside the base \u2014 a separate printed TPU slab under a base that prints completely flat and untilted. The angle arrives later as its own part. The insole geometry is never touched. The correction is entirely in the wedge underneath.</p><details class=\"lab-note\"><summary>Coming from a traditional lab</summary><div><p>A second-color glued extrinsic post is not how Hike builds this. The wedge is printed from the same material and color as the base \u2014 one continuous piece, no seam.</p></div></details><p>SoleGen generates that slab as its own STL. The top face is flat \u2014 that is the surface that bonds to the base underside. The angle is on the bottom face, so the tilted surface is what sits against the shoe. A medial wedge raises the inner border. Default angle is 4\u00b0. At 0\u00b0 no part is generated at all. One wedge per foot \u2014 medial and lateral cannot coexist. You cannot raise both borders at once.</p>" },
-          { camera: "underside", legend: "Lateral wedge \u00b7 wedge_lateral", pair: [{ po: "SG-WEDGE-LATERAL", side: "LEFT" }], text: "<p>The <b>lateral wedge</b> is the same printed slab, flipped in direction. The lateral side is raised and the medial edge is the hinge. Same own-STL, same 4\u00b0 default, same rule: at 0\u00b0 nothing is made. Direction <b>is</b> the prescription.</p><p>MEDIAL raises the inner border to stop the heel rolling in \u2014 the fix for valgus and overpronation. LATERAL raises the outer border to stop it rolling out \u2014 the fix for varus and supination. {{valgus / varus}} is the whole language. Find the high side and you have read the diagnosis.</p><p>QC is the same check every time: set the device down and see which border sits higher. High medial border = medial wedge. High lateral border = lateral wedge. Mix them up and the insole steers the heel the wrong way.</p>" },
-          { camera: "underside", legend: "Rearfoot posting \u00b7 rearfoot_posting", pair: [{ po: "SG-REARFOOT-POSTING", side: "LEFT" }], text: "<p>An <b>intrinsic</b> correction is built inside the base during design. No separate part. The base prints with the angle already in it \u2014 first layer to last. That is what rearfoot {{posting}} is at Hike: an intrinsic wedge baked into the base before a single print begins.</p><p>An intrinsically posted base looks different from a flat-bottomed extrinsic base the moment it leaves the printer. The underside of the heel is already angled, with nothing attached. The medial or lateral border is higher as part of the base itself. Same directional logic as the extrinsic wedge \u2014 medial posting is valgus correction (stops the heel rolling in); lateral posting is varus correction (stops it rolling out) \u2014 delivered through the base, not a part under it.</p><p>No extra step for the correction: it comes off the printer already posted. If the angle is wrong, there is no separate part to swap. The base <b>is</b> the correction, so the base is what gets flagged. QC: place it flat on the table and read which border sits higher. High border = prescribed side. If it rocks toward the medial side the post is medial. If it rocks toward the lateral side the post is lateral. One check, every time, before it moves on.</p>" },
+        "id": "heel-post-stabilizer",
+        "title": "Heel Post — Stabilizer",
+        "models": [
+          {
+            "po": "SG-HEEL-POST-STABILIZER",
+            "side": "LEFT"
+          }
         ],
+        "camera": "underside",
+        "steps": [
+          {
+            "camera": "underside",
+            "legend": "Heel post · Stabilizer · heel_post_stabilizer",
+            "pair": [
+              {
+                "po": "SG-HEEL-POST-STABILIZER",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>The <b>Stabilizer</b> {{heel post}} is the most controlling of the four. Oval gently guides the heel toward neutral; Flat simply raises the heel plane. Stabilizer is for when the rearfoot needs to be held with minimal movement. It is broader, more built-out, and covers more of the heel than the other posts — a wider, more solid base against the forces that try to tip the heel into pronation or supination.</p><p>Think of a narrow chair leg versus a wide chair base. A narrow leg tips easily under load. A wide base resists tipping in every direction. Spreading the platform further out from the center of the heel makes it mechanically much harder for the heel to roll either way. For significant instability, hypermobility, or a history of ankle sprains where the heel collapses inward, Stabilizer gives the firm control a standard Oval cannot match.</p><p>You will see it on orders that need serious rearfoot control — often with medial {{flange}}s or rearfoot {{posting}}. On the floor it is noticeable by size and bulk at the heel. When you pick up a base with a Stabilizer post, you feel the extra weight and rigidity. That extra structure is deliberate — it is exactly what the patient needs.</p>"
+          }
+        ]
       },
       {
-        id: "wedge-directions",
-        title: "Reading the wedge \u2014 medial vs lateral",
-        compare: [
-          { po: "SG-WEDGE-MEDIAL", side: "LEFT", label: "Medial wedge" },
-          { po: "SG-WEDGE-LATERAL", side: "LEFT", label: "Lateral wedge" },
+        "id": "reinforcement-radial-fan",
+        "title": "Reinforcement — Radial Fan",
+        "models": [
+          {
+            "po": "SG-REINFORCEMENT-RADIAL",
+            "side": "LEFT"
+          }
         ],
-        camera: "underside",
-        steps: [
-          { camera: "underside", text: "Same left base, opposite printed slabs. On the MEDIAL wedge (left) the high edge sits under the inner border \u2014 the arch side. On the LATERAL wedge (right) it sits under the outer border. Everything about the correction flips with it." },
-          { camera: "heel", text: "Set both devices down and read the high side. High medial border = medial wedge = the heel was rolling in. High lateral border = lateral wedge = the heel was rolling out. The side you choose IS the diagnosis." },
-          { camera: "profile", text: "If you can spot which border rides high from across the room, you can read any wedge prescription on sight. Mix them up and the insole steers the heel the wrong way." },
-        ],
+        "camera": "underside",
+        "steps": [
+          {
+            "camera": "underside",
+            "legend": "Reinforcement · Radial fan · reinforcement_radial",
+            "pair": [
+              {
+                "po": "SG-REINFORCEMENT-RADIAL",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>One rule governs every reinforcement: <b>one pattern per device, no mixing</b>. Reinforcements are structural additions to the underside of the printed base — extra ribbing built into the plate to make it stiffer, stronger, and more resistant to deformation under load. They do not change the shape of the insole, they do not change what the patient feels through the top cover, and they are not visible when the finished insole is in a shoe. What they change is how the base behaves over thousands of steps — how well it holds its geometry, how it distributes force, and how long it lasts. Four patterns exist because each one is the right answer for a different mechanical problem.</p><p><b>Radial Fan.</b> The rays spread outward from the calcaneal tubercle — the bony point at the bottom of the heel bone where the {{plantar fascia}} originates — in a full 360° pattern, following the same load paths the fascia uses to distribute tension across the heel and midfoot. Aligning the ribs with the body’s own load system reinforces the base in the directions that take the most stress in walking and standing.</p><p>By default it prints with 26 rays, each 1 mm high and 6 mm wide — enough material to matter without adding bulk. The pattern wraps the full heel cup unless a {{heel post}} is also ordered. When a post is present, the fan stops exactly where the post begins: the post takes that zone, the fan takes the rest. No overlap.</p><p>When you see a Radial Fan, the heel and rearfoot are the primary load concern. It is the most anatomically intelligent reinforcement in the library — it works with the foot’s own mechanics rather than imposing an arbitrary grid on top of them.</p>"
+          }
+        ]
       },
       {
-        id: "posting-thickness",
-        title: "Forefoot posting, Thickness Boost, Kirby Skive",
-        models: [{ po: "SG-FOREFOOT-POSTING", side: "LEFT" }],
-        camera: "forefoot",
-        steps: [
-          { camera: "forefoot", legend: "Forefoot posting \u00b7 forefoot_posting", pair: [{ po: "SG-FOREFOOT-POSTING", side: "LEFT" }], text: "<p><b>Forefoot posting</b> is the intrinsic version of forefoot correction \u2014 the tilt is built into the base through the trimline, not added as a separate part underneath. The medial or lateral forefoot point rises and the plantar surface follows the rim up to that high point. Behind the high point the rim dies back down naturally. Medial forefoot posting raises the inner forefoot border \u2014 varus. Lateral raises the outer forefoot border \u2014 valgus. Default angle is 4\u00b0. Independent \u2014 it replaces nothing, and it can sit with rearfoot {{posting}} on the same device so the clinician can set heel and forefoot angles separately.</p><p>QC is direction. The high point must be on the prescribed border \u2014 medial for varus, lateral for valgus. Same check as rearfoot posting: set the base down and find which forefoot border sits higher. That border is the prescribed side. Confirm it matches the Rx.</p>" },
-          { camera: "underside", legend: "Thickness boost \u00b7 thickness_boost", pair: [{ po: "SG-THICKNESS-BOOST", side: "LEFT" }], text: "<p>A <b>{{thickness boost}}</b> is exactly what it sounds like \u2014 the base prints thicker than standard across the whole base. No angle, no directional correction, no geometry change. Just more material through the full plate. Used when the patient needs a more substantial, heavier-duty base \u2014 higher body weight, high activity, or a firmer, more durable base than standard thickness.</p><p>Hike uses a thinner base for a more flexible feel and builds the base thicker for firmer control. The trade-off is a thicker device, especially through the forefoot. On the floor a Thickness Boost base feels noticeably heavier and more rigid than a standard base of the same type. That extra weight is the point.</p>" },
-          { camera: "underside", legend: "Kirby Skive \u00b7 heel_skive", pair: [{ po: "SG-HEEL-SKIVE", side: "LEFT" }], text: "<p>The <b>{{Kirby Skive}}</b> is a targeted medial heel modification \u2014 a bias printed into the medial heel that creates a steep medial rearfoot post without a separate wedge part. Kevin Kirby developed it to put aggressive pronation control into the base at the heel. The medial heel rises steeply, a sharp angular correction right where the heel first hits the ground. More aggressive than a standard medial post. Typically prescribed when significant overpronation has not been controlled by a standard rearfoot post or an extrinsic wedge.</p><p>QC: recognizable by the steep medial rise at the heel \u2014 steeper than a standard intrinsic post, more abrupt. The steep face must be on the medial side, and the geometry must be clean and consistent heel to arch. Inconsistent medial-heel geometry will not deliver the correction the clinician prescribed.</p>" },
+        "id": "reinforcement-ribbed",
+        "title": "Reinforcement — Ribbed",
+        "models": [
+          {
+            "po": "SG-REINFORCEMENT-RIBBED",
+            "side": "LEFT"
+          }
         ],
+        "camera": "underside",
+        "steps": [
+          {
+            "camera": "underside",
+            "legend": "Reinforcement · Ribbed · reinforcement_ribbed",
+            "pair": [
+              {
+                "po": "SG-REINFORCEMENT-RIBBED",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p><b>Ribbed</b> is transverse corrugation — parallel ribs running across the plate at a fixed pitch, perpendicular to the direction of travel. Where Radial Fan works radially from a central point, Ribbed works linearly, adding resistance to bending in one primary direction. The ribs stay clear of the rim and the distal taper, so the edges stay clean and the toe area is unaffected. Default pitch is 8 mm, each rib 1.6 mm high — enough stiffness without making the underside hard to print or uncomfortable against the shoe.</p><p>Enabling Ribbed removes the other three patterns. It is mutually exclusive with Radial Fan, Isogrid, and Arch Ribs. Transverse corrugation has its own structural logic across the whole plate; mixing it with a radial or triangular pattern would interfere and weaken both. When Ribbed is chosen, the parallel ribs take full responsibility for the base’s structural performance.</p><p>It is the most straightforward of the four — a general stiffening solution when the base needs more resistance to flexion along the length of the foot. Especially useful on longer bases, or for patients whose activity puts repeated bending stress through the midfoot.</p>"
+          }
+        ]
       },
       {
-        id: "arch-pad",
-        title: "Arch Reinforcement & Arch Pad",
-        models: [{ po: "SG-ARCH-REINFORCEMENT", side: "LEFT" }],
-        camera: "arch",
-        steps: [
-          { camera: "arch", legend: "Arch reinforcement \u00b7 arch_reinforcement", pair: [{ po: "SG-ARCH-REINFORCEMENT", side: "LEFT" }], text: "<p><b>{{arch reinforcement}}</b> stiffens the medial wall of the base under the arch. It raises the outer wall angle of that medial wall \u2014 default an extra +10\u00b0 \u2014 and pulls in the rear-wall zone for a tighter, more rigid medial support. No separate geometry is added. SoleGen switches it on and the base prints with a stiffer, more upright medial wall built into the base. The verb is STIFFEN \u2014 not a soft insert, not a pad. The wall itself resists collapse under load. Independent. Replaces nothing.</p><p>QC distinction: Arch Reinforcement and Arch Pad both address the arch zone and are often confused. They do completely different jobs. Arch Reinforcement stiffens the wall. Arch Pad fills the space under the arch with a soft insert. One is structural, one is cushioning. They are not interchangeable.</p>" },
-          { camera: "arch", legend: "Arch pad \u00b7 arch_pad", pair: [{ po: "PAIR-ARCH-PAD", side: "LEFT" }], text: "<p>The <b>Arch Pad</b> is a soft insert \u2014 printed as its own separate volume \u2014 that fills the space under the arch between the base and the foot. Square-to-circle footprint, centered on the Medial High Point, clipped to the outer trimline. It typically runs from just behind the first metatarsal head back toward the heel, filling the dome so the foot has full contact instead of a gap the base alone cannot bridge.</p><p>Off the insole it is the largest pad in the toolbox \u2014 a full wedge molded to the arch dome, deep enough that its top face rebuilds the arch line from below. It shortens the working length of the {{plantar fascia}} by giving the arch a surface to rest against, so the fascia does not have to generate as much tension to hold height. SoleGen exports it as its own soft volume and the autoslicer trims it to the insole body.</p><p>Seated back into the base the arch is filled, not just touched \u2014 the gap disappears. On diabetic devices this same part fills a high or rigid arch for {{total contact}}, so no zone is left unsupported and pressure does not spike at the arch peak. The verb is RAISE \u2014 soft material bringing the arch surface up to meet the foot. A {{navicular}} offload is the opposite move on this same border \u2014 a recessed relief slightly behind where the Arch Pad sits.</p>" },
+        "id": "reinforcement-isogrid",
+        "title": "Reinforcement — Isogrid",
+        "models": [
+          {
+            "po": "SG-REINFORCEMENT-GRID",
+            "side": "LEFT"
+          }
         ],
+        "camera": "underside",
+        "steps": [
+          {
+            "camera": "underside",
+            "legend": "Reinforcement · Isogrid · reinforcement_grid",
+            "pair": [
+              {
+                "po": "SG-REINFORCEMENT-GRID",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>The <b>Isogrid</b> comes from aerospace engineering — rocket bodies and aircraft panels that need maximum strength at minimum added weight. Three families of ribs sit 60° apart, forming equilateral triangles across the plate. A triangle cannot deform without one side changing length, so a triangular grid resists bending, compression, and torsion at the same time. Engineers call that quasi-isotropic: it carries load equally well in every direction, not just along one axis.</p><p>Torsion is the twisting force through an insole when a foot pronates or supinates in gait. Ribbed cannot handle that efficiently. Radial Fan handles it better, but only in the heel. Isogrid handles it across the entire plate, in every direction at once — the choice when the need is comprehensive structural integrity, not a targeted zone.</p><p>The tradeoff is density. A smaller cell pitch means smaller triangles packed tighter — more rib material, a heavier plate, a longer print. That is a deliberate decision. An Isogrid base is built for patients who demand the most from their insoles — high load, high activity, or complex torsional correction — and the extra weight is the price of that performance.</p>"
+          }
+        ]
       },
       {
-        id: "dannenburg",
-        title: "Dannenburg Wedge",
-        models: [{ po: "SG-KINETIC-WEDGE", side: "LEFT" }],
-        camera: "forefoot",
-        steps: [
-          { camera: "forefoot", legend: "Dannenburg Wedge \u00b7 kinetic_wedge", text: "A {{Dannenburg Wedge}} (SoleGen also calls it a kinetic wedge) is a soft forefoot region the slicer prints at its own density. Its rear boundary is FIVE draggable points: a point on the lateral trimline, an arc through a free mid point, a line to the corner, and a line to a point on the medial trimline." },
-          { camera: "forefoot", text: "The whole local thickness prints soft \u2014 about 4\u20135 mm over most of the cap. No depth knob: a modifier takes the thickness it finds. It does not change the bed. Independent \u2014 replaces nothing. Think of it as a soft zone painted onto the forefoot, not a bump you can lift off." },
+        "id": "reinforcement-arch-ribs",
+        "title": "Reinforcement — Arch Ribs",
+        "models": [
+          {
+            "po": "SG-REINFORCEMENT-ARCH",
+            "side": "LEFT"
+          }
         ],
+        "camera": "underside",
+        "steps": [
+          {
+            "camera": "underside",
+            "legend": "Reinforcement · Arch ribs · reinforcement_arch",
+            "pair": [
+              {
+                "po": "SG-REINFORCEMENT-ARCH",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p><b>Arch Ribs</b> are the most anatomically specific reinforcement. The other three patterns work across broader zones or the full plate. Arch Ribs sit exclusively under the arch: four longitudinal ribs along the navicular line, from the medial heel cup out to the first metatarsal head. That is the exact direction the medial longitudinal arch spans — the line along which arch height is held, and along which collapse happens when the foot overpronates or the base fatigues. The ribs work in direct opposition to the force that causes that collapse.</p><p>The four ribs are not the same length. Lanes shorten toward the center of the insole, following the arch vault as it tapers and dies out toward the midline. The border lane — the outermost rib along the medial edge — is the longest, 90 mm by default, and each successive rib inward is shorter. Default height is 3 mm — taller than Radial Fan rays — because the arch takes sustained, repeated loading through the whole gait cycle and needs real structural depth.</p><p>QC: the four ribs need to be clean, consistent, and correctly tapered from the border lane inward. A rib that has fused to its neighbor, printed at inconsistent height, or failed to follow the taper will change how the arch responds to load — and can allow the collapse this part was designed to prevent. Left and right should be a mirror, not identical: the navicular line runs slightly differently on each foot. If one side looks off, flag it before the pair moves to gluing.</p>"
+          }
+        ]
       },
       {
-        id: "flanges",
-        title: "Flanges",
-        models: [{ po: "SG-MEDIAL-FLANGE", side: "LEFT" }],
-        camera: "heel",
-        steps: [
-          { camera: "heel", legend: "Medial flange \u00b7 medial_flange", pair: [{ po: "SG-MEDIAL-FLANGE", side: "LEFT" }], text: "<p>A {{flange}} is the insole wall continued vertically upward. The base already has a rim \u2014 a low edge that follows the outline of the foot. A flange takes that rim and extends it straight up into a wall, so the foot sits inside the device rather than just on top of it. Every flange catches and holds the foot laterally \u2014 it stops the foot sliding off the edge and gives medial or lateral support the flat surface cannot. Two types: flanges on a standard insole plate, and flanges on a base. Same geometry \u2014 wall up, constant thickness, lip closing the top \u2014 different starting heights because the device class and the clinical job differ.</p><p>The <b>Medial Flange</b> runs the medial edge from the medial forefoot point all the way back to the heel. The top line rises from the forefoot, holds a plateau across the midfoot and arch, then falls back to the rim at the heel. Default height 30 mm, wall 5 mm. Taller and thicker than the others because it holds the arch \u2014 the medial wall has to push back when the foot tries to pronate and collapse inward. The lip closes the wall cleanly so the foot cannot ride up and over the edge. Independent. Replaces nothing.</p>" },
-          { camera: "heel", legend: "Lateral flange \u00b7 lateral_flange", pair: [{ po: "SG-LATERAL-FLANGE", side: "LEFT" }], text: "<p>The <b>Lateral Flange</b> is the same geometry on the outer edge \u2014 lateral forefoot point to the back heel. It starts a little lower: default height 25 mm, wall about 2.5 mm. Thinner and shorter because it catches the foot rather than holding an arch. It stops the foot sliding outward off the insole, especially at push-off and in lateral movement. It does not need the same structural depth as the medial wall \u2014 outward forces are generally lower than the forces driving medial collapse.</p><p>Both flanges together \u2014 medial and lateral at once \u2014 is the defining geometry of a {{UCBL}}. Tall medial wall plus lateral catch wall, fully enclosing the rearfoot. When you see both on a standard insole order, the device is approaching UCBL-level rearfoot control without being a full UCBL base.</p>" },
-          { camera: "heel", legend: "Medial shell flange \u00b7 shell_medial_flange", pair: [{ po: "SG-SHELL-MEDIAL-FLANGE", side: "LEFT" }], text: "<p>The <b>Medial Shell Flange</b> is the same switch on a shell, not a flat plate. A plate starts from its rim. A shell already has a wall \u2014 the flange extends that wall vertically the same way. Default height 25 mm \u2014 lower than the plate medial flange because the shell's existing wall already contributes some medial support before the flange begins. Same constant thickness, same lip on top, same medial-forefoot-to-heel run.</p>" },
-          { camera: "heel", legend: "Lateral shell flange \u00b7 shell_lateral_flange", pair: [{ po: "SG-SHELL-LATERAL-FLANGE", side: "LEFT" }], text: "<p>The <b>Lateral Shell Flange</b> is the outer wall of the shell continued upward. Default height 20 mm \u2014 the lowest of the four \u2014 because it catches rather than holds, and the shell's existing lateral wall already does some of that catching. Same geometry, same lip, same lateral-forefoot-to-heel run.</p><p>The device class picks the starting height \u2014 shell versus plate \u2014 and the prescribed side picks the border. One QC check for all four: find the flange, confirm it is on the prescribed border, confirm the height is consistent along the full run, and confirm the lip is clean and closed at the top.</p>" },
+        "id": "mortons-extension",
+        "title": "Morton's Extension",
+        "models": [
+          {
+            "po": "SG-MORTONS-EXTENSION",
+            "side": "LEFT"
+          }
         ],
+        "camera": "forefoot",
+        "steps": [
+          {
+            "camera": "forefoot",
+            "legend": "Morton's Extension · mortons_extension",
+            "pair": [
+              {
+                "po": "SG-MORTONS-EXTENSION",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>This group is the front edge of the base — the distal trimline — and how reshaping it changes toe-off. Every one of these either extends the base under specific rays to block or control motion, or cuts it back to free those rays and send force elsewhere. <b>Where the base ends determines what the foot does next.</b> Base under a joint: that joint cannot bend freely. Base cut away: that joint can move. Two of these are mutually exclusive. Some can coexist. One reshapes the whole front edge for a different purpose. Know which is which before you touch a base in QC.</p><p><b>Morton's Extension</b> is a trimline variant — it changes where the base ends, not what is added on top. Under ray 1 (the {{hallux}}), the base stays full length to the tip. Under rays 2–5 it is cut back to the metatarsal line. The result is a base that reaches forward only under the big toe, then steps down across the rest of the forefoot.</p><p>The 1st {{MPJ}} normally dorsiflexes at push-off. In hallux limitus, hallux rigidus, arthritis, or turf toe, that bend is painful or damaging. Morton's puts a rigid lever under the joint that it cannot bend against. Load rolls off the side of the extension instead of through the joint.</p><p>Build secret: the base edge under Morton's must stay <b>full thickness all the way to the tip — no taper</b>. Thin that edge in finishing and the lever disappears; the joint can bend and the Rx is dead. The split sits near the gap between ray 1 and ray 2; a bevel on the ledge keeps it from feeling like a step through the cover. Mutually exclusive with Reverse Morton's — they reshape the same edge in opposite directions.</p>"
+          }
+        ]
       },
       {
-        id: "neuroma-pad",
-        title: "Neuroma pad",
-        models: [{ po: "PAIR-NEUROMA-PAD", side: "LEFT" }],
-        camera: "pad",
-        steps: [
-          { camera: "pad", text: "<p>Pads are additive \u2014 they raise the plantar surface in a targeted zone to redistribute load, separate structures, or restore contact the base cannot reach. Every pad has a precise footprint, a precise position, and a precise clinical reason. Wrong position is the wrong pad. A neuroma pad in the wrong webspace does nothing for the nerve. A met pad under the heads instead of behind them creates a new pressure problem. <b>Position is always the prescription.</b></p><p>A <b>Neuroma Pad</b> is a small teardrop dome on the forefoot, just proximal to and slightly medial to a specific intermetatarsal webspace. Met-pad family: additive, lifts the surface. A Morton's {{neuroma}} is a pinched nerve between the met heads \u2014 classically the 3rd webspace, between 3 and 4. The heads squeeze that nerve under load. This pad sits just behind that space and gently spreads the heads, so the nerve is no longer pinched.</p>" },
-          { camera: "profile", anim: "separate", text: "<p>It is a separate printed part \u2014 free position, independent, replaces nothing. Deliberately subtle: only one to two millimeters of dome. Against a nerve, a little separation is treatment. A large lump under the forefoot would just create a new pressure point.</p>" },
-          { camera: "pad", anim: "reseat", text: "<p>Seated, the heads spread a fraction with every step. The classic complaint is a pebble in the shoe under the forefoot, often with burning or numbness between the toes. QC: the pad must sit proximal to the <b>correct</b> webspace, and the dome must be subtle and smooth \u2014 not oversized, not undersized, centered on the Rx mark.</p>" },
+        "id": "reverse-mortons-extension",
+        "title": "Reverse Morton's Extension",
+        "models": [
+          {
+            "po": "SG-REVERSE-MORTONS-EXTENSION",
+            "side": "LEFT"
+          }
         ],
+        "camera": "forefoot",
+        "steps": [
+          {
+            "camera": "forefoot",
+            "legend": "Reverse Morton's · reverse_mortons_extension",
+            "pair": [
+              {
+                "po": "SG-REVERSE-MORTONS-EXTENSION",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p><b>Reverse Morton's Extension</b> is the exact complement. Rays 2–5 keep full toe length; ray 1 is cut back to the metatarsal line. The big toe hangs off the front with nothing under it — free to plantarflex without base resistance.</p><p>The goal is the opposite of blocking. It re-engages the hallux and offloads the {{sesamoids}} under the 1st met head. No base under ray 1 means those bones are not loaded every step, and the big toe can press into the ground at push-off — the windlass that stiffens the arch. Prescribed when you need to protect the sesamoids and still want the big toe doing its job.</p><p>QC: both look like an asymmetric front edge. Quick check — if ray 1 is the long one, it is Morton's. If rays 2–5 are long and ray 1 is cut back, it is Reverse. Mixing them up on a finished pair does the exact opposite of the Rx. That is a critical fail.</p>"
+          }
+        ]
       },
       {
-        id: "cuboid-pad",
-        title: "Cuboid Pad",
-        models: [{ po: "PAIR-CUBOID-PAD", side: "LEFT" }],
-        camera: "arch",
-        steps: [
-          { camera: "arch", text: "<p>A <b>Cuboid Pad</b> is a soft insert that raises the plantar surface with a 1\u20135 mm dome over its footprint, continuing down into the thickness as its own add-on STL \u2014 printed soft. Oval footprint, free position. It sits on the outer midfoot, directly under the {{cuboid}} \u2014 the blocky bone that anchors the lateral column between the heel and the outer mets.</p><p>The cuboid is a commonly missed source of lateral midfoot pain. When the lateral column loses stability \u2014 hypermobility, ankle sprain, peroneal tendon trouble \u2014 the cuboid can sublux slightly. The pad restores load across the lateral column by lifting that bone back into contact so it has a surface to bear against. Independent. Replaces nothing. Precision is placement: one bone, not a region.</p>" },
-          { camera: "profile", anim: "separate", text: "<p>Lifted off: a small oval dome. One bone. Placement matters more than bulk.</p>" },
-          { camera: "arch", anim: "reseat", text: "<p>Reseated, the lateral column has somewhere to land. QC: the oval must be centered on the lateral midfoot \u2014 not drifted medially into the arch, not distal under the 5th met head.</p>" },
+        "id": "1st-ray-cutout",
+        "title": "1st Ray Cutout",
+        "models": [
+          {
+            "po": "SG-RAY1-CUTOUT",
+            "side": "LEFT"
+          }
         ],
+        "camera": "forefoot",
+        "steps": [
+          {
+            "camera": "forefoot",
+            "legend": "1st Ray Cutout · ray1_cutout",
+            "pair": [
+              {
+                "po": "SG-RAY1-CUTOUT",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>The <b>1st Ray Cutout</b> lives on the base itself — not a trimline change, a round bite out of the medial front edge. Centered on the medial front corner, sized so it reaches back behind the metatarsal line toward the heel, under the 1st met head. Default diameter is about 55% of the forefoot span: enough to offload the target without wrecking the base around it.</p><p>Purpose is localized relief under the first met head and the medial forefoot. Morton's changes how the joint moves; this one simply removes the base so a painful spot never takes direct load. RELIEVE. Common Rx: sesamoid pain, 1st MPJ arthritis when offloading is the goal rather than blocking, and callus that says the medial met head is overloaded.</p><p>Independent — replaces nothing. It can sit on the same base as a 5th Ray Cutout.</p>"
+          }
+        ]
       },
       {
-        id: "toe-crest",
-        title: "Toe Crest",
-        models: [{ po: "PAIR-TOE-CREST", side: "RIGHT" }],
-        camera: "toes",
-        steps: [
-          { camera: "toes", text: "<p>A <b>Toe Crest</b> is an elongated ridge on the forefoot under the toes, in the {{sulcus}} \u2014 just distal to the met heads, where the toes curl under. One pill segment per selected toe, centered distal to that toe's met head. Adjacent selections overlap and merge into one continuous crest. All five toes is the classic full-width crest. Partial selections target specific toes only. This mesh runs left to right under toes 2 through 5.</p>" },
-          { camera: "profile", anim: "separate", text: "<p>Off the insole the shape explains the job: a rounded bolster that nests into the valley under curled toes. It treats {{hammertoes}}, claw toes, and mallet toes \u2014 the tips dig into the shoe instead of lying flat. The crest props the toe toward neutral and sends load back toward the met heads. Default height 3 mm per toe.</p>" },
-          { camera: "toes", anim: "reseat", text: "<p>Seated, the curl rests on the crest instead of clawing at air. Tip pressure \u2014 and the corns and calluses it breeds \u2014 drops. One of the most commonly ordered pads; bilateral Toe Crest is frequent. QC: each selected segment is present, distal to the right met head, and adjacent segments have merged with no visible gap or seam.</p>" },
+        "id": "5th-ray-cutout",
+        "title": "5th Ray Cutout",
+        "models": [
+          {
+            "po": "SG-RAY5-CUTOUT",
+            "side": "LEFT"
+          }
         ],
+        "camera": "forefoot",
+        "steps": [
+          {
+            "camera": "forefoot",
+            "legend": "5th Ray Cutout · ray5_cutout",
+            "pair": [
+              {
+                "po": "SG-RAY5-CUTOUT",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>The <b>5th Ray Cutout</b> is the lateral counterpart, but the geometry is different: a straight oblique cut of the lateral front edge, not a round bite. The line sits inside the lateral front corner, tilted from the metatarsal line so it crosses the MT line and angles back toward the heel. That angle follows the 5th metatarsal, which does not run straight forward like the central rays.</p><p>Goal is relief under the 5th met head and the lateral forefoot — load at push-off, tailor's bunion, lateral callus, 5th met stress. Cutting the base back lets the softer cover take the load instead of the rigid plate. Independent, like the 1st: both can sit on the same base, medial and lateral relief, central mets still supported.</p><p>QC: check angle and depth. Too shallow and it does not reach the 5th met head. Too deep and you undermine the lateral wall.</p>"
+          }
+        ]
       },
       {
-        id: "sensory-bumps",
-        title: "Sensory bumps",
-        models: [{ po: "SG-SENSORY-BUMPS", side: "LEFT" }],
-        camera: "overview",
-        steps: [
-          { camera: "overview", legend: "Sensory bumps \u00b7 sensory_bumps", text: "<p><b>{{Sensory bumps}}</b> are half-sphere caps on the plantar surface in a fixed 16-bump layout: five along the toe contour, two diagonal rows of three down the midfoot, five clustered on the heel. The map is fixed to the metatarsal frame and trimline, so it lands in the same anatomical positions on every foot. Diameter scales with insole size. Independent. Replaces nothing.</p>" },
-          { camera: "forefoot", text: "<p>They do not offload and they do not post. They give sensory feedback and proprioception. Patients with reduced sensation \u2014 diabetic peripheral {{neuropathy}} most often \u2014 have lost the input the foot uses for balance and gait. The bumps give gentle, consistent tactile stimulation with every step. Also used in rehab when a patient is relearning gait. QC: all 16 present, clean, consistent dome height. A missing or half-printed bump in the heel cluster or toe row means the pattern is incomplete.</p>" },
+        "id": "gait-plate",
+        "title": "Gait Plate",
+        "models": [
+          {
+            "po": "SG-GAIT-PLATE",
+            "side": "LEFT"
+          }
         ],
+        "camera": "forefoot",
+        "steps": [
+          {
+            "camera": "forefoot",
+            "legend": "Gait plate · gait_plate",
+            "pair": [
+              {
+                "po": "SG-GAIT-PLATE",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>The <b>{{gait plate}}</b> is different from everything else in this group. Not a ray, not a joint — a whole-foot change in the direction the foot rolls at push-off. The front edge is cut back to the metatarsal line, then carried distally on <b>one side only</b>, so the foot rolls off over the opposite side. In-toeing (pigeon toe): extension on the <b>lateral</b> side, so the foot rolls out. Out-toeing: extension on the <b>medial</b> side, so the foot rolls in.</p><p>Kids and patients with rotational gait are not choosing to walk toes-in or toes-out — the foot follows the path of least resistance. The gait plate changes where that path leads. Extend one side, and rolling off that side becomes the easy, natural step, training gait toward neutral over time. One of the most common pediatric accommodations, and one of the most effective non-surgical tools for in-toeing and out-toeing.</p><p>Mutually exclusive with both ray cutouts — all three reshape the same front edge. You cannot have a gait plate and a ray cutout on the same device. QC: the extended side must match the Rx exactly. Lateral for in-toeing, medial for out-toeing. Built on the wrong side, it actively makes the condition worse.</p>"
+          }
+        ]
       },
       {
-        id: "heel-pad",
-        title: "Heel Pad",
-        models: [{ po: "PAIR-HEEL-PAD", side: "LEFT" }],
-        camera: "heel",
-        steps: [
-          { camera: "heel", text: "<p>A <b>Heel Pad</b> is a soft insert that fills the heel cup inside the wall \u2014 its own add-on STL, printed in a softer material than the surrounding base. Extra cushioning directly under the {{calcaneus}}. The front edge reaches half again as far forward of the heel point as the rear edge reaches back, so the pad covers the full weight-bearing heel, not just the back of the cup.</p><p>In production this is the single most commonly ordered pad across all insole types. Bilateral heel pad is by far the most frequent pad Rx. Independent. Different region from every other pad \u2014 it never conflicts with a forefoot pad.</p>" },
-          { camera: "profile", anim: "separate", text: "<p>Lift it off: thickest at heel strike, feathering at the rim, underside matched to the cup. Soft material swap. A {{heel fill}} is the opposite verb on this same seat \u2014 it builds the seat UP. This one cushions.</p>" },
-          { camera: "heel", anim: "reseat", text: "<p>Reseated: extra cushion under the cover. Heel pain from any cause \u2014 plantar fasciitis at heel strike, fat-pad atrophy when the natural cushion under the calcaneus has thinned, high-impact heel pain. QC: the pad fills the cup cleanly, the front edge reaches the correct forward extent, and it feels noticeably softer than the surrounding base when pressed.</p>" },
+        "id": "medial-wedge-extrinsic",
+        "title": "Medial Wedge (extrinsic)",
+        "models": [
+          {
+            "po": "SG-WEDGE-MEDIAL",
+            "side": "LEFT"
+          }
         ],
+        "camera": "underside",
+        "steps": [
+          {
+            "camera": "underside",
+            "legend": "Medial wedge · wedge_medial",
+            "pair": [
+              {
+                "po": "SG-WEDGE-MEDIAL",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>Every wedge and post at Hike does the same job: tilt the heel into a corrected position by raising one border of the insole relative to the other. Raise the {{Medial}} border and you push the heel out of valgus — stop it rolling in. Raise the {{Lateral}} border and you push the heel out of varus — stop it rolling out. The clinical goal never changes. What changes is where and how that tilt is built. Two ways: {{intrinsic / extrinsic}}. They look different on the bench, they are built differently in production, and they are verified differently in QC.</p><p>An <b>extrinsic wedge</b> lives outside the base — a separate printed TPU slab under a base that prints completely flat and untilted. The angle arrives later as its own part. The insole geometry is never touched. The correction is entirely in the wedge underneath.</p><details class=\"lab-note\"><summary>Coming from a traditional lab</summary><div><p>A second-color glued extrinsic post is not how Hike builds this. The wedge is printed from the same material and color as the base — one continuous piece, no seam.</p></div></details><p>SoleGen generates that slab as its own STL. The top face is flat — that is the surface that bonds to the base underside. The angle is on the bottom face, so the tilted surface is what sits against the shoe. A medial wedge raises the inner border. Default angle is 4°. At 0° no part is generated at all. One wedge per foot — medial and lateral cannot coexist. You cannot raise both borders at once.</p>"
+          }
+        ]
       },
       {
-        id: "met-pad",
-        title: "Met Pad",
-        models: [{ po: "PAIR-MET-PAD", side: "LEFT" }],
-        camera: "pad",
-        steps: [
-          { camera: "pad", text: "<p>The <b>{{met pad}}</b> is a symmetric guitar-pick dome that rises from the base between the {{metatarsal heads}} \u2014 spherical top, feathering toward MT1 medially and MT5 laterally. It sits just behind the heads in the distal midfoot, <b>never under the heads</b>. Default height 5 mm. Printed as its own part. More accommodative than the Met Bar. Mutually exclusive with the Met Bar \u2014 one type per insole.</p>" },
-          { camera: "pad", text: "<p>It treats generalized metatarsalgia \u2014 pain across the ball of the foot \u2014 by shifting load proximally off the heads and onto the met shafts. Sitting just proximal to the heads, it lifts the shafts so the heads drop slightly and peak pressure falls with every step.</p>" },
-          { camera: "profile", anim: "separate", text: "<p>Lift it off \u2014 this is the pad in your hand. Paper-thin at the rim, thickest just behind the heads, underside molded to the insole. Bar = a structural ridge across the full width. Pad = this softer central dome.</p>" },
-          { camera: "pad", anim: "reseat", text: "<p>Reseated, it disappears under the cover. The patient only feels the lift. QC: centered behind the met heads \u2014 not under them, not too far back into the midfoot. A Met Pad under the heads concentrates pressure exactly where the Rx was trying to relieve it.</p>" },
+        "id": "lateral-wedge-extrinsic",
+        "title": "Lateral Wedge (extrinsic)",
+        "models": [
+          {
+            "po": "SG-WEDGE-LATERAL",
+            "side": "LEFT"
+          }
         ],
+        "camera": "underside",
+        "steps": [
+          {
+            "camera": "underside",
+            "legend": "Lateral wedge · wedge_lateral",
+            "pair": [
+              {
+                "po": "SG-WEDGE-LATERAL",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>The <b>lateral wedge</b> is the same printed slab, flipped in direction. The lateral side is raised and the medial edge is the hinge. Same own-STL, same 4° default, same rule: at 0° nothing is made. Direction <b>is</b> the prescription.</p><p>MEDIAL raises the inner border to stop the heel rolling in — the fix for valgus and overpronation. LATERAL raises the outer border to stop it rolling out — the fix for varus and supination. {{valgus / varus}} is the whole language. Find the high side and you have read the diagnosis.</p><p>QC is the same check every time: set the device down and see which border sits higher. High medial border = medial wedge. High lateral border = lateral wedge. Mix them up and the insole steers the heel the wrong way.</p>"
+          }
+        ]
       },
       {
-        id: "met-bar",
-        title: "Met Bar",
-        models: [{ po: "PAIR-MET-BAR", side: "LEFT" }],
-        camera: "pad",
-        steps: [
-          { camera: "pad", text: "<p>The <b>{{met bar}}</b> is a fixed digitized silhouette \u2014 wide met-head edge, rounded medial lobe, a single S-curve medial wall, flat proximal edge \u2014 that scales only in width, height, and Y. It runs the full width of the forefoot, just proximal to the {{metatarsal heads}}, and offloads them by sending weight back onto the shafts. The dome plateaus across the flanks instead of peaking at one point. Default height 4\u20135 mm. Real separate production part. Mutually exclusive with the Met Pad \u2014 one type per insole.</p>" },
-          { camera: "profile", anim: "separate", text: "<p>Watch it lift. Where the Met Pad is a softer, more accommodative dome, the Met Bar is the structural, precise ridge \u2014 for generalized metatarsalgia with callusing across several heads, when a firm defined ridge is needed to redirect load every step. The S-curve and the plateau give it a more defined load-redirect than the guitar-pick pad.</p>" },
-          { camera: "pad", anim: "reseat", text: "<p>Seated, it reads as a horizontal bar just behind the ball of the foot. QC: full width, proximal to the heads, feathers to nothing at the medial and lateral edges. A bar that does not feather becomes a step the patient feels through the cover.</p>" },
+        "id": "rearfoot-posting-intrinsic",
+        "title": "Rearfoot Posting (intrinsic)",
+        "models": [
+          {
+            "po": "SG-REARFOOT-POSTING",
+            "side": "LEFT"
+          }
         ],
+        "camera": "underside",
+        "steps": [
+          {
+            "camera": "underside",
+            "legend": "Rearfoot posting · rearfoot_posting",
+            "pair": [
+              {
+                "po": "SG-REARFOOT-POSTING",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>An <b>intrinsic</b> correction is built inside the base during design. No separate part. The base prints with the angle already in it — first layer to last. That is what rearfoot {{posting}} is at Hike: an intrinsic wedge baked into the base before a single print begins.</p><p>An intrinsically posted base looks different from a flat-bottomed extrinsic base the moment it leaves the printer. The underside of the heel is already angled, with nothing attached. The medial or lateral border is higher as part of the base itself. Same directional logic as the extrinsic wedge — medial posting is valgus correction (stops the heel rolling in); lateral posting is varus correction (stops it rolling out) — delivered through the base, not a part under it.</p><p>No extra step for the correction: it comes off the printer already posted. If the angle is wrong, there is no separate part to swap. The base <b>is</b> the correction, so the base is what gets flagged. QC: place it flat on the table and read which border sits higher. High border = prescribed side. If it rocks toward the medial side the post is medial. If it rocks toward the lateral side the post is lateral. One check, every time, before it moves on.</p>"
+          }
+        ]
       },
       {
-        id: "dancers-pad",
-        title: "Dancer's Pad",
-        models: [{ po: "PAIR-DANCERS-PAD", side: "LEFT" }],
-        camera: "pad",
-        steps: [
-          { camera: "pad", text: "<p>The <b>Dancer's Pad</b> is a rounded forefoot pad with a concave cut-out around the first metatarsal head. It supports MT2 through MT5 and the shafts while offloading MT1 \u2014 the first met head and the {{sesamoids}} under it float free of insole contact. Same dome controls as the Met Bar, different silhouette. Mutually exclusive with Met Pad and Met Bar \u2014 enabling it removes both.</p>" },
-          { camera: "profile", anim: "separate", text: "<p>Lift it off and the cut-out is the whole point: a bite out of the medial corner. The sesamoids act as a pulley for the flexor hallucis tendon and take heavy load at push-off. Sesamoiditis makes every step through the ball of the foot painful. This pad removes the insole from under MT1 so those bones never contact the device, while the rest of the forefoot stays supported.</p>" },
-          { camera: "pad", anim: "reseat", text: "<p>Reseated, it can look like a normal met pad from most angles \u2014 the treatment is what it does not cover. QC: the cut-out is clean, centered on MT1, and the surrounding dome is symmetric and feathers to nothing at the edges.</p>" },
+        "id": "forefoot-posting",
+        "title": "Forefoot Posting",
+        "models": [
+          {
+            "po": "SG-FOREFOOT-POSTING",
+            "side": "LEFT"
+          }
         ],
+        "camera": "forefoot",
+        "steps": [
+          {
+            "camera": "forefoot",
+            "legend": "Forefoot posting · forefoot_posting",
+            "pair": [
+              {
+                "po": "SG-FOREFOOT-POSTING",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p><b>Forefoot posting</b> is the intrinsic version of forefoot correction — the tilt is built into the base through the trimline, not added as a separate part underneath. The medial or lateral forefoot point rises and the plantar surface follows the rim up to that high point. Behind the high point the rim dies back down naturally. Medial forefoot posting raises the inner forefoot border — varus. Lateral raises the outer forefoot border — valgus. Default angle is 4°. Independent — it replaces nothing, and it can sit with rearfoot {{posting}} on the same device so the clinician can set heel and forefoot angles separately.</p><p>QC is direction. The high point must be on the prescribed border — medial for varus, lateral for valgus. Same check as rearfoot posting: set the base down and find which forefoot border sits higher. That border is the prescribed side. Confirm it matches the Rx.</p>"
+          }
+        ]
       },
       {
-        id: "reverse-dancers",
-        title: "Reverse dancer's pad",
-        models: [{ po: "PAIR-REVERSE-DANCERS-PAD", side: "LEFT" }],
-        camera: "pad",
-        steps: [
-          { camera: "pad", legend: "Reverse dancer's pad \u00b7 reversedancerspad", text: "<p>The <b>{{reverse dancer's pad}}</b> is the mirror-side companion \u2014 a rounded forefoot pad with a concave cut-out around the fifth metatarsal head, not the first. It supports MT1 through MT4 and the shafts while offloading MT5 and the lateral forefoot. Traced from its own contour, not a pure geometric mirror of the Dancer's Pad, because MT5 sits at a different angle than MT1. Same exclusive rules: enabling it removes Met Pad and Met Bar.</p>" },
-          { camera: "profile", anim: "separate", text: "<p>Lift it off. The cut-out is on the <b>lateral</b> corner \u2014 MT5, not MT1. The target is lateral forefoot pain under the 5th met head \u2014 tailor's bunion, lateral callusing, or a bony prominence at MT5. The pad removes contact at MT5 and keeps the rest of the forefoot loaded.</p>" },
-          { camera: "pad", anim: "reseat", text: "<p>Reseated, QC is the same as the Dancer's, flipped: the cut-out is on the lateral side (MT5), cleanly shaped, and the pad is symmetric and feathered at every edge.</p>" },
+        "id": "thickness-boost",
+        "title": "Thickness Boost",
+        "models": [
+          {
+            "po": "SG-THICKNESS-BOOST",
+            "side": "LEFT"
+          }
         ],
+        "camera": "underside",
+        "steps": [
+          {
+            "camera": "underside",
+            "legend": "Thickness boost · thickness_boost",
+            "pair": [
+              {
+                "po": "SG-THICKNESS-BOOST",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>A <b>{{thickness boost}}</b> is exactly what it sounds like — the base prints thicker than standard across the whole base. No angle, no directional correction, no geometry change. Just more material through the full plate. Used when the patient needs a more substantial, heavier-duty base — higher body weight, high activity, or a firmer, more durable base than standard thickness.</p><p>Hike uses a thinner base for a more flexible feel and builds the base thicker for firmer control. The trade-off is a thicker device, especially through the forefoot. On the floor a Thickness Boost base feels noticeably heavier and more rigid than a standard base of the same type. That extra weight is the point.</p>"
+          }
+        ]
       },
       {
-        id: "offload-met-head",
-        title: "Offload Met Head",
-        models: [{ po: "PAIR-OFFLOAD-5TH", side: "LEFT" }],
-        camera: "relief",
-        explorer: "plugs",
-        hideAddon: true,
-        steps: [
-          { camera: "relief", panel: "plugs", legend: "Met Head Offload", pair: [{ po: "PAIR-OFFLOAD-5TH", side: "LEFT", label: "5th" }], text: "<p>An {{offload}} does not cushion \u2014 it removes contact entirely. The <b>Met Head Offload</b> cuts a precise oval well into the insole bed directly beneath a targeted metatarsal head so that when the patient bears weight, that head never touches the insole surface. The tissue floats above the well. No contact, no pressure, no damage. This is why offloads are most common on diabetic devices \u2014 a patient with {{neuropathy}} cannot feel a pressure point building until it has already become a wound. The offload removes that risk before it starts.</p><p>This device is the <b>5th</b> met head \u2014 little-toe side, lateral. Click another head: 1st through 5th, plus the 2nd+3rd and 4th+5th combos. MT2 through MT4 positions are calculated automatically from the patient's foot geometry. MT1 and MT5 are selectable independently. Default depth is 4 mm, capped to always leave a structural floor above the base.</p><p>The well does not stay empty \u2014 a soft plug printed to the exact shape of the well fills it flush with the surrounding surface. That plug is the next lesson. On any given head, Met Head Offload is mutually exclusive with Drill and Fill \u2014 one approach per head, never both. In QC, verify the well is at the correct head before anything else. 1st is medial (big toe). 5th is lateral (little toe). Do not swap them.</p>" },
+        "id": "kirby-skive",
+        "title": "Kirby Skive",
+        "models": [
+          {
+            "po": "SG-HEEL-SKIVE",
+            "side": "LEFT"
+          }
         ],
+        "camera": "underside",
+        "steps": [
+          {
+            "camera": "underside",
+            "legend": "Kirby Skive · heel_skive",
+            "pair": [
+              {
+                "po": "SG-HEEL-SKIVE",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>The <b>{{Kirby Skive}}</b> is a targeted medial heel modification — a bias printed into the medial heel that creates a steep medial rearfoot post without a separate wedge part. Kevin Kirby developed it to put aggressive pronation control into the base at the heel. The medial heel rises steeply, a sharp angular correction right where the heel first hits the ground. More aggressive than a standard medial post. Typically prescribed when significant overpronation has not been controlled by a standard rearfoot post or an extrinsic wedge.</p><p>QC: recognizable by the steep medial rise at the heel — steeper than a standard intrinsic post, more abrupt. The steep face must be on the medial side, and the geometry must be clean and consistent heel to arch. Inconsistent medial-heel geometry will not deliver the correction the clinician prescribed.</p>"
+          }
+        ]
       },
       {
-        id: "offload-plug",
-        title: "The plug that fills the well",
-        models: [{ po: "PAIR-OFFLOAD-5TH", side: "LEFT" }],
-        camera: "relief",
-        explorer: "plugs",
-        steps: [
-          { camera: "relief", panel: "plugs", pair: [{ po: "PAIR-OFFLOAD-5TH", side: "LEFT", label: "5th" }], text: "<p>This cyan piece is the real production plug \u2014 here for the 5th met head \u2014 cut to the well's exact shape and sitting flush. Click another head: 1st through 5th, plus the 2nd+3rd and 4th+5th combos. Every one is a stock part. The well removes contact; the plug is what the head actually lands on.</p>" },
-          { camera: "forefoot", anim: "press", text: "<p>Load it the way a step does. The plug compresses into the well while the firm base around it barely moves \u2014 that difference in give <b>is</b> the prescription. The painful head sinks into softness instead of striking firm base.</p>" },
-          { camera: "relief", anim: "release", text: "<p>Unload, and it springs back flush. No step, no edge \u2014 only a softer landing under the one head that needed protecting. QC again: flush, not proud, not recessed.</p>" },
+        "id": "arch-reinforcement",
+        "title": "Arch Reinforcement",
+        "models": [
+          {
+            "po": "SG-ARCH-REINFORCEMENT",
+            "side": "LEFT"
+          }
         ],
+        "camera": "arch",
+        "steps": [
+          {
+            "camera": "arch",
+            "legend": "Arch reinforcement · arch_reinforcement",
+            "pair": [
+              {
+                "po": "SG-ARCH-REINFORCEMENT",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p><b>{{arch reinforcement}}</b> stiffens the medial wall of the base under the arch. It raises the outer wall angle of that medial wall — default an extra +10° — and pulls in the rear-wall zone for a tighter, more rigid medial support. No separate geometry is added. SoleGen switches it on and the base prints with a stiffer, more upright medial wall built into the base. The verb is STIFFEN — not a soft insert, not a pad. The wall itself resists collapse under load. Independent. Replaces nothing.</p><p>QC distinction: Arch Reinforcement and Arch Pad both address the arch zone and are often confused. They do completely different jobs. Arch Reinforcement stiffens the wall. Arch Pad fills the space under the arch with a soft insert. One is structural, one is cushioning. They are not interchangeable.</p>"
+          }
+        ]
       },
       {
-        id: "drill-fill",
-        title: "Drill & Fill",
-        models: [{ po: "DRILL-FILL", side: "LEFT" }],
-        camera: "relief",
-        steps: [
-          { camera: "relief", legend: "Left foot \u00b7 Drill & Fill", pair: [{ po: "DRILL-FILL", side: "LEFT" }], text: "<p><b>Drill & Fill</b> is a full-depth aperture through the top cover, backfilled with softer foam. Same oval footprint and same heads as a Met Head Offload \u2014 but the walking surface stays continuous. The surface looks flush. Pressure is pushed outward. It redistributes load. It does <b>not</b> remove contact the way a well-and-plug offload does.</p><p>This is a real pair. On the printer the zone is its own add-on; the density slicer prints it soft, typically {{P-Cell}} or {{Poron}}, while the base around it prints standard.</p>" },
-          { camera: "forefoot", legend: "Right foot \u00b7 Drill & Fill", pair: [{ po: "DRILL-FILL", side: "RIGHT" }], text: "<p>Load it. The soft fill compresses while the firm base holds. For a patient who needs relief at a met head but does not have an open wound or ulcer, this is the graduated answer. Active wounds and high-risk tissue still want the full well-and-plug offload. Mutually exclusive with the Met Head Offload on any given head. Under a hard-striking met head, that extra give is what saves the tissue.</p>" },
-          { camera: "relief", legend: "Right foot \u00b7 Drill & Fill", pair: [{ po: "DRILL-FILL", side: "RIGHT" }], text: "<p>Unloaded, it springs back flush. Nothing to feel, nothing to catch a sock on. QC: press it. It must compress more than the adjacent base. If it feels the same hardness, the material swap did not process.</p>" },
+        "id": "arch-pad",
+        "title": "Arch Pad",
+        "models": [
+          {
+            "po": "PAIR-ARCH-PAD",
+            "side": "LEFT"
+          }
         ],
+        "camera": "arch",
+        "steps": [
+          {
+            "camera": "arch",
+            "legend": "Arch pad · arch_pad",
+            "pair": [
+              {
+                "po": "PAIR-ARCH-PAD",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>The <b>Arch Pad</b> is a soft insert — printed as its own separate volume — that fills the space under the arch between the base and the foot. Square-to-circle footprint, centered on the Medial High Point, clipped to the outer trimline. It typically runs from just behind the first metatarsal head back toward the heel, filling the dome so the foot has full contact instead of a gap the base alone cannot bridge.</p><p>Off the insole it is the largest pad in the toolbox — a full wedge molded to the arch dome, deep enough that its top face rebuilds the arch line from below. It shortens the working length of the {{plantar fascia}} by giving the arch a surface to rest against, so the fascia does not have to generate as much tension to hold height. SoleGen exports it as its own soft volume and the autoslicer trims it to the insole body.</p><p>Seated back into the base the arch is filled, not just touched — the gap disappears. On diabetic devices this same part fills a high or rigid arch for {{total contact}}, so no zone is left unsupported and pressure does not spike at the arch peak. The verb is RAISE — soft material bringing the arch surface up to meet the foot. A {{navicular}} offload is the opposite move on this same border — a recessed relief slightly behind where the Arch Pad sits.</p>"
+          }
+        ]
       },
       {
-        id: "heel-offload",
-        title: "Heel offload",
-        models: [{ po: "SG-HEEL-OFFLOAD", side: "LEFT" }],
-        camera: "heel",
-        steps: [
-          { camera: "heel", legend: "Heel offload \u00b7 heel_offload", text: "<p>The <b>Heel Offload</b> is an egg-shaped relief in the heel cup \u2014 wide base rearward, narrowing forward \u2014 that unloads the {{calcaneus}}. Depth is capped to leave a floor above the base, same rule as the met-head well. Independent. Heel zone only \u2014 it does not conflict with forefoot accommodations. Do not confuse it with a Heel Pad. Pad = raise, cushion. Offload = relieve, take contact away.</p><p>For a {{heel spur}}, the well sits at the <b>medial calcaneal tubercle</b> \u2014 the plantar-fascia insertion \u2014 not centered under the heel, so the spur floats while the rest of the heel still bears weight.</p>" },
+        "id": "dannenburg",
+        "title": "Dannenburg Wedge",
+        "models": [
+          {
+            "po": "SG-KINETIC-WEDGE",
+            "side": "LEFT"
+          }
         ],
+        "camera": "forefoot",
+        "steps": [
+          {
+            "camera": "forefoot",
+            "legend": "Dannenburg Wedge · kinetic_wedge",
+            "text": "<p>A {{Dannenburg Wedge}} (SoleGen also calls it a kinetic wedge) is a soft forefoot region the slicer prints at its own density. Its rear boundary is FIVE draggable points: a point on the lateral trimline, an arc through a free mid point, a line to the corner, and a line to a point on the medial trimline.</p><p>The whole local thickness prints soft — about 4–5 mm over most of the cap. No depth knob: a modifier takes the thickness it finds. It does not change the bed. Independent — replaces nothing. Think of it as a soft zone painted onto the forefoot, not a bump you can lift off.</p>"
+          }
+        ]
       },
       {
-        id: "landmark-offloads",
-        title: "Landmark offloads",
-        models: [{ po: "CPO-306901", side: "LEFT" }],
-        camera: "arch",
-        steps: [
-          { camera: "overview", legend: "Custom offload \u00b7 custom_offload", pair: [{ po: "CPO-306901", side: "LEFT" }], text: "<p>A <b>Custom Offload</b> is a relief the operator places anywhere on the plantar surface for a bony prominence or painful structure that none of the fixed-target offloads cover. The bed stays closed \u2014 the recess is a cutter the autoslicer subtracts at that exact location. No stock footprint. Shape, size, position, and depth all come from the Rx marking.</p><p>Used for landmarks outside the standard targets \u2014 unusual prominences, post-surgical hardware, scarring, irregular pressure the clinician mapped on the foot. QC has no default: go to the Rx marks. Location, size, and depth on the finished insole must match what was specified.</p>" },
-          { camera: "arch", legend: "Navicular \u00b7 navicular_offload", pair: [{ po: "CPO-306901", side: "LEFT" }], text: "<p>The <b>{{navicular}} Offload</b> is a recessed relief on the medial midfoot, directly under the navicular \u2014 the keystone of the medial longitudinal arch. When that bone drops low enough to hit the insole, every step is medial midfoot pain. The well keeps it off the base so the surrounding tissue and the arch carry load instead.</p><p>Opposite move from the Arch Pad on the same border. Arch Pad RAISES to fill the arch. Navicular Offload RELIEVES to remove contact at one point. QC: medial midfoot at the navicular landmark, depth consistent. Too far distal and you start offloading the first met base. Too far proximal and you start relieving the medial heel.</p>" },
-          { camera: "arch", legend: "Medial cuneiform \u00b7 med_cuneiform_offload", pair: [{ po: "CPO-306901", side: "LEFT" }], text: "<p>The <b>Medial Cuneiform Offload</b> targets the wedge-shaped bone between the navicular and the base of the first metatarsal, on the medial column. When that bone is prominent or painful, a small relief removes contact without disturbing the arch around it. Tight corridor: navicular behind, first met base in front \u2014 either of those may have its own accommodation on the same device. QC: isolated to the cuneiform. Do not drift into navicular or first-met-base territory.</p>" },
-          { camera: "forefoot", legend: "Base of 1st Offload (Non-Shell) \u00b7 mt1_base_offload", pair: [{ po: "CPO-306901", side: "LEFT" }], text: "<p>The <b>Base of 1st Offload (Non-Shell)</b> is an aperture directly beneath the 1st metatarsal head. It works with the Dancer Pad for sesamoid and 1st MTP relief. The two accommodations work together \u2014 the Dancer Pad carries load on the shafts so the 1st met head bears less, while the offload aperture ensures the 1st MTH never contacts the insole directly. QC: under the 1st head, not drifted into a generic met-head well on another ray.</p>" },
-          { camera: "relief", legend: "Base of 5th Offload \u00b7 mt5_base_offload", pair: [{ po: "CPO-306901", side: "LEFT" }], text: "<p>The <b>Base of 5th Offload</b> is an aperture at the 5th metatarsal styloid. This is the well on this mesh. The styloid is the bony bump on the lateral foot \u2014 a frequent site of pain from direct pressure and a common fracture site. It unloads a prominent or tender base of 5th so that bump never takes the shoe. QC: lateral midfoot at the styloid \u2014 not distal toward the 5th met head, not proximal toward the cuboid.</p>" },
+        "id": "medial-flange",
+        "title": "Medial Flange",
+        "models": [
+          {
+            "po": "SG-MEDIAL-FLANGE",
+            "side": "LEFT"
+          }
         ],
+        "camera": "heel",
+        "steps": [
+          {
+            "camera": "heel",
+            "legend": "Medial flange · medial_flange",
+            "pair": [
+              {
+                "po": "SG-MEDIAL-FLANGE",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>A {{flange}} is the insole wall continued vertically upward. The base already has a rim — a low edge that follows the outline of the foot. A flange takes that rim and extends it straight up into a wall, so the foot sits inside the device rather than just on top of it. Every flange catches and holds the foot laterally — it stops the foot sliding off the edge and gives medial or lateral support the flat surface cannot. Two types: flanges on a standard insole plate, and flanges on a base. Same geometry — wall up, constant thickness, lip closing the top — different starting heights because the device class and the clinical job differ.</p><p>The <b>Medial Flange</b> runs the medial edge from the medial forefoot point all the way back to the heel. The top line rises from the forefoot, holds a plateau across the midfoot and arch, then falls back to the rim at the heel. Default height 30 mm, wall 5 mm. Taller and thicker than the others because it holds the arch — the medial wall has to push back when the foot tries to pronate and collapse inward. The lip closes the wall cleanly so the foot cannot ride up and over the edge. Independent. Replaces nothing.</p>"
+          }
+        ]
       },
       {
-        id: "grooves",
-        title: "PT Groove, Heel fill, Tarsal Tunnel",
-        models: [{ po: "SG-HEEL-FILL", side: "LEFT" }],
-        camera: "arch",
-        steps: [
-          { camera: "arch", legend: "PT Groove \u00b7 pt_groove_offload", pair: [{ po: "SG-HEEL-FILL", side: "LEFT" }], text: "<p>A <b>{{PT groove}}</b> is a long, thin oval relief along the posterior tibial tendon or plantar tendon through the central arch \u2014 seeded mid-arch and slightly medial, following the tendon path. Same cutter family as a Custom Offload: the recess is subtracted from the base, not added on top. Default aspect about 3.7 \u2014 long and thin, not round. Default depth 4 mm. Independent. Replaces nothing.</p><p>It treats a tendon nodule \u2014 a thickened, inflamed section that sits proud and hits the insole every step. The channel follows the tendon so the nodule sits in the well and never touches the bed. The tendon floats. The surrounding plantar surface still bears load. QC: the groove runs the medial-arch trajectory \u2014 long axis along the tendon, not across the arch \u2014 and depth is consistent the full length of the channel.</p>" },
-          { camera: "heel", legend: "Heel fill \u00b7 heel_fill", pair: [{ po: "SG-HEEL-FILL", side: "LEFT" }], text: "<p>A <b>{{heel fill}}</b> is extra material built up inside the heel seat \u2014 thickest at center, feathering out with no step. This is the mesh. It is the Heel Pad's footprint taken the other way. The pad cuts a soft insert into the thickness. The fill builds the seat <b>up</b>, so the heel sits higher and makes fuller contact. Default 3 mm at center, feathering to nothing. The front edge is shared with the Heel Pad, so they align when both are ordered. The fill can never stand above the cup rim \u2014 inside the cup only, never past the wall.</p><p>It composes with Heel Pad and Heel Offload on the same device. Fill raises the seat. Pad softens a zone in the thickness. Offload removes contact at a point. Three jobs, one heel, no conflict. QC: feathers clean to the cup with no step or ridge. A step at the edge is a pressure line the patient feels every heel strike.</p>" },
-          { camera: "heel", legend: "Tarsal Tunnel Groove \u00b7 heel_cut", pair: [{ po: "SG-HEEL-FILL", side: "LEFT" }], text: "<p>The <b>{{tarsal tunnel}} Groove</b> is scooped out of the <b>medial heel-cup wall</b> \u2014 not the plantar surface, the vertical wall. The tarsal tunnel runs behind the medial malleolus (inner ankle bone), carrying the posterior tibial nerve into the foot. Compression there burns, tingles, and numbs the medial foot and toes \u2014 tarsal tunnel syndrome.</p><p>A standard cup wall sits snug on the medial heel and can squeeze that tunnel. The groove subtracts a 20 mm band that follows the wall around the heel. The slicer cuts it clean so the edge stays sharp. Default depth from the rim 7 mm. Default length along the trimline 82 mm. The insole body is untouched \u2014 only the wall. The plantar surface still supports the foot; the wall no longer hits the tunnel. QC: medial wall only, consistent depth and length, edge sharp and clean. A ragged edge becomes its own pressure point on the wall.</p>" },
+        "id": "lateral-flange",
+        "title": "Lateral Flange",
+        "models": [
+          {
+            "po": "SG-LATERAL-FLANGE",
+            "side": "LEFT"
+          }
         ],
+        "camera": "heel",
+        "steps": [
+          {
+            "camera": "heel",
+            "legend": "Lateral flange · lateral_flange",
+            "pair": [
+              {
+                "po": "SG-LATERAL-FLANGE",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>The <b>Lateral Flange</b> is the same geometry on the outer edge — lateral forefoot point to the back heel. It starts a little lower: default height 25 mm, wall about 2.5 mm. Thinner and shorter because it catches the foot rather than holding an arch. It stops the foot sliding outward off the insole, especially at push-off and in lateral movement. It does not need the same structural depth as the medial wall — outward forces are generally lower than the forces driving medial collapse.</p><p>Both flanges together — medial and lateral at once — is the defining geometry of a {{UCBL}}. Tall medial wall plus lateral catch wall, fully enclosing the rearfoot. When you see both on a standard insole order, the device is approaching UCBL-level rearfoot control without being a full UCBL base.</p>"
+          }
+        ]
       },
+      {
+        "id": "medial-shell-flange",
+        "title": "Medial Shell Flange",
+        "models": [
+          {
+            "po": "SG-SHELL-MEDIAL-FLANGE",
+            "side": "LEFT"
+          }
+        ],
+        "camera": "heel",
+        "steps": [
+          {
+            "camera": "heel",
+            "legend": "Medial shell flange · shell_medial_flange",
+            "pair": [
+              {
+                "po": "SG-SHELL-MEDIAL-FLANGE",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>The <b>Medial Shell Flange</b> is the same switch on a shell, not a flat plate. A plate starts from its rim. A shell already has a wall — the flange extends that wall vertically the same way. Default height 25 mm — lower than the plate medial flange because the shell's existing wall already contributes some medial support before the flange begins. Same constant thickness, same lip on top, same medial-forefoot-to-heel run.</p>"
+          }
+        ]
+      },
+      {
+        "id": "lateral-shell-flange",
+        "title": "Lateral Shell Flange",
+        "models": [
+          {
+            "po": "SG-SHELL-LATERAL-FLANGE",
+            "side": "LEFT"
+          }
+        ],
+        "camera": "heel",
+        "steps": [
+          {
+            "camera": "heel",
+            "legend": "Lateral shell flange · shell_lateral_flange",
+            "pair": [
+              {
+                "po": "SG-SHELL-LATERAL-FLANGE",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>The <b>Lateral Shell Flange</b> is the outer wall of the shell continued upward. Default height 20 mm — the lowest of the four — because it catches rather than holds, and the shell's existing lateral wall already does some of that catching. Same geometry, same lip, same lateral-forefoot-to-heel run.</p><p>The device class picks the starting height — shell versus plate — and the prescribed side picks the border. One QC check for all four: find the flange, confirm it is on the prescribed border, confirm the height is consistent along the full run, and confirm the lip is clean and closed at the top.</p>"
+          }
+        ]
+      },
+      {
+        "id": "neuroma-pad",
+        "title": "Neuroma pad",
+        "models": [
+          {
+            "po": "PAIR-NEUROMA-PAD",
+            "side": "LEFT"
+          }
+        ],
+        "camera": "pad",
+        "steps": [
+          {
+            "camera": "pad",
+            "text": "<p>Pads are additive — they raise the plantar surface in a targeted zone to redistribute load, separate structures, or restore contact the base cannot reach. Every pad has a precise footprint, a precise position, and a precise clinical reason. Wrong position is the wrong pad. A neuroma pad in the wrong webspace does nothing for the nerve. A met pad under the heads instead of behind them creates a new pressure problem. <b>Position is always the prescription.</b></p><p>A <b>Neuroma Pad</b> is a small teardrop dome on the forefoot, just proximal to and slightly medial to a specific intermetatarsal webspace. Met-pad family: additive, lifts the surface. A Morton's {{neuroma}} is a pinched nerve between the met heads — classically the 3rd webspace, between 3 and 4. The heads squeeze that nerve under load. This pad sits just behind that space and gently spreads the heads, so the nerve is no longer pinched.</p><p>It is a separate printed part — free position, independent, replaces nothing. Deliberately subtle: only one to two millimeters of dome. Against a nerve, a little separation is treatment. A large lump under the forefoot would just create a new pressure point.</p><p>Seated, the heads spread a fraction with every step. The classic complaint is a pebble in the shoe under the forefoot, often with burning or numbness between the toes. QC: the pad must sit proximal to the <b>correct</b> webspace, and the dome must be subtle and smooth — not oversized, not undersized, centered on the Rx mark.</p>"
+          }
+        ]
+      },
+      {
+        "id": "cuboid-pad",
+        "title": "Cuboid Pad",
+        "models": [
+          {
+            "po": "PAIR-CUBOID-PAD",
+            "side": "LEFT"
+          }
+        ],
+        "camera": "arch",
+        "steps": [
+          {
+            "camera": "arch",
+            "text": "<p>A <b>Cuboid Pad</b> is a soft insert that raises the plantar surface with a 1–5 mm dome over its footprint, continuing down into the thickness as its own add-on STL — printed soft. Oval footprint, free position. It sits on the outer midfoot, directly under the {{cuboid}} — the blocky bone that anchors the lateral column between the heel and the outer mets.</p><p>The cuboid is a commonly missed source of lateral midfoot pain. When the lateral column loses stability — hypermobility, ankle sprain, peroneal tendon trouble — the cuboid can sublux slightly. The pad restores load across the lateral column by lifting that bone back into contact so it has a surface to bear against. Independent. Replaces nothing. Precision is placement: one bone, not a region.</p><p>Lifted off: a small oval dome. One bone. Placement matters more than bulk.</p><p>Reseated, the lateral column has somewhere to land. QC: the oval must be centered on the lateral midfoot — not drifted medially into the arch, not distal under the 5th met head.</p>"
+          }
+        ]
+      },
+      {
+        "id": "toe-crest",
+        "title": "Toe Crest",
+        "models": [
+          {
+            "po": "PAIR-TOE-CREST",
+            "side": "RIGHT"
+          }
+        ],
+        "camera": "toes",
+        "steps": [
+          {
+            "camera": "toes",
+            "text": "<p>A <b>Toe Crest</b> is an elongated ridge on the forefoot under the toes, in the {{sulcus}} — just distal to the met heads, where the toes curl under. One pill segment per selected toe, centered distal to that toe's met head. Adjacent selections overlap and merge into one continuous crest. All five toes is the classic full-width crest. Partial selections target specific toes only. This mesh runs left to right under toes 2 through 5.</p><p>Off the insole the shape explains the job: a rounded bolster that nests into the valley under curled toes. It treats {{hammertoes}}, claw toes, and mallet toes — the tips dig into the shoe instead of lying flat. The crest props the toe toward neutral and sends load back toward the met heads. Default height 3 mm per toe.</p><p>Seated, the curl rests on the crest instead of clawing at air. Tip pressure — and the corns and calluses it breeds — drops. One of the most commonly ordered pads; bilateral Toe Crest is frequent. QC: each selected segment is present, distal to the right met head, and adjacent segments have merged with no visible gap or seam.</p>"
+          }
+        ]
+      },
+      {
+        "id": "sensory-bumps",
+        "title": "Sensory bumps",
+        "models": [
+          {
+            "po": "SG-SENSORY-BUMPS",
+            "side": "LEFT"
+          }
+        ],
+        "camera": "overview",
+        "steps": [
+          {
+            "camera": "overview",
+            "legend": "Sensory bumps · sensory_bumps",
+            "text": "<p><b>{{Sensory bumps}}</b> are half-sphere caps on the plantar surface in a fixed 16-bump layout: five along the toe contour, two diagonal rows of three down the midfoot, five clustered on the heel. The map is fixed to the metatarsal frame and trimline, so it lands in the same anatomical positions on every foot. Diameter scales with insole size. Independent. Replaces nothing.</p><p>They do not offload and they do not post. They give sensory feedback and proprioception. Patients with reduced sensation — diabetic peripheral {{neuropathy}} most often — have lost the input the foot uses for balance and gait. The bumps give gentle, consistent tactile stimulation with every step. Also used in rehab when a patient is relearning gait. QC: all 16 present, clean, consistent dome height. A missing or half-printed bump in the heel cluster or toe row means the pattern is incomplete.</p>"
+          }
+        ]
+      },
+      {
+        "id": "heel-pad",
+        "title": "Heel Pad",
+        "models": [
+          {
+            "po": "PAIR-HEEL-PAD",
+            "side": "LEFT"
+          }
+        ],
+        "camera": "heel",
+        "steps": [
+          {
+            "camera": "heel",
+            "text": "<p>A <b>Heel Pad</b> is a soft insert that fills the heel cup inside the wall — its own add-on STL, printed in a softer material than the surrounding base. Extra cushioning directly under the {{calcaneus}}. The front edge reaches half again as far forward of the heel point as the rear edge reaches back, so the pad covers the full weight-bearing heel, not just the back of the cup.</p><p>In production this is the single most commonly ordered pad across all insole types. Bilateral heel pad is by far the most frequent pad Rx. Independent. Different region from every other pad — it never conflicts with a forefoot pad.</p><p>Lift it off: thickest at heel strike, feathering at the rim, underside matched to the cup. Soft material swap. A {{heel fill}} is the opposite verb on this same seat — it builds the seat UP. This one cushions.</p><p>Reseated: extra cushion under the cover. Heel pain from any cause — plantar fasciitis at heel strike, fat-pad atrophy when the natural cushion under the calcaneus has thinned, high-impact heel pain. QC: the pad fills the cup cleanly, the front edge reaches the correct forward extent, and it feels noticeably softer than the surrounding base when pressed.</p>"
+          }
+        ]
+      },
+      {
+        "id": "met-pad",
+        "title": "Met Pad",
+        "models": [
+          {
+            "po": "PAIR-MET-PAD",
+            "side": "LEFT"
+          }
+        ],
+        "camera": "pad",
+        "steps": [
+          {
+            "camera": "pad",
+            "text": "<p>The <b>{{met pad}}</b> is a symmetric guitar-pick dome that rises from the base between the {{metatarsal heads}} — spherical top, feathering toward MT1 medially and MT5 laterally. It sits just behind the heads in the distal midfoot, <b>never under the heads</b>. Default height 5 mm. Printed as its own part. More accommodative than the Met Bar. Mutually exclusive with the Met Bar — one type per insole. Full-length bases only — never on a Hike Shell, which ends at the met line.</p><p>It treats generalized metatarsalgia — pain across the ball of the foot — by shifting load proximally off the heads and onto the met shafts. Sitting just proximal to the heads, it lifts the shafts so the heads drop slightly and peak pressure falls with every step.</p><p>Lift it off — this is the pad in your hand. Paper-thin at the rim, thickest just behind the heads, underside molded to the insole. Bar = a structural ridge across the full width. Pad = this softer central dome.</p><p>Reseated, it disappears under the cover. The patient only feels the lift. QC: centered behind the met heads — not under them, not too far back into the midfoot. A Met Pad under the heads concentrates pressure exactly where the Rx was trying to relieve it.</p>"
+          }
+        ]
+      },
+      {
+        "id": "met-bar",
+        "title": "Met Bar",
+        "models": [
+          {
+            "po": "PAIR-MET-BAR",
+            "side": "LEFT"
+          }
+        ],
+        "camera": "pad",
+        "steps": [
+          {
+            "camera": "pad",
+            "text": "<p>The <b>{{met bar}}</b> is a fixed digitized silhouette — wide met-head edge, rounded medial lobe, a single S-curve medial wall, flat proximal edge — that scales only in width, height, and Y. It runs the full width of the forefoot, just proximal to the {{metatarsal heads}}, and offloads them by sending weight back onto the shafts. The dome plateaus across the flanks instead of peaking at one point. Default height 4–5 mm. Real separate production part. Mutually exclusive with the Met Pad — one type per insole. Full-length bases only — never on a Hike Shell.</p><p>Watch it lift. Where the Met Pad is a softer, more accommodative dome, the Met Bar is the structural, precise ridge — for generalized metatarsalgia with callusing across several heads, when a firm defined ridge is needed to redirect load every step. The S-curve and the plateau give it a more defined load-redirect than the guitar-pick pad.</p><p>Seated, it reads as a horizontal bar just behind the ball of the foot. QC: full width, proximal to the heads, feathers to nothing at the medial and lateral edges. A bar that does not feather becomes a step the patient feels through the cover.</p>"
+          }
+        ]
+      },
+      {
+        "id": "dancers-pad",
+        "title": "Dancer's Pad",
+        "models": [
+          {
+            "po": "PAIR-DANCERS-PAD",
+            "side": "LEFT"
+          }
+        ],
+        "camera": "pad",
+        "steps": [
+          {
+            "camera": "pad",
+            "text": "<p>The <b>Dancer's Pad</b> is a rounded forefoot pad with a concave cut-out around the first metatarsal head. It supports MT2 through MT5 and the shafts while offloading MT1 — the first met head and the {{sesamoids}} under it float free of insole contact. Same dome controls as the Met Bar, different silhouette. Mutually exclusive with Met Pad and Met Bar — enabling it removes both.</p><p>Lift it off and the cut-out is the whole point: a bite out of the medial corner. The sesamoids act as a pulley for the flexor hallucis tendon and take heavy load at push-off. Sesamoiditis makes every step through the ball of the foot painful. This pad removes the insole from under MT1 so those bones never contact the device, while the rest of the forefoot stays supported.</p><p>Reseated, it can look like a normal met pad from most angles — the treatment is what it does not cover. QC: the cut-out is clean, centered on MT1, and the surrounding dome is symmetric and feathers to nothing at the edges.</p>"
+          }
+        ]
+      },
+      {
+        "id": "reverse-dancers",
+        "title": "Reverse Dancer's Pad",
+        "models": [
+          {
+            "po": "PAIR-REVERSE-DANCERS-PAD",
+            "side": "LEFT"
+          }
+        ],
+        "camera": "pad",
+        "steps": [
+          {
+            "camera": "pad",
+            "legend": "Reverse dancer's pad · reversedancerspad",
+            "text": "<p>The <b>{{reverse dancer's pad}}</b> is the mirror-side companion — a rounded forefoot pad with a concave cut-out around the fifth metatarsal head, not the first. It supports MT1 through MT4 and the shafts while offloading MT5 and the lateral forefoot. Traced from its own contour, not a pure geometric mirror of the Dancer's Pad, because MT5 sits at a different angle than MT1. Same exclusive rules: enabling it removes Met Pad and Met Bar.</p><p>Lift it off. The cut-out is on the <b>lateral</b> corner — MT5, not MT1. The target is lateral forefoot pain under the 5th met head — tailor's bunion, lateral callusing, or a bony prominence at MT5. The pad removes contact at MT5 and keeps the rest of the forefoot loaded.</p><p>Reseated, QC is the same as the Dancer's, flipped: the cut-out is on the lateral side (MT5), cleanly shaped, and the pad is symmetric and feathered at every edge.</p>"
+          }
+        ]
+      },
+      {
+        "id": "offload-met-head",
+        "title": "Met Head Offload & Plug",
+        "models": [
+          {
+            "po": "PAIR-OFFLOAD-5TH",
+            "side": "LEFT"
+          }
+        ],
+        "camera": "relief",
+        "explorer": "plugs",
+        "steps": [
+          {
+            "camera": "relief",
+            "panel": "plugs",
+            "legend": "Met Head Offload · well + soft plug",
+            "pair": [
+              {
+                "po": "PAIR-OFFLOAD-5TH",
+                "side": "LEFT",
+                "label": "5th"
+              }
+            ],
+            "text": "<p>An {{offload}} does not cushion — it removes contact entirely. The <b>Met Head Offload</b> cuts a precise oval well into the insole bed directly beneath a targeted metatarsal head so that when the patient bears weight, that head never touches the insole surface. The tissue floats above the well. No contact, no pressure, no damage. This is why offloads are most common on diabetic devices — a patient with {{neuropathy}} cannot feel a pressure point building until it has already become a wound. The offload removes that risk before it starts.</p><p>This device is the <b>5th</b> met head — little-toe side, lateral. Click another head: 1st through 5th, plus the 2nd+3rd and 4th+5th combos. MT2 through MT4 positions are calculated automatically from the patient's foot geometry. MT1 and MT5 are selectable independently. Default depth is 4 mm, capped to always leave a structural floor above the base.</p><p>Met head offloads live on full-length bases — Everyday, Sport, Corkbase, Flexible Shell, and the Sweets. <b>Never on a Hike Shell.</b> The 3/4 shell ends at the met line; the only offloads it takes are Base of 5th and Heel Spur.</p><p>The well does not stay empty — a soft plug printed to the exact shape of the well fills it flush with the surrounding surface. The cyan part on stage is that plug. On any given head, Met Head Offload is mutually exclusive with Drill and Fill — one approach per head, never both. In QC, verify the well is at the correct head before anything else. 1st is medial (big toe). 5th is lateral (little toe). Do not swap them.</p><p>The cyan piece is the real production plug, cut to the well's exact shape and sitting flush. Every head's plug is a stock part. The well removes contact; the plug is what the head actually lands on.</p><p>Press Replay to load it the way a step does. The plug compresses into the well while the firm base around it barely moves — that difference in give <b>is</b> the prescription. The painful head sinks into softness instead of striking firm base.</p><p>Unload, and it springs back flush. No step, no edge — only a softer landing under the one head that needed protecting. QC again: flush, not proud, not recessed.</p>"
+          }
+        ]
+      },
+      {
+        "id": "drill-fill",
+        "title": "Drill & Fill",
+        "models": [
+          {
+            "po": "DRILL-FILL",
+            "side": "LEFT"
+          }
+        ],
+        "camera": "relief",
+        "steps": [
+          {
+            "camera": "relief",
+            "legend": "Left foot · Drill & Fill",
+            "pair": [
+              {
+                "po": "DRILL-FILL",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p><b>Drill & Fill</b> is a full-depth aperture through the top cover, backfilled with softer foam. Same oval footprint and same heads as a Met Head Offload — but the walking surface stays continuous. The surface looks flush. Pressure is pushed outward. It redistributes load. It does <b>not</b> remove contact the way a well-and-plug offload does. Like every met-zone accommodation it is for full-length bases — never a Hike Shell.</p><p>On the printer the zone is its own add-on; the density slicer prints it soft, typically {{P-Cell}} or {{Poron}}, while the base around it prints standard.</p><p>Press it (Replay) and the soft fill compresses while the firm base holds. For a patient who needs relief at a met head but does not have an open wound or ulcer, this is the graduated answer. Active wounds and high-risk tissue still want the full well-and-plug offload. Mutually exclusive with the Met Head Offload on any given head. Under a hard-striking met head, that extra give is what saves the tissue.</p><p>Unloaded it springs back flush. Nothing to feel, nothing to catch a sock on. QC: press it. It must compress more than the adjacent base. If it feels the same hardness, the material swap did not process.</p>"
+          }
+        ]
+      },
+      {
+        "id": "heel-offload",
+        "title": "Heel Offload / Heel Spur",
+        "models": [
+          {
+            "po": "SG-HEEL-OFFLOAD",
+            "side": "LEFT"
+          }
+        ],
+        "camera": "heel",
+        "steps": [
+          {
+            "camera": "heel",
+            "legend": "Heel offload · heel_offload",
+            "text": "<p>The <b>Heel Offload</b> is an egg-shaped relief in the heel cup — wide base rearward, narrowing forward — that unloads the {{calcaneus}}. Depth is capped to leave a floor above the base, same rule as the met-head well. Independent. Heel zone only — it does not conflict with forefoot accommodations. Do not confuse it with a Heel Pad. Pad = raise, cushion. Offload = relieve, take contact away.</p><p>For a {{heel spur}}, the well sits at the <b>medial calcaneal tubercle</b> — the plantar-fascia insertion — not centered under the heel, so the spur floats while the rest of the heel still bears weight.</p><p>Heel Spur is one of only two offloads that can be built on a Hike Shell — the other is Base of 5th. Both sit behind the met line, on the part of the foot the 3/4 shell actually covers.</p>"
+          }
+        ]
+      },
+      {
+        "id": "custom-offload",
+        "title": "Custom Offload",
+        "models": [
+          {
+            "po": "CPO-307228",
+            "side": "LEFT"
+          }
+        ],
+        "camera": "overview",
+        "hideHighlight": true,
+        "steps": [
+          {
+            "camera": "overview",
+            "legend": "Custom Offload · no baked mesh yet — reference base shown",
+            "pair": [
+              {
+                "po": "CPO-307228",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>A <b>Custom Offload</b> is a relief the operator places anywhere on the plantar surface for a bony prominence or painful structure that none of the fixed-target offloads cover. The bed stays closed — the recess is a cutter the autoslicer subtracts at that exact location. No stock footprint. Shape, size, position, and depth all come from the Rx marking.</p><p>Used for landmarks outside the standard targets — unusual prominences, post-surgical hardware, scarring, irregular pressure the clinician mapped on the foot. QC has no default: go to the Rx marks. Location, size, and depth on the finished insole must match what was specified.</p>"
+          }
+        ]
+      },
+      {
+        "id": "navicular-offload",
+        "title": "Navicular Offload",
+        "models": [
+          {
+            "po": "CPO-307228",
+            "side": "LEFT"
+          }
+        ],
+        "camera": "arch",
+        "hideHighlight": true,
+        "steps": [
+          {
+            "camera": "arch",
+            "legend": "Navicular Offload · no baked mesh yet — reference base shown",
+            "pair": [
+              {
+                "po": "CPO-307228",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>The <b>{{navicular}} Offload</b> is a recessed relief on the medial midfoot, directly under the navicular — the keystone of the medial longitudinal arch. When that bone drops low enough to hit the insole, every step is medial midfoot pain. The well keeps it off the base so the surrounding tissue and the arch carry load instead.</p><p>Opposite move from the Arch Pad on the same border. Arch Pad RAISES to fill the arch. Navicular Offload RELIEVES to remove contact at one point. QC: medial midfoot at the navicular landmark, depth consistent. Too far distal and you start offloading the first met base. Too far proximal and you start relieving the medial heel.</p>"
+          }
+        ]
+      },
+      {
+        "id": "medial-cuneiform-offload",
+        "title": "Medial Cuneiform Offload",
+        "models": [
+          {
+            "po": "CPO-307228",
+            "side": "LEFT"
+          }
+        ],
+        "camera": "arch",
+        "hideHighlight": true,
+        "steps": [
+          {
+            "camera": "arch",
+            "legend": "Medial Cuneiform Offload · no baked mesh yet — reference base shown",
+            "pair": [
+              {
+                "po": "CPO-307228",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>The <b>Medial Cuneiform Offload</b> targets the wedge-shaped bone between the navicular and the base of the first metatarsal, on the medial column. When that bone is prominent or painful, a small relief removes contact without disturbing the arch around it. Tight corridor: navicular behind, first met base in front — either of those may have its own accommodation on the same device. QC: isolated to the cuneiform. Do not drift into navicular or first-met-base territory.</p>"
+          }
+        ]
+      },
+      {
+        "id": "base-of-1st-offload-non-shell",
+        "title": "Base of 1st Offload (Non-Shell)",
+        "models": [
+          {
+            "po": "CPO-307228",
+            "side": "LEFT"
+          }
+        ],
+        "camera": "forefoot",
+        "hideHighlight": true,
+        "steps": [
+          {
+            "camera": "forefoot",
+            "legend": "Base of 1st Offload (Non-Shell) · no baked mesh yet — reference base shown",
+            "pair": [
+              {
+                "po": "CPO-307228",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>The <b>Base of 1st Offload (Non-Shell)</b> is an aperture directly beneath the 1st metatarsal head. It works with the Dancer Pad for sesamoid and 1st MTP relief. The two accommodations work together — the Dancer Pad carries load on the shafts so the 1st met head bears less, while the offload aperture ensures the 1st MTH never contacts the insole directly. QC: under the 1st head, not drifted into a generic met-head well on another ray.</p>"
+          }
+        ]
+      },
+      {
+        "id": "base-of-5th-offload",
+        "title": "Base of 5th Offload",
+        "models": [
+          {
+            "po": "CPO-306901",
+            "side": "LEFT"
+          }
+        ],
+        "camera": "relief",
+        "steps": [
+          {
+            "camera": "relief",
+            "legend": "Base of 5th Offload · mt5_base_offload",
+            "pair": [
+              {
+                "po": "CPO-306901",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>The <b>Base of 5th Offload</b> is an aperture at the 5th metatarsal styloid. This is the well on this mesh. The styloid is the bony bump on the lateral foot — a frequent site of pain from direct pressure and a common fracture site. It unloads a prominent or tender base of 5th so that bump never takes the shoe. QC: lateral midfoot at the styloid — not distal toward the 5th met head, not proximal toward the cuboid.</p><p>Base of 5th and Heel Spur are the <b>only</b> two offloads a Hike Shell can carry. Everything in the met zone belongs to the full-length bases.</p>"
+          }
+        ]
+      },
+      {
+        "id": "pt-groove",
+        "title": "PT Groove",
+        "models": [
+          {
+            "po": "CPO-307228",
+            "side": "LEFT"
+          }
+        ],
+        "camera": "arch",
+        "hideHighlight": true,
+        "steps": [
+          {
+            "camera": "arch",
+            "legend": "PT Groove · no baked mesh yet — reference base shown",
+            "pair": [
+              {
+                "po": "CPO-307228",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>A <b>{{PT groove}}</b> is a long, thin oval relief along the posterior tibial tendon or plantar tendon through the central arch — seeded mid-arch and slightly medial, following the tendon path. Same cutter family as a Custom Offload: the recess is subtracted from the base, not added on top. Default aspect about 3.7 — long and thin, not round. Default depth 4 mm. Independent. Replaces nothing.</p><p>It treats a tendon nodule — a thickened, inflamed section that sits proud and hits the insole every step. The channel follows the tendon so the nodule sits in the well and never touches the bed. The tendon floats. The surrounding plantar surface still bears load. QC: the groove runs the medial-arch trajectory — long axis along the tendon, not across the arch — and depth is consistent the full length of the channel.</p>"
+          }
+        ]
+      },
+      {
+        "id": "heel-fill",
+        "title": "Heel Fill",
+        "models": [
+          {
+            "po": "SG-HEEL-FILL",
+            "side": "LEFT"
+          }
+        ],
+        "camera": "heel",
+        "steps": [
+          {
+            "camera": "heel",
+            "legend": "Heel fill · heel_fill",
+            "pair": [
+              {
+                "po": "SG-HEEL-FILL",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>A <b>{{heel fill}}</b> is extra material built up inside the heel seat — thickest at center, feathering out with no step. This is the mesh. It is the Heel Pad's footprint taken the other way. The pad cuts a soft insert into the thickness. The fill builds the seat <b>up</b>, so the heel sits higher and makes fuller contact. Default 3 mm at center, feathering to nothing. The front edge is shared with the Heel Pad, so they align when both are ordered. The fill can never stand above the cup rim — inside the cup only, never past the wall.</p><p>It composes with Heel Pad and Heel Offload on the same device. Fill raises the seat. Pad softens a zone in the thickness. Offload removes contact at a point. Three jobs, one heel, no conflict. QC: feathers clean to the cup with no step or ridge. A step at the edge is a pressure line the patient feels every heel strike.</p>"
+          }
+        ]
+      },
+      {
+        "id": "tarsal-tunnel-groove",
+        "title": "Tarsal Tunnel Groove",
+        "models": [
+          {
+            "po": "CPO-307228",
+            "side": "LEFT"
+          }
+        ],
+        "camera": "heel",
+        "hideHighlight": true,
+        "steps": [
+          {
+            "camera": "heel",
+            "legend": "Tarsal Tunnel Groove · no baked mesh yet — reference base shown",
+            "pair": [
+              {
+                "po": "CPO-307228",
+                "side": "LEFT"
+              }
+            ],
+            "text": "<p>The <b>{{tarsal tunnel}} Groove</b> is scooped out of the <b>medial heel-cup wall</b> — not the plantar surface, the vertical wall. The tarsal tunnel runs behind the medial malleolus (inner ankle bone), carrying the posterior tibial nerve into the foot. Compression there burns, tingles, and numbs the medial foot and toes — tarsal tunnel syndrome.</p><p>A standard cup wall sits snug on the medial heel and can squeeze that tunnel. The groove subtracts a 20 mm band that follows the wall around the heel. The slicer cuts it clean so the edge stays sharp. Default depth from the rim 7 mm. Default length along the trimline 82 mm. The insole body is untouched — only the wall. The plantar surface still supports the foot; the wall no longer hits the tunnel. QC: medial wall only, consistent depth and length, edge sharp and clean. A ragged edge becomes its own pressure point on the wall.</p>"
+          }
+        ]
+      }
     ],
   },
   {
@@ -573,12 +1422,12 @@ export const CHAPTERS = [
       {
         id: "stacked",
         title: "Reading a stacked prescription",
-        models: [{ po: "CPO-307216", side: "LEFT" }],
-        camera: "pad",
+        models: [{ po: "CPO-306695", side: "LEFT" }],
+        camera: "heel",
         steps: [
-          { camera: "overview", text: "<p>The final test is a device that carries several at once. This one: a Base base, a {{met bar}}, a Met Head Offload, and Arch Reinforcement. Read it like a sentence.</p>" },
-          { camera: "pad", text: "<p>The rigid shell controls the foot. The Met Bar raises the surface just behind the metatarsal row \u2014 <b>RAISE</b>, sending load off the heads onto the shafts. The Met Head Offload removes contact at one head already in trouble \u2014 <b>RELIEVE</b>, that head floats. Arch Reinforcement stiffens the medial wall \u2014 <b>STIFFEN</b>, the arch resists collapse. Three verbs, three jobs, one device.</p>" },
-          { camera: "overview", text: "<p>Condition leads to recipe. Once you can run that translation both ways \u2014 diagnosis to prescription, and a finished insole back to the condition it was built for \u2014 you can read every insole Hike makes. That is the goal of this chapter, and that is the standard on this floor. \ud83e\uddb6</p><p>Common questions from the clinic are next. Then the exam. Fifty questions. Then your name on a certificate.</p>" },
+          { camera: "overview", text: "<p>The final test is a device that carries several at once. This one is a real pair: a full-length diabetic base, a Heel Pad, and a Heel Spur offload. Read it like a sentence.</p>" },
+          { camera: "heel", text: "<p>The base carries the whole foot. The Heel Pad cuts a soft insert into the heel seat \u2014 <b>SOFTEN</b>, the heel lands on give instead of firm base. The Heel Spur offload removes contact at the medial calcaneal tubercle \u2014 <b>RELIEVE</b>, the spur floats while the rest of the heel still bears weight. Two verbs, two jobs, one heel.</p><p>Now stack it in your head on a functional base: add a {{met bar}} \u2014 <b>RAISE</b>, load off the heads onto the shafts \u2014 and Arch Reinforcement \u2014 <b>STIFFEN</b>, the medial wall resists collapse. Four verbs, one device. The one place that sentence can never be written is a Hike Shell: the 3/4 plate takes Base of 5th and Heel Spur, and nothing in the met zone.</p>" },
+          { camera: "overview", text: "<p>Condition leads to recipe. Once you can run that translation both ways \u2014 diagnosis to prescription, and a finished insole back to the condition it was built for \u2014 you can read every insole Hike makes. That is the goal of this chapter, and that is the standard on this floor. \ud83e\uddb6</p><p>Common questions from the clinic are next. Then the exam. Then your name on a certificate.</p>" },
         ],
       },
       {
@@ -597,7 +1446,7 @@ export const CHAPTERS = [
     id: "exam",
     number: 5,
     title: "Quiz & Certificate",
-    intro: "Fifty questions covering the book. Finish them and print your certificate.",
+    intro: "The exam covers the book. Finish it and print your certificate.",
     lessons: [
       {
         id: "quiz",
