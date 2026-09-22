@@ -1793,15 +1793,20 @@ function renderFlowChart(ls) {
 }
 function renderMaterialsStack() {
   return `<div class="mat">
-    <div class="mat-kicker">Two parts · every insole</div>
+    <div class="mat-kicker">Three parts · every insole</div>
     <div class="mat-layer cover">
       <b>Top cover</b>
-      <span>The fabric sheet the foot rests on. Glued on last. T-codes T1–T14.</span>
+      <span>The fabric sheet the foot rests on. Glued onto the mid-layer, last. T-codes T1–T14.</span>
+    </div>
+    <i class="mat-join plus"></i>
+    <div class="mat-layer mid">
+      <b>Mid-layer</b>
+      <span>The cushion layer. Poron, glued directly to the base.</span>
     </div>
     <i class="mat-join plus"></i>
     <div class="mat-layer base">
       <b>Base</b>
-      <span>The 3D-printed base of the insole. Structural foundation, shaped to that foot. A shell is only Hike Shell — 3/4 length.</span>
+      <span>The 3D-printed structural foundation, shaped to that foot.</span>
     </div>
     <i class="mat-join eq"></i>
     <div class="mat-layer done">
@@ -1812,9 +1817,9 @@ function renderMaterialsStack() {
       <div>
         <div class="mat-kicker">Bases next</div>
         <ul>
-          <li>Sweet family</li>
-          <li>Everyday · Sport · Corkbase · Flexible Shell</li>
-          <li>Hike Shell (¾) · UCBL</li>
+          <li>Functional family (Shell ¾ · Sport Base · Corkbase)</li>
+          <li>Diabetic family (Sweet · Double Sweet · Triple Sweet)</li>
+          <li>Build your own</li>
         </ul>
       </div>
       <div>
