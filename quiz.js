@@ -22,7 +22,6 @@ export const QUIZ = [
   { q: "What is the difference between an extrinsic and intrinsic wedge?", difficulty: "medium", options: ["Extrinsic is medial; intrinsic is lateral","Extrinsic is a separate printed part under the base; intrinsic is built into the base geometry","Extrinsic is cork; intrinsic is printed TPU","There is no difference"], answer: 1, correct: "Exactly right!", wrong: "Not quite — the distinction is where the tilt lives: outside the base or inside it.", explanation: "Extrinsic wedge = a separate printed TPU slab under a flat-bottomed base. Intrinsic = correction baked directly into the base geometry during design. Same clinical goal, different build method." },
   { q: "What is P-Cell foam primarily used for?", difficulty: "easy", options: ["Athletic spring and energy return","Pure shock absorption on functional bases","Cushioning and friction reduction for high-risk diabetic skin","Structural stiffening of the base"], answer: 2, correct: "Correct!", wrong: "Not quite — P-Cell is for diabetic skin protection and friction reduction.", explanation: "P-Cell is the soft foam the foot touches on diabetic builds — designed for cushioning and friction reduction for high-risk skin. Used on T1, T2, T3, and T11." },
   { q: "A Morton's Extension is mutually exclusive with which other accommodation?", difficulty: "medium", options: ["Gait Plate","Heel Post","Reverse Morton's Extension","Met Pad"], answer: 2, correct: "That's right!", wrong: "Not quite — both reshape the same front edge in opposite directions.", explanation: "Morton's Extension and Reverse Morton's Extension are mutually exclusive — both reshape the same distal trimline in opposite directions and cannot coexist on the same base." },
-  { q: "Which top cover is the default for the Hike Flexible Shell?", difficulty: "medium", options: ["T7 — 1/8\" Puff","T1 — 1/8\" P-Cell","T6 — 1/8\" Spenco","T4 — Preferred Puff over Poron"], answer: 2, correct: "Correct!", wrong: "Not quite — Flexible Shell (a base, not a shell) pairs with T6 Spenco by default.", explanation: "Flexible Shell is an insole base, not a 3/4 shell. Its default top cover is T6 — a 1/8\" Spenco layer that adds athletic spring on top of that adaptive base." },
   { q: "What does the Radial Fan reinforcement pattern follow?", difficulty: "hard", options: ["The metatarsal parabola across the forefoot","The plantar fascia's own load path from the calcaneal tubercle","The navicular line from heel to first met","Parallel lines across the full plate"], answer: 1, correct: "Exactly right!", wrong: "Not quite — the rays follow the plantar fascia load path from the calcaneal tubercle.", explanation: "The Radial Fan spreads from the calcaneal tubercle in a full 360° pattern, following the plantar fascia's own load paths — the most anatomically intelligent reinforcement in the library." },
   { q: "What is the key distinction between a Met Pad and a Met Bar?", difficulty: "medium", options: ["Met Pad is for diabetic orders only; Met Bar is for functional","Met Pad is a softer symmetric dome; Met Bar is a precise structural ridge with a fixed silhouette","Met Pad sits under the met heads; Met Bar sits behind them","They are interchangeable — same clinical result"], answer: 1, correct: "Correct!", wrong: "Not quite — both sit behind the heads, but their structure and clinical use differ.", explanation: "The Met Pad is a softer, more accommodative symmetric dome. The Met Bar is a precise, structured ridge with a fixed digitized silhouette. Both sit proximal to the met heads and are mutually exclusive." },
   { q: "What does the Tarsal Tunnel Groove modify on the insole?", difficulty: "hard", options: ["The plantar surface under the arch","The medial heel cup wall","The heel seat surface","The forefoot trimline"], answer: 1, correct: "That's right!", wrong: "Not quite — it modifies the medial wall of the heel cup, not the plantar surface.", explanation: "The Tarsal Tunnel Groove is scooped from the medial heel cup wall — not the plantar surface. The insole body is untouched. Only the wall is modified to relieve pressure on the tarsal tunnel." },
@@ -48,9 +47,9 @@ export const QUIZ = [
   { q: "A Stabilizer heel post is prescribed when:", difficulty: "medium", options: ["The patient has central heel pain or a spur","Maximum rearfoot stability and control is needed","A uniform heel height lift is required","General rearfoot correction without aggressive bias is needed"], answer: 1, correct: "That's right!", wrong: "Not quite — the Stabilizer is for maximum rearfoot control.", explanation: "The Stabilizer is the most controlling heel post — prescribed for significant instability or hypermobility where the heel needs to be firmly held with maximum resistance to rolling." },
   { q: "Which top cover T-codes are in the same material family?", difficulty: "hard", options: ["T1 and T14","T6 and T9","T4 and T7","T5 and T11"], answer: 1, correct: "Correct!", wrong: "Not quite — T6 and T9 are the same athletic spring material family.", explanation: "T6 (1/8\" Spenco) and T9 (1/16\" Neo Sponge) are the same sheet material family — athletic spring — just at different thicknesses." },
   { q: "What is the default height of a medial flange on a standard insole plate?", difficulty: "hard", options: ["20 mm","25 mm","30 mm","35 mm"], answer: 2, correct: "Correct!", wrong: "Not quite — medial plate flange defaults to 30 mm.", explanation: "The medial flange on a standard plate defaults to 30 mm — the tallest of the four flange types, because it holds the arch and needs the most height and wall depth." },
-  { q: "What does Hike Shell (Co-Poly Mimic) replicate?", difficulty: "medium", options: ["The feel of cork underfoot","The stiffness and response of traditional copolymer polypropylene orthotics","The flexibility of the Hike Flexible Shell","The deep heel cup of the UCBL"], answer: 1, correct: "That's right!", wrong: "Not quite — it mimics the rigidity of traditional copolymer polypropylene.", explanation: "Hike Shell is the 3/4-length TPU shell engineered to replicate the stiffness and response of traditional copolymer polypropylene lab-made orthotics." },
+  { q: "What does Hike Shell (Co-Poly Mimic) replicate?", difficulty: "medium", options: ["The feel of cork underfoot","The stiffness and response of traditional copolymer","The flexibility of the Hike Flexible Shell","The deep heel cup of the UCBL"], answer: 1, correct: "That's right!", wrong: "Not quite — it mimics the stiffness and response of traditional copolymer.", explanation: "Hike Shell is the 3/4-length TPU shell engineered to replicate the stiffness and response of traditional copolymer." },
   { q: "On a full-length functional base, how do you read a Met Bar + Met Head Offload + Arch Reinforcement?", difficulty: "hard", options: ["RAISE + RAISE + RAISE","SOFTEN + RELIEVE + STIFFEN","RAISE + RELIEVE + STIFFEN","STIFFEN + SOFTEN + RAISE"], answer: 2, correct: "Exactly right!", wrong: "Not quite — Met Bar raises, Offload relieves, Arch Reinforcement stiffens.", explanation: "Met Bar = RAISE (redirects load off met heads). Met Head Offload = RELIEVE (removes contact at one head). Arch Reinforcement = STIFFEN (makes the medial wall more resistant). Three verbs, three jobs — on a full-length base. A Hike Shell cannot carry the met bar or the met offload." },
-  { q: "Which offloads can be built on a Hike Shell?", difficulty: "medium", options: ["Any met head offload, 1st through 5th","Base of 5th and Heel Spur only","Met Pad and Met Bar","None — a shell takes no offloads"], answer: 1, correct: "Correct!", wrong: "Not quite — the 3/4 shell ends at the met line. Only Base of 5th and Heel Spur.", explanation: "Hike Shell is 3/4 length and ends at the metatarsal line. The only two offloads it can carry are Base of 5th and Heel Spur — both behind the met line. Met head offloads, plugs, Drill & Fill, met pads, and met bars belong to full-length bases." },
+  { q: "Which offloads can be built on a Hike Shell?", difficulty: "medium", options: ["Any met head offload, 1st through 5th","Base of 5th and 1st ray cut out","Met Pad and Met Bar","None — a shell takes no offloads"], answer: 1, correct: "Correct!", wrong: "Not quite — the 3/4 shell ends at the met line. Only Base of 5th and 1st ray cut out.", explanation: "Hike Shell is 3/4 length and ends at the metatarsal line. The offloads it can carry are Base of 5th and 1st ray cut out. Met head offloads, plugs, Drill & Fill, met pads, and met bars belong to full-length bases." },
   { q: "What is the Sensory Bumps default layout?", difficulty: "hard", options: ["8 bumps evenly spaced across the forefoot","16 bumps — 5 at the toes, two diagonals of 3 down the midfoot, 5 at the heel","12 bumps across the full plantar surface","20 bumps following the metatarsal parabola"], answer: 1, correct: "Correct!", wrong: "Not quite — the fixed layout is 16 bumps across three anatomical zones.", explanation: "Sensory Bumps have a fixed 16-bump anatomical layout — 5 along the toe contour, two diagonal rows of 3 down the midfoot, and 5 clustered on the heel." },
   { q: "Which correctly describes Met Head Offload vs Drill and Fill?", difficulty: "hard", options: ["Both remove contact entirely at the met head","Offload removes contact via a well and plug; Drill and Fill is a full-depth aperture through the cover, backfilled flush","Drill and Fill removes contact; Offload softens the zone","They are identical — just different names"], answer: 1, correct: "Perfect — that's the critical distinction!", wrong: "Not quite — offload removes contact via a well; Drill and Fill keeps a continuous walking surface.", explanation: "Met Head Offload cuts a well into the base with a soft plug — the head never contacts the insole. Drill and Fill is a full-depth aperture through the top cover, backfilled with softer foam. The surface looks flush. Pressure is pushed outward. Mutually exclusive on any given head." },
 ];
@@ -84,6 +83,110 @@ function persistCert(name, score) {
 function formatDate(iso) {
   const d = iso ? new Date(iso) : new Date();
   return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+/* Deterministic certificate number: date + short hash of name|date. */
+function certIdFor(record) {
+  let h = 0;
+  for (const ch of `${record.name}|${record.date}`) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  const d = new Date(record.date);
+  const ymd = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}`;
+  return `HIKE-${ymd}-${h.toString(16).toUpperCase().padStart(6, '0').slice(-6)}`;
+}
+
+function honorFor(pct) {
+  if (pct >= 90) return 'With Distinction';
+  if (pct >= 80) return 'With Merit';
+  if (pct >= 60) return 'Completed';
+  return 'Participation';
+}
+
+const WATERMARK_TEXT = 'Hike Medical · The Insole Book · ';
+
+/* Confetti + emoji burst over the whole screen when the certificate lands. */
+function celebrate(pct) {
+  if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+  document.getElementById('celebrateCanvas')?.remove();
+  const cv = document.createElement('canvas');
+  cv.id = 'celebrateCanvas';
+  document.body.appendChild(cv);
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  const W = window.innerWidth;
+  const H = window.innerHeight;
+  cv.width = W * dpr;
+  cv.height = H * dpr;
+  const ctx = cv.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  const colors = ['#0a6cff', '#c9a227', '#16a34a', '#e8960c', '#ff4d6d', '#7c3aed', '#ffffff'];
+  const emojis = pct >= 80
+    ? ['🦶', '🎉', '🏆', '✨', '🎓', '👟', '💙', '⭐', '🥇']
+    : ['🦶', '🎉', '✨', '👟', '💙', '🎓'];
+  const pick = arr => arr[(Math.random() * arr.length) | 0];
+  const P = [];
+  const emojiFont = '"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
+
+  function burst(x, y, n, spread, power) {
+    for (let i = 0; i < n; i++) {
+      const a = -Math.PI / 2 + (Math.random() - 0.5) * spread;
+      const s = power * (0.55 + Math.random() * 0.75);
+      const isEmoji = Math.random() < 0.26;
+      P.push({
+        x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s,
+        g: 0.22 + Math.random() * 0.1, drag: 0.985,
+        r: Math.random() * Math.PI, vr: (Math.random() - 0.5) * 0.3,
+        w: 6 + Math.random() * 8, h: 8 + Math.random() * 10,
+        c: colors[i % colors.length],
+        e: isEmoji ? pick(emojis) : null, size: 22 + Math.random() * 22,
+        life: 1, decay: 0.004 + Math.random() * 0.005,
+      });
+    }
+  }
+  burst(W * 0.5, H * 0.62, 150, 1.7, 16);
+  setTimeout(() => burst(W * 0.14, H * 0.72, 80, 1.3, 15), 260);
+  setTimeout(() => burst(W * 0.86, H * 0.72, 80, 1.3, 15), 480);
+
+  // gentle emoji rain from the top for a couple of seconds
+  const rain = setInterval(() => {
+    for (let i = 0; i < 3; i++) {
+      P.push({
+        x: Math.random() * W, y: -40, vx: (Math.random() - 0.5) * 1.2, vy: 1.6 + Math.random() * 2.2,
+        g: 0.012, drag: 1, r: 0, vr: (Math.random() - 0.5) * 0.08,
+        e: pick(emojis), size: 24 + Math.random() * 22, life: 1, decay: 0.0026,
+      });
+    }
+  }, 110);
+  setTimeout(() => clearInterval(rain), 2800);
+
+  const t0 = performance.now();
+  function frame(t) {
+    ctx.clearRect(0, 0, W, H);
+    let alive = false;
+    for (const p of P) {
+      if (p.life <= 0) continue;
+      p.vy += p.g; p.vx *= p.drag; p.vy *= p.drag;
+      p.x += p.vx; p.y += p.vy; p.r += p.vr; p.life -= p.decay;
+      if (p.y > H + 60) { p.life = 0; continue; }
+      alive = true;
+      ctx.save();
+      ctx.globalAlpha = Math.max(0, Math.min(1, p.life * 1.4));
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.r);
+      if (p.e) {
+        ctx.font = `${p.size}px ${emojiFont}`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(p.e, 0, 0);
+      } else {
+        ctx.fillStyle = p.c;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      }
+      ctx.restore();
+    }
+    if (alive && t - t0 < 7000) requestAnimationFrame(frame);
+    else cv.remove();
+  }
+  requestAnimationFrame(frame);
 }
 
 function setPanel(name) {
@@ -160,15 +263,29 @@ function showScore() {
   }
   $('quizFill').style.width = '100%';
   $('quizProgressLabel').textContent = 'Quiz complete';
+  $('scoreOf').textContent = `out of ${TOTAL}`;
   $('certName').value = quizState.name;
   $('certName').focus();
 }
 
 function fillCertificate(record) {
   $('certPerson').textContent = record.name;
+  $('certSignee').textContent = record.name;
   $('certScore').textContent = `${record.score} / ${record.total}`;
   $('certPct').textContent = `${record.pct}%`;
   $('certDate').textContent = formatDate(record.date);
+  $('certHonor').textContent = honorFor(record.pct);
+  $('certId').textContent = certIdFor(record);
+  $('certWm').textContent = WATERMARK_TEXT.repeat(140);
+}
+
+function showCertificate(record, { party = true } = {}) {
+  fillCertificate(record);
+  setPanel('cert');
+  document.body.classList.add('cert-ready');
+  $('quiz').classList.add('cert-wide');
+  $('quiz').scrollTo?.({ top: 0, behavior: 'smooth' });
+  if (party) setTimeout(() => celebrate(record.pct), 250);
 }
 
 function claimCertificate() {
@@ -181,9 +298,7 @@ function claimCertificate() {
   $('certName').classList.remove('need');
   quizState.name = name;
   const record = persistCert(name, quizState.score);
-  fillCertificate(record);
-  setPanel('cert');
-  document.body.classList.add('cert-ready');
+  showCertificate(record);
 }
 
 function restartQuiz() {
@@ -192,6 +307,8 @@ function restartQuiz() {
   quizState.answered = false;
   quizState.done = false;
   document.body.classList.remove('cert-ready');
+  $('quiz').classList.remove('cert-wide');
+  document.getElementById('celebrateCanvas')?.remove();
   setPanel('ask');
   renderQuestion();
 }
@@ -208,68 +325,168 @@ function loadLogo() {
 async function downloadCertificate() {
   const record = JSON.parse(localStorage.getItem('hikeCert') || 'null');
   if (!record) return;
-  const w = 1600;
-  const h = 1132;
+  const w = 1800;
+  const h = 1272;
   const canvas = document.createElement('canvas');
   canvas.width = w;
   canvas.height = h;
   const ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#fbfaf8';
+  const SANS = '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif';
+  const SERIF = '"New York", "Iowan Old Style", Georgia, serif';
+  const SCRIPT = '"Snell Roundhand", "Apple Chancery", "Brush Script MT", "Segoe Script", cursive';
+  const GOLD = '#c9a227', GOLD_INK = '#8a6d1c', INK = '#16181d', INK2 = '#4c5160', INK3 = '#8a8f9c', BLUE = '#0a4dbf';
+  const cx = w / 2;
+
+  // gold foil band + parchment
+  const foil = ctx.createLinearGradient(0, 0, w, h);
+  foil.addColorStop(0, '#d9b756'); foil.addColorStop(0.2, '#f6e7a8'); foil.addColorStop(0.48, GOLD);
+  foil.addColorStop(0.76, '#f1dc93'); foil.addColorStop(1, '#a67c1a');
+  ctx.fillStyle = foil;
   ctx.fillRect(0, 0, w, h);
-  ctx.strokeStyle = '#16181d';
-  ctx.lineWidth = 4;
-  ctx.strokeRect(36, 36, w - 72, h - 72);
-  ctx.strokeStyle = '#0a6cff';
-  ctx.lineWidth = 2;
-  ctx.strokeRect(52, 52, w - 104, h - 104);
+  const pad = 28;
+  ctx.fillStyle = '#fdfbf4';
+  ctx.fillRect(pad, pad, w - pad * 2, h - pad * 2);
+  ctx.strokeStyle = GOLD; ctx.lineWidth = 2.5;
+  ctx.strokeRect(pad + 1, pad + 1, w - pad * 2 - 2, h - pad * 2 - 2);
+  ctx.strokeStyle = 'rgba(201,162,39,.6)'; ctx.lineWidth = 1.2;
+  ctx.strokeRect(pad + 16, pad + 16, w - pad * 2 - 32, h - pad * 2 - 32);
+
+  // guilloche: faint rings + diagonal hatch
+  ctx.save();
+  ctx.beginPath(); ctx.rect(pad + 18, pad + 18, w - pad * 2 - 36, h - pad * 2 - 36); ctx.clip();
+  ctx.strokeStyle = 'rgba(201,162,39,.09)'; ctx.lineWidth = 1;
+  for (let r = 14; r < w; r += 14) { ctx.beginPath(); ctx.arc(cx, h * 0.54, r, 0, Math.PI * 2); ctx.stroke(); }
+  ctx.strokeStyle = 'rgba(10,108,255,.04)';
+  for (let x = -h; x < w + h; x += 22) { ctx.beginPath(); ctx.moveTo(x, h); ctx.lineTo(x + h * 0.62, 0); ctx.stroke(); }
+  // diagonal wordmark watermark
+  ctx.save();
+  ctx.translate(cx, h / 2); ctx.rotate(-Math.PI / 6);
+  ctx.fillStyle = 'rgba(10,108,255,.055)';
+  ctx.font = `800 15px ${SANS}`; ctx.textAlign = 'center';
+  const wm = (WATERMARK_TEXT.toUpperCase().split('').join('\u200A')).repeat(4);
+  for (let y = -h; y < h; y += 46) ctx.fillText(wm, 0, y);
+  ctx.restore();
+  ctx.restore();
 
   const logo = await loadLogo();
   if (logo) {
-    const lw = 220;
-    const lh = lw * (logo.height / logo.width);
-    ctx.drawImage(logo, (w - lw) / 2, 96, lw, lh);
+    // big faded logo watermark
+    ctx.save();
+    ctx.globalAlpha = 0.06; ctx.filter = 'grayscale(1)';
+    ctx.translate(cx, h * 0.55); ctx.rotate(-Math.PI / 15);
+    const ww = w * 0.6, wh = ww * (logo.height / logo.width);
+    ctx.drawImage(logo, -ww / 2, -wh / 2, ww, wh);
+    ctx.restore();
   }
 
-  ctx.fillStyle = '#0a6cff';
-  ctx.font = '600 18px -apple-system, BlinkMacSystemFont, sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText('HIKE MEDICAL  ·  THE INSOLE BOOK', w / 2, 300);
+  // corner flourishes
+  const corner = (x, y, rot) => {
+    ctx.save(); ctx.translate(x, y); ctx.rotate(rot);
+    ctx.strokeStyle = GOLD; ctx.lineWidth = 3.5; ctx.lineCap = 'square';
+    ctx.beginPath(); ctx.moveTo(0, 84); ctx.lineTo(0, 0); ctx.lineTo(84, 0); ctx.stroke();
+    ctx.lineWidth = 1.6;
+    ctx.beginPath(); ctx.moveTo(11, 56); ctx.lineTo(11, 44); ctx.arc(44, 44, 33, Math.PI, Math.PI * 1.5); ctx.lineTo(56, 11); ctx.stroke();
+    ctx.fillStyle = GOLD; ctx.font = `20px ${SANS}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillStyle = '#fdfbf4'; ctx.fillRect(-12, -12, 24, 24);
+    ctx.fillStyle = GOLD; ctx.fillText('✦', 0, 1);
+    ctx.restore();
+  };
+  const c0 = pad + 24;
+  corner(c0, c0, 0); corner(w - c0, c0, Math.PI / 2); corner(w - c0, h - c0, Math.PI); corner(c0, h - c0, -Math.PI / 2);
 
-  ctx.fillStyle = '#16181d';
-  ctx.font = '600 54px "New York", "Iowan Old Style", Georgia, serif';
-  ctx.fillText('Certificate of Completion', w / 2, 390);
+  ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+  if (logo) {
+    const lw = 220, lh = lw * (logo.height / logo.width);
+    ctx.drawImage(logo, cx - lw / 2, 96, lw, lh);
+  }
+  ctx.fillStyle = GOLD_INK; ctx.font = `800 15px ${SANS}`;
+  ctx.fillText('H I K E   M E D I C A L   ·   T H E   I N S O L E   B O O K', cx, 200);
 
-  ctx.fillStyle = '#4c5160';
-  ctx.font = '400 22px -apple-system, BlinkMacSystemFont, sans-serif';
-  ctx.fillText('This certifies that', w / 2, 460);
+  ctx.fillStyle = INK; ctx.font = `600 66px ${SERIF}`;
+  ctx.fillText('Certificate of Completion', cx, 286);
+  ctx.fillStyle = GOLD_INK; ctx.font = `italic 400 24px ${SERIF}`;
+  ctx.fillText('Custom Orthotic Training', cx, 326);
+  const rule = (x1, x2, y, flip) => {
+    const g = ctx.createLinearGradient(x1, 0, x2, 0);
+    g.addColorStop(flip ? 1 : 0, 'rgba(201,162,39,0)'); g.addColorStop(flip ? 0 : 1, GOLD);
+    ctx.strokeStyle = g; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(x1, y); ctx.lineTo(x2, y); ctx.stroke();
+  };
+  rule(cx - 300, cx - 160, 318, false); rule(cx + 160, cx + 300, 318, true);
 
-  ctx.fillStyle = '#16181d';
-  ctx.font = '600 56px "New York", "Iowan Old Style", Georgia, serif';
-  ctx.fillText(record.name, w / 2, 540);
+  ctx.fillStyle = INK3; ctx.font = `600 16px ${SANS}`;
+  ctx.fillText('T H I S   I S   T O   C E R T I F Y   T H A T', cx, 392);
 
-  ctx.fillStyle = '#4c5160';
-  ctx.font = '400 22px -apple-system, BlinkMacSystemFont, sans-serif';
+  ctx.fillStyle = BLUE; ctx.font = `500 88px ${SCRIPT}`;
+  ctx.fillText(record.name, cx, 488);
+  const nw = Math.max(520, ctx.measureText(record.name).width + 80);
+  ctx.strokeStyle = GOLD; ctx.lineWidth = 1.6;
+  ctx.beginPath(); ctx.moveTo(cx - nw / 2, 512); ctx.lineTo(cx + nw / 2, 512); ctx.stroke();
+
+  ctx.fillStyle = INK2; ctx.font = `400 22px ${SANS}`;
   wrapText(ctx,
-    'has completed Custom Orthotic Training — bases, accommodations, production, and the four verbs — and can read a Hike insole on sight.',
-    w / 2, 610, 980, 32);
+    'has successfully completed Custom Orthotic Training — bases, mid-layers and top covers, accommodations, production flow, and the four verbs — and can read a Hike insole on sight.',
+    cx, 566, 1080, 34);
 
-  ctx.fillStyle = '#16181d';
-  ctx.font = '650 28px -apple-system, BlinkMacSystemFont, sans-serif';
-  ctx.fillText(`Score  ${record.score} / ${record.total}   ·   ${record.pct}%`, w / 2, 760);
+  // stats row + seal
+  const rowY = 760;
+  ctx.fillStyle = INK; ctx.font = `600 36px ${SERIF}`;
+  ctx.fillText(`${record.score} / ${record.total}`, cx - 330, rowY);
+  ctx.fillText(formatDate(record.date), cx + 330, rowY);
+  ctx.fillStyle = INK3; ctx.font = `700 13px ${SANS}`;
+  ctx.fillText('F I N A L   S C O R E', cx - 330, rowY + 28);
+  ctx.fillText('D A T E   A W A R D E D', cx + 330, rowY + 28);
 
-  ctx.fillStyle = '#8a8f9c';
-  ctx.font = '500 18px -apple-system, BlinkMacSystemFont, sans-serif';
-  ctx.fillText(formatDate(record.date), w / 2, 820);
+  const sy = rowY - 18, R = 84;
+  // ribbons
+  const ribbon = (dx, rot) => {
+    ctx.save(); ctx.translate(cx + dx, sy + R * 0.45); ctx.rotate(rot);
+    const g = ctx.createLinearGradient(0, 0, 0, 90); g.addColorStop(0, '#1c7bff'); g.addColorStop(1, '#0648b0');
+    ctx.fillStyle = g;
+    ctx.beginPath(); ctx.moveTo(-17, 0); ctx.lineTo(17, 0); ctx.lineTo(17, 92); ctx.lineTo(0, 76); ctx.lineTo(-17, 92); ctx.closePath(); ctx.fill();
+    ctx.restore();
+  };
+  ribbon(-24, 0.28); ribbon(24, -0.28);
+  // serrated gold seal
+  ctx.save();
+  ctx.shadowColor = 'rgba(160,120,20,.35)'; ctx.shadowBlur = 24; ctx.shadowOffsetY = 10;
+  for (let i = 0; i < 48; i++) {
+    ctx.fillStyle = i % 2 ? '#a67c1a' : '#e6c65a';
+    ctx.beginPath(); ctx.moveTo(cx, sy);
+    ctx.arc(cx, sy, R, (i / 48) * Math.PI * 2, ((i + 1) / 48) * Math.PI * 2); ctx.closePath(); ctx.fill();
+    ctx.shadowColor = 'transparent';
+  }
+  ctx.restore();
+  const sg = ctx.createRadialGradient(cx - R * 0.3, sy - R * 0.35, 4, cx, sy, R - 14);
+  sg.addColorStop(0, '#fff5cc'); sg.addColorStop(0.55, '#d4af37'); sg.addColorStop(1, '#a67c1a');
+  ctx.fillStyle = sg; ctx.beginPath(); ctx.arc(cx, sy, R - 14, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = 'rgba(255,255,255,.6)'; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(cx, sy, R - 16, 0, Math.PI * 2); ctx.stroke();
+  ctx.strokeStyle = 'rgba(140,100,20,.3)'; ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(cx, sy, R - 24, 0, Math.PI * 2); ctx.stroke();
+  ctx.fillStyle = '#3d2c05'; ctx.textBaseline = 'middle';
+  ctx.font = `18px "Apple Color Emoji","Segoe UI Emoji",sans-serif`; ctx.fillText('🦶', cx, sy - 30);
+  ctx.font = `800 38px ${SANS}`; ctx.fillText(`${record.pct}%`, cx, sy + 2);
+  ctx.font = `800 11px ${SANS}`; ctx.fillText('H I K E   C E R T I F I E D', cx, sy + 34);
+  ctx.textBaseline = 'alphabetic';
 
-  ctx.beginPath();
-  ctx.moveTo(w / 2 - 160, 920);
-  ctx.lineTo(w / 2 + 160, 920);
-  ctx.strokeStyle = '#e8e6e1';
-  ctx.lineWidth = 1.5;
-  ctx.stroke();
-  ctx.fillStyle = '#8a8f9c';
-  ctx.font = '600 13px -apple-system, BlinkMacSystemFont, sans-serif';
-  ctx.fillText('HIKE MEDICAL  ·  TRAINING FLOOR', w / 2, 952);
+  // honors pill
+  const honor = honorFor(record.pct).toUpperCase().split('').join(' ');
+  ctx.font = `800 14px ${SANS}`;
+  const hw = ctx.measureText(honor).width + 56, hy = 900;
+  ctx.fillStyle = 'rgba(255,255,255,.7)'; ctx.strokeStyle = GOLD; ctx.lineWidth = 1.4;
+  ctx.beginPath(); ctx.roundRect(cx - hw / 2, hy - 22, hw, 40, 20); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = GOLD_INK; ctx.fillText(honor, cx, hy + 3);
+
+  // footer: signature lines + certificate number
+  const fy = 1080;
+  const signLine = (x, label, script) => {
+    if (script) { ctx.fillStyle = BLUE; ctx.font = `500 34px ${SCRIPT}`; ctx.fillText(script, x, fy - 14); }
+    ctx.strokeStyle = GOLD; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(x - 170, fy); ctx.lineTo(x + 170, fy); ctx.stroke();
+    ctx.fillStyle = INK3; ctx.font = `800 13px ${SANS}`; ctx.fillText(label, x, fy + 26);
+  };
+  signLine(cx - 470, 'T R A I N I N G   L E A D', null);
+  signLine(cx + 470, 'T R A I N E E', record.name);
+  ctx.fillStyle = INK3; ctx.font = `700 12px ${SANS}`; ctx.fillText('C E R T I F I C A T E   №', cx, fy - 4);
+  ctx.fillStyle = INK; ctx.font = `600 18px ui-monospace, SFMono-Regular, Menlo, monospace`;
+  ctx.fillText(certIdFor(record), cx, fy + 24);
 
   const a = document.createElement('a');
   const slug = record.name.replace(/[^\w]+/g, '-').replace(/^-|-$/g, '');
@@ -325,9 +542,7 @@ export function initQuiz({ onBack } = {}) {
 export function openQuiz() {
   const saved = localStorage.getItem('hikeCert');
   if (quizState.done && saved) {
-    fillCertificate(JSON.parse(saved));
-    setPanel('cert');
-    document.body.classList.add('cert-ready');
+    showCertificate(JSON.parse(saved), { party: false });
     return;
   }
   if (quizState.done) {
@@ -354,7 +569,5 @@ window.__quizFinish = (name = 'Alex Rivera', score = 46) => {
   quizState.done = true;
   quizState.name = name;
   persistCert(name, quizState.score);
-  fillCertificate(JSON.parse(localStorage.getItem('hikeCert')));
-  setPanel('cert');
-  document.body.classList.add('cert-ready');
+  showCertificate(JSON.parse(localStorage.getItem('hikeCert')));
 };

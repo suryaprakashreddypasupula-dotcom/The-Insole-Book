@@ -520,26 +520,85 @@
   #certName:focus{outline:none;border-color:var(--accent)}
   #certName.need{border-color:#dc2626;background:#fef2f2}
   #certWrap{margin-top:8px}
-  .certificate{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px;
-               box-shadow:0 18px 50px rgba(20,22,30,.08)}
-  .certificate-inner{border:2px solid var(--ink);padding:10px}
-  .certificate-face{border:1.5px solid var(--accent);padding:42px 48px 36px;text-align:center;
-                    background:linear-gradient(180deg,#fff 0%,#fbfaf8 100%)}
-  .certificate-face img{height:42px;width:auto;max-width:160px;object-fit:contain;margin-bottom:18px}
-  .certificate-face .brand{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-                           color:var(--accent);margin-bottom:14px}
-  .certificate-face h3{font-family:var(--serif);font-size:clamp(28px,3.4vw,38px);font-weight:600;
-                       margin:0 0 16px;letter-spacing:-.02em}
-  .certificate-face .says{font-size:15px;color:var(--ink-3);margin:0 0 8px}
-  .certificate-face .who{font-family:var(--serif);font-size:clamp(28px,3.6vw,42px);font-weight:600;
-                         margin:0 0 16px;padding-bottom:10px;border-bottom:1px solid var(--line);
-                         display:inline-block;min-width:46%}
-  .certificate-face .why{font-size:16px;color:var(--ink-2);line-height:1.55;max-width:52ch;margin:0 auto 22px}
-  .certificate-face .mark{font-size:18px;font-weight:650;margin-bottom:6px}
-  .certificate-face .when{font-size:14px;color:var(--ink-3);margin-bottom:28px}
-  .certificate-face .sign{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-                          color:var(--ink-3);padding-top:12px;border-top:1px solid var(--line);
-                          display:inline-block;min-width:220px}
+  #quiz.cert-wide .inner{max-width:980px}
+  /* ---- certificate: gold foil frame on parchment ---- */
+  :root{--gold:#c9a227;--gold-2:#e6c65a;--gold-3:#a67c1a;--gold-ink:#8a6d1c;--parchment:#fdfbf4;--script:"Snell Roundhand","Apple Chancery","Brush Script MT","Segoe Script",cursive}
+  .certificate{position:relative;border-radius:10px;padding:14px;
+               background:linear-gradient(135deg,#d9b756 0%,#f6e7a8 20%,var(--gold) 48%,#f1dc93 76%,var(--gold-3) 100%);
+               box-shadow:0 30px 80px rgba(20,22,30,.18),inset 0 1px 0 rgba(255,255,255,.7);
+               -webkit-print-color-adjust:exact;print-color-adjust:exact;
+               animation:certPop 1s cubic-bezier(.2,.9,.25,1.15) both}
+  @keyframes certPop{from{opacity:0;transform:translateY(28px) scale(.92)}to{opacity:1;transform:none}}
+  .cert-frame{position:relative;background:var(--parchment);border:1.5px solid var(--gold);padding:12px;overflow:hidden;
+              -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .cert-frame::before{content:"";position:absolute;inset:7px;border:1px solid rgba(201,162,39,.6);pointer-events:none;z-index:2}
+  /* guilloche: faint rings + fine diagonal hatch, like a banknote */
+  .cert-frame::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+    background:
+      repeating-radial-gradient(circle at 50% 54%,rgba(201,162,39,.09) 0 1px,transparent 1px 13px),
+      repeating-linear-gradient(-32deg,rgba(10,108,255,.04) 0 1px,transparent 1px 21px),
+      radial-gradient(ellipse at 50% 40%,rgba(255,255,255,.9),rgba(253,251,244,0) 70%)}
+  .cert-corner{position:absolute;width:74px;height:74px;z-index:3;pointer-events:none;
+               border-top:3px solid var(--gold);border-left:3px solid var(--gold)}
+  .cert-corner::after{content:"";position:absolute;left:9px;top:9px;width:38px;height:38px;
+                      border-top:1.5px solid var(--gold);border-left:1.5px solid var(--gold);border-top-left-radius:100%}
+  .cert-corner::before{content:"✦";position:absolute;left:-10px;top:-15px;color:var(--gold);font-size:17px;line-height:1;
+                       background:var(--parchment);padding:1px}
+  .cert-corner.tl{top:20px;left:20px}
+  .cert-corner.tr{top:20px;right:20px;transform:rotate(90deg)}
+  .cert-corner.br{bottom:20px;right:20px;transform:rotate(180deg)}
+  .cert-corner.bl{bottom:20px;left:20px;transform:rotate(270deg)}
+  /* watermark: faded logo + diagonal repeating wordmark */
+  .cert-watermark{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;display:grid;place-items:center}
+  .cert-watermark img{width:64%;max-width:640px;opacity:.06;filter:grayscale(1);transform:rotate(-12deg)}
+  .cert-watermark .wm-text{position:absolute;left:-40%;top:-40%;width:180%;height:180%;
+    transform:rotate(-30deg);font-size:12px;font-weight:800;letter-spacing:.42em;text-transform:uppercase;
+    line-height:3.2;color:rgba(10,108,255,.055);white-space:normal;word-break:break-all;text-align:center;user-select:none}
+  .cert-face{position:relative;z-index:1;text-align:center;padding:40px 64px 30px}
+  .cert-face .cert-logo{height:48px;width:auto;max-width:190px;object-fit:contain;margin-bottom:10px}
+  .cert-face .brand{font-size:11.5px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:20px}
+  .cert-face h3{font-family:var(--serif);font-size:clamp(30px,4vw,48px);font-weight:600;letter-spacing:.01em;margin:0 0 2px;color:var(--ink)}
+  .cert-face .cert-sub{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--gold-ink);margin-bottom:22px;
+                       display:flex;align-items:center;justify-content:center;gap:14px}
+  .cert-face .cert-sub::before,.cert-face .cert-sub::after{content:"";width:64px;height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold));}
+  .cert-face .cert-sub::after{background:linear-gradient(90deg,var(--gold),transparent)}
+  .cert-face .says{font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);margin:0 0 6px}
+  .cert-face .who{font-family:var(--script);font-size:clamp(38px,5.4vw,64px);font-weight:500;color:#0a4dbf;line-height:1.15;
+                  margin:0 auto 4px;padding:0 28px 6px;display:inline-block;min-width:50%;border-bottom:1.5px solid var(--gold)}
+  .cert-face .why{font-size:15.5px;color:var(--ink-2);line-height:1.6;max-width:58ch;margin:14px auto 24px}
+  .cert-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;max-width:680px;margin:0 auto 14px}
+  .cert-stat b{display:block;font-family:var(--serif);font-size:26px;font-weight:600;color:var(--ink);line-height:1.1}
+  .cert-stat span{display:block;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-3);margin-top:6px}
+  .cert-seal{position:relative;width:128px;height:128px;margin:0 auto 26px;isolation:isolate;
+             filter:drop-shadow(0 10px 18px rgba(160,120,20,.35))}
+  .cert-seal::before{content:"";position:absolute;inset:0;border-radius:50%;z-index:0;
+    background:repeating-conic-gradient(from 0deg,var(--gold-2) 0 7.5deg,var(--gold-3) 7.5deg 15deg)}
+  .cert-seal::after{content:"";position:absolute;inset:11px;border-radius:50%;z-index:1;
+    background:radial-gradient(circle at 35% 28%,#fff5cc,#d4af37 52%,#a67c1a 100%);
+    box-shadow:inset 0 0 0 2px rgba(255,255,255,.6),inset 0 0 0 6px rgba(140,100,20,.28)}
+  .seal-in{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;
+           color:#3d2c05;line-height:1;text-shadow:0 1px 0 rgba(255,255,255,.5)}
+  .seal-in span{font-size:28px;font-weight:800;letter-spacing:-.02em}
+  .seal-in small{font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;margin-top:5px;font-weight:800}
+  .seal-in em{font-style:normal;font-size:17px;margin-bottom:3px}
+  .cert-ribbons{position:absolute;left:50%;top:70%;z-index:-1}
+  .cert-ribbons::before,.cert-ribbons::after{content:"";position:absolute;top:0;width:26px;height:66px;
+    background:linear-gradient(#1c7bff,#0648b0);clip-path:polygon(0 0,100% 0,100% 100%,50% 82%,0 100%)}
+  .cert-ribbons::before{left:-32px;transform:rotate(16deg);transform-origin:top}
+  .cert-ribbons::after{left:6px;transform:rotate(-16deg);transform-origin:top}
+  .cert-honor{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-ink);
+              border:1px solid var(--gold);border-radius:999px;padding:7px 18px 6px;margin-bottom:26px;background:rgba(255,255,255,.65)}
+  .cert-foot{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:end;margin-top:4px}
+  .cert-sign{text-align:center}
+  .cert-sign i{display:block;height:36px;line-height:36px;font-family:var(--script);font-style:normal;font-size:24px;color:#0a4dbf;
+               overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+  .cert-sign b{display:block;border-top:1px solid var(--gold);padding-top:6px;font-size:10.5px;font-weight:800;letter-spacing:.2em;
+               text-transform:uppercase;color:var(--ink-3)}
+  .cert-id{text-align:center;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+  .cert-id b{display:block;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:var(--ink);letter-spacing:.1em;margin-top:3px}
+  #celebrateCanvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:200}
+  @media (prefers-reduced-motion:reduce){.certificate{animation:none}}
   @media print{
     @page{size:landscape;margin:12mm}
     html,body{height:auto;overflow:visible;background:#fff}
@@ -552,8 +611,9 @@
     body.cert-ready #quizCard,body.cert-ready #scoreCard,body.cert-ready .quiz-actions,
     body.cert-ready [data-quiz-back]{display:none !important}
     body.cert-ready #certWrap{display:block !important}
-    .certificate{box-shadow:none;border:0;padding:0}
-    .certificate-face{padding:36px 48px}
+    .certificate{box-shadow:none;animation:none;padding:10px;break-inside:avoid}
+    .cert-face{padding:28px 48px 22px}
+    #celebrateCanvas{display:none !important}
   }
 
   @media (max-width:960px){
@@ -578,6 +638,10 @@
     #stepText{min-height:0}
     #quiz{padding:70px 20px 60px}
     #welcome{padding:80px 22px 60px}
+    .cert-face{padding:30px 22px 22px}
+    .cert-row,.cert-foot{grid-template-columns:1fr;gap:16px}
+    .cert-corner{width:48px;height:48px}
+    .cert-watermark img{width:90%}
   }
 </style>
 </head>
@@ -694,7 +758,7 @@
     <div class="score-card" id="scoreCard" hidden>
       <div class="score-circle" id="scoreCircle">
         <div class="score-number" id="scoreNumber"></div>
-        <div class="score-of">out of 50</div>
+        <div class="score-of" id="scoreOf">out of 50</div>
       </div>
       <h3 id="scoreTitle"></h3>
       <p class="score-sub" id="scoreSub"></p>
@@ -710,17 +774,34 @@
 
     <div id="certWrap" hidden>
       <div class="certificate" id="certificate">
-        <div class="certificate-inner">
-          <div class="certificate-face">
-            <img src="./assets/hike-logo.jpg" alt="Hike Medical">
+        <div class="cert-frame">
+          <i class="cert-corner tl"></i><i class="cert-corner tr"></i><i class="cert-corner bl"></i><i class="cert-corner br"></i>
+          <div class="cert-watermark" aria-hidden="true">
+            <div class="wm-text" id="certWm"></div>
+            <img src="./assets/hike-logo.jpg" alt="">
+          </div>
+          <div class="cert-face">
+            <img class="cert-logo" src="./assets/hike-logo.jpg" alt="Hike Medical">
             <div class="brand">Hike Medical · The Insole Book</div>
             <h3>Certificate of Completion</h3>
-            <p class="says">This certifies that</p>
+            <div class="cert-sub">Custom Orthotic Training</div>
+            <p class="says">This is to certify that</p>
             <p class="who" id="certPerson">Your name</p>
-            <p class="why">has completed Custom Orthotic Training — bases, accommodations, production, and the four verbs — and can read a Hike insole on sight.</p>
-            <p class="mark">Score <span id="certScore">—</span> · <span id="certPct">—</span></p>
-            <p class="when" id="certDate"></p>
-            <p class="sign">Hike Medical · Training floor</p>
+            <p class="why">has successfully completed Custom Orthotic Training — bases, mid-layers and top covers, accommodations, production flow, and the four verbs — and can read a Hike insole on sight.</p>
+            <div class="cert-row">
+              <div class="cert-stat"><b id="certScore">—</b><span>Final score</span></div>
+              <div class="cert-seal">
+                <div class="seal-in"><em>🦶</em><span id="certPct">—</span><small>Hike certified</small></div>
+                <div class="cert-ribbons"></div>
+              </div>
+              <div class="cert-stat"><b id="certDate">—</b><span>Date awarded</span></div>
+            </div>
+            <div class="cert-honor" id="certHonor">Completed</div>
+            <div class="cert-foot">
+              <div class="cert-sign"><i></i><b>Training lead</b></div>
+              <div class="cert-id">Certificate №<b id="certId">—</b></div>
+              <div class="cert-sign"><i id="certSignee"></i><b>Trainee</b></div>
+            </div>
           </div>
         </div>
       </div>
