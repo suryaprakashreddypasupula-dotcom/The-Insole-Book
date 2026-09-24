@@ -1085,45 +1085,11 @@ function isTextOnly(ls) {
   return ls.layout === 'info' && !ls.chart && !ls.reel && !ls.models && !ls.compare;
 }
 
-function updateLegend(specs) {
-  const hasRelief = specs.some(s => (byPO[s.po]?.models?.[s.side]?.relief_area_pct ?? 0) > 0.1);
-  const hasPad = specs.some(s => (byPO[s.po]?.models?.[s.side]?.pad_area_pct ?? 0) > 0.1);
-  const addonPair = specs.some(s => byPO[s.po]?.models?.[s.side]?.addon);
-  if (addonPair && !hideAddon) {
-    // well + plug pairs: the oval well speaks for itself — no colour legend,
-    // just the page's own caption (if any) and the Highlight switch
-    if (specs.some(s => /OFFLOAD|DRILL/.test(s.po))) {
-      const cap = CHAPTERS[state.chapter]?.lessons[state.lesson]?.steps?.[state.step]?.legend;
-      els.legend.innerHTML = cap ? `<span class="muted">${cap}</span>` : '';
-      appendHighlightToggle(specs);
-      return;
-    }
-    const press = specs.some(s => byPO[s.po]?.motion === 'press');
-    const flip = specs.some(s => byPO[s.po]?.motion === 'flip');
-    const drape = specs.some(s => byPO[s.po]?.motion === 'drape');
-    els.legend.innerHTML = flip
-      ? '<span class="key" style="background:#17181c"></span>True cork blank, finished black like the base — HIGH edge straight along the prescribed border, heel to arch, trimmed flush'
-      : drape
-        ? `<span class="key" style="background:${currentCover ? swatchBg(currentCover) : '#b0804f'}"></span>Top cover — the real production sheet at true thickness, glued on last; the only layer the foot touches`
-        : press
-          ? '<span class="key well"></span>Cyan = the soft fill / well. Production is the black insole.'
-          : '<span class="key pad"></span>Amber = the raised part. Production is the black insole.';
-    appendHighlightToggle(specs);
-    return;
-  }
-  if (hideHighlight) {
-    const id = CHAPTERS[state.chapter]?.lessons[state.lesson]?.id;
-    const plain = id === 'hike-shell'
-      ? 'Plain shell — no offloads on this device'
-      : 'Plain base — no offloads on this device';
-    els.legend.innerHTML = `<span class="muted">${plain}</span>`;
-    return;
-  }
-  els.legend.innerHTML =
-    (hasPad ? '<span class="key pad"></span>Raised pad / bar ' : '') +
-    (hasRelief ? '<span class="key well"></span>Relief well' : '') ||
-    '<span class="muted">Plain surface — no offloads on this device</span>';
-  appendHighlightToggle(specs);
+/* Colour keys and stage captions ("Amber = the raised part", "Arch pad ·
+   arch_pad", "Plain shell — no offloads") are retired. The lesson text
+   carries the information; the model carries the picture. Call sites stay. */
+function updateLegend() {
+  if (els.legend) els.legend.innerHTML = '';
 }
 
 /* The Highlight / Production switch is retired: the teaching highlight is
@@ -1936,24 +1902,9 @@ async function applyExplorerStage(ls, step) {
     applyCoverCode(step.cover, true);
     coverBar.hidden = !ls.covers;
     setTrainAvailable();
-    const names = {
-      T1: 'Sweet · Diabetic 35 · T1',
-      T2: 'Double Sweet · Diabetic 45 · T2',
-      T3: 'Triple Sweet · Diabetic 55 · T3',
-      T6: 'Flexible Shell · insole base · T6 Spenco',
-      T7: 'UCBL · T7 Puff',
-    };
-    const label = step.legend || names[step.cover];
-    if (label && els.legend) {
-      els.legend.innerHTML = `<span class="key" style="background:${currentCover ? swatchBg(currentCover) : '#b0804f'}"></span>${label}`;
-    }
   } else if (!ls.covers) {
     setTrainAvailable();
     coverBar.hidden = true;
-    if (step.legend && els.legend) {
-      els.legend.innerHTML = `<span class="muted">${step.legend}</span>`;
-      appendHighlightToggle();
-    }
   }
 }
 
