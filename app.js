@@ -234,7 +234,7 @@ class Stage {
     this.controls.dampingFactor = 0.06;
     this.controls.enablePan = false;
     this.controls.minDistance = 90;
-    this.controls.maxDistance = 900;
+    this.controls.maxDistance = 2400;   // side views on a tall stage sit well past 900
     this.controls.maxPolarAngle = Math.PI * 0.62;
 
     this.flight = null;          // {p0,p1,t0,t1,start,dur}
@@ -862,56 +862,45 @@ class Stage {
     const b = this.bounds ?? new THREE.Box3(new THREE.Vector3(-80, 0, -140), new THREE.Vector3(80, 30, 140));
     const size = b.getSize(new THREE.Vector3());
     const c = b.getCenter(new THREE.Vector3());
-    const L = Math.max(size.x, size.z);
-    const halfTan = Math.tan(this.camera.fov * Math.PI / 360);
-    // conservative fit: works from any azimuth (top-down or side profile)
-    const fitD = (L / (2 * halfTan)) * Math.max(1, 1 / this.camera.aspect) * 1.14;
-    // side views are vertically shallow, so they can fill the frame width
-    const profD = (L / (2 * halfTan * Math.max(this.camera.aspect, 1))) * 1.15;
     // insole length runs along Z after orientFlat (heel at max z, toe at min z)
     const zAt = f => b.min.z + size.z * f;
     // lean the look-at point toward a region so the camera tilts that way
-    // while the full device stays visible; leaning shifts the far end of the
-    // device toward the frame edge, so leaned views get extra distance
+    // while the full device stays visible
     const lean = f => new THREE.Vector3(c.x, c.y, c.z + (zAt(f) - c.z) * 0.22);
-    const leanD = f => fitD * (1 + 0.30 * Math.abs(f - 0.5));
     const R = {
-      overview: { t: c,          d: fitD,           el: 0.72, az: 0.45 },
-      profile:  { t: c,          d: profD,          el: 0.10, az: 1.35 },  // classic low side view — the arch line
+      overview: { t: c,          el: 0.72, az: 0.45 },
+      profile:  { t: c,          el: 0.10, az: 1.35 },  // classic low side view — the arch line
       // near-ground side view leaned to the heel — where cover thickness reads
-      heelProfile: { t: lean(0.74), d: profD * 1.16, el: 0.06, az: 1.35 },
+      heelProfile: { t: lean(0.74), el: 0.06, az: 1.35 },
       // product-film explode: high enough to see the cover sheet and the
       // printed shell as two objects, not a knife-edge silhouette
-      coverSplit: { t: lean(0.58), d: profD * 1.12, el: 0.28, az: 1.08 },
+      coverSplit: { t: lean(0.58), el: 0.28, az: 1.08 },
       // training mode: low diagonal from the toe corner — the forefoot edge
       // faces the camera so the cover's thickness band reads immediately
-      forefootEdge: { t: lean(0.30), d: profD * 1.22, el: 0.10, az: Math.PI - 0.55 },
-      heel:     { t: lean(0.82), d: leanD(0.82),    el: 0.45, az: 0.55 },
-      arch:     { t: lean(0.55), d: leanD(0.55),    el: 0.26, az: -1.15 }, // low, from the side — arch reads as a silhouette
-      forefoot: { t: lean(0.30), d: leanD(0.30),    el: 0.80, az: 0.12 },
-      toes:     { t: lean(0.14), d: leanD(0.14),    el: 0.65, az: 0.0 },
-      pad:      { t: lean(0.34), d: leanD(0.34),    el: 1.02, az: 0.10 },
-      relief:   { t: lean(0.45), d: leanD(0.45),    el: 1.02, az: -0.10 },
+      forefootEdge: { t: lean(0.30), el: 0.10, az: Math.PI - 0.55 },
+      heel:     { t: lean(0.82), el: 0.45, az: 0.55 },
+      arch:     { t: lean(0.55), el: 0.26, az: -1.15 }, // low, from the side — arch reads as a silhouette
+      forefoot: { t: lean(0.30), el: 0.80, az: 0.12 },
+      toes:     { t: lean(0.14), el: 0.65, az: 0.0 },
+      pad:      { t: lean(0.34), el: 1.02, az: 0.10 },
+      relief:   { t: lean(0.45), el: 1.02, az: -0.10 },
       // flipped over — looking at the print-bed / bottom of the shell so
       // heel posts, ribs, and skives read as shapes instead of a flat lid
-      underside: { t: lean(0.86), d: leanD(0.86),   el: 0.88, az: 0.22 },
+      underside: { t: lean(0.86), el: 0.88, az: 0.22 },
     };
     const r = R[region] || R.overview;
+    let margin = 1.08;
     // relief view on a device with baked wells: frame the wells themselves —
-    // look-at on their centroid, closer, from a steep angle so the cavity
-    // floor and rim both read
+    // look-at on their centroid, from a steep angle so the cavity floor and
+    // rim both read
     const wells = this.labels.filter(l => l.well);
     const featureView = ['relief', 'heel', 'arch', 'pad', 'forefoot'].includes(region);
     if (featureView && wells.length && (this.specs?.length ?? 1) === 1) {
       const c2 = new THREE.Vector3();
       for (const l of wells) c2.add(l.obj.localToWorld(l.local.clone()));
       c2.divideScalar(wells.length);
-      // keep the whole device in frame but lean toward the wells and come
-      // in closer than the plain region view
-      // (the steep relief view stacks the whole length down the screen, so
-      // it gets almost no lean and no zoom; side views have room to spare)
       r.t = c.clone().lerp(c2, region === 'relief' ? 0.22 : 0.38);
-      r.d = fitD * (region === 'relief' ? 1.08 : 0.86);
+      margin = 1.02;   // the whole device still fits — just tighter
       if (region === 'relief') { r.el = 0.95; r.az = -0.18; }
       // look from the side the well is on, never from behind the arch wall
       if (Math.abs(c2.x - c.x) > 8) r.az = Math.sign(c2.x - c.x) * Math.abs(r.az || 0.3);
@@ -921,13 +910,36 @@ class Stage {
     if ((this.specs?.length ?? 1) > 1) {
       r.az = Math.max(-0.7, Math.min(0.7, r.az));
       r.el = Math.max(r.el, 0.35);
-      // the diagonal angle projects both devices' full extent — fit the
-      // real projected width at this azimuth so neither device gets cropped
-      const proj = size.x * Math.abs(Math.cos(r.az)) + size.z * Math.abs(Math.sin(r.az));
-      const diagD = (proj / (2 * halfTan)) * Math.max(1, 1 / this.camera.aspect) * 1.10;
-      r.d = Math.max(r.d, fitD, diagD);
     }
+    // Rule: the WHOLE device always fits in frame, whatever the stage's
+    // aspect. Distance is solved exactly from the projected bounding box for
+    // this angle — not guessed from the insole's length.
+    r.d = this._fitDistance(b, r.t, r.az, r.el) * margin;
     return r;
+  }
+
+  /* Smallest camera distance along (az, el) from `t` at which all eight
+     corners of `box` land inside the viewport, leaving room at the top and
+     bottom for the caption strip and the cue pill. */
+  _fitDistance(box, t, az, el) {
+    const dir = new THREE.Vector3(Math.sin(az) * Math.cos(el), Math.sin(el), Math.cos(az) * Math.cos(el));
+    const fwd = dir.clone().negate();
+    const right = new THREE.Vector3().crossVectors(fwd, new THREE.Vector3(0, 1, 0));
+    if (right.lengthSq() < 1e-6) right.set(1, 0, 0); else right.normalize();
+    const up = new THREE.Vector3().crossVectors(right, fwd).normalize();
+    const tanV = Math.tan(this.camera.fov * Math.PI / 360);
+    const tanH = tanV * this.camera.aspect;
+    // usable frame: the HUD owns the bottom ~16% and the top ~9% of the stage
+    const useV = 0.75, useH = 0.90;
+    let d = 0;
+    const p = new THREE.Vector3();
+    for (const x of [box.min.x, box.max.x]) for (const y of [box.min.y, box.max.y]) for (const z of [box.min.z, box.max.z]) {
+      p.set(x, y, z).sub(t);
+      const depth = p.dot(fwd);          // toward the target from the camera's side
+      const sx = Math.abs(p.dot(right)), sy = Math.abs(p.dot(up));
+      d = Math.max(d, sx / (tanH * useH) - depth, sy / (tanV * useV) - depth);
+    }
+    return Math.max(d, this.controls.minDistance || 0);
   }
 
   _tickFilmDrift(now) {
@@ -1058,7 +1070,7 @@ const els = {
   welcome: document.getElementById('welcome'),
   welcomeLink: document.getElementById('welcomeLink'),
   lessonPane: document.getElementById('lessonPane'),
-  replay: document.getElementById('replayBtn'),
+  dragHint: document.getElementById('dragHint'),
   reelCaption: document.getElementById('reelCaption'),
   flowChart: document.getElementById('flowChart'),
   reelBeats: document.getElementById('reelBeats'),
@@ -1114,30 +1126,11 @@ function updateLegend(specs) {
   appendHighlightToggle(specs);
 }
 
-/* Highlight / Production switch — only for devices with baked well data.
-   Lives inside the legend pill; step legends re-append it after they
-   replace the legend text. */
+/* The Highlight / Production switch is retired: the teaching highlight is
+   always on, and the caption strip carries no controls. Kept as a no-op so
+   the legend call sites stay untouched. */
 let currentSpecs = null;
-function appendHighlightToggle(specs = currentSpecs) {
-  if (hideHighlight) return;
-  if (!specs || !els.legend || document.getElementById('hlToggle')) return;
-  const baked = specs.some(s => {
-    const m = byPO[s.po]?.models?.[s.side];
-    return m?.highlight === 'v2' && ((m.wells?.length ?? 0) > 0 || (m.relief_area_pct ?? 0) > 0.1 || (m.pad_area_pct ?? 0) > 0.1);
-  });
-  if (!baked) return;
-  const on = WELL_UNIFORMS.uWell.value > 0.5;
-  els.legend.insertAdjacentHTML('beforeend',
-    `<button type="button" class="hl-toggle${on ? ' on' : ''}" id="hlToggle" aria-pressed="${on}"><i></i><span>${on ? 'Highlight' : 'Production'}</span></button>`);
-  document.getElementById('hlToggle').addEventListener('click', e => {
-    const next = WELL_UNIFORMS.uWell.value < 0.5;
-    stage.setWellHighlight(next);
-    const b = e.currentTarget;
-    b.classList.toggle('on', next);
-    b.setAttribute('aria-pressed', String(next));
-    b.querySelector('span').textContent = next ? 'Highlight' : 'Production';
-  });
-}
+function appendHighlightToggle() {}
 
 /* ---------- top cover selector (T1–T14, the real production lineup) ----------
    Every chip is a variant from the catalog: a true-thickness layered GLB with
@@ -1250,7 +1243,7 @@ function showView(name) {
   els.reader.hidden = quiz || welcome;
   els.welcomeLink.classList.toggle('on', welcome);
   els.side.classList.remove('open');
-  if (quiz || welcome) stopMeetFilm();
+  if (quiz || welcome) { stopMeetFilm(); stopAddonLoop(); }
   if (!quiz && !welcome) requestAnimationFrame(() => stage._resize());
   if (quiz) openQuiz();
 }
@@ -1316,6 +1309,7 @@ async function renderLesson(animate = true) {
   } else if (!ls.chart && !isTextOnly(ls)) {
     if (animate) stage.camera.position.multiplyScalar(1.35);
     stage.flyTo(ls.steps[0].camera || ls.camera || 'overview', 1600);
+    showDragHint();
   }
   if (specs) updateLegend(specs);
   if (ls.covers && COVER_VARIANTS.length) {
@@ -1647,14 +1641,10 @@ function renderPlugExplore(step, ls) {
       await ensureStepPair({ models: [{ po: p.po, side: p.side, label: p.id }] }, {});
       applyAddonVisibility();
       stage.flyTo('relief', 900);
-      // same cycle as every other add-on page: lift off, then reseat
+      // same cycle as every other add-on page: lift off, reseat, repeat
       // (skipped when the page shows the well alone)
-      clearTimeout(animTimer); clearTimeout(animTimer2);
       stage.setSeparation('seated', true);
-      if (!hideAddon) {
-        animTimer = setTimeout(() => stage.setSeparation('separated'), 500);
-        animTimer2 = setTimeout(() => stage.setSeparation('seated'), 2900);
-      }
+      startAddonLoop(500);
     });
   });
 }
@@ -1715,7 +1705,7 @@ async function startMeetFilm() {
   const last = film.length - 1;
   coverBar.hidden = true;
   setTrainAvailable();
-  els.replay.hidden = true;
+  stopAddonLoop();
   stage.setFilmLock(true);
   stage.setSeparation('seated', true);
   buildMeetBeats(film.length);
@@ -1968,7 +1958,17 @@ async function applyExplorerStage(ls, step) {
 }
 
 let animTimer = null;
-let replayGen = 0;
+let stepGen = 0;
+/* the text column tells you when there is more below: dissolve the last
+   lines until the reader has scrolled to the end */
+function syncTextFade() {
+  const t = els.stepText;
+  const more = t.scrollHeight - t.clientHeight - t.scrollTop > 6;
+  t.classList.toggle('more', more);
+}
+els.stepText.addEventListener('scroll', syncTextFade, { passive: true });
+new ResizeObserver(syncTextFade).observe(els.stepText);
+
 function renderStep(fly = true) {
   const ls = CHAPTERS[state.chapter].lessons[state.lesson];
   const step = ls.steps[state.step];
@@ -1979,6 +1979,7 @@ function renderStep(fly = true) {
     els.stepText.style.opacity = 1;
     bindGloss();
     renderExplore(step, ls);
+    requestAnimationFrame(syncTextFade);
   }, fly ? 180 : 0);
   let staged = Promise.resolve();
   if (ls.explorer || step.pair || step.cover) staged = applyExplorerStage(ls, step);
@@ -1987,10 +1988,11 @@ function renderStep(fly = true) {
   // add-on animation: snap to this step's starting state, then play its move.
   // Snapping first means step-skipping can never strand a mid-flight part.
   clearTimeout(animTimer);
-  clearTimeout(animTimer2);
+  stopAddonLoop();
+  const gen = ++stepGen;
   if (ls.reel || ls.chart || isTextOnly(ls)) {
-    els.replay.hidden = true;
     els.stepDots.innerHTML = '';
+    els.stepDots.hidden = true;
     els.nextLabel.textContent = nextLessonLabel(true);
     els.prev.disabled = false;
     return;
@@ -2008,25 +2010,24 @@ function renderStep(fly = true) {
   }
   // selector lessons can pin a cover per step: the stage lifts the current
   // cover off and drapes the named one down as the step's animation
+  let coverSwap = false;
   if (ls.covers && step.cover) {
     const ci = COVER_VARIANTS.findIndex(v => v.code === step.cover);
     if (ci >= 0 && COVER_VARIANTS[ci] !== currentCover) {
+      coverSwap = true;
       animTimer = setTimeout(() => selectCover(ci), 500);
     }
   }
-  // one accommodation = one page: the add-on's lift/press cycle plays once
-  // on arrival and Replay is always available on an add-on page
-  // (a step.pair reloads the stage async, so decide once that load settles)
-  const gen = ++replayGen;
+  // one accommodation = one page: the add-on's move plays by itself, on a
+  // loop, for as long as the page is open — no button to press
+  // (a step.pair reloads the stage async, so start once that load settles)
   staged.then(() => {
-    if (gen !== replayGen) return;
-    els.replay.hidden = !stage.addon || hideAddon;
-    if (stage.addon && !hideAddon && ls.steps.length === 1 && !step.anim && fly) {
-      animTimer2 = setTimeout(() => els.replay.click(), 900);
-    }
+    if (gen !== stepGen) return;
+    if (stage.addon && !hideAddon && !step.anim && !coverSwap) startAddonLoop(900);
   });
   els.stepDots.innerHTML = ls.steps
     .map((_, i) => `<i class="${i === state.step ? 'on' : ''}" data-i="${i}"></i>`).join('');
+  els.stepDots.hidden = ls.steps.length < 2;
   els.stepDots.querySelectorAll('i').forEach(dot =>
     dot.addEventListener('click', () => { state.step = +dot.dataset.i; renderStep(); }));
   const last = state.step === ls.steps.length - 1;
@@ -2075,37 +2076,66 @@ window.__goto = async (ci, li, si = 0) => {
   await renderLesson(false);
   if (si) { state.step = si; renderStep(); }
 };
-let animTimer2 = null;
-let animTimer3 = null;
-els.replay.addEventListener('click', () => {
-  if (!stage.addon) return;
-  stage.revealAddons(true);
-  clearTimeout(animTimer);
-  clearTimeout(animTimer2);
-  clearTimeout(animTimer3);
-  if (!state.quiz) {
-    const ls = CHAPTERS[state.chapter].lessons[state.lesson];
-    const step = ls.steps[state.step];
-    if (step.anim) {
-      // replay this step's own move from its starting state
-      stage.setSeparation(sepStateBefore(ls, state.step), true);
-      animTimer = setTimeout(() => stage.setSeparation(animTarget(step.anim)), 250);
+/* ---------- add-on cycle: plays by itself, on repeat ----------
+   Lift & reseat for raises, press & spring-back for soft fills, and for
+   flip pairs: roll over with the part hovering, glue it on, roll back. The
+   loop rests a beat between cycles, pauses the moment the reader grabs the
+   model, and picks up again once they let go. Top covers do not loop —
+   their move is the swap itself. */
+let loopGen = 0;
+let loopTimers = [];
+function stopAddonLoop() {
+  loopGen += 1;
+  loopTimers.forEach(clearTimeout);
+  loopTimers = [];
+}
+function startAddonLoop(delay = 900) {
+  stopAddonLoop();
+  if (!stage.addon || hideAddon || stage.motion === 'drape' || state.quiz || state.welcome) return;
+  const gen = loopGen;
+  const at = (ms, fn) => loopTimers.push(setTimeout(() => { if (gen === loopGen) fn(); }, ms));
+  const cycle = () => {
+    if (gen !== loopGen || !stage.addon) return;
+    stage.revealAddons(true);
+    stage.setSeparation('seated', true);
+    if (stage.motion === 'flip') {
+      at(250,  () => stage.setSeparation('separated'));
+      at(3600, () => stage.setSeparation('flipped'));
+      at(5700, () => stage.setSeparation('seated'));
+      at(9400, cycle);
       return;
     }
+    at(250,  () => stage.setSeparation('separated'));
+    at(2700, () => stage.setSeparation('seated'));
+    at(5600, cycle);
+  };
+  at(delay, cycle);
+}
+function resumeAddonLoop() {
+  if (!stage.addon || hideAddon || stage.motion === 'drape' || state.quiz || state.welcome) return;
+  const ls = CHAPTERS[state.chapter]?.lessons[state.lesson];
+  if (!ls || ls.reel || ls.chart || isTextOnly(ls)) return;
+  if (ls.steps[state.step]?.anim) return;
+  // if the reader grabbed the model mid-lift, let the part land first
+  if (stage.sepMode !== 'seated') {
+    stopAddonLoop();
+    stage.setSeparation('seated');
+    startAddonLoop(2600);
+  } else {
+    startAddonLoop(1400);
   }
-  // a step with no move of its own: play the full cycle —
-  // lift & reseat for raises, press & spring-back for soft fills, and for
-  // flip pairs: roll over with the part hovering, glue it on, roll back
-  stage.setSeparation('seated', true);
-  if (stage.motion === 'flip') {
-    animTimer = setTimeout(() => stage.setSeparation('separated'), 250);
-    animTimer2 = setTimeout(() => stage.setSeparation('flipped'), 3600);
-    animTimer3 = setTimeout(() => stage.setSeparation('seated'), 5700);
-    return;
-  }
-  animTimer = setTimeout(() => stage.setSeparation('separated'), 250);
-  animTimer2 = setTimeout(() => stage.setSeparation('seated'), 2600);
-});
+}
+stage.controls.addEventListener('start', () => { stopAddonLoop(); els.dragHint?.classList.add('gone'); });
+stage.controls.addEventListener('end', resumeAddonLoop);
+
+/* the orientation cue shows for a few seconds on each 3D page, then leaves */
+let hintTimer = null;
+function showDragHint() {
+  if (!els.dragHint) return;
+  clearTimeout(hintTimer);
+  els.dragHint.classList.remove('gone');
+  hintTimer = setTimeout(() => els.dragHint.classList.add('gone'), 4200);
+}
 addEventListener('keydown', e => {
   const t = e.target;
   if (t && t.closest && t.closest('input,textarea')) return;
