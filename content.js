@@ -268,22 +268,6 @@ export const CHAPTERS = [
         ],
       },
       {
-        id: "flexible-shell",
-        title: "Flexible Shell \u2014 insole base",
-        models: [{ po: "PAIR-TOP-COVER", side: "LEFT" }],
-        camera: "heelProfile",
-        hideHighlight: true,
-        steps: [
-          {
-            camera: "heelProfile",
-            cover: "T6",
-            pair: [{ po: "PAIR-TOP-COVER", side: "LEFT" }],
-            legend: "Flexible Shell · base of the insole · T6 Spenco",
-            text: "<p>The Hike Flexible Shell is a <b>base of the insole</b>, not a {{shell}}. A shell is 3/4 length \u2014 that is Hike Shell. Flexible Shell is a full-length adaptive base.</p><p>Where a standard plate feels firm and structured, Flexible Shell uses a softer, more pliable TPU print that forms around the foot over time. It is not rigid correction \u2014 it is adaptive support. Choose it for patients who find a 3/4 shell too stiff, or who need a gentler transition into orthotic support. Default top cover is T6 \u2014 a 1/8\u2033 Spenco layer for athletic spring on top of this adaptive base.</p>",
-          },
-        ],
-      },
-      {
         id: "ucbl",
         title: "UCBL & Flexible UCBL",
         models: [{ po: "CPO-302402", side: "LEFT" }],

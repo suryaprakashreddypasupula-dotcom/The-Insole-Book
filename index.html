@@ -128,6 +128,17 @@
   #reader.info.text #stepNav{grid-column:1;grid-row:2;justify-content:flex-start;margin:0 0 22px;
                              padding-left:min(4.5vw,52px)}
   #reader.info.text #stepText{max-width:68ch}
+  #reader.info.text.fullpage{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;
+                            background:var(--paper)}
+  #reader.info.text.fullpage #stageWrap{display:none !important}
+  #reader.info.text.fullpage #lessonPane{grid-column:1;grid-row:1;order:1;max-width:none;width:100%;
+                                        padding:min(5vh,44px) min(5vw,72px) 8px;overflow-y:auto}
+  #reader.info.text.fullpage #lessonTitle{max-width:none}
+  #reader.info.text.fullpage #stepText{max-width:none;width:100%;overflow:visible;flex:none;
+                                      min-height:auto;padding-right:0}
+  #reader.info.text.fullpage #stepText.more{-webkit-mask-image:none;mask-image:none}
+  #reader.info.text.fullpage #stepNav{grid-column:1;grid-row:2;order:2;justify-content:flex-start;
+                                     margin:0;width:auto;padding:8px min(5vw,72px) 20px}
   #reader.info #lessonExplore,
   #reader.info #dragHint,#reader.info #stageHud,
   #reader.info .stage-label,#reader.info #trainBtn,
@@ -638,6 +649,9 @@
     #reader.info.text{grid-template-rows:minmax(0,1fr) auto}
     #reader.info.text #lessonPane{grid-row:1;padding:72px 22px 12px}
     #reader.info.text #stepNav{grid-row:2;margin:0 16px 16px;padding-left:22px}
+    #reader.info.text.fullpage{grid-template-rows:minmax(0,1fr) auto;grid-template-columns:1fr}
+    #reader.info.text.fullpage #lessonPane{grid-row:1;padding:72px 22px 12px}
+    #reader.info.text.fullpage #stepNav{grid-row:2;margin:0 16px 16px;padding:0 22px 16px}
     #stageWrap{height:100%}
     #lessonPane{padding-top:28px}
     #stepText{min-height:0}
@@ -829,7 +843,7 @@
   "three/addons/controls/OrbitControls.js":"./vendor/OrbitControls.js"
 }}
 </script>
-<script type="module" src="./app.js?v=clin27"></script>
+<script type="module" src="./app.js?v=clin29"></script>
 <script>
 /* Opening sequence lives here so the logo does not wait on Three.js. */
 (function () {
