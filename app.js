@@ -6,10 +6,10 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CHAPTERS, GLOSSARY } from './content.js?v=clin29';
-import { initQuiz, openQuiz, quizBlocksKeys } from './quiz.js?v=clin29';
+import { CHAPTERS, GLOSSARY } from './content.js?v=clin31';
+import { initQuiz, openQuiz, quizBlocksKeys, startCheckpoint, hasCheckpoint, quizIsCheck } from './quiz.js?v=clin31';
 
-const ASSET_V = 'clin29';
+const ASSET_V = 'clin31';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -1988,10 +1988,24 @@ function renderStep(fly = true) {
 }
 
 function nextLessonLabel() {
+  const ls = CHAPTERS[state.chapter].lessons[state.lesson];
+  if (hasCheckpoint(ls.id)) return 'Take the quiz';
   const gi = lessonIndex(state.chapter, state.lesson);
   if (gi >= flatLessons.length - 1) return 'Take the quiz';
   const nxt = flatLessons[gi + 1];
   return CHAPTERS[nxt.ci].lessons[nxt.li].layout === 'quiz' ? 'Take the quiz' : 'Next lesson';
+}
+
+function advanceLesson() {
+  const gi = lessonIndex(state.chapter, state.lesson);
+  if (gi < flatLessons.length - 1) {
+    const nxt = flatLessons[gi + 1];
+    state.chapter = nxt.ci;
+    state.lesson = nxt.li;
+    renderLesson();
+    return;
+  }
+  showView('quiz');
 }
 
 function go(dir) {
@@ -2000,12 +2014,11 @@ function go(dir) {
   const gi = lessonIndex(state.chapter, state.lesson);
   if (dir > 0) {
     if (state.step < ls.steps.length - 1) { state.step++; renderStep(); return; }
-    if (gi < flatLessons.length - 1) {
-      const nxt = flatLessons[gi + 1];
-      state.chapter = nxt.ci; state.lesson = nxt.li;
-      renderLesson(); return;
+    if (hasCheckpoint(ls.id) && startCheckpoint(ls.id, { onDone: advanceLesson })) {
+      showView('quiz');
+      return;
     }
-    showView('quiz');
+    advanceLesson();
   } else {
     if (state.step > 0) { state.step--; renderStep(); return; }
     if (gi > 0) {
@@ -2173,6 +2186,11 @@ function lastBookLesson() {
 }
 initQuiz({
   onBack: () => {
+    if (quizIsCheck()) {
+      showView('reader');
+      renderLesson();
+      return;
+    }
     const prv = lastBookLesson();
     state.chapter = prv.ci;
     state.lesson = prv.li;
