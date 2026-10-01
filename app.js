@@ -6,10 +6,10 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CHAPTERS, GLOSSARY } from './content.js?v=clin31';
-import { initQuiz, openQuiz, quizBlocksKeys, startCheckpoint, hasCheckpoint, quizIsCheck } from './quiz.js?v=clin31';
+import { CHAPTERS, GLOSSARY } from './content.js?v=clin32';
+import { initQuiz, openQuiz, quizBlocksKeys, startCheckpoint, hasCheckpoint, quizIsCheck, resetWalkthrough } from './quiz.js?v=clin32';
 
-const ASSET_V = 'clin31';
+const ASSET_V = 'clin32';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -1267,6 +1267,7 @@ async function renderLesson(animate = true) {
     currentSpecs = specs || null;
   } finally {
     navLock = false;
+    if (pendingGo) { const run = pendingGo; pendingGo = null; run(); }
   }
   els.reader.classList.remove('loading');
   state.step = 0;
@@ -1988,36 +1989,46 @@ function renderStep(fly = true) {
 }
 
 function nextLessonLabel() {
-  const ls = CHAPTERS[state.chapter].lessons[state.lesson];
-  if (hasCheckpoint(ls.id)) return 'Take the quiz';
   const gi = lessonIndex(state.chapter, state.lesson);
   if (gi >= flatLessons.length - 1) return 'Take the quiz';
   const nxt = flatLessons[gi + 1];
   return CHAPTERS[nxt.ci].lessons[nxt.li].layout === 'quiz' ? 'Take the quiz' : 'Next lesson';
 }
 
+function goToLesson(ci, li) {
+  state.chapter = ci;
+  state.lesson = li;
+  renderLesson();
+}
+
+function leaveToward(ci, li) {
+  const ls = CHAPTERS[state.chapter]?.lessons[state.lesson];
+  if (ls && !state.quiz && !state.welcome && hasCheckpoint(ls.id) &&
+      startCheckpoint(ls.id, { onDone: () => goToLesson(ci, li) })) {
+    showView('quiz');
+    return;
+  }
+  goToLesson(ci, li);
+}
+
 function advanceLesson() {
   const gi = lessonIndex(state.chapter, state.lesson);
   if (gi < flatLessons.length - 1) {
     const nxt = flatLessons[gi + 1];
-    state.chapter = nxt.ci;
-    state.lesson = nxt.li;
-    renderLesson();
+    leaveToward(nxt.ci, nxt.li);
     return;
   }
-  showView('quiz');
+  const quiz = flatLessons[flatLessons.length - 1];
+  leaveToward(quiz.ci, quiz.li);
 }
 
+let pendingGo = null;
 function go(dir) {
-  if (navLock) return;   // ignore presses while a lesson is still loading
+  if (navLock) { pendingGo = () => go(dir); return; }
   const ls = CHAPTERS[state.chapter].lessons[state.lesson];
   const gi = lessonIndex(state.chapter, state.lesson);
   if (dir > 0) {
     if (state.step < ls.steps.length - 1) { state.step++; renderStep(); return; }
-    if (hasCheckpoint(ls.id) && startCheckpoint(ls.id, { onDone: advanceLesson })) {
-      showView('quiz');
-      return;
-    }
     advanceLesson();
   } else {
     if (state.step > 0) { state.step--; renderStep(); return; }
@@ -2149,8 +2160,7 @@ els.sideNav.querySelectorAll('.nav-ch-btn').forEach(btn => btn.addEventListener(
 }));
 els.sideNav.querySelectorAll('.nav-ls-btn').forEach(btn => btn.addEventListener('click', () => {
   if (navLock) return;
-  state.chapter = +btn.dataset.ch; state.lesson = +btn.dataset.ls;
-  renderLesson();
+  leaveToward(+btn.dataset.ch, +btn.dataset.ls);
 }));
 function syncSideNav() {
   els.sideNav.querySelectorAll('.nav-ch').forEach(el =>
@@ -2170,6 +2180,7 @@ els.welcomeLink.addEventListener('click', () => {
   showView('welcome');
 });
 document.getElementById('welcomeBegin').addEventListener('click', () => {
+  resetWalkthrough();
   state.chapter = 0; state.lesson = 0;
   renderLesson();
 });

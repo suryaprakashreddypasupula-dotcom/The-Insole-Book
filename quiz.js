@@ -107,6 +107,17 @@ export function hasCheckpoint(lessonId) {
   return pendingAfter(lessonId).length > 0;
 }
 
+export function resetWalkthrough() {
+  quizState.answers = {};
+  quizState.done = false;
+  quizState.mode = null;
+  quizState.queue = [];
+  quizState.cursor = 0;
+  quizState.answered = false;
+  quizState.onCheckDone = null;
+  persistProgress();
+}
+
 export function startCheckpoint(lessonId, { onDone } = {}) {
   const queue = pendingAfter(lessonId);
   if (!queue.length) return false;
