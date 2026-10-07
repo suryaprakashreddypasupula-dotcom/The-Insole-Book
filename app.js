@@ -6,10 +6,10 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CHAPTERS, GLOSSARY } from './content.js?v=clin40';
-import { initQuiz, openQuiz, quizBlocksKeys, startCheckpoint, hasCheckpoint, quizIsCheck, resetWalkthrough } from './quiz.js?v=clin40';
+import { CHAPTERS, GLOSSARY } from './content.js?v=clin41';
+import { initQuiz, openQuiz, quizBlocksKeys, startCheckpoint, hasCheckpoint, quizIsCheck, resetWalkthrough } from './quiz.js?v=clin41';
 
-const ASSET_V = 'clin40';
+const ASSET_V = 'clin41';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -1785,7 +1785,7 @@ function renderMaterialsStack() {
         <ul>
           <li>How the sheet is glued</li>
           <li>T-codes T1–T14</li>
-          <li>P-Cell, Spenco, Puff</li>
+          <li>P-Cell, Neo Sponge, Puff</li>
         </ul>
       </div>
     </div>
