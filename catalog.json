@@ -2107,7 +2107,7 @@
    {
     "code": "T4",
     "name": "Everyday",
-    "recipe": "1/16\" Preferred Puff over 1/16\" Poron",
+    "recipe": "1/16\" Perforated Puff over 1/16\" Poron",
     "mm": 3.2,
     "layers": 2,
     "perf": true,
@@ -2118,7 +2118,7 @@
     ],
     "layerInfo": [
      {
-      "label": "1/16\" Preferred Puff",
+      "label": "1/16\" Perforated Puff",
       "mm": 1.59,
       "hex": "#3c75e8"
      },
@@ -2266,8 +2266,8 @@
    },
    {
     "code": "T12",
-    "name": "1/16\" Preferred Puff",
-    "recipe": "1/16\" Preferred Puff",
+    "name": "1/16\" Perforated Puff",
+    "recipe": "1/16\" Perforated Puff",
     "mm": 1.6,
     "layers": 1,
     "perf": true,
@@ -2277,7 +2277,7 @@
     ],
     "layerInfo": [
      {
-      "label": "1/16\" Preferred Puff",
+      "label": "1/16\" Perforated Puff",
       "mm": 1.59,
       "hex": "#4b94f0"
      }
