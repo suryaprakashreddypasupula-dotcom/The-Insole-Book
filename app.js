@@ -9,7 +9,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { CHAPTERS, GLOSSARY } from './content.js?v=clin47';
 import { initQuiz, openQuiz, quizBlocksKeys, startCheckpoint, hasCheckpoint, quizIsCheck, resetWalkthrough } from './quiz.js?v=clin46';
 
-const ASSET_V = 'clin41';
+const ASSET_V = 'clin48';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -849,7 +849,12 @@ class Stage {
         pos.setComponent(a.axis, a.home.getComponent(a.axis) + a.base * (1 - f));
         a.obj.position.copy(pos);
       } else {
-        a.obj.position.copy(a.home).addScaledVector(a.up, this.sepOffset);
+        // live world-up so an underside roll still lifts the part toward
+        // the camera (heel posts sit on the print-bed face)
+        const q = new THREE.Quaternion();
+        a.obj.parent.getWorldQuaternion(q).invert();
+        const dir = new THREE.Vector3(0, 1, 0).applyQuaternion(q);
+        a.obj.position.copy(a.home).addScaledVector(dir, this.sepOffset);
       }
     }
   }
