@@ -9,7 +9,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { CHAPTERS, GLOSSARY } from './content.js?v=clin78';
 import { initQuiz, openQuiz, quizBlocksKeys, startCheckpoint, hasCheckpoint, quizIsCheck, resetWalkthrough } from './quiz.js?v=clin46';
 
-const ASSET_V = 'clin82';
+const ASSET_V = 'clin93';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -996,6 +996,11 @@ class Stage {
       toes:     { t: lean(0.14), el: 0.65, az: 0.0 },
       pad:      { t: lean(0.34), el: 1.02, az: 0.10 },
       relief:   { t: lean(0.45), el: 1.02, az: -0.10 },
+      // Wedges stay right-side up. Heel first, then the raised border —
+      // the opposite side from the earlier camera, matching the recording.
+      wedgeHeel:    { t: lean(0.82), el: 0.72, az: 0.15 },
+      wedgeMedial:  { t: c, el: 0.10, az: -1.40 },
+      wedgeLateral: { t: c, el: 0.10, az: 1.40 },
       // flipped over — looking at the print-bed / bottom of the shell so
       // heel posts, ribs, and skives read as shapes instead of a flat lid
       underside: { t: lean(0.86), el: 0.88, az: 0.22 },
@@ -1009,6 +1014,7 @@ class Stage {
       : (R[region] || R.overview);
     let margin = 1.08;
     let fitBox = b;
+    if (region.startsWith('wedge')) margin = 1.2;
     if (region === 'coverSide') {
       // the drape bookkeeping inflates the box upward; frame the seated insole
       fitBox = b.clone();
@@ -1103,6 +1109,40 @@ class Stage {
     this.controls.enabled = false;   // flight owns the camera until it lands
   }
 
+  /* Camera orbit used by the wedge tour. Regular flyTo() takes a straight
+     Cartesian path, which cuts inward between an overhead and side view and
+     briefly makes the insole fill the screen. This follows the sphere around
+     the device instead, like the hand rotation in the reference recording. */
+  flyOrbitTo(region, dur = 1800, flipped = false) {
+    this.userAimed = false;
+    this.filmRegion = region;
+    this.underside = flipped;
+    const { t, d, el, az } = this.regionTarget(region);
+    const dir1 = new THREE.Vector3(
+      Math.sin(az) * Math.cos(el),
+      Math.sin(el),
+      Math.cos(az) * Math.cos(el)
+    ).normalize();
+    const offset = this.camera.position.clone().sub(this.controls.target);
+    const dir0 = offset.clone().normalize();
+    const q1 = new THREE.Quaternion().setFromUnitVectors(dir0, dir1);
+    this.flight = {
+      orbit: true,
+      dir0,
+      q0: new THREE.Quaternion(),
+      q1,
+      d0: offset.length(),
+      d1: d,
+      t0: this.controls.target.clone(),
+      t1: t.clone(),
+      z0: this.holder.rotation.z,
+      z1: flipped ? Math.PI : 0,
+      start: performance.now(),
+      dur,
+    };
+    this.controls.enabled = false;
+  }
+
   _tick(now) {
     this._processTimeline(now);
     this._tickFilm(now);
@@ -1117,8 +1157,15 @@ class Stage {
       const f = this.flight;
       let u = Math.min(1, (now - f.start) / f.dur);
       u = 1 - Math.pow(1 - u, 3.2);          // decelerating spring-like ease
-      this.camera.position.lerpVectors(f.p0, f.p1, u);
       this.controls.target.lerpVectors(f.t0, f.t1, u);
+      if (f.orbit) {
+        const q = new THREE.Quaternion().slerpQuaternions(f.q0, f.q1, u);
+        const dir = f.dir0.clone().applyQuaternion(q).normalize();
+        const distance = THREE.MathUtils.lerp(f.d0, f.d1, u);
+        this.camera.position.copy(this.controls.target).addScaledVector(dir, distance);
+      } else {
+        this.camera.position.lerpVectors(f.p0, f.p1, u);
+      }
       this.camera.lookAt(this.controls.target);
       if (f.z1 !== undefined) this.holder.rotation.z = f.z0 + (f.z1 - f.z0) * u;
       if (u >= 1) {
@@ -1343,7 +1390,7 @@ function showView(name) {
   els.reader.hidden = quiz || welcome;
   els.welcomeLink.classList.toggle('on', welcome);
   els.side.classList.remove('open');
-  if (quiz || welcome) { stopMeetFilm(); stopAddonLoop(); }
+  if (quiz || welcome) { stopMeetFilm(); stopAddonLoop(); stopWedgeTour(); }
   if (!quiz && !welcome) requestAnimationFrame(() => stage._resize());
   if (quiz) openQuiz();
 }
@@ -1359,6 +1406,7 @@ let navLock = false;
 async function renderLesson(animate = true) {
   const ch = CHAPTERS[state.chapter];
   const ls = ch.lessons[state.lesson];
+  stopWedgeTour();
   markSeen(state.chapter, state.lesson);
   syncSideNav();
   const gi0 = lessonIndex(state.chapter, state.lesson);
@@ -1411,7 +1459,9 @@ async function renderLesson(animate = true) {
     startMeetFilm();
   } else if (!ls.chart && !isTextOnly(ls)) {
     if (animate) stage.camera.position.multiplyScalar(1.35);
-    stage.flyTo(ls.steps[0].camera || ls.camera || 'overview', 1600);
+    const openingView = isWedgeLesson(ls) ? 'wedgeHeel' : (ls.steps[0].camera || ls.camera || 'overview');
+    stage.flyTo(openingView, 1600);
+    if (isWedgeLesson(ls)) startWedgeTour(ls, 2600);
     showDragHint();
   }
   if (specs) updateLegend(specs);
@@ -1706,10 +1756,8 @@ const PLUGS = [
   { id: '1st', po: 'PAIR-OFFLOAD-1ST', side: 'LEFT' },
   { id: '2nd', po: 'PAIR-OFFLOAD-2ND', side: 'LEFT' },
   { id: '3rd', po: 'PAIR-OFFLOAD-3RD', side: 'LEFT' },
-  { id: '2nd+3rd', po: 'PAIR-OFFLOAD-2ND-3RD', side: 'LEFT' },
-  { id: '4th', po: 'PAIR-OFFLOAD-4TH', side: 'RIGHT' },
+  { id: '4th', po: 'PAIR-OFFLOAD-4TH', side: 'LEFT' },
   { id: '5th', po: 'PAIR-OFFLOAD-5TH', side: 'LEFT' },
-  { id: '4th+5th', po: 'PAIR-OFFLOAD-4TH-5TH', side: 'LEFT' },
 ];
 let hideAddon = false;
 let hideHighlight = false;
@@ -2238,6 +2286,38 @@ window.__goto = async (ci, li, si = 0) => {
   await renderLesson(false);
   if (si) { state.step = si; renderStep(); }
 };
+
+/* ---------- wedge camera tour ----------
+   The insole stays the way it is worn. Heel first, then a turn to the
+   raised side so the lift reads. Medial and lateral use their own GLBs.
+   Grabbing stops the tour immediately. */
+let wedgeTourGen = 0;
+let wedgeTourTimers = [];
+function isWedgeLesson(ls) {
+  return ls?.id === 'medial-wedge-extrinsic' || ls?.id === 'lateral-wedge-extrinsic';
+}
+function stopWedgeTour() {
+  wedgeTourGen += 1;
+  wedgeTourTimers.forEach(clearTimeout);
+  wedgeTourTimers = [];
+}
+function startWedgeTour(ls, delay = 2600) {
+  stopWedgeTour();
+  if (!isWedgeLesson(ls) || state.quiz || state.welcome) return;
+  const gen = wedgeTourGen;
+  const raised = ls.id === 'medial-wedge-extrinsic' ? 'wedgeMedial' : 'wedgeLateral';
+  const at = (ms, fn) => wedgeTourTimers.push(setTimeout(() => {
+    if (gen === wedgeTourGen && isWedgeLesson(CHAPTERS[state.chapter]?.lessons[state.lesson])) fn();
+  }, ms));
+  const cycle = () => {
+    if (gen !== wedgeTourGen) return;
+    stage.flyOrbitTo(raised, 2200, false);
+    at(7000, () => stage.flyOrbitTo('wedgeHeel', 1800, false));
+    at(11000, cycle);
+  };
+  at(delay, cycle);
+}
+
 /* ---------- add-on cycle: plays by itself, on repeat ----------
    Lift & reseat for raises, press & spring-back for soft fills, and for
    flip pairs: roll over with the part hovering, glue it on, roll back. The
@@ -2297,6 +2377,7 @@ function resumeAddonLoop() {
 }
 stage.controls.addEventListener('start', () => {
   stage.userAimed = true;
+  stopWedgeTour();
   stopAddonLoop();
   els.dragHint?.classList.add('gone');
 });
