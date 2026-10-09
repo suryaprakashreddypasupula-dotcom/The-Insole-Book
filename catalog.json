@@ -2692,9 +2692,11 @@
   "additions": "Heel post \u00b7 Oval",
   "label": "Heel post \u00b7 Oval",
   "hidden": true,
+  "motion": "lift",
   "models": {
    "LEFT": {
     "file": "models/SG-HEEL-POST-OVAL_LEFT.glb",
+    "addon": "models/SG-HEEL-POST-OVAL_LEFT_addon.glb",
     "faces": 28000,
     "extents": [
      97.5,
