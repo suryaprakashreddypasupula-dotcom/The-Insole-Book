@@ -2665,9 +2665,11 @@
   "additions": "Heel post \u00b7 Flat",
   "label": "Heel post \u00b7 Flat",
   "hidden": true,
+  "motion": "lift",
   "models": {
    "LEFT": {
     "file": "models/SG-HEEL-POST-FLAT_LEFT.glb",
+    "addon": "models/SG-HEEL-POST-FLAT_LEFT_addon.glb",
     "faces": 28000,
     "extents": [
      97.5,
@@ -2721,9 +2723,11 @@
   "additions": "Heel post \u00b7 Stabilizer",
   "label": "Heel post \u00b7 Stabilizer",
   "hidden": true,
+  "motion": "lift",
   "models": {
    "LEFT": {
     "file": "models/SG-HEEL-POST-STABILIZER_LEFT.glb",
+    "addon": "models/SG-HEEL-POST-STABILIZER_LEFT_addon.glb",
     "faces": 28000,
     "extents": [
      97.5,
@@ -2748,9 +2752,11 @@
   "additions": "Heel post \u00b7 U",
   "label": "Heel post \u00b7 U",
   "hidden": true,
+  "motion": "lift",
   "models": {
    "LEFT": {
     "file": "models/SG-HEEL-POST-U_LEFT.glb",
+    "addon": "models/SG-HEEL-POST-U_LEFT_addon.glb",
     "faces": 28000,
     "extents": [
      97.5,
