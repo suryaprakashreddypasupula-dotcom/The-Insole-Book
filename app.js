@@ -9,7 +9,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { CHAPTERS, GLOSSARY } from './content.js?v=clin78';
 import { initQuiz, openQuiz, quizBlocksKeys, startCheckpoint, hasCheckpoint, quizIsCheck, resetWalkthrough } from './quiz.js?v=clin46';
 
-const ASSET_V = 'clin81';
+const ASSET_V = 'clin82';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -189,48 +189,6 @@ function installReinforcementShader(scene, kind) {
   });
 }
 
-/* Pale photo-sampled covers disappear on the light stage. Pull only the
-   light tones down so cream, tan, and light blue read darker; vinyl and
-   the other already-dark covers stay put. Geometry is cloned first so a
-   cached GLB is not darkened twice. */
-function deepenChannel(r, g, b) {
-  const lum = 0.30 * r + 0.59 * g + 0.11 * b;
-  const t = lum < 0.42 ? 0 : Math.min(1, (lum - 0.42) / 0.50);
-  const scale = 1 - 0.46 * t;
-  return [r * scale, g * scale, b * scale];
-}
-function deepenHex(hex) {
-  const n = parseInt(String(hex).replace('#', ''), 16);
-  if (!Number.isFinite(n)) return hex;
-  const [r, g, b] = deepenChannel(((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255);
-  const ch = v => Math.round(Math.min(255, v * 255)).toString(16).padStart(2, '0');
-  return `#${ch(r)}${ch(g)}${ch(b)}`;
-}
-function deepenCover(root) {
-  root.traverse(o => {
-    if (!o.isMesh) return;
-    const attr = o.geometry?.getAttribute?.('color');
-    if (!attr) return;
-    const geo = o.geometry.clone();
-    const color = geo.getAttribute('color');
-    const arr = color.array;
-    for (let i = 0; i < arr.length; i += 3) {
-      const [r, g, b] = deepenChannel(arr[i], arr[i + 1], arr[i + 2]);
-      arr[i] = r;
-      arr[i + 1] = g;
-      arr[i + 2] = b;
-    }
-    color.needsUpdate = true;
-    o.geometry = geo;
-    if (o.material) {
-      o.material.color.set(0xb4b4b4);
-      o.material.roughness = 0.72;
-      o.material.envMapIntensity = 0.08;
-      o.material.clearcoat = 0.02;
-    }
-  });
-}
-
 function prepMeshes(scene, isAddon = false, highlight = false) {
   scene.traverse(o => {
     if (o.isMesh) {
@@ -280,7 +238,6 @@ async function loadModel(po, side) {
   if (model.addon) {
     const a = await loader.loadAsync('./' + model.addon + '?v=' + ASSET_V);
     prepMeshes(a.scene, true);
-    if (entry.motion === 'drape') deepenCover(a.scene);
     a.scene.userData.isAddon = true;
     // "lift": raises lift off & reseat. "press": soft fills compress under
     // load. "flip": the device flips over and the part glues onto the base.
@@ -697,7 +654,6 @@ class Stage {
       for (const a of this.addons) {
         const fresh = src.clone(true);
         prepMeshes(fresh, true);
-        deepenCover(fresh);
         fresh.userData.isAddon = true;
         fresh.userData.motion = 'drape';
         const parent = a.obj.parent;
@@ -1285,7 +1241,7 @@ const coverBar = document.getElementById('coverBar');
 const COVER_VARIANTS = byPO['PAIR-TOP-COVER']?.variants || [];
 let currentCover = COVER_VARIANTS[0];
 const swatchBg = v => {
-  const sw = (v.swatches || [v.swatch]).map(deepenHex); // build order is bottom-up
+  const sw = v.swatches || [v.swatch];       // build order is bottom-up
   return sw.length > 1
     ? `linear-gradient(to bottom, ${sw[1]} 0 55%, ${sw[0]} 55% 100%)`
     : sw[0];
@@ -1316,8 +1272,6 @@ async function selectCover(i, instant = false) {
   currentCover = v;
   markCover(i);
   await stage.swapCover(v, instant);
-  const ls = CHAPTERS[state.chapter]?.lessons[state.lesson];
-  if (!instant && ls?.covers) stage.flyTo('coverSide', 800);
 }
 coverBar.querySelectorAll('.swatch').forEach(b => b.addEventListener('click', () => {
   if (COVER_VARIANTS[+b.dataset.i] === currentCover) return;
@@ -1425,6 +1379,7 @@ async function renderLesson(animate = true) {
   els.reader.classList.toggle('film', !!ls.reel);
   els.reader.classList.toggle('chart', !!ls.chart);
   els.reader.classList.toggle('text', isTextOnly(ls));
+  els.reader.classList.toggle('covers', !!ls.covers);
   els.reader.classList.toggle('fullpage', ls.id === 'what-is-accommodation');
   requestAnimationFrame(() => stage._resize());
   els.reader.classList.add('loading');
