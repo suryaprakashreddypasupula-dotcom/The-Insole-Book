@@ -9,7 +9,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { CHAPTERS, GLOSSARY } from './content.js?v=clin47';
 import { initQuiz, openQuiz, quizBlocksKeys, startCheckpoint, hasCheckpoint, quizIsCheck, resetWalkthrough } from './quiz.js?v=clin46';
 
-const ASSET_V = 'clin66';
+const ASSET_V = 'clin75';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -101,6 +101,94 @@ function installWellShader(mat) {
   mat.customProgramCacheKey = () => 'well-v2';
 }
 
+const REINFORCEMENT_KIND = {
+  'SG-REINFORCEMENT-RADIAL': 0,
+  'SG-REINFORCEMENT-RIBBED': 1,
+  'SG-REINFORCEMENT-GRID': 2,
+  'SG-REINFORCEMENT-ARCH': 3,
+};
+
+function installReinforcementShader(scene, kind) {
+  scene.traverse(o => {
+    if (!o.isMesh || !o.material) return;
+    const time = { value: 0 };
+    o.material.userData.reinforcementTime = time;
+    o.material.onBeforeCompile = shader => {
+      shader.uniforms.uReinTime = time;
+      shader.uniforms.uReinKind = { value: kind };
+      shader.vertexShader = shader.vertexShader
+        .replace('#include <common>', `#include <common>
+          attribute vec4 reinforcement;
+          uniform float uReinTime;
+          uniform float uReinKind;
+          varying vec3 vReinPos;
+          varying vec3 vReinNormal;
+          varying float vReinMask;
+          varying float vReinWeight;`)
+        .replace('#include <begin_vertex>', `#include <begin_vertex>
+          vReinPos = position;
+          vReinNormal = normal;
+          vReinWeight = reinforcement.r;
+          float t = mod(uReinTime, 10.0);
+          float life = smoothstep(0.08, 0.42, t)
+            * (1.0 - smoothstep(6.35, 7.45, t));
+          float reveal = 0.0;
+          if (uReinKind < 0.5) {
+            vec2 q = position.xy - vec2(0.0, -37.0);
+            float r = length(q);
+            float angle = (atan(q.y, q.x) + 3.14159265) / 6.28318530;
+            float ring = 1.0 - smoothstep(2.0, 4.2, abs(r - 16.0));
+            float ringFront = 1.0 - smoothstep(
+              smoothstep(0.10, 1.20, t),
+              smoothstep(0.10, 1.20, t) + 0.07, angle);
+            float rayFront = smoothstep(0.0, 1.0,
+              (smoothstep(1.05, 4.25, t) * 78.0 - (r - 16.0)) / 8.0);
+            reveal = max(ring * ringFront, smoothstep(16.0, 21.0, r) * rayFront);
+          } else {
+            float startY = uReinKind > 2.5 ? -25.0 : -58.0;
+            float spanY = uReinKind > 2.5 ? 98.0 : 160.0;
+            float front = startY + smoothstep(0.18, 4.75, t) * spanY;
+            reveal = 1.0 - smoothstep(front, front + 10.0, position.y);
+          }
+          vReinMask = clamp(vReinWeight * reveal * life, 0.0, 1.0);
+          float lift = sin(min(1.0, vReinMask) * 1.5707963);
+          transformed += normal * lift * 0.10;`);
+      shader.fragmentShader = shader.fragmentShader
+        .replace('#include <common>', `#include <common>
+          uniform float uReinTime;
+          uniform float uReinKind;
+          varying vec3 vReinPos;
+          varying vec3 vReinNormal;
+          varying float vReinMask;
+          varying float vReinWeight;`)
+        .replace('#include <opaque_fragment>', `#include <opaque_fragment>
+          {
+            float lum = dot(gl_FragColor.rgb, vec3(0.30, 0.59, 0.11));
+            vec2 radial = vReinPos.xy - vec2(0.0, -37.0);
+            float flowCoord = uReinKind < 0.5
+              ? atan(radial.y, radial.x) * 2.3 + length(radial) * 0.10
+              : (uReinKind < 1.5
+                  ? vReinPos.x * 0.12
+                  : vReinPos.x * 0.08 + vReinPos.y * 0.17);
+            float speed = uReinKind > 1.5 && uReinKind < 2.5 ? 5.8 : 3.8;
+            float travel = 0.5 + 0.5 * sin(flowCoord - uReinTime * speed);
+            vec3 amber = vec3(1.00, 0.12, 0.005) * (0.38 + 1.12 * lum);
+            vec3 hot = vec3(1.00, 0.46, 0.025) * (0.50 + 0.58 * travel);
+            vec3 color = mix(amber, hot, travel * (uReinKind > 1.5 && uReinKind < 2.5 ? 0.78 : 0.42));
+            float normalEdge = smoothstep(0.025, 0.18,
+              length(dFdx(vReinNormal)) + length(dFdy(vReinNormal)));
+            float member = uReinKind > 1.5 && uReinKind < 2.5
+              ? mix(0.08, 1.0, normalEdge) : 1.0;
+            float glow = vReinMask * member * (0.82 + 0.18 * travel);
+            gl_FragColor.rgb = mix(gl_FragColor.rgb, color, glow * 0.96);
+            gl_FragColor.rgb += hot * glow * (uReinKind > 1.5 && uReinKind < 2.5 ? 0.10 : 0.06);
+          }`);
+    };
+    o.material.customProgramCacheKey = () => `reinforcement-flow-v2-${kind}`;
+    o.material.needsUpdate = true;
+  });
+}
+
 function prepMeshes(scene, isAddon = false, highlight = false) {
   scene.traverse(o => {
     if (o.isMesh) {
@@ -134,7 +222,14 @@ async function loadModel(po, side) {
   const entry = byPO[po];
   const model = entry?.models?.[side] || entry?.models?.[Object.keys(entry.models)[0]];
   const g = await loader.loadAsync('./' + model.file + '?v=' + ASSET_V);
+  if (po in REINFORCEMENT_KIND) {
+    g.scene.traverse(o => {
+      const c = o.geometry?.getAttribute('color');
+      if (c) o.geometry.setAttribute('reinforcement', c);
+    });
+  }
   prepMeshes(g.scene, false, model.highlight === 'v2');
+  if (po in REINFORCEMENT_KIND) installReinforcementShader(g.scene, REINFORCEMENT_KIND[po]);
   g.scene.userData.isShell = true;
   const group = new THREE.Group();
   group.add(g.scene);
@@ -247,6 +342,8 @@ class Stage {
     this.addonOpacity = 1;       // 1 = teaching color on, 0 = production insole
     this.addonFade = null;
     this._concealAfter = null;
+    this.reinforcementUniforms = [];
+    this.reinforcementStart = performance.now();
     this._resize();
     addEventListener('resize', () => this._resize());
     this._ro = new ResizeObserver(() => this._resize());
@@ -380,6 +477,8 @@ class Stage {
     this.addonOpacity = 1;
     this.addonFade = null;
     this._concealAfter = null;
+    this.reinforcementUniforms = [];
+    this.reinforcementStart = performance.now();
     this.filmGroups = [];
     this.filmAnim = null;
     const groups = await Promise.all(specs.map(s => loadModel(s.po, s.side)));
@@ -423,6 +522,11 @@ class Stage {
     // the highlight lights up as the model lands, breathes, then settles
     WELL_UNIFORMS.uReveal.value = 0;
     this.wellAnim = { start: performance.now() };
+    this.holder.traverse(o => {
+      const u = o.material?.userData?.reinforcementTime;
+      if (u) this.reinforcementUniforms.push(u);
+    });
+    this.reinforcementStart = performance.now();
     this._prepAddons();
     // flip pairs roll the whole device over around its length axis; each
     // group pivots about its own bounding-box center so it stays in place
@@ -990,6 +1094,8 @@ class Stage {
     this._processTimeline(now);
     this._tickFilm(now);
     this._tickWell(now);
+    const reinforcementTime = (now - this.reinforcementStart) * 0.001;
+    for (const u of this.reinforcementUniforms) u.value = reinforcementTime;
     if (this.motion === 'flip') this._applyFlip();
     this._applySeparation(now);
     this._tickAddonFade(now);

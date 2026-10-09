@@ -3142,7 +3142,7 @@
   "hidden": true,
   "models": {
    "LEFT": {
-    "file": "models/SG-REINFORCEMENT-ARCH_LEFT.glb",
+    "file": "models/SG-REINFORCEMENT-ARCH_FLOW_LEFT.glb",
     "faces": 28000,
     "extents": [
      97.5,
@@ -3169,7 +3169,7 @@
   "hidden": true,
   "models": {
    "LEFT": {
-    "file": "models/SG-REINFORCEMENT-GRID_LEFT.glb",
+    "file": "models/SG-REINFORCEMENT-GRID_FLOW_LEFT.glb",
     "faces": 28000,
     "extents": [
      97.5,
@@ -3196,7 +3196,7 @@
   "hidden": true,
   "models": {
    "LEFT": {
-    "file": "models/SG-REINFORCEMENT-RADIAL_LEFT.glb",
+    "file": "models/SG-REINFORCEMENT-RADIAL_FLOW_LEFT.glb",
     "faces": 28000,
     "extents": [
      97.5,
@@ -3223,7 +3223,7 @@
   "hidden": true,
   "models": {
    "LEFT": {
-    "file": "models/SG-REINFORCEMENT-RIBBED_LEFT.glb",
+    "file": "models/SG-REINFORCEMENT-RIBBED_FLOW_LEFT.glb",
     "faces": 28000,
     "extents": [
      97.5,
