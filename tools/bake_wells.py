@@ -50,6 +50,7 @@ OVERRIDES = {
     "PAIR-DRILL-FILL-1ST": ["Drill & Fill Offload"],
     "SG-HEEL-OFFLOAD": ["Heel Spur"],
     "OFFLOAD-MET-HEAD": ["Offload Met Head"],
+    "CPO-149964": ["Navicular Offload"],
 }
 # the real met-head well on a printed diabetic base is ~1 mm deep and sits
 # well inside the forefoot; keep the zone off the arch-to-forefoot drop
@@ -63,7 +64,11 @@ RAMPS = {
     "Offload Met Head": (0.35, 0.85),
     "Base of Fifth Relief": (0.6, 1.6),
     "Heel Spur": (1.8, 3.2),
+    "Navicular Offload": (0.35, 1.10),
 }
+# SoleGen ovals get a fitted ellipse. A shallow navicular recess is irregular
+# — paint the real lip instead of stretching a teardrop over the arch valley.
+SHAPE_FROM_MASK = {"Navicular Offload"}
 
 WELL_TYPES = {k for k, v in bm.OFFLOAD_ZONES.items() if v[0] == "well"}
 
@@ -179,12 +184,55 @@ def encode_sd(sd_v: np.ndarray) -> np.ndarray:
     return np.clip(0.5 + sd_v / SD_RANGE_MM, 0.0, 1.0)
 
 
+def local_well(h, ball_mm=10.0):
+    """Top-hat with a small ball: the cut oval, not the broad arch valley."""
+    hs = ndimage.gaussian_filter(h, bm.PRE_SIGMA_MM / bm.CELL)
+    closed = ndimage.grey_closing(hs, footprint=bm._disk(ball_mm), mode="nearest")
+    return np.clip(closed - hs, 0, None)
+
+
 def weights(mesh, v, n, order, offloads):
     """Zone-gated well / pad regions per vertex (mirrors build_models.colorize),
     encoded as signed distance to the region contour so the shader can draw a
     sub-vertex, anti-aliased edge and a precise rim line."""
     well, raise_, narrow, dist, h, xi, yi, fc, grid_origin = detect_dense(mesh, v, order)
     medial_pos = bm.medial_is_positive_x(v)
+    if any(name in SHAPE_FROM_MASK for name in offloads):
+        spec = bm.OFFLOAD_ZONES["Navicular Offload"]
+        field = local_well(h, 10.0)
+        field[dist < spec[4]] = 0.0
+        # the visible recess is a round bowl; the detector crease is a thin
+        # trench. Paint a circle on the peak so the color matches the cavity.
+        nx, ny = field.shape
+        yf = (np.arange(ny) / max(ny - 1, 1))[None, :]
+        xpos = (np.arange(nx) > (nx - 1) / 2)[:, None]
+        zone = (yf >= spec[1]) & (yf <= spec[2]) & (dist >= spec[4])
+        zone = zone & (xpos if medial_pos else ~xpos)
+        band = np.where(zone, field, 0.0)
+        on_surface = (n[:, 2] > 0.1) & (v[:, 2] >= (h[xi, yi] - 6.0))
+        pad_w = np.zeros(len(v))
+        if float(band.max()) < 0.25:
+            return np.zeros(len(v)), pad_w, np.zeros(len(v)), []
+        loc = np.unravel_index(int(np.argmax(band)), band.shape)
+        radius_mm = 11.0
+        e = (float(loc[0]), float(loc[1]), radius_mm / bm.CELL, radius_mm / bm.CELL, 0.0)
+        sd, bowl = ellipse_field(v, grid_origin[0], grid_origin[1], e, lip_pad_mm=0.2)
+        peak = max(float(band.max()), 0.2)
+        d = np.clip(sample(field, fc) / peak, 0, 1)
+        depth = np.where(sd > -1.5, 0.35 * d + 0.65 * bowl, 0.0)
+        sel = (sd > 0) & on_surface
+        well_w = encode_sd(sd)
+        well_w[~on_surface] = 0.0
+        depth[~on_surface] = 0.0
+        blobs = []
+        if sel.any():
+            blobs.append({
+                "sel": sel,
+                "depth": float(peak),
+                "name": "Navicular well",
+                "_zx": float(v[sel, 0].mean()),
+            })
+        return well_w, pad_w, depth, blobs
     raise_w = bm.smoothstep((raise_ - bm.PAD_START) / (bm.PAD_FULL - bm.PAD_START))
     nx, ny = well.shape
     yf = (np.arange(ny) / max(ny - 1, 1))[None, :]
@@ -258,6 +306,7 @@ PO_WELL_LABELS = {
     "PAIR-OFFLOAD-5TH": ["5th met head well"],
     "PAIR-OFFLOAD-2ND-3RD": ["2nd met head well", "3rd met head well"],
     "PAIR-OFFLOAD-4TH-5TH": ["4th met head well", "5th met head well"],
+    "CPO-149964": ["Navicular well"],
 }
 
 
@@ -284,6 +333,8 @@ def well_name(offloads, cx, cy, nx, ny, footprint, medial_pos):
         return "Heel spur well"
     if name == "Base of Fifth Relief":
         return "Base of 5th well"
+    if name == "Navicular Offload":
+        return "Navicular well"
     return "Relief well"
 
 

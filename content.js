@@ -1206,19 +1206,18 @@ export const CHAPTERS = [
         "title": "Navicular Offload",
         "models": [
           {
-            "po": "CPO-307228",
+            "po": "CPO-149964",
             "side": "LEFT"
           }
         ],
         "camera": "arch",
-        "hideHighlight": true,
         "steps": [
           {
             "camera": "arch",
             "legend": "Navicular Offload · no baked mesh yet — reference base shown",
             "pair": [
               {
-                "po": "CPO-307228",
+                "po": "CPO-149964",
                 "side": "LEFT"
               }
             ],

@@ -60,6 +60,7 @@ OFFLOAD_ZONES = {
     "Heel Spur":                ("well", 0.00, 0.34, "any", 3),
     "Arch Pad":                 ("raise", 0.25, 0.65, "medial", 10),
     "Cuboid Raise":             ("raise", 0.22, 0.60, "lateral", 10),
+    "Navicular Offload":        ("well", 0.32, 0.72, "medial", 5),
     "Base of Fifth Relief":     ("well", 0.25, 0.65, "lateral", 8),
     "Drill & Fill Offload":     ("well", 0.15, 0.95, "any", 8),
     "Wedges":                   (None, 0, 0, "any", 8),     # angulation, no local feature

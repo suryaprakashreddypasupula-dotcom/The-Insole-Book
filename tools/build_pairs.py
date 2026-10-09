@@ -180,8 +180,8 @@ PAIRS = [
     {
         "id": "PAIR-CUBOID-PAD",
         "label": "Cuboid pad",
-        "insole": "PO-Gaillard_cuboid-pad_{side}.stl",
-        "addon": "cuboid-pad_1_{side}.stl",
+        "insole": "CPO-149042_Cuboid-Pad_{side}.stl",
+        "addon": "cuboid-pad_149042_{side}.stl",
         "color": AMBER,
         "cap": 8.0,
         "additions": "Cuboid pad (separate printed part)",

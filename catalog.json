@@ -1,5 +1,52 @@
 [
  {
+  "po": "CPO-149964",
+  "categories": [
+   "Navicular Offload"
+  ],
+  "orthotic_type": "Functional",
+  "base": "",
+  "top_cover": "",
+  "additions": "Navicular offload",
+  "label": "Navicular offload",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/CPO-149964_LEFT.glb",
+    "faces": 62224,
+    "extents": [
+     101.6,
+     189.3,
+     23.6
+    ],
+    "relief_focus": {
+     "center": [
+      17.6,
+      -9.1,
+      8.9
+     ],
+     "radius": 1.8
+    },
+    "pad_focus": null,
+    "relief_area_pct": 2.91,
+    "pad_area_pct": 0.0,
+    "wells": [
+     {
+      "center": [
+       12.6,
+       7.5,
+       10.0
+      ],
+      "radius": 11.7,
+      "depth_mm": 1.8,
+      "label": "Navicular well"
+     }
+    ],
+    "highlight": "v2"
+   }
+  }
+ },
+ {
   "po": "CPO-291487",
   "categories": [
    "35 Durometer EVA"
@@ -875,46 +922,6 @@
   "hidden": true
  },
  {
-  "po": "HIKE-SHELL",
-  "categories": [
-   "Shell"
-  ],
-  "orthotic_type": "Functional",
-  "base": "Hike Shell",
-  "top_cover": "Shell",
-  "additions": "",
-  "models": {
-   "LEFT": {
-    "file": "models/HIKE-SHELL_LEFT.glb",
-    "faces": 16041,
-    "extents": [
-     102.4,
-     204.2,
-     23.3
-    ],
-    "relief_focus": null,
-    "pad_focus": null,
-    "relief_area_pct": 0.0,
-    "pad_area_pct": 0.0
-   },
-   "RIGHT": {
-    "file": "models/HIKE-SHELL_RIGHT.glb",
-    "faces": 16185,
-    "extents": [
-     102.4,
-     204.2,
-     23.3
-    ],
-    "relief_focus": null,
-    "pad_focus": null,
-    "relief_area_pct": 0.0,
-    "pad_area_pct": 0.0
-   }
-  },
-  "hidden": true,
-  "note": "Plain 3/4-length Hike Shell. Built by tools/make_shell.py from CPO-307228 trimmed along CPO-307216's met line."
- },
- {
   "po": "CPO-307229",
   "categories": [
    "Met Pad"
@@ -1086,6 +1093,46 @@
   }
  },
  {
+  "po": "HIKE-SHELL",
+  "categories": [
+   "Shell"
+  ],
+  "orthotic_type": "Functional",
+  "base": "Hike Shell",
+  "top_cover": "Shell",
+  "additions": "",
+  "models": {
+   "LEFT": {
+    "file": "models/HIKE-SHELL_LEFT.glb",
+    "faces": 16041,
+    "extents": [
+     102.4,
+     204.2,
+     23.3
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   },
+   "RIGHT": {
+    "file": "models/HIKE-SHELL_RIGHT.glb",
+    "faces": 16185,
+    "extents": [
+     102.4,
+     204.2,
+     23.3
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  },
+  "hidden": true,
+  "note": "Plain 3/4-length Hike Shell. Built by tools/make_shell.py from CPO-307228 trimmed along CPO-307216's met line."
+ },
+ {
   "po": "OFFLOAD-MET-HEAD",
   "categories": [
    "Offload Met Head"
@@ -1230,11 +1277,11 @@
    "LEFT": {
     "file": "models/PAIR-CUBOID-PAD_LEFT.glb",
     "addon": "models/PAIR-CUBOID-PAD_LEFT_addon.glb",
-    "faces": 28000,
+    "faces": 28450,
     "extents": [
-     95.9,
-     264.6,
-     17.8
+     109.2,
+     325.0,
+     27.7
     ],
     "relief_focus": null,
     "pad_focus": null,
