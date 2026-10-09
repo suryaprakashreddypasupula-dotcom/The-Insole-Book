@@ -702,10 +702,10 @@ export const CHAPTERS = [
             "side": "LEFT"
           }
         ],
-        "camera": "underside",
+        "camera": "intrinsicRearfoot",
         "steps": [
           {
-            "camera": "underside",
+            "camera": "intrinsicRearfoot",
             "legend": "Rearfoot posting · rearfoot_posting",
             "pair": [
               {
@@ -864,10 +864,10 @@ export const CHAPTERS = [
             "side": "LEFT"
           }
         ],
-        "camera": "heel",
+        "camera": "profile",
         "steps": [
           {
-            "camera": "heel",
+            "camera": "profile",
             "legend": "Medial flange · medial_flange",
             "pair": [
               {
@@ -888,10 +888,10 @@ export const CHAPTERS = [
             "side": "LEFT"
           }
         ],
-        "camera": "heel",
+        "camera": "lateralProfile",
         "steps": [
           {
-            "camera": "heel",
+            "camera": "lateralProfile",
             "legend": "Lateral flange · lateral_flange",
             "pair": [
               {
@@ -912,10 +912,10 @@ export const CHAPTERS = [
             "side": "LEFT"
           }
         ],
-        "camera": "heel",
+        "camera": "medialShellProfile",
         "steps": [
           {
-            "camera": "heel",
+            "camera": "medialShellProfile",
             "legend": "Medial shell flange · shell_medial_flange",
             "pair": [
               {
@@ -936,10 +936,10 @@ export const CHAPTERS = [
             "side": "LEFT"
           }
         ],
-        "camera": "heel",
+        "camera": "lateralShellProfile",
         "steps": [
           {
-            "camera": "heel",
+            "camera": "lateralShellProfile",
             "legend": "Lateral shell flange · shell_lateral_flange",
             "pair": [
               {

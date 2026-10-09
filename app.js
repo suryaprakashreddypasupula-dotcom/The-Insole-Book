@@ -6,10 +6,10 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CHAPTERS, GLOSSARY } from './content.js?v=clin97';
+import { CHAPTERS, GLOSSARY } from './content.js?v=clin102';
 import { initQuiz, openQuiz, quizBlocksKeys, startCheckpoint, hasCheckpoint, quizIsCheck, resetWalkthrough } from './quiz.js?v=clin46';
 
-const ASSET_V = 'clin97';
+const ASSET_V = 'clin102';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -249,6 +249,39 @@ function installSensoryShader(scene) {
   });
 }
 
+function installIntrinsicRearfootShader(scene) {
+  scene.traverse(o => {
+    if (!o.isMesh || !o.material) return;
+    o.material.onBeforeCompile = shader => {
+      shader.vertexShader = shader.vertexShader
+        .replace('#include <common>', `#include <common>
+          varying vec3 vRearfootPos;
+          varying vec3 vRearfootNormal;`)
+        .replace('#include <begin_vertex>', `#include <begin_vertex>
+          vRearfootPos = position;
+          vRearfootNormal = normal;`);
+      shader.fragmentShader = shader.fragmentShader
+        .replace('#include <common>', `#include <common>
+          varying vec3 vRearfootPos;
+          varying vec3 vRearfootNormal;`)
+        .replace('#include <opaque_fragment>', `#include <opaque_fragment>
+          {
+            vec2 q = vec2(vRearfootPos.x / 43.0, (vRearfootPos.y + 112.0) / 51.0);
+            float heel = 1.0 - smoothstep(0.78, 1.02, length(q));
+            float footbed = smoothstep(0.04, 0.38, vRearfootNormal.z);
+            float mask = heel * footbed;
+            float lum = dot(gl_FragColor.rgb, vec3(0.30, 0.59, 0.11));
+            vec3 blue = vec3(0.015, 0.20, 1.00) * (0.48 + 1.75 * lum);
+            gl_FragColor.rgb = mix(gl_FragColor.rgb, blue, mask * 0.96);
+            float rim = 1.0 - smoothstep(0.0, 0.055, abs(length(q) - 0.84));
+            gl_FragColor.rgb += vec3(0.08, 0.42, 1.00) * rim * footbed * 0.24;
+          }`);
+    };
+    o.material.customProgramCacheKey = () => 'intrinsic-rearfoot-inside-v1';
+    o.material.needsUpdate = true;
+  });
+}
+
 function prepMeshes(scene, isAddon = false, highlight = false) {
   scene.traverse(o => {
     if (o.isMesh) {
@@ -297,6 +330,7 @@ async function loadModel(po, side) {
   prepMeshes(g.scene, false, model.highlight === 'v2');
   if (po in REINFORCEMENT_KIND) installReinforcementShader(g.scene, REINFORCEMENT_KIND[po]);
   if (po === 'SG-SENSORY-BUMPS') installSensoryShader(g.scene);
+  if (po === 'SG-REARFOOT-POSTING') installIntrinsicRearfootShader(g.scene);
   g.scene.userData.isShell = true;
   const group = new THREE.Group();
   group.add(g.scene);
@@ -1047,6 +1081,9 @@ class Stage {
     const R = {
       overview: { t: c,          el: 0.72, az: 0.45 },
       profile:  { t: c,          el: 0.10, az: 1.35 },  // classic low side view — the arch line
+      lateralProfile: { t: c,    el: 0.10, az: -1.35 },
+      medialShellProfile: { t: c, el: 0.18, az: 1.15 },
+      lateralShellProfile: { t: c, el: 0.22, az: 1.00 },
       // filled in below once the real shell (without drape headroom) is known
       coverSide: { t: c, el: 0.18, az: -Math.PI / 2 },
       // near-ground side view leaned to the heel — where cover thickness reads
@@ -1063,6 +1100,7 @@ class Stage {
       toes:     { t: lean(0.14), el: 0.65, az: 0.0 },
       pad:      { t: lean(0.34), el: 1.02, az: 0.10 },
       relief:   { t: lean(0.45), el: 1.02, az: -0.10 },
+      intrinsicRearfoot: { t: lean(0.78), el: 1.05, az: 0.12 },
       // Wedges stay right-side up. Heel first, then the raised border —
       // the opposite side from the earlier camera, matching the recording.
       wedgeHeel:    { t: lean(0.82), el: 0.72, az: 0.15 },
