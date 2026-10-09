@@ -6,10 +6,10 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CHAPTERS, GLOSSARY } from './content.js?v=clin76';
+import { CHAPTERS, GLOSSARY } from './content.js?v=clin78';
 import { initQuiz, openQuiz, quizBlocksKeys, startCheckpoint, hasCheckpoint, quizIsCheck, resetWalkthrough } from './quiz.js?v=clin46';
 
-const ASSET_V = 'clin76';
+const ASSET_V = 'clin81';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -189,6 +189,48 @@ function installReinforcementShader(scene, kind) {
   });
 }
 
+/* Pale photo-sampled covers disappear on the light stage. Pull only the
+   light tones down so cream, tan, and light blue read darker; vinyl and
+   the other already-dark covers stay put. Geometry is cloned first so a
+   cached GLB is not darkened twice. */
+function deepenChannel(r, g, b) {
+  const lum = 0.30 * r + 0.59 * g + 0.11 * b;
+  const t = lum < 0.42 ? 0 : Math.min(1, (lum - 0.42) / 0.50);
+  const scale = 1 - 0.46 * t;
+  return [r * scale, g * scale, b * scale];
+}
+function deepenHex(hex) {
+  const n = parseInt(String(hex).replace('#', ''), 16);
+  if (!Number.isFinite(n)) return hex;
+  const [r, g, b] = deepenChannel(((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255);
+  const ch = v => Math.round(Math.min(255, v * 255)).toString(16).padStart(2, '0');
+  return `#${ch(r)}${ch(g)}${ch(b)}`;
+}
+function deepenCover(root) {
+  root.traverse(o => {
+    if (!o.isMesh) return;
+    const attr = o.geometry?.getAttribute?.('color');
+    if (!attr) return;
+    const geo = o.geometry.clone();
+    const color = geo.getAttribute('color');
+    const arr = color.array;
+    for (let i = 0; i < arr.length; i += 3) {
+      const [r, g, b] = deepenChannel(arr[i], arr[i + 1], arr[i + 2]);
+      arr[i] = r;
+      arr[i + 1] = g;
+      arr[i + 2] = b;
+    }
+    color.needsUpdate = true;
+    o.geometry = geo;
+    if (o.material) {
+      o.material.color.set(0xb4b4b4);
+      o.material.roughness = 0.72;
+      o.material.envMapIntensity = 0.08;
+      o.material.clearcoat = 0.02;
+    }
+  });
+}
+
 function prepMeshes(scene, isAddon = false, highlight = false) {
   scene.traverse(o => {
     if (o.isMesh) {
@@ -238,6 +280,7 @@ async function loadModel(po, side) {
   if (model.addon) {
     const a = await loader.loadAsync('./' + model.addon + '?v=' + ASSET_V);
     prepMeshes(a.scene, true);
+    if (entry.motion === 'drape') deepenCover(a.scene);
     a.scene.userData.isAddon = true;
     // "lift": raises lift off & reseat. "press": soft fills compress under
     // load. "flip": the device flips over and the part glues onto the base.
@@ -434,10 +477,10 @@ class Stage {
     });
   }
 
-  filmGo(i, dur = 1900) {
+  filmGo(i, dur = 1900, dir = 1) {
     if (!this.filmGroups?.length || i === this.filmIndex) return;
     if (this.filmAnim) this._tickFilm(performance.now(), true);
-    this.filmAnim = { from: this.filmIndex, to: i, start: performance.now(), dur };
+    this.filmAnim = { from: this.filmIndex, to: i, start: performance.now(), dur, dir: dir < 0 ? -1 : 1 };
     this.filmIndex = i;
   }
 
@@ -449,8 +492,9 @@ class Stage {
     const e = smooth(u);
     const out = this.filmGroups[a.from];
     const inn = this.filmGroups[a.to];
-    out.g.position.x = out.home.x - this.filmSlide * e;
-    inn.g.position.x = inn.home.x + this.filmSlide * (1 - e);
+    const sign = a.dir || 1;
+    out.g.position.x = out.home.x - this.filmSlide * e * sign;
+    inn.g.position.x = inn.home.x + this.filmSlide * (1 - e) * sign;
     this._setGroupFade(out, 1 - smooth(Math.min(1, u / 0.7)));
     this._setGroupFade(inn, smooth(Math.max(0, (u - 0.3) / 0.7)));
     if (u >= 1) {
@@ -653,6 +697,7 @@ class Stage {
       for (const a of this.addons) {
         const fresh = src.clone(true);
         prepMeshes(fresh, true);
+        deepenCover(fresh);
         fresh.userData.isAddon = true;
         fresh.userData.motion = 'drape';
         const parent = a.obj.parent;
@@ -979,6 +1024,8 @@ class Stage {
     const R = {
       overview: { t: c,          el: 0.72, az: 0.45 },
       profile:  { t: c,          el: 0.10, az: 1.35 },  // classic low side view — the arch line
+      // filled in below once the real shell (without drape headroom) is known
+      coverSide: { t: c, el: 0.18, az: -Math.PI / 2 },
       // near-ground side view leaned to the heel — where cover thickness reads
       heelProfile: { t: lean(0.74), el: 0.06, az: 1.35 },
       // product-film explode: high enough to see the cover sheet and the
@@ -1005,6 +1052,15 @@ class Stage {
       ? { t: lean(0.86), el: 1.12, az: 0.72 }
       : (R[region] || R.overview);
     let margin = 1.08;
+    let fitBox = b;
+    if (region === 'coverSide') {
+      // the drape bookkeeping inflates the box upward; frame the seated insole
+      fitBox = b.clone();
+      if (this.motion === 'drape') fitBox.max.y = Math.min(fitBox.max.y, fitBox.min.y + 32);
+      r.t = fitBox.getCenter(new THREE.Vector3());
+      r.el = 0.13;
+      r.az = 1.85;   // side view, heel on the left, just enough of the cup to read
+    }
     // relief view on a device with baked wells: frame the wells themselves —
     // look-at on their centroid, from a steep angle so the cavity floor and
     // rim both read
@@ -1029,7 +1085,7 @@ class Stage {
     // Rule: the WHOLE device always fits in frame, whatever the stage's
     // aspect. Distance is solved exactly from the projected bounding box for
     // this angle — not guessed from the insole's length.
-    r.d = this._fitDistance(b, r.t, r.az, r.el) * margin;
+    r.d = this._fitDistance(fitBox, r.t, r.az, r.el) * margin;
     return r;
   }
 
@@ -1072,6 +1128,7 @@ class Stage {
   }
 
   flyTo(region, dur = 1400) {
+    this.userAimed = false;
     this.filmRegion = region;
     this.underside = region === 'underside';
     const { t, d, el, az } = this.regionTarget(region);
@@ -1191,6 +1248,8 @@ const els = {
   reelCaption: document.getElementById('reelCaption'),
   flowChart: document.getElementById('flowChart'),
   reelBeats: document.getElementById('reelBeats'),
+  reelPrev: document.getElementById('reelPrev'),
+  reelNext: document.getElementById('reelNext'),
 };
 
 const flatLessons = [];
@@ -1226,7 +1285,7 @@ const coverBar = document.getElementById('coverBar');
 const COVER_VARIANTS = byPO['PAIR-TOP-COVER']?.variants || [];
 let currentCover = COVER_VARIANTS[0];
 const swatchBg = v => {
-  const sw = v.swatches || [v.swatch];       // build order is bottom-up
+  const sw = (v.swatches || [v.swatch]).map(deepenHex); // build order is bottom-up
   return sw.length > 1
     ? `linear-gradient(to bottom, ${sw[1]} 0 55%, ${sw[0]} 55% 100%)`
     : sw[0];
@@ -1257,6 +1316,8 @@ async function selectCover(i, instant = false) {
   currentCover = v;
   markCover(i);
   await stage.swapCover(v, instant);
+  const ls = CHAPTERS[state.chapter]?.lessons[state.lesson];
+  if (!instant && ls?.covers) stage.flyTo('coverSide', 800);
 }
 coverBar.querySelectorAll('.swatch').forEach(b => b.addEventListener('click', () => {
   if (COVER_VARIANTS[+b.dataset.i] === currentCover) return;
@@ -1736,22 +1797,39 @@ function renderPlugExplore(step, ls) {
   });
 }
 let meetFilmGen = 0;
+let meetSeek = null;
 function stopMeetFilm() {
   meetFilmGen += 1;
+  meetSeek = null;
   stage.setFilmLock(false);
   if (els.reelCaption) {
     els.reelCaption.classList.remove('show');
     els.reelCaption.hidden = true;
   }
   if (els.reelBeats) els.reelBeats.hidden = true;
+  if (els.reelPrev) els.reelPrev.hidden = true;
+  if (els.reelNext) els.reelNext.hidden = true;
 }
 function meetFilmAlive(gen) {
   return gen === meetFilmGen && CHAPTERS[state.chapter]?.lessons[state.lesson]?.reel;
 }
 function waitMeet(ms, gen) {
   return new Promise(resolve => {
-    setTimeout(() => resolve(meetFilmAlive(gen)), ms);
+    const start = performance.now();
+    const step = () => {
+      if (!meetFilmAlive(gen)) return resolve(false);
+      if (meetSeek) return resolve(true);
+      if (performance.now() - start >= ms) return resolve(true);
+      requestAnimationFrame(step);
+    };
+    step();
   });
+}
+function stepMeetFilm(dir) {
+  const film = CHAPTERS[state.chapter]?.lessons[state.lesson]?.film;
+  if (!film?.length || !stage.filmGroups?.length) return;
+  const from = meetSeek ? meetSeek.to : (stage.filmIndex ?? 0);
+  meetSeek = { to: (from + dir + film.length) % film.length, dir };
 }
 function buildMeetBeats(n) {
   const box = els.reelBeats;
@@ -1774,18 +1852,26 @@ async function setMeetCaption(line, sub, gen) {
   if (el.classList.contains('show')) {
     el.classList.remove('show');
     if (!await waitMeet(520, gen)) return false;
+    if (meetSeek) return true;
   }
+  if (meetSeek) return true;
   if (strong) strong.textContent = line;
   if (span) span.textContent = sub || '';
   requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('show')));
   return meetFilmAlive(gen);
 }
 /* The intro film. One scene, no reloads: each device the paragraphs name
-   slides through in order — Functional, Diabetic, Hike Shell, UCBL — then
-   the finished insole, whose top cover lifts off the printed shell and
-   seats back on. Then it loops. */
+   slides through in order — Functional Base, Diabetic Base, Hike Shell,
+   UCBL Base — then the finished insole, whose top cover lifts off the
+   printed shell and seats back on. Then it loops. Arrows step either way. */
+function takeMeetSeek() {
+  const seek = meetSeek;
+  meetSeek = null;
+  return seek;
+}
 async function startMeetFilm() {
   const gen = ++meetFilmGen;
+  meetSeek = null;
   const ls = CHAPTERS[state.chapter].lessons[state.lesson];
   const film = ls.film || [];
   if (!film.length || !stage.filmGroups?.length) return;
@@ -1796,37 +1882,61 @@ async function startMeetFilm() {
   stage.setFilmLock(true);
   stage.setSeparation('seated', true);
   buildMeetBeats(film.length);
+  if (els.reelPrev) els.reelPrev.hidden = false;
+  if (els.reelNext) els.reelNext.hidden = false;
   stage._resize();
+  let i = 0;
+  let dir = 1;
+  let instant = true;
   stage.filmJump(0);
   requestAnimationFrame(() => {
     stage._resize();
-    if (meetFilmAlive(gen)) stage.flyTo(film[0].camera || 'overview', 2200);
+    if (meetFilmAlive(gen) && i === 0) stage.flyTo(film[0].camera || 'overview', 2200);
   });
-  let first = true;
   while (meetFilmAlive(gen)) {
-    for (let i = 0; i < last; i++) {
-      if (!first || i > 0) {
-        if (!await setMeetCaption(film[i].title, '', gen)) return;
-        stage.filmGo(i, 1900);
-        stage.flyTo(film[i].camera || 'overview', 2400);
-      } else if (!await setMeetCaption(film[i].title, '', gen)) return;
-      setMeetBeat(i);
-      if (!await waitMeet(3600, gen)) return;
+    const frame = film[i];
+    if (!await setMeetCaption(frame.title, '', gen)) return;
+    const jumped = takeMeetSeek();
+    if (jumped) { i = jumped.to; dir = jumped.dir; instant = false; continue; }
+    if (instant) stage.filmJump(i);
+    else stage.filmGo(i, 720, dir);
+    stage.flyTo(frame.camera || 'overview', instant ? 2200 : 900);
+    setMeetBeat(i);
+    instant = false;
+    if (!await waitMeet(i === last ? 3400 : 3600, gen)) return;
+    const held = takeMeetSeek();
+    if (held) {
+      stage.setSeparation('seated', true);
+      i = held.to;
+      dir = held.dir;
+      continue;
     }
-    first = false;
-    if (!await setMeetCaption('Finished insole', '', gen)) return;
-    stage.filmGo(last, 1900);
-    stage.flyTo(film[last].camera || 'overview', 2400);
-    setMeetBeat(last);
-    if (!await waitMeet(3400, gen)) return;
+    if (i !== last) { i += 1; dir = 1; continue; }
     stage.flyTo('coverSplit', 2600);
     stage.setSeparation('separated', false, 2800);
     if (!await waitMeet(3300, gen)) return;
-    stage.flyTo(film[last].camera || 'overview', 2600);
+    const split = takeMeetSeek();
+    if (split) {
+      stage.setSeparation('seated', true);
+      i = split.to;
+      dir = split.dir;
+      continue;
+    }
+    stage.flyTo(frame.camera || 'overview', 2600);
     stage.setSeparation('seated', false, 2600);
     if (!await waitMeet(3400, gen)) return;
+    const seated = takeMeetSeek();
+    if (seated) {
+      i = seated.to;
+      dir = seated.dir;
+      continue;
+    }
+    i = 0;
+    dir = 1;
   }
 }
+els.reelPrev?.addEventListener('click', () => stepMeetFilm(-1));
+els.reelNext?.addEventListener('click', () => stepMeetFilm(1));
 function renderFlowChart(ls) {
   const box = els.flowChart;
   if (!box) return;
@@ -2056,7 +2166,9 @@ function renderStep(fly = true) {
   let staged = Promise.resolve();
   if (ls.explorer || step.pair || step.cover) staged = applyExplorerStage(ls, step);
   else if (els.explore) { els.explore.hidden = true; els.explore.innerHTML = ''; }
-  if (fly && !ls.reel && !ls.chart && !isTextOnly(ls)) stage.flyTo(step.camera || ls.camera || 'overview');
+  if (fly && !ls.reel && !ls.chart && !isTextOnly(ls) && !(ls.covers && stage.userAimed)) {
+    stage.flyTo(step.camera || ls.camera || 'overview');
+  }
   // add-on animation: snap to this step's starting state, then play its move.
   // Snapping first means step-skipping can never strand a mid-flight part.
   clearTimeout(animTimer);
@@ -2228,7 +2340,11 @@ function resumeAddonLoop() {
     startAddonLoop(1400);
   }
 }
-stage.controls.addEventListener('start', () => { stopAddonLoop(); els.dragHint?.classList.add('gone'); });
+stage.controls.addEventListener('start', () => {
+  stage.userAimed = true;
+  stopAddonLoop();
+  els.dragHint?.classList.add('gone');
+});
 stage.controls.addEventListener('end', resumeAddonLoop);
 
 /* the orientation cue shows for a few seconds on each 3D page, then leaves */

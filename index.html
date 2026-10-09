@@ -143,7 +143,7 @@
   #reader.info #dragHint,#reader.info #stageHud,
   #reader.info .stage-label,#reader.info #trainBtn,
   #reader.info #keysHint,#reader.info #stepDots{display:none !important}
-  #reader.chart #gl,#reader.chart #reelCaption,#reader.chart #reelBeats{display:none !important}
+  #reader.chart #gl,#reader.chart #reelCaption,#reader.chart #reelBeats,#reader.chart #reelPrev,#reader.chart #reelNext{display:none !important}
   #reader.chart #stageWrap{overflow:auto;background:#fff}
   #flowChart{display:none;height:100%;padding:28px 26px 24px;overflow:auto}
   #reader.chart #flowChart{display:block}
@@ -225,6 +225,14 @@
   #reelBeats i{width:6px;height:6px;border-radius:99px;background:var(--line);
                transition:width .6s cubic-bezier(.3,.7,.3,1),background .6s}
   #reelBeats i.on{width:18px;background:var(--ink)}
+  #reelPrev,#reelNext{position:absolute;top:46%;z-index:4;width:46px;height:46px;margin:0;padding:0;
+                       border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.92);
+                       color:var(--ink);font-size:28px;line-height:1;cursor:pointer;
+                       box-shadow:0 8px 22px rgba(20,22,30,.10);transition:transform .18s,background .18s}
+  #reelPrev{left:18px}
+  #reelNext{right:18px}
+  #reelPrev:hover,#reelNext:hover{transform:translateY(-1px);background:#fff}
+  #reelPrev[hidden],#reelNext[hidden]{display:none}
   #stageWrap{position:relative;height:100%;min-height:0;overflow:hidden;background:
              radial-gradient(1200px 600px at 50% 30%,#f3f2ef 0%,#e9e8e4 100%)}
   #gl{width:100%;height:100%;display:block;touch-action:none}
@@ -723,6 +731,8 @@
       </div>
     </div>
     <div id="reelBeats" hidden aria-hidden="true"><i></i><i></i><i></i></div>
+    <button id="reelPrev" type="button" hidden aria-label="Previous">‹</button>
+    <button id="reelNext" type="button" hidden aria-label="Next">›</button>
     <div id="dragHint">Drag to rotate · Pinch or scroll to zoom</div>
     <button id="trainBtn" hidden></button>
     <svg id="trainArrow" hidden></svg>
@@ -842,7 +852,7 @@
   "three/addons/controls/OrbitControls.js":"./vendor/OrbitControls.js"
 }}
 </script>
-<script type="module" src="./app.js?v=clin76"></script>
+<script type="module" src="./app.js?v=clin81"></script>
 <script>
 /* Opening sequence lives here so the logo does not wait on Three.js. */
 (function () {
