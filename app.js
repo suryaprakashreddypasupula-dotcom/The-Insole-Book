@@ -9,7 +9,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { CHAPTERS, GLOSSARY } from './content.js?v=clin47';
 import { initQuiz, openQuiz, quizBlocksKeys, startCheckpoint, hasCheckpoint, quizIsCheck, resetWalkthrough } from './quiz.js?v=clin46';
 
-const ASSET_V = 'clin50';
+const ASSET_V = 'clin48';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -101,7 +101,7 @@ function installWellShader(mat) {
   mat.customProgramCacheKey = () => 'well-v2';
 }
 
-function prepMeshes(scene, isAddon = false, highlight = false, keepColor = false) {
+function prepMeshes(scene, isAddon = false, highlight = false) {
   scene.traverse(o => {
     if (o.isMesh) {
       if (!o.geometry.attributes.normal) o.geometry.computeVertexNormals();
@@ -109,14 +109,13 @@ function prepMeshes(scene, isAddon = false, highlight = false, keepColor = false
         isAddon
           ? { vertexColors: true, roughness: 0.45, metalness: 0.0, color: 0xffffff,
               clearcoat: 0.15, clearcoatRoughness: 0.45, envMapIntensity: 0.35 }
-          : { vertexColors: keepColor, roughness: 0.52, metalness: 0.0,
-              color: keepColor ? 0xffffff : 0x35363d,
+          : { vertexColors: false, roughness: 0.52, metalness: 0.0, color: 0x35363d,
               clearcoat: 0.30, clearcoatRoughness: 0.30, envMapIntensity: 0.22 }
       );
       if (!isAddon) {
         const c = o.geometry.getAttribute('color');
-        if (c && !keepColor) o.geometry.deleteAttribute('color');
-        if (highlight && c && !keepColor) {
+        if (c) o.geometry.deleteAttribute('color');
+        if (highlight && c) {
           o.geometry.setAttribute('well', c);
           installWellShader(o.material);
         }
@@ -135,7 +134,7 @@ async function loadModel(po, side) {
   const entry = byPO[po];
   const model = entry?.models?.[side] || entry?.models?.[Object.keys(entry.models)[0]];
   const g = await loader.loadAsync('./' + model.file + '?v=' + ASSET_V);
-  prepMeshes(g.scene, false, model.highlight === 'v2', !!model.paint);
+  prepMeshes(g.scene, false, model.highlight === 'v2');
   g.scene.userData.isShell = true;
   const group = new THREE.Group();
   group.add(g.scene);
