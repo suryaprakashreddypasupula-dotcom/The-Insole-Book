@@ -1394,8 +1394,7 @@ export const CHAPTERS = [
       {
         id: "toolbox",
         title: "The four verbs",
-        models: [{ po: "CPO-307089", side: "LEFT" }],
-        camera: "overview",
+        layout: "info",
         steps: [
           { camera: "overview", text: "<p>Every insole Hike makes is a sentence built from four verbs. Name the verb and you can read any Rx on sight, no matter how many accommodations are stacked.</p><p><b>RAISE</b> \u2014 add material to send load somewhere else. Posts, pads, flanges, fills, arch pads, toe crests.</p><p><b>RELIEVE</b> \u2014 remove contact so a spot never bears weight. Offloads, grooves, ray cutouts, U heel posts.</p><p><b>STIFFEN</b> \u2014 block or resist motion. Morton's Extension, base reinforcement, arch reinforcement, UCBL flanges.</p><p><b>SOFTEN</b> \u2014 replace hard contact with cushioned contact. Drill & Fill, Heel Pad, Dancer's Pad, Heel Fill.</p><p>A <b>heel raise</b> is its own idea \u2014 a full-width lift for leg-length difference or Achilles tension. Do not confuse it with a {{thickness boost}} (underside of the base) or a {{heel fill}} (seat built up inside the cup). Three jobs, one heel zone.</p><p>Base first, accommodations after. Condition leads to recipe.</p>" },
         ],

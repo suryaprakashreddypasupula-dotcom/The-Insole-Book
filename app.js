@@ -6,10 +6,10 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CHAPTERS, GLOSSARY } from './content.js?v=clin78';
+import { CHAPTERS, GLOSSARY } from './content.js?v=clin97';
 import { initQuiz, openQuiz, quizBlocksKeys, startCheckpoint, hasCheckpoint, quizIsCheck, resetWalkthrough } from './quiz.js?v=clin46';
 
-const ASSET_V = 'clin93';
+const ASSET_V = 'clin97';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -189,6 +189,66 @@ function installReinforcementShader(scene, kind) {
   });
 }
 
+function installSensoryShader(scene) {
+  scene.traverse(o => {
+    if (!o.isMesh || !o.material) return;
+    const time = { value: 0 };
+    o.material.userData.reinforcementTime = time;
+    o.material.onBeforeCompile = shader => {
+      shader.uniforms.uSensoryTime = time;
+      shader.vertexShader = shader.vertexShader
+        .replace('#include <common>', `#include <common>
+          varying vec3 vSensoryPos;`)
+        .replace('#include <begin_vertex>', `#include <begin_vertex>
+          vSensoryPos = position;`);
+      shader.fragmentShader = shader.fragmentShader
+        .replace('#include <common>', `#include <common>
+          uniform float uSensoryTime;
+          varying vec3 vSensoryPos;
+          float sensoryDistance(vec2 p) {
+            float d = 1e5;
+            d = min(d, distance(p, vec2(-29.0, 110.0)));
+            d = min(d, distance(p, vec2(-15.0, 128.0)));
+            d = min(d, distance(p, vec2(  1.0, 137.0)));
+            d = min(d, distance(p, vec2( 15.0, 137.0)));
+            d = min(d, distance(p, vec2( 28.0, 129.0)));
+            d = min(d, distance(p, vec2( 31.0,  78.0)));
+            d = min(d, distance(p, vec2( 31.0,  43.0)));
+            d = min(d, distance(p, vec2( 31.0,   8.0)));
+            d = min(d, distance(p, vec2(  0.0,  39.0)));
+            d = min(d, distance(p, vec2(-16.0,  28.0)));
+            d = min(d, distance(p, vec2(-32.0,  14.0)));
+            d = min(d, distance(p, vec2( -9.0,-120.0)));
+            d = min(d, distance(p, vec2(  9.0,-120.0)));
+            d = min(d, distance(p, vec2( -9.0,-102.0)));
+            d = min(d, distance(p, vec2(  9.0,-102.0)));
+            d = min(d, distance(p, vec2(  0.0, -86.0)));
+            d = min(d, distance(p, vec2(-15.0, -72.0)));
+            d = min(d, distance(p, vec2(-21.0, -54.0)));
+            return d;
+          }`)
+        .replace('#include <opaque_fragment>', `#include <opaque_fragment>
+          {
+            float d = sensoryDistance(vSensoryPos.xy);
+            float cycle = mod(uSensoryTime, 5.2);
+            float pulse = smoothstep(0.20, 0.95, cycle)
+              * (1.0 - smoothstep(2.35, 3.15, cycle));
+            float mask = smoothstep(12.0, 9.5, d) * pulse;
+            vec3 deepRed = vec3(0.88, 0.005, 0.012);
+            vec3 hotRed = vec3(1.00, 0.10, 0.025);
+            vec3 glow = mix(deepRed, hotRed, 0.45 + 0.55 * pulse);
+            gl_FragColor.rgb = mix(gl_FragColor.rgb, glow, mask * 0.96);
+            gl_FragColor.rgb += vec3(1.00, 0.18, 0.035)
+              * mask * (0.10 + 0.30 * pulse);
+            float rim = (1.0 - smoothstep(0.0, 1.2, abs(d - 10.0))) * mask;
+            gl_FragColor.rgb += vec3(1.00, 0.32, 0.08) * rim * 0.30;
+          }`);
+    };
+    o.material.customProgramCacheKey = () => 'sensory-hot-red-v2';
+    o.material.needsUpdate = true;
+  });
+}
+
 function prepMeshes(scene, isAddon = false, highlight = false) {
   scene.traverse(o => {
     if (o.isMesh) {
@@ -228,8 +288,15 @@ async function loadModel(po, side) {
       if (c) o.geometry.setAttribute('reinforcement', c);
     });
   }
+  if (po === 'SG-SENSORY-BUMPS') {
+    g.scene.traverse(o => {
+      const c = o.geometry?.getAttribute('color');
+      if (c) o.geometry.setAttribute('sensory', c);
+    });
+  }
   prepMeshes(g.scene, false, model.highlight === 'v2');
   if (po in REINFORCEMENT_KIND) installReinforcementShader(g.scene, REINFORCEMENT_KIND[po]);
+  if (po === 'SG-SENSORY-BUMPS') installSensoryShader(g.scene);
   g.scene.userData.isShell = true;
   const group = new THREE.Group();
   group.add(g.scene);
@@ -1428,7 +1495,7 @@ async function renderLesson(animate = true) {
   els.reader.classList.toggle('chart', !!ls.chart);
   els.reader.classList.toggle('text', isTextOnly(ls));
   els.reader.classList.toggle('covers', !!ls.covers);
-  els.reader.classList.toggle('fullpage', ls.id === 'what-is-accommodation');
+  els.reader.classList.toggle('fullpage', ls.id === 'what-is-accommodation' || ls.id === 'toolbox');
   requestAnimationFrame(() => stage._resize());
   els.reader.classList.add('loading');
   explorePair = null;
