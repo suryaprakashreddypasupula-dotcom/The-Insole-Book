@@ -9,7 +9,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { CHAPTERS, GLOSSARY } from './content.js?v=clin47';
 import { initQuiz, openQuiz, quizBlocksKeys, startCheckpoint, hasCheckpoint, quizIsCheck, resetWalkthrough } from './quiz.js?v=clin46';
 
-const ASSET_V = 'clin53';
+const ASSET_V = 'clin63';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -893,7 +893,14 @@ class Stage {
       // heel posts, ribs, and skives read as shapes instead of a flat lid
       underside: { t: lean(0.86), el: 0.88, az: 0.22 },
     };
-    const r = R[region] || R.overview;
+    // The oval heel post needs a steeper three-quarter underside view.
+    // The standard underside angle foreshortens its long axis and makes the
+    // correctly elongated post read as a circle.
+    const ovalUnderside = region === 'underside'
+      && this.specs?.some(s => s.po === 'SG-HEEL-POST-OVAL');
+    const r = ovalUnderside
+      ? { t: lean(0.86), el: 1.12, az: 0.72 }
+      : (R[region] || R.overview);
     let margin = 1.08;
     // relief view on a device with baked wells: frame the wells themselves —
     // look-at on their centroid, from a steep angle so the cavity floor and
@@ -2088,7 +2095,15 @@ function startAddonLoop(delay = 900) {
     }
     at(250,  () => stage.setSeparation('separated'));
     at(2700, () => stage.setSeparation('seated'));
-    at(5600, cycle);
+    const oval = stage.specs?.some(s => s.po === 'SG-HEEL-POST-OVAL');
+    if (oval) {
+      // Once the teaching piece has fully reseated, remove the amber overlay
+      // so the reader finishes each cycle looking at the real printed insole.
+      at(4100, () => stage.concealAddons(false));
+      at(8500, cycle);
+    } else {
+      at(5600, cycle);
+    }
   };
   at(delay, cycle);
 }
