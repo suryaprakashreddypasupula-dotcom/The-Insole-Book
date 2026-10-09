@@ -2697,6 +2697,7 @@
    "LEFT": {
     "file": "models/SG-HEEL-POST-OVAL_LEFT.glb",
     "addon": "models/SG-HEEL-POST-OVAL_LEFT_addon.glb",
+    "paint": true,
     "faces": 28000,
     "extents": [
      97.5,
