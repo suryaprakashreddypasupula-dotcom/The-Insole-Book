@@ -6,10 +6,10 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CHAPTERS, GLOSSARY } from './content.js?v=clin47';
+import { CHAPTERS, GLOSSARY } from './content.js?v=clin76';
 import { initQuiz, openQuiz, quizBlocksKeys, startCheckpoint, hasCheckpoint, quizIsCheck, resetWalkthrough } from './quiz.js?v=clin46';
 
-const ASSET_V = 'clin75';
+const ASSET_V = 'clin76';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -1194,7 +1194,9 @@ const els = {
 };
 
 const flatLessons = [];
-CHAPTERS.forEach((ch, ci) => ch.lessons.forEach((ls, li) => flatLessons.push({ ci, li })));
+CHAPTERS.forEach((ch, ci) => ch.lessons.forEach((ls, li) => {
+  if (!ls.hidden) flatLessons.push({ ci, li });
+}));
 
 function lessonIndex(ci, li) { return flatLessons.findIndex(f => f.ci === ci && f.li === li); }
 
@@ -2265,18 +2267,21 @@ document.addEventListener('click', () => { pop?.remove(); pop = null; });
 /* ---------- sidebar: chapters open like a course player, lessons under them ----
    Click a chapter to open its lesson list. Click a lesson to load it. The
    chapter you are in stays open; lessons you have opened get a tick. */
-els.sideNav.innerHTML = CHAPTERS.map((ch, ci) => `
+els.sideNav.innerHTML = CHAPTERS.map((ch, ci) => {
+  const shown = ch.lessons.map((ls, li) => ({ ls, li })).filter(({ ls }) => !ls.hidden);
+  return `
   <div class="nav-ch" data-ch="${ci}">
     <button class="nav-ch-btn" data-ch="${ci}">
       <span class="n">${String(ch.number).padStart(2, '0')}</span>
       <span class="t">${ch.title}</span>
-      <span class="c">${ch.lessons.length}<i class="chev"></i></span>
+      <span class="c">${shown.length}<i class="chev"></i></span>
     </button>
     <div class="nav-ls">
-      ${ch.lessons.map((ls, li) => `
-      <button class="nav-ls-btn" data-ch="${ci}" data-ls="${li}"><i>${li + 1}</i><span>${ls.title}</span></button>`).join('')}
+      ${shown.map(({ ls, li }, n) => `
+      <button class="nav-ls-btn" data-ch="${ci}" data-ls="${li}" data-n="${n + 1}"><i>${n + 1}</i><span>${ls.title}</span></button>`).join('')}
     </div>
-  </div>`).join('');
+  </div>`;
+}).join('');
 els.sideNav.querySelectorAll('.nav-ch-btn').forEach(btn => btn.addEventListener('click', () => {
   const wrap = btn.parentElement;
   const wasOpen = wrap.classList.contains('on');
@@ -2295,7 +2300,7 @@ function syncSideNav() {
     const was = seen.has(`${el.dataset.ch}.${el.dataset.ls}`);
     el.classList.toggle('on', on);
     el.classList.toggle('seen', was);
-    el.querySelector('i').innerHTML = was ? '&#10003;' : String(+el.dataset.ls + 1);
+    el.querySelector('i').innerHTML = was ? '&#10003;' : el.dataset.n;
   });
   const on = els.sideNav.querySelector('.nav-ls-btn.on');
   on?.scrollIntoView({ block: 'nearest' });
@@ -2340,6 +2345,11 @@ const jump = location.hash.match(/lesson=(\d+)\.(\d+)(?:\.(\d+))?/);
 if (jump) {
   state.chapter = Math.min(+jump[1], CHAPTERS.length - 1);
   state.lesson = Math.min(+jump[2], CHAPTERS[state.chapter].lessons.length - 1);
+  if (CHAPTERS[state.chapter].lessons[state.lesson]?.hidden) {
+    const next = flatLessons.find(f => f.ci > state.chapter || (f.ci === state.chapter && f.li > state.lesson))
+      || flatLessons[0];
+    if (next) { state.chapter = next.ci; state.lesson = next.li; }
+  }
 }
 if (jump) {
   await renderLesson(false);

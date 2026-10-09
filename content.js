@@ -428,6 +428,7 @@ export const CHAPTERS = [
       },
       {
         "id": "reinforcement-radial-fan",
+        "hidden": true,
         "title": "Reinforcement — Radial Fan",
         "models": [
           {
@@ -452,6 +453,7 @@ export const CHAPTERS = [
       },
       {
         "id": "reinforcement-ribbed",
+        "hidden": true,
         "title": "Reinforcement — Ribbed",
         "models": [
           {
@@ -476,6 +478,7 @@ export const CHAPTERS = [
       },
       {
         "id": "reinforcement-isogrid",
+        "hidden": true,
         "title": "Reinforcement — Isogrid",
         "models": [
           {
