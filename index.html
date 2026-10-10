@@ -403,6 +403,19 @@
     text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5}
   #welcome .facts td:first-child,#stepText .facts td:first-child{font-weight:600;color:var(--ink);padding-right:18px}
   #welcome .facts th,#stepText .facts th{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:650;padding-top:0}
+  #stepText .cover-reference{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;
+    margin:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;
+    font-size:13px;line-height:1.15}
+  #stepText .cover-reference th,#stepText .cover-reference td{
+    text-align:left;padding:3px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+  #stepText .cover-reference th{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink-3);font-weight:700;background:#f5f4f1}
+  #stepText .cover-reference th:first-child,#stepText .cover-reference td:first-child{
+    width:48px;font-weight:700;color:var(--ink)}
+  #stepText .cover-reference th:last-child,#stepText .cover-reference td:last-child{
+    width:82px;white-space:nowrap}
+  #stepText .cover-reference tbody tr:last-child td{border-bottom:0}
+  #stepText:has(> .cover-reference){padding-bottom:0;overflow-y:hidden}
   #stepText .spec{display:grid;gap:8px;margin:14px 0 20px;padding:14px 16px;border:1px solid var(--line);
                   border-radius:14px;background:#fff}
   #stepText .spec i{display:grid;grid-template-columns:minmax(9em,34%) 1fr;gap:8px 12px;font-style:normal}
@@ -855,7 +868,7 @@
   "three/addons/controls/OrbitControls.js":"./vendor/OrbitControls.js"
 }}
 </script>
-<script type="module" src="./app.js?v=clin112"></script>
+<script type="module" src="./app.js?v=clin114"></script>
 <script>
 /* Opening sequence lives here so the logo does not wait on Three.js. */
 (function () {
