@@ -56,6 +56,9 @@ OVERRIDES = {
 # well inside the forefoot; keep the zone off the arch-to-forefoot drop
 bm.OFFLOAD_ZONES["Offload Met Head"] = ("well", 0.62, 0.92, "any", 14)
 bm.OFFLOAD_ZONES["Base of Fifth Relief"] = ("well", 0.25, 0.70, "lateral", 6)
+# medial rim, just behind the first-metatarsal point — keep the navicular
+# recess (further back on the same border) out of this zone
+bm.OFFLOAD_ZONES["Base of 1st Offload"] = ("well", 0.51, 0.64, "medial", 6)
 # the heel-spur well sits under the calcaneus; the natural valley where the
 # arch dome meets the heel cup starts right behind it and must stay out
 bm.OFFLOAD_ZONES["Heel Spur"] = ("well", 0.00, 0.27, "any", 3)
@@ -333,6 +336,8 @@ def well_name(offloads, cx, cy, nx, ny, footprint, medial_pos):
         return "Heel spur well"
     if name == "Base of Fifth Relief":
         return "Base of 5th well"
+    if name == "Base of 1st Offload":
+        return "Base of 1st well"
     if name == "Navicular Offload":
         return "Navicular well"
     return "Relief well"

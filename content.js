@@ -1256,19 +1256,18 @@ export const CHAPTERS = [
         "title": "Base of 1st Offload (Non-Shell)",
         "models": [
           {
-            "po": "CPO-307228",
+            "po": "CPO-275812",
             "side": "LEFT"
           }
         ],
-        "camera": "forefoot",
-        "hideHighlight": true,
+        "camera": "relief",
         "steps": [
           {
-            "camera": "forefoot",
-            "legend": "Base of 1st Offload (Non-Shell) · no baked mesh yet — reference base shown",
+            "camera": "relief",
+            "legend": "Base of 1st Offload (Non-Shell) ·1st MT_base_offload",
             "pair": [
               {
-                "po": "CPO-307228",
+                "po": "CPO-275812",
                 "side": "LEFT"
               }
             ],

@@ -62,6 +62,7 @@ OFFLOAD_ZONES = {
     "Cuboid Raise":             ("raise", 0.22, 0.60, "lateral", 10),
     "Navicular Offload":        ("well", 0.32, 0.72, "medial", 5),
     "Base of Fifth Relief":     ("well", 0.25, 0.65, "lateral", 8),
+    "Base of 1st Offload":      ("well", 0.51, 0.64, "medial", 6),
     "Drill & Fill Offload":     ("well", 0.15, 0.95, "any", 8),
     "Wedges":                   (None, 0, 0, "any", 8),     # angulation, no local feature
     "Arch Reinforcement":       (None, 0, 0, "any", 8),
