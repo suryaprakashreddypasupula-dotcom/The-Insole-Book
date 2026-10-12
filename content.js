@@ -799,10 +799,10 @@ export const CHAPTERS = [
             "side": "LEFT"
           }
         ],
-        "camera": "arch",
+        "camera": "medialWall",
         "steps": [
           {
-            "camera": "arch",
+            "camera": "medialWall",
             "legend": "Arch reinforcement · arch_reinforcement",
             "pair": [
               {

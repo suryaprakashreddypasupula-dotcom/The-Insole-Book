@@ -6,10 +6,10 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CHAPTERS, GLOSSARY } from './content.js?v=clin151';
+import { CHAPTERS, GLOSSARY } from './content.js?v=clin156';
 import { initQuiz, openQuiz, quizBlocksKeys, startCheckpoint, hasCheckpoint, quizIsCheck, resetWalkthrough } from './quiz.js?v=clin49';
 
-const ASSET_V = 'clin151';
+const ASSET_V = 'clin156';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -326,6 +326,43 @@ function installWedgeShader(scene) {
   });
 }
 
+function installArchWallShader(scene) {
+  scene.traverse(o => {
+    if (!o.isMesh || !o.material) return;
+    o.material.onBeforeCompile = shader => {
+      shader.vertexShader = shader.vertexShader
+        .replace('#include <common>', `#include <common>
+          varying vec3 vWallPos;
+          varying vec3 vWallNormal;`)
+        .replace('#include <begin_vertex>', `#include <begin_vertex>
+          vWallPos = position;
+          vWallNormal = normal;`);
+      shader.fragmentShader = shader.fragmentShader
+        .replace('#include <common>', `#include <common>
+          varying vec3 vWallPos;
+          varying vec3 vWallNormal;`)
+        .replace('#include <opaque_fragment>', `#include <opaque_fragment>
+          {
+            // The arch wall: the tall +X side under the midfoot.
+            // Facing alone is not enough — the inner lateral lip also
+            // points toward +X, and that side stays dark.
+            float along = smoothstep(-108.0, -86.0, vWallPos.y)
+              * (1.0 - smoothstep(16.0, 40.0, vWallPos.y));
+            float onArch = smoothstep(14.0, 30.0, vWallPos.x);
+            float face = smoothstep(0.50, 0.82, vWallNormal.x);
+            float rim = smoothstep(36.0, 44.0, vWallPos.x)
+              * smoothstep(4.0, 12.0, vWallPos.z);
+            float notFloor = 1.0 - smoothstep(-0.15, -0.55, vWallNormal.z);
+            float mask = along * notFloor * onArch * max(face, rim);
+            vec3 amber = vec3(1.00, 0.58, 0.08);
+            gl_FragColor.rgb = mix(gl_FragColor.rgb, amber, mask * 0.94);
+          }`);
+    };
+    o.material.customProgramCacheKey = () => 'arch-medial-wall-v4';
+    o.material.needsUpdate = true;
+  });
+}
+
 function installForefootPostShader(scene) {
   scene.traverse(o => {
     if (!o.isMesh || !o.material) return;
@@ -438,6 +475,7 @@ async function loadModel(po, side) {
   if (po === 'SG-REARFOOT-POSTING') installIntrinsicRearfootShader(g.scene);
   if (po === 'SG-HEEL-FILL') installHeelFillShader(g.scene);
   if (po === 'CPO-283582') installForefootPostShader(g.scene);
+  if (po === 'SG-ARCH-REINFORCEMENT') installArchWallShader(g.scene);
   if (po === 'SG-WEDGE-MEDIAL' || po === 'SG-WEDGE-LATERAL') installWedgeShader(g.scene);
   if (po === 'SG-THICKNESS-BOOST') installThicknessColor(g.scene);
   g.scene.userData.isShell = true;
@@ -1233,6 +1271,8 @@ class Stage {
       // right-side up, low three-quarter — the plate edge reads, the cup stays up
       thickness: { t: lean(0.55), el: 0.34, az: 1.12 },
       arch:     { t: lean(0.55), el: 0.26, az: -1.15 }, // low, from the side — arch reads as a silhouette
+      // same low side view, from the medial side, so the arch wall faces the camera
+      medialWall: { t: lean(0.48), el: 0.42, az: 1.15 },
       forefoot: { t: lean(0.30), el: 0.80, az: 0.12 },
       toes:     { t: lean(0.14), el: 0.65, az: 0.0 },
       pad:      { t: lean(0.34), el: 1.02, az: 0.10 },
