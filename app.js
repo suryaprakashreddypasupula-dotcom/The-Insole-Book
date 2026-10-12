@@ -6,10 +6,10 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CHAPTERS, GLOSSARY } from './content.js?v=clin116';
+import { CHAPTERS, GLOSSARY } from './content.js?v=clin134';
 import { initQuiz, openQuiz, quizBlocksKeys, startCheckpoint, hasCheckpoint, quizIsCheck, resetWalkthrough } from './quiz.js?v=clin49';
 
-const ASSET_V = 'clin116';
+const ASSET_V = 'clin134';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -282,6 +282,54 @@ function installIntrinsicRearfootShader(scene) {
   });
 }
 
+function installThicknessColor(scene) {
+  scene.traverse(o => {
+    if (!o.isMesh || !o.material) return;
+    const pulse = { value: 0 };
+    o.material.userData.thicknessPulse = pulse;
+    o.material.onBeforeCompile = shader => {
+      shader.uniforms.uThickPulse = pulse;
+      shader.fragmentShader = shader.fragmentShader
+        .replace('#include <common>', `#include <common>
+          uniform float uThickPulse;`)
+        .replace('#include <opaque_fragment>', `#include <opaque_fragment>
+          gl_FragColor.rgb = mix(gl_FragColor.rgb, vec3(1.00, 0.56, 0.06), uThickPulse);`);
+    };
+    o.material.customProgramCacheKey = () => 'thickness-color-pulse-v1';
+    o.material.needsUpdate = true;
+  });
+}
+
+function installHeelFillShader(scene) {
+  scene.traverse(o => {
+    if (!o.isMesh || !o.material) return;
+    o.material.onBeforeCompile = shader => {
+      shader.vertexShader = shader.vertexShader
+        .replace('#include <common>', `#include <common>
+          varying vec3 vHeelFillPos;
+          varying vec3 vHeelFillNormal;`)
+        .replace('#include <begin_vertex>', `#include <begin_vertex>
+          vHeelFillPos = position;
+          vHeelFillNormal = normal;`);
+      shader.fragmentShader = shader.fragmentShader
+        .replace('#include <common>', `#include <common>
+          varying vec3 vHeelFillPos;
+          varying vec3 vHeelFillNormal;`)
+        .replace('#include <opaque_fragment>', `#include <opaque_fragment>
+          {
+            vec2 q = vec2(vHeelFillPos.x / 28.0, (vHeelFillPos.y + 101.0) / 34.0);
+            float oval = 1.0 - smoothstep(0.90, 1.01, length(q));
+            float seat = smoothstep(0.08, 0.40, vHeelFillNormal.z);
+            float mask = oval * seat;
+            vec3 amber = vec3(1.00, 0.58, 0.08);
+            gl_FragColor.rgb = mix(gl_FragColor.rgb, amber, mask * 0.96);
+          }`);
+    };
+    o.material.customProgramCacheKey = () => 'heel-fill-amber-v1';
+    o.material.needsUpdate = true;
+  });
+}
+
 function prepMeshes(scene, isAddon = false, highlight = false) {
   scene.traverse(o => {
     if (o.isMesh) {
@@ -331,6 +379,8 @@ async function loadModel(po, side) {
   if (po in REINFORCEMENT_KIND) installReinforcementShader(g.scene, REINFORCEMENT_KIND[po]);
   if (po === 'SG-SENSORY-BUMPS') installSensoryShader(g.scene);
   if (po === 'SG-REARFOOT-POSTING') installIntrinsicRearfootShader(g.scene);
+  if (po === 'SG-HEEL-FILL') installHeelFillShader(g.scene);
+  if (po === 'SG-THICKNESS-BOOST') installThicknessColor(g.scene);
   g.scene.userData.isShell = true;
   const group = new THREE.Group();
   group.add(g.scene);
@@ -576,6 +626,7 @@ class Stage {
     this.sepAnim = null;
     this.sepOffset = 0;
     this.sepMode = 'seated';
+    this.thicknessPulse = null;
     this.addonOpacity = 1;
     this.addonFade = null;
     this._concealAfter = null;
@@ -650,7 +701,32 @@ class Stage {
     // hop mid-roll and hover the part above the flipped device)
     if (this.addon) this.bounds.max.y += this.motion === 'flip' ? 80 : this.motion === 'drape' ? 70 : 40;
     this.specs = specs;
+    if (specs.some(s => s.po === 'SG-THICKNESS-BOOST')) {
+      const pulses = [];
+      for (const g of groups) {
+        g.scale.set(1, 1, 1);
+        g.traverse(o => {
+          const p = o.material?.userData?.thicknessPulse;
+          if (p) pulses.push(p);
+        });
+      }
+      this.thicknessPulse = { pulses, dur: 5200 };
+    }
     return groups;
+  }
+
+  _tickThickness(now) {
+    const a = this.thicknessPulse;
+    if (!a) return;
+    if (a.last != null) a.elapsed = (a.elapsed || 0) + Math.min(80, Math.max(0, now - a.last));
+    a.last = now;
+    const u = (a.elapsed || 0) / a.dur;
+    const hump = u <= 0 || u >= 1 ? 0 : Math.sin(Math.min(1, u) * Math.PI);
+    for (const p of a.pulses) p.value = hump * 0.92;
+    if (u >= 1) {
+      for (const p of a.pulses) p.value = 0;
+      this.thicknessPulse = null;
+    }
   }
 
   /* ---- add-on bookkeeping: find every seated add-on part and its local
@@ -1095,6 +1171,8 @@ class Stage {
       // faces the camera so the cover's thickness band reads immediately
       forefootEdge: { t: lean(0.30), el: 0.10, az: Math.PI - 0.55 },
       heel:     { t: lean(0.82), el: 0.45, az: 0.55 },
+      // right-side up, low three-quarter — the plate edge reads, the cup stays up
+      thickness: { t: lean(0.55), el: 0.34, az: 1.12 },
       arch:     { t: lean(0.55), el: 0.26, az: -1.15 }, // low, from the side — arch reads as a silhouette
       forefoot: { t: lean(0.30), el: 0.80, az: 0.12 },
       toes:     { t: lean(0.14), el: 0.65, az: 0.0 },
@@ -1249,6 +1327,7 @@ class Stage {
   }
 
   _tick(now) {
+    this._tickThickness(now);
     this._processTimeline(now);
     this._tickFilm(now);
     this._tickWell(now);
