@@ -59,6 +59,9 @@ bm.OFFLOAD_ZONES["Base of Fifth Relief"] = ("well", 0.25, 0.70, "lateral", 6)
 # medial rim, just behind the first-metatarsal point — keep the navicular
 # recess (further back on the same border) out of this zone
 bm.OFFLOAD_ZONES["Base of 1st Offload"] = ("well", 0.51, 0.64, "medial", 6)
+# the whole medial recess, heelward of the met heads. The lip of this cut
+# runs a long way; a tight band only paints the middle of it.
+bm.OFFLOAD_ZONES["Navicular Offload"] = ("well", 0.36, 0.84, "medial", 6)
 # the heel-spur well sits under the calcaneus; the natural valley where the
 # arch dome meets the heel cup starts right behind it and must stay out
 bm.OFFLOAD_ZONES["Heel Spur"] = ("well", 0.00, 0.27, "any", 3)
@@ -69,9 +72,21 @@ RAMPS = {
     "Heel Spur": (1.8, 3.2),
     "Navicular Offload": (0.35, 1.10),
 }
-# SoleGen ovals get a fitted ellipse. A shallow navicular recess is irregular
-# — paint the real lip instead of stretching a teardrop over the arch valley.
-SHAPE_FROM_MASK = {"Navicular Offload"}
+# These two cuts sit on a sloping rim, so the depth ramp only catches the
+# middle of the bowl. Flood out to the lip and paint that whole oval, the
+# same way Base of 5th fills its relief.
+LIP_FILL = {
+    # Max-z hides this floor (the medial wall shares the cell), so measure the
+    # upward walking surface and paint an oval out to that lip — the same
+    # fill Base of 5th uses, just from the surface you can actually see.
+    "Navicular Offload": {
+        "ball": 18.0, "lip": 0.70, "reach": 80.0, "scale": 1.05,
+        "surface": "walking", "clip_zone": True,
+        # the depth blob sits lateral of the rim you see; slide onto that lip
+        "medial_shift_mm": 6.5,
+    },
+    "Base of 1st Offload": {"ball": 18.0, "lip": 0.20, "reach": 32.0, "scale": 1.22},
+}
 
 WELL_TYPES = {k for k, v in bm.OFFLOAD_ZONES.items() if v[0] == "well"}
 
@@ -194,35 +209,115 @@ def local_well(h, ball_mm=10.0):
     return np.clip(closed - hs, 0, None)
 
 
+def walking_well(v, n, h, dist, xmin, ymin, ball_mm):
+    """Depth of the upward walking surface on the same grid as `h`.
+
+    A max-z heightfield reports the medial wall when a cell also holds the
+    well floor, so the cut disappears. Averaging the upward vertices keeps
+    the floor, and the closing then measures down to the lip."""
+    nx, ny = h.shape
+    top = n[:, 2] > 0.35
+    pts = v[top]
+    ix = np.clip(((pts[:, 0] - xmin) / bm.CELL).astype(int), 0, nx - 1)
+    iy = np.clip(((pts[:, 1] - ymin) / bm.CELL).astype(int), 0, ny - 1)
+    acc = np.zeros((nx, ny))
+    cnt = np.zeros((nx, ny))
+    np.add.at(acc, (ix, iy), pts[:, 2])
+    np.add.at(cnt, (ix, iy), 1)
+    wh = np.where(cnt > 0, acc / np.maximum(cnt, 1.0), h)
+    wh = ndimage.gaussian_filter(wh, 0.8)
+    closed = ndimage.grey_closing(wh, footprint=bm._disk(ball_mm), mode="nearest")
+    depth = np.clip(closed - wh, 0, None)
+    depth[dist < 8] = 0.0
+    return depth
+
+
+def ellipse_covering(cells: np.ndarray):
+    """Ellipse in grid units that reaches the rim of a filled well mask."""
+    pts = np.argwhere(cells).astype(float) if cells.dtype == bool else cells.astype(float)
+    c = pts.mean(axis=0)
+    d = pts - c
+    cov = np.cov(d.T) + np.eye(2) * 1e-6
+    evals, evecs = np.linalg.eigh(cov)
+    proj = d @ evecs
+    # 98th percentile reaches the lip and ignores a single stray cell
+    minor = float(np.percentile(np.abs(proj[:, 0]), 98)) + 0.6
+    major = float(np.percentile(np.abs(proj[:, 1]), 98)) + 0.6
+    theta = float(np.arctan2(evecs[1, 1], evecs[0, 1]))
+    return float(c[0]), float(c[1]), major, minor, theta
+
+
+def lip_fill(field, dist, offload, medial_pos):
+    """Connected bowl around the zone's deepest point, out to its lip."""
+    cfg = LIP_FILL[offload]
+    spec = bm.OFFLOAD_ZONES[offload]
+    if cfg.get("mask"):
+        field = field.copy()
+        field[dist < 7] = 0.0
+    nx, ny = field.shape
+    yf = (np.arange(ny) / max(ny - 1, 1))[None, :]
+    xpos = (np.arange(nx) > (nx - 1) / 2)[:, None]
+    zone = (yf >= spec[1]) & (yf <= spec[2]) & (dist >= spec[4])
+    if spec[3] in ("medial", "lateral"):
+        want_pos = medial_pos if spec[3] == "medial" else not medial_pos
+        zone = zone & (xpos if want_pos else ~xpos)
+    band = np.where(zone, field, 0.0)
+    if float(band.max()) < 0.25:
+        return None
+    loc = np.unravel_index(int(np.argmax(band)), band.shape)
+    gx = (np.arange(nx)[:, None] - loc[0]) * bm.CELL
+    gy = (np.arange(ny)[None, :] - loc[1]) * bm.CELL
+    near = (gx * gx + gy * gy) <= cfg["reach"] ** 2
+    seeds = (field >= cfg["lip"]) & near
+    if cfg.get("clip_zone"):
+        seeds = seeds & zone
+    lbl, _ = ndimage.label(seeds)
+    if lbl[loc] == 0:
+        return None
+    comp = lbl == lbl[loc]
+    if comp.sum() * bm.CELL ** 2 < 40:
+        return None
+    if cfg.get("mask"):
+        comp = ndimage.binary_fill_holes(comp)
+        return comp, float(field[comp].max())
+    cx, cy, major, minor, theta = ellipse_covering(comp)
+    scale = cfg.get("scale", 1.0)
+    shift = cfg.get("medial_shift_mm", 0.0) / bm.CELL
+    cx += shift if medial_pos else -shift
+    return (cx, cy, major * scale, minor * scale, theta), float(field[loc])
+
+
 def weights(mesh, v, n, order, offloads):
     """Zone-gated well / pad regions per vertex (mirrors build_models.colorize),
     encoded as signed distance to the region contour so the shader can draw a
     sub-vertex, anti-aliased edge and a precise rim line."""
     well, raise_, narrow, dist, h, xi, yi, fc, grid_origin = detect_dense(mesh, v, order)
     medial_pos = bm.medial_is_positive_x(v)
-    if any(name in SHAPE_FROM_MASK for name in offloads):
-        spec = bm.OFFLOAD_ZONES["Navicular Offload"]
-        field = local_well(h, 10.0)
-        field[dist < spec[4]] = 0.0
-        # the visible recess is a round bowl; the detector crease is a thin
-        # trench. Paint a circle on the peak so the color matches the cavity.
-        nx, ny = field.shape
-        yf = (np.arange(ny) / max(ny - 1, 1))[None, :]
-        xpos = (np.arange(nx) > (nx - 1) / 2)[:, None]
-        zone = (yf >= spec[1]) & (yf <= spec[2]) & (dist >= spec[4])
-        zone = zone & (xpos if medial_pos else ~xpos)
-        band = np.where(zone, field, 0.0)
+    lip_name = next((name for name in offloads if name in LIP_FILL), None)
+    if lip_name:
+        cfg = LIP_FILL[lip_name]
+        if cfg.get("surface") == "walking":
+            field = walking_well(v, n, h, dist, grid_origin[0], grid_origin[1], cfg["ball"])
+        else:
+            field = local_well(h, cfg["ball"])
+        found = lip_fill(field, dist, lip_name, medial_pos)
         on_surface = (n[:, 2] > 0.1) & (v[:, 2] >= (h[xi, yi] - 6.0))
         pad_w = np.zeros(len(v))
-        if float(band.max()) < 0.25:
+        if found is None:
             return np.zeros(len(v)), pad_w, np.zeros(len(v)), []
-        loc = np.unravel_index(int(np.argmax(band)), band.shape)
-        radius_mm = 11.0
-        e = (float(loc[0]), float(loc[1]), radius_mm / bm.CELL, radius_mm / bm.CELL, 0.0)
-        sd, bowl = ellipse_field(v, grid_origin[0], grid_origin[1], e, lip_pad_mm=0.2)
-        peak = max(float(band.max()), 0.2)
-        d = np.clip(sample(field, fc) / peak, 0, 1)
-        depth = np.where(sd > -1.5, 0.35 * d + 0.65 * bowl, 0.0)
+        shape, peak = found
+        if isinstance(shape, np.ndarray):
+            sd = sample(signed_distance(shape), fc)
+            d = np.clip(sample(field, fc) / max(peak, 0.2), 0, 1)
+            bowl = np.clip(sd / max(float(np.percentile(sd[sd > 0], 80)) if (sd > 0).any() else 1.0, 0.5), 0, 1)
+            cy = float(np.argwhere(shape)[:, 1].mean())
+            cx = float(np.argwhere(shape)[:, 0].mean())
+        else:
+            e = shape
+            cx, cy = e[0], e[1]
+            sd, bowl = ellipse_field(v, grid_origin[0], grid_origin[1], e, lip_pad_mm=0.6)
+            d = np.clip(sample(field, fc) / max(peak, 0.2), 0, 1)
+        depth = np.where(sd > -1.5, 0.35 * d + 0.65 * np.clip(bowl, 0, 1), 0.0)
         sel = (sd > 0) & on_surface
         well_w = encode_sd(sd)
         well_w[~on_surface] = 0.0
@@ -232,7 +327,7 @@ def weights(mesh, v, n, order, offloads):
             blobs.append({
                 "sel": sel,
                 "depth": float(peak),
-                "name": "Navicular well",
+                "name": well_name(offloads, cx, cy, h.shape[0], h.shape[1], dist > 0, medial_pos),
                 "_zx": float(v[sel, 0].mean()),
             })
         return well_w, pad_w, depth, blobs
