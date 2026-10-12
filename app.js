@@ -6,10 +6,10 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CHAPTERS, GLOSSARY } from './content.js?v=clin134';
+import { CHAPTERS, GLOSSARY } from './content.js?v=clin137';
 import { initQuiz, openQuiz, quizBlocksKeys, startCheckpoint, hasCheckpoint, quizIsCheck, resetWalkthrough } from './quiz.js?v=clin49';
 
-const ASSET_V = 'clin134';
+const ASSET_V = 'clin137';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -300,6 +300,32 @@ function installThicknessColor(scene) {
   });
 }
 
+function installWedgeShader(scene) {
+  scene.traverse(o => {
+    if (!o.isMesh || !o.material) return;
+    o.material.onBeforeCompile = shader => {
+      shader.vertexShader = shader.vertexShader
+        .replace('#include <common>', `#include <common>
+          varying vec3 vWedgePos;`)
+        .replace('#include <begin_vertex>', `#include <begin_vertex>
+          vWedgePos = position;`);
+      shader.fragmentShader = shader.fragmentShader
+        .replace('#include <common>', `#include <common>
+          varying vec3 vWedgePos;`)
+        .replace('#include <opaque_fragment>', `#include <opaque_fragment>
+          {
+            // The extrinsic wedge is a thin sheet on the build plate (z 0–1.2),
+            // separated from the insole underside above it. Color only that sheet.
+            float layer = 1.0 - smoothstep(1.18, 1.45, vWedgePos.z);
+            vec3 amber = vec3(1.00, 0.58, 0.08);
+            gl_FragColor.rgb = mix(gl_FragColor.rgb, amber, layer * 0.94);
+          }`);
+    };
+    o.material.customProgramCacheKey = () => 'wedge-layer-amber-v2';
+    o.material.needsUpdate = true;
+  });
+}
+
 function installHeelFillShader(scene) {
   scene.traverse(o => {
     if (!o.isMesh || !o.material) return;
@@ -380,6 +406,7 @@ async function loadModel(po, side) {
   if (po === 'SG-SENSORY-BUMPS') installSensoryShader(g.scene);
   if (po === 'SG-REARFOOT-POSTING') installIntrinsicRearfootShader(g.scene);
   if (po === 'SG-HEEL-FILL') installHeelFillShader(g.scene);
+  if (po === 'SG-WEDGE-MEDIAL' || po === 'SG-WEDGE-LATERAL') installWedgeShader(g.scene);
   if (po === 'SG-THICKNESS-BOOST') installThicknessColor(g.scene);
   g.scene.userData.isShell = true;
   const group = new THREE.Group();
@@ -1184,6 +1211,9 @@ class Stage {
       wedgeHeel:    { t: lean(0.82), el: 0.72, az: 0.15 },
       wedgeMedial:  { t: c, el: 0.10, az: -1.40 },
       wedgeLateral: { t: c, el: 0.10, az: 1.40 },
+      // flipped, low three-quarter: the thin wedge sheet faces the camera
+      // and the insole body stays visible beside it
+      wedgeSheet: { t: c, el: 0.22, az: 1.25 },
       // flipped over — looking at the print-bed / bottom of the shell so
       // heel posts, ribs, and skives read as shapes instead of a flat lid
       underside: { t: lean(0.86), el: 0.88, az: 0.22 },
@@ -1275,7 +1305,7 @@ class Stage {
   flyTo(region, dur = 1400) {
     this.userAimed = false;
     this.filmRegion = region;
-    this.underside = region === 'underside';
+    this.underside = region === 'underside' || region === 'wedgeSheet';
     const { t, d, el, az } = this.regionTarget(region);
     const p1 = new THREE.Vector3(
       t.x + Math.sin(az) * d * Math.cos(el),
@@ -1643,9 +1673,8 @@ async function renderLesson(animate = true) {
     startMeetFilm();
   } else if (!ls.chart && !isTextOnly(ls)) {
     if (animate) stage.camera.position.multiplyScalar(1.35);
-    const openingView = isWedgeLesson(ls) ? 'wedgeHeel' : (ls.steps[0].camera || ls.camera || 'overview');
+    const openingView = isWedgeLesson(ls) ? 'wedgeSheet' : (ls.steps[0].camera || ls.camera || 'overview');
     stage.flyTo(openingView, 1600);
-    if (isWedgeLesson(ls)) startWedgeTour(ls, 2600);
     showDragHint();
   }
   if (specs) updateLegend(specs);
@@ -2354,7 +2383,8 @@ function renderStep(fly = true) {
   if (ls.explorer || step.pair || step.cover) staged = applyExplorerStage(ls, step);
   else if (els.explore) { els.explore.hidden = true; els.explore.innerHTML = ''; }
   if (fly && !ls.reel && !ls.chart && !isTextOnly(ls) && !(ls.covers && stage.userAimed)) {
-    stage.flyTo(step.camera || ls.camera || 'overview');
+    const stepCam = step.camera || ls.camera || 'overview';
+    stage.flyTo(isWedgeLesson(ls) && stepCam === 'underside' ? 'wedgeSheet' : stepCam);
   }
   // add-on animation: snap to this step's starting state, then play its move.
   // Snapping first means step-skipping can never strand a mid-flight part.
