@@ -723,7 +723,7 @@ export const CHAPTERS = [
         "title": "Forefoot Posting",
         "models": [
           {
-            "po": "SG-FOREFOOT-POSTING",
+            "po": "CPO-283582",
             "side": "LEFT"
           }
         ],
@@ -734,7 +734,7 @@ export const CHAPTERS = [
             "legend": "Forefoot posting · forefoot_posting",
             "pair": [
               {
-                "po": "SG-FOREFOOT-POSTING",
+                "po": "CPO-283582",
                 "side": "LEFT"
               }
             ],

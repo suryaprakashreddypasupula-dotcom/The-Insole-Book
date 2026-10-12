@@ -6,10 +6,10 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CHAPTERS, GLOSSARY } from './content.js?v=clin137';
+import { CHAPTERS, GLOSSARY } from './content.js?v=clin142';
 import { initQuiz, openQuiz, quizBlocksKeys, startCheckpoint, hasCheckpoint, quizIsCheck, resetWalkthrough } from './quiz.js?v=clin49';
 
-const ASSET_V = 'clin137';
+const ASSET_V = 'clin142';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -326,6 +326,37 @@ function installWedgeShader(scene) {
   });
 }
 
+function installForefootPostShader(scene) {
+  scene.traverse(o => {
+    if (!o.isMesh || !o.material) return;
+    o.material.onBeforeCompile = shader => {
+      shader.vertexShader = shader.vertexShader
+        .replace('#include <common>', `#include <common>
+          varying vec3 vPostPos;
+          varying vec3 vPostNormal;`)
+        .replace('#include <begin_vertex>', `#include <begin_vertex>
+          vPostPos = position;
+          vPostNormal = normal;`);
+      shader.fragmentShader = shader.fragmentShader
+        .replace('#include <common>', `#include <common>
+          varying vec3 vPostPos;
+          varying vec3 vPostNormal;`)
+        .replace('#include <opaque_fragment>', `#include <opaque_fragment>
+          {
+            // Lateral forefoot band: one side of the plate, just behind the toes.
+            float along = 1.0 - smoothstep(0.50, 1.0, abs(vPostPos.y - 70.0) / 38.0);
+            float across = 1.0 - smoothstep(-10.0, 8.0, vPostPos.x);
+            float face = smoothstep(0.20, 0.50, vPostNormal.z);
+            float mask = along * across * face;
+            vec3 amber = vec3(1.00, 0.58, 0.08);
+            gl_FragColor.rgb = mix(gl_FragColor.rgb, amber, mask * 0.94);
+          }`);
+    };
+    o.material.customProgramCacheKey = () => 'forefoot-post-amber-v3';
+    o.material.needsUpdate = true;
+  });
+}
+
 function installHeelFillShader(scene) {
   scene.traverse(o => {
     if (!o.isMesh || !o.material) return;
@@ -406,6 +437,7 @@ async function loadModel(po, side) {
   if (po === 'SG-SENSORY-BUMPS') installSensoryShader(g.scene);
   if (po === 'SG-REARFOOT-POSTING') installIntrinsicRearfootShader(g.scene);
   if (po === 'SG-HEEL-FILL') installHeelFillShader(g.scene);
+  if (po === 'CPO-283582') installForefootPostShader(g.scene);
   if (po === 'SG-WEDGE-MEDIAL' || po === 'SG-WEDGE-LATERAL') installWedgeShader(g.scene);
   if (po === 'SG-THICKNESS-BOOST') installThicknessColor(g.scene);
   g.scene.userData.isShell = true;

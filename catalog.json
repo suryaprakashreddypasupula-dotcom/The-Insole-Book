@@ -47,6 +47,33 @@
   }
  },
  {
+  "po": "CPO-283582",
+  "categories": [
+   "Wedges"
+  ],
+  "orthotic_type": "Functional",
+  "base": "",
+  "top_cover": "",
+  "additions": "Forefoot posting",
+  "label": "Forefoot posting",
+  "hidden": true,
+  "models": {
+   "LEFT": {
+    "file": "models/CPO-283582_LEFT.glb",
+    "faces": 71422,
+    "extents": [
+     109.1,
+     300.4,
+     27.1
+    ],
+    "relief_focus": null,
+    "pad_focus": null,
+    "relief_area_pct": 0.0,
+    "pad_area_pct": 0.0
+   }
+  }
+ },
+ {
   "po": "CPO-291487",
   "categories": [
    "35 Durometer EVA"
