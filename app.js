@@ -6,10 +6,10 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CHAPTERS, GLOSSARY } from './content.js?v=clin157';
+import { CHAPTERS, GLOSSARY } from './content.js?v=clin158';
 import { initQuiz, openQuiz, quizBlocksKeys, startCheckpoint, hasCheckpoint, quizIsCheck, resetWalkthrough } from './quiz.js?v=clin49';
 
-const ASSET_V = 'clin157';
+const ASSET_V = 'clin158';
 const catalog = await (await fetch('./catalog.json?v=' + ASSET_V)).json();
 const byPO = Object.fromEntries(catalog.map(e => [e.po, e]));
 const loader = new GLTFLoader();
@@ -709,6 +709,16 @@ class Stage {
       this._setGroupFade(inn, 1);
       this.filmAnim = null;
     }
+  }
+
+  clearModels() {
+    this.holder.clear();
+    this.holder.rotation.z = 0;
+    this.flight = null;
+    this.labels.forEach(l => l.el.remove());
+    this.labels = [];
+    this.addon = false;
+    this.addons = [];
   }
 
   async show(specs) {
@@ -1552,6 +1562,19 @@ function isTextOnly(ls) {
   return ls.layout === 'info' && !ls.chart && !ls.reel && !ls.models && !ls.compare;
 }
 
+function showStageStill(src) {
+  const img = document.getElementById('stageStill');
+  if (!img) return;
+  if (!src) {
+    img.hidden = true;
+    img.removeAttribute('src');
+    return;
+  }
+  img.alt = 'Plantar view of a Charcot foot';
+  img.src = src + '?v=' + ASSET_V;
+  img.hidden = false;
+}
+
 /* Colour keys and stage captions ("Amber = the raised part", "Arch pad ·
    arch_pad", "Plain shell — no offloads") are retired. The lesson text
    carries the information; the model carries the picture. Call sites stay. */
@@ -1714,14 +1737,18 @@ async function renderLesson(animate = true) {
   els.reader.classList.toggle('chart', !!ls.chart);
   els.reader.classList.toggle('text', isTextOnly(ls));
   els.reader.classList.toggle('covers', !!ls.covers);
+  els.reader.classList.toggle('still', !!ls.still);
   els.reader.classList.toggle('fullpage', ls.id === 'what-is-accommodation' || ls.id === 'toolbox');
+  showStageStill(ls.still);
   requestAnimationFrame(() => stage._resize());
   els.reader.classList.add('loading');
   explorePair = null;
   stopMeetFilm();
   renderFlowChart(ls);
   try {
-    if (ls.chart || isTextOnly(ls)) {
+    if (ls.still) {
+      stage.clearModels();
+    } else if (ls.chart || isTextOnly(ls)) {
       /* no GLB on info-only pages */
     } else if (ls.reel && ls.film) {
       const cv = COVER_VARIANTS.find(v => v.code === (ls.film[ls.film.length - 1].cover || 'T3'));
@@ -1743,7 +1770,7 @@ async function renderLesson(animate = true) {
   renderStep(false);
   if (ls.reel) {
     startMeetFilm();
-  } else if (!ls.chart && !isTextOnly(ls)) {
+  } else if (!ls.chart && !isTextOnly(ls) && !ls.still) {
     if (animate) stage.camera.position.multiplyScalar(1.35);
     const openingView = isWedgeLesson(ls) ? 'wedgeSheet' : (ls.steps[0].camera || ls.camera || 'overview');
     stage.flyTo(openingView, 1600);
@@ -2454,7 +2481,7 @@ function renderStep(fly = true) {
   let staged = Promise.resolve();
   if (ls.explorer || step.pair || step.cover) staged = applyExplorerStage(ls, step);
   else if (els.explore) { els.explore.hidden = true; els.explore.innerHTML = ''; }
-  if (fly && !ls.reel && !ls.chart && !isTextOnly(ls) && !(ls.covers && stage.userAimed)) {
+  if (fly && !ls.reel && !ls.chart && !isTextOnly(ls) && !ls.still && !(ls.covers && stage.userAimed)) {
     const stepCam = step.camera || ls.camera || 'overview';
     stage.flyTo(isWedgeLesson(ls) && stepCam === 'underside' ? 'wedgeSheet' : stepCam);
   }
@@ -2650,7 +2677,7 @@ function startAddonLoop(delay = 900) {
 function resumeAddonLoop() {
   if (!stage.addon || hideAddon || stage.motion === 'drape' || state.quiz || state.welcome) return;
   const ls = CHAPTERS[state.chapter]?.lessons[state.lesson];
-  if (!ls || ls.reel || ls.chart || isTextOnly(ls)) return;
+  if (!ls || ls.reel || ls.chart || ls.still || isTextOnly(ls)) return;
   if (ls.steps[state.step]?.anim) return;
   // if the reader grabbed the model mid-lift, let the part land first
   if (stage.sepMode !== 'seated') {

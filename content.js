@@ -1384,8 +1384,7 @@ export const CHAPTERS = [
       {
         id: "charcot",
         title: "Charcot foot (Rocker Bottom Foot)",
-        models: [{ po: "CPO-306178", side: "LEFT" }],
-        camera: "arch",
+        still: "./assets/charcot-foot.jpg",
         steps: [
           { camera: "profile", text: "<p><b>{{Charcot foot}}</b> is midfoot collapse remodeled into a rocker-bottom . This is a progressive condition in which {{neuropathy}}, most often from diabetes, leads to weakening, fracture, and collapse of the bones and joints in the foot. The arch has fallen so far the midfoot sits lower than heel and forefoot. Load spikes at that convex midfoot every step. For a diabetic patient with neuropathy who cannot feel it, a ridge in the wrong place can start an {{ulcer}} before anyone knows.</p><p>Do not confuse with CMT (Charcot-Marie-Tooth), which is a hereditary neuropathy. It has a different presentation: high cavus arch and claw toes.</p><p>This device is a direct mirror of that collapsed anatomy: deep {{total contact}} across the whole plantar surface, following the rocker (accommodating shape) instead of correcting it. No aggressive posting. The side profile is the whole story — the arch line follows the collapsed midfoot, not a functional arch curve.</p><p>Nothing glows in SoleGen because nothing is added or cut \u2014 the entire surface is the treatment. Total contact means no single point takes disproportionate load. Smooth, total, and forgiving. In Charcot, any ridge or gap the patient cannot feel can cost tissue they cannot get back.</p>" },
         ],
